@@ -1,93 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
 <nta>
-	<declaration>// Place global declarations here.</declaration>
+	<declaration>// Place global declarations here.
+clock MT;
+bool needWater;
+bool activePump;
+int moist:= 100;</declaration>
 	<template>
-		<name x="5" y="5">Template</name>
-		<declaration>// Place local declarations here.</declaration>
-		<location id="id0" x="-170" y="161">
-			<name x="-204" y="127">Need water</name>
-		</location>
-		<location id="id1" x="-8" y="161">
-			<name x="-18" y="127">!Need water</name>
-		</location>
-		<location id="id2" x="238" y="161">
-			<name x="221" y="127">Active</name>
-		</location>
-		<location id="id3" x="400" y="161">
-			<name x="383" y="127">!Active</name>
-		</location>
-		<location id="id4" x="110" y="-153">
+		<name x="5" y="5">Controller</name>
+		<declaration>// Place local declarations here.
+</declaration>
+		<location id="id0" x="110" y="-153">
 			<name x="100" y="-187">DataRecieve</name>
 		</location>
-		<location id="id5" x="110" y="-59">
+		<location id="id1" x="110" y="-59">
 			<name x="34" y="-85">RuleCheck</name>
 		</location>
-		<location id="id6" x="59" y="34">
+		<location id="id2" x="59" y="34">
 			<name x="8" y="42">SendActivate</name>
 		</location>
-		<location id="id7" x="161" y="34">
+		<location id="id3" x="161" y="34">
 			<name x="144" y="51">SendIdle</name>
 		</location>
 		<init ref="id0"/>
 		<transition>
-			<source ref="id7"/>
-			<target ref="id4"/>
+			<source ref="id3"/>
+			<target ref="id0"/>
 			<nail x="280" y="-17"/>
 		</transition>
 		<transition>
-			<source ref="id6"/>
-			<target ref="id4"/>
+			<source ref="id2"/>
+			<target ref="id0"/>
 			<nail x="-76" y="-25"/>
 		</transition>
 		<transition>
-			<source ref="id5"/>
-			<target ref="id7"/>
-			<label kind="guard" x="127" y="-42">needWater = false</label>
+			<source ref="id1"/>
+			<target ref="id3"/>
+			<label kind="guard" x="127" y="-42">needWater == false</label>
 			<label kind="assignment" x="136" y="-25">activePump = false</label>
 		</transition>
 		<transition>
-			<source ref="id5"/>
-			<target ref="id6"/>
-			<label kind="guard" x="-25" y="-42">needWater = true</label>
-			<label kind="assignment" x="-34" y="-25">activePump = true</label>
-		</transition>
-		<transition>
-			<source ref="id4"/>
-			<target ref="id5"/>
-		</transition>
-		<transition>
-			<source ref="id3"/>
-			<target ref="id2"/>
-			<label kind="guard" x="272" y="195">activePump = true</label>
-			<nail x="315" y="195"/>
-		</transition>
-		<transition>
 			<source ref="id1"/>
-			<target ref="id0"/>
-			<label kind="guard" x="-102" y="204">moist&lt;100</label>
-			<label kind="assignment" x="-102" y="221">needWater = true</label>
-			<nail x="-93" y="204"/>
-		</transition>
-		<transition>
-			<source ref="id2"/>
-			<target ref="id3"/>
-			<label kind="guard" x="255" y="102">activePump = false</label>
-			<nail x="315" y="127"/>
+			<target ref="id2"/>
+			<label kind="guard" x="-25" y="-42">needWater == true</label>
+			<label kind="assignment" x="-34" y="-25">activePump = true</label>
 		</transition>
 		<transition>
 			<source ref="id0"/>
 			<target ref="id1"/>
-			<label kind="guard" x="-136" y="85">moist &gt;= 100</label>
-			<label kind="assignment" x="-136" y="102">needWater = false</label>
-			<nail x="-93" y="119"/>
-			<nail x="-85" y="119"/>
+		</transition>
+	</template>
+	<template>
+		<name>Plant</name>
+		<location id="id4" x="46" y="64">
+			<name x="12" y="30">NeedWater</name>
+		</location>
+		<location id="id5" x="212" y="68">
+			<name x="202" y="34">NotNeedWater</name>
+		</location>
+		<init ref="id5"/>
+		<transition>
+			<source ref="id5"/>
+			<target ref="id5"/>
+			<label kind="guard" x="229" y="59">MT&gt;=10</label>
+			<label kind="assignment" x="230" y="93">moist:= moist-1,
+MT:=0</label>
+			<nail x="296" y="119"/>
+			<nail x="296" y="17"/>
+		</transition>
+		<transition>
+			<source ref="id5"/>
+			<target ref="id4"/>
+			<label kind="guard" x="114" y="107">moist&lt;100</label>
+			<label kind="assignment" x="114" y="124">needWater = true</label>
+			<nail x="123" y="107"/>
+		</transition>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id5"/>
+			<label kind="guard" x="80" y="-12">moist &gt;= 100</label>
+			<label kind="assignment" x="80" y="5">needWater = false</label>
+			<nail x="123" y="22"/>
+			<nail x="131" y="22"/>
+		</transition>
+	</template>
+	<template>
+		<name>Pump</name>
+		<declaration>clock PT;</declaration>
+		<location id="id6" x="-238" y="-68">
+			<name x="-255" y="-102">Active</name>
+		</location>
+		<location id="id7" x="-76" y="-68">
+			<name x="-93" y="-102">NotActive</name>
+		</location>
+		<init ref="id7"/>
+		<transition>
+			<source ref="id6"/>
+			<target ref="id6"/>
+			<label kind="guard" x="-347" y="-93">PT&gt;10</label>
+			<label kind="assignment" x="-347" y="-59">PT:=0,
+moist:=moist+10</label>
+			<nail x="-365" y="-51"/>
+			<nail x="-374" y="-102"/>
+		</transition>
+		<transition>
+			<source ref="id7"/>
+			<target ref="id6"/>
+			<label kind="guard" x="-204" y="-34">activePump == true</label>
+			<nail x="-161" y="-34"/>
+		</transition>
+		<transition>
+			<source ref="id6"/>
+			<target ref="id7"/>
+			<label kind="guard" x="-221" y="-127">activePump == false</label>
+			<nail x="-161" y="-102"/>
 		</transition>
 	</template>
 	<system>// Place template instantiations here.
-Process = Template();
+controller:=Controller();
+plant:=Plant();
+pump:=Pump();
 // List one or more processes to be composed into a system.
-system Process;
+system controller, plant, pump;
     </system>
 	<queries>
 		<query>
