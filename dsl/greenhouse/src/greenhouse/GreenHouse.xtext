@@ -1,0 +1,9 @@
+grammar greenhouse.GreenHouse with org.eclipse.xtext.common.Terminals
+
+generate greenHouse "http://www.GreenHouse.greenhouse"
+
+Model:
+	greetings+=Greeting*;
+	
+Greeting:
+	'Hello' name=ID '!';
