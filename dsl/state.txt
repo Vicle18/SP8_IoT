@@ -1,31 +1,31 @@
 system greenhouse
     row tomato
-        sensor moisture1 has value moisture_value
-            is too_moist when moisture_value > 50
+        sensor moisture1 has value moisture_value (on topic "tomato/moisture1" with 10 herz)
+            is too_moist when moisture_value*10 > 50
             is optimal when moisture_value < 50 && moisture_value > 25
             is too_dry when moisture_value < 25
-        actuator pump1
-            can open 20 percent
-            can open 40 percent
-            can open 60 percent
-            can open 80 percent
-            can open 100 percent
-            can close
-    Sensor temp has value temp_value
+        Pump pump1 (on topic "tomato/pump1")
+            can open 20 percent when receiving "open20" by setting duty_cycle to 20
+            can open 40 percent when receiving "open40" by setting duty_cycle to 40
+            can open 60 percent when receiving "open60" by setting duty_cycle to 60
+            can open 80 percent when receiving "open80" by setting duty_cycle to 80
+            can open 100 percent when receiving "open100" by setting duty_cycle to 100
+            can close when receiving "stop" by setting duty_cycle to 0
+    Sensor temp has value temp_value (on topic "greenhouse/temp" with 1 herz)
         is hot when temp_value > 40
         is warm when temp_value < 40 and temp_value > 30
         is optimal when temp_value < 30 and temp_value > 20
         is chilled when temp_value < 20 and temp_value > 15
         is cold when temp_value < 15
-    actuator window_opener1
-        can open 20 percent
-        can open 40 percent
-        can open 60 percent
-        can open 80 percent
-        can open 100 percent
-        can close
+    WindowOpener window_opener1 (on topic "greenhouse/window_opener1")
+        can open 20 percent when receiving "open30" by setting duty_cycle to 20
+        can open 40 percent when receiving "open40" by setting duty_cycle to 40
+        can open 60 percent when receiving "open60" by setting duty_cycle to 60
+        can open 80 percent when receiving "open80" by setting duty_cycle to 80
+        can open 100 percent when receiving "open100" by setting duty_cycle to 100
+        can close when receiving "close" by setting duty_cycle to 0
     Ruleset
-        opem window_opener1 20 percent when temp is warm
+        open window_opener1 20 percent when temp is temp.warm
         open window_opener1 40 percent when temp is hot
         close window_opener when temp is optimal
         ...
