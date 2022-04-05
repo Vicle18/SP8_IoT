@@ -1,51 +1,37 @@
 system greenhouse
-    topic temp_topic
     row tomato
-        topic moist_topic
-        sensor moisture1 
-            var moisture_value
-            state too_moist
-                //send MOIST_HIGH
-                transition moisture_value < 50 goto optimal
-            state optimal
-                //send MOIST_OPTIMAL
-                transition moisture_value >= 50 goto too_moist
-                transition moisture_value <= 25 goto too_dry
-            state too_dry
-                //send MOIST_LOW
-                transition moisture_value > 25 goto optimal
+        sensor moisture1 has value moisture_value
+            is too_moist when moisture_value > 50
+            is optimal when moisture_value < 50 && moisture_value > 25
+            is too_dry when moisture_value < 25
         actuator pump1
-            state idle
-                START goto running
-            state running
-                STOP goto idle
-    sensor temp
-        var temperature_value from topic temp_topic
-        state hot 
-        state warm 
-            if temperature_value > 30 && temperature_value <= 60
-        state optimal if temperature_value > 20 && temperature_value <= 30
-        state chilled if temperature_value > 10 && temperature_value <= 20
-        state cold if temperature_value < 10
-
+            can open 20 percent
+            can open 40 percent
+            can open 60 percent
+            can open 80 percent
+            can open 100 percent
+            can close
+    Sensor temp has value temp_value
+        is hot when temp_value > 40
+        is warm when temp_value < 40 and temp_value > 30
+        is optimal when temp_value < 30 and temp_value > 20
+        is chilled when temp_value < 20 and temp_value > 15
+        is cold when temp_value < 15
     actuator window_opener1
-        state closed
-            OPEN30 goto open30
-            
-        state open30
-            temp in cold goto closed
-            temp in warm goto open60
-            temp in hot after 30 goto open100
-        state open60
-            temp in cold  goto closed 
-            temp in chilled goto open30
-            temp in warm after 30 goto open100
-        state open100
-            temp in cold goto closed 
-            temp in chilled goto open60
+        can open 20 percent
+        can open 40 percent
+        can open 60 percent
+        can open 80 percent
+        can open 100 percent
+        can close
     Ruleset
-        temp in warm window_opener1 OPEN30
-        temp to hot if temperature_value > 60
+        opem window_opener1 20 percent when temp is warm
+        open window_opener1 40 percent when temp is hot
+        close window_opener when temp is optimal
+        ...
+        open pump1 to 50 percent for 10 minutes when moisture1 is too_dry
+        close pump1 when moisture1 is too_moist
+        close pump1 when moisture1 is optimal
 
 Group members: Aske, Asma, Victor and Bende
 
@@ -57,4 +43,15 @@ The sensors are responsible for sending their value to a specified topic - this 
 we dont think it is really necessary to use the DSL to generate this logic. The same goes for the actuators, they are only
 responsible for receiving commands on mqtt topics and execute the commands (like open a window).
 Instead, the DSL should be responsible for generating the controller. 
-The controller is responsible for handling the state of 
+The controller is responsible for handling the state of both sensors and actuators, which are used to create the optimal 
+ecosystem environment for the plant. 
+The optimal environment is stated in terms of required sensor values. E.g. for tomatoes, the temperature should 
+ideally be 22 degrees. Based on the values, the temperature sensor can be in five different states: 
+Hot, Warm, Optimal, Chilled and Cold.
+To manipulate the environment, actuators can be used by the controller. E.g. to manipulate the temperature, 
+a window-opener can be used to open the window to a variety of stages, going from 20% open to 40%, 60% and 100% open.
+In the rules, we want to state how the sensors and actuators are connected to each other. E.g. If the sensor is in state Warm,
+then the window opener should open 40%.
+
+We want to generate two things
+- The C# code for the controller, where 
