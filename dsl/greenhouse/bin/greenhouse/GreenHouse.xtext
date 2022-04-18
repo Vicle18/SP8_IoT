@@ -3,7 +3,49 @@ grammar greenhouse.GreenHouse with org.eclipse.xtext.common.Terminals
 generate greenHouse "http://www.GreenHouse.greenhouse"
 
 Model:
-	greetings+=Greeting*;
+	greenhouses+=Greenhouse*;
 	
-Greeting:
-	'Hello' name=ID '!';
+Greenhouse:
+	{Greenhouse}
+	(row+=Row)*
+	(actuator+=Actuator)*
+	(sensor+=Sensor)*
+	(ruleSet+=RuleSet)*
+;
+
+Row:
+	'row' name=ID 'includes'
+	(sensor+=Sensor)*
+	(actuator+=Actuator)*
+	(rule+=RuleSet)*
+;
+
+Actuator:
+	'actuator' name=ID 
+		('can' action+=Action)
+		(',' action+=Action)*
+;
+
+Sensor:
+	'sensor' name=ID 'has' 'value' variable=Variable
+		states+=State(',' states+=State)*
+;
+
+State:
+	name=ID 'when' variable=[Variable] op = ('<' | '>' | '=') threshold=INT
+;
+
+Variable:
+	name=ID
+;
+
+Action:
+	name=ID 'when' 'receiving' trigger=STRING 'by' 'setting' setting=STRING 'to' value=INT
+;
+
+RuleSet:
+	actuator=[Actuator] 'set' action=[Action] 'when' sensor=[Sensor] 'is' state=[State]
+;
+
+
+//MÅSKE bruge math eksemplet til udregning
