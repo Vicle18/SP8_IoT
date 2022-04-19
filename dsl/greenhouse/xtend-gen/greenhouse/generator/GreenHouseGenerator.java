@@ -3,7 +3,9 @@
  */
 package greenhouse.generator;
 
+import greenhouse.greenHouse.Model;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
@@ -17,5 +19,22 @@ import org.eclipse.xtext.generator.IGeneratorContext;
 public class GreenHouseGenerator extends AbstractGenerator {
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field name is undefined for the type System"
+      + "\nType mismatch: cannot convert from System to Model"
+      + "\n+ cannot be resolved");
+  }
+  
+  public CharSequence compile(final Model model) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("package blabla");
+    _builder.newLine();
+    _builder.append("dsfj");
+    _builder.newLine();
+    _builder.append("fja");
+    _builder.newLine();
+    _builder.append("dsf");
+    _builder.newLine();
+    return _builder;
   }
 }
