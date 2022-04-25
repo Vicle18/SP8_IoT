@@ -2,11 +2,13 @@ grammar greenhouse.GreenHouse with org.eclipse.xtext.common.Terminals
 
 generate greenHouse "http://www.GreenHouse.greenhouse"
 
-Model:
+System:
+	"system" name=ID
 	greenhouses+=Greenhouse*;
 	
 Greenhouse:
 	{Greenhouse}
+	'greenhouse' name=ID
 	(row+=Row)*
 	(actuator+=Actuator)*
 	(sensor+=Sensor)*

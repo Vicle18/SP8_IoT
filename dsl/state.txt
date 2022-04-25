@@ -1,6 +1,6 @@
 system greenhouse
     row tomato
-        sensor moisture1 has value moisture_value (on topic "tomato/moisture1" with 10 herz)
+        sensor moisture1 has value moisture_value //(on topic "tomato/moisture1" with 10 herz)
             is too_moist when moisture_value*10 > 50
             is optimal when moisture_value < 50 && moisture_value > 25
             is too_dry when moisture_value < 25
