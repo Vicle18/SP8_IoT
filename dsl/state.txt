@@ -18,7 +18,7 @@ system greenhouse
         is chilled when temp_value < 20 and temp_value > 15
         is cold when temp_value < 15
     WindowOpener window_opener1 (on topic "greenhouse/window_opener1")
-        can open 20 percent when receiving "open30" by setting duty_cycle to 20
+        can open 20 percent when receiving "open20" by setting duty_cycle to 20
         can open 40 percent when receiving "open40" by setting duty_cycle to 40
         can open 60 percent when receiving "open60" by setting duty_cycle to 60
         can open 80 percent when receiving "open80" by setting duty_cycle to 80
