@@ -6,115 +6,36 @@ clock MT;
 bool needWater;
 bool pumpRunning;
 int moist:= 100;
-chan startPump, stopPump, notSaturated, saturated</declaration>
+chan startPump, stopPump, notSaturated, saturated, tooSaturated;</declaration>
 	<template>
-		<name x="5" y="5">Controller</name>
-		<declaration>// Place local declarations here.
-</declaration>
-		<location id="id0" x="110" y="-153">
-			<name x="100" y="-187">DataRecieve</name>
+		<name>Plant</name>
+		<location id="id0" x="-183" y="-98">
+			<name x="-217" y="-132">NeedWater</name>
 		</location>
-		<location id="id1" x="110" y="-68">
-			<name x="34" y="-94">RuleCheck</name>
+		<location id="id1" x="-17" y="-94">
+			<name x="-27" y="-128">NotNeedWater</name>
 		</location>
-		<location id="id2" x="17" y="42">
-			<name x="-34" y="50">GiveWater</name>
+		<location id="id2" x="-34" y="76">
+			<name x="-44" y="42">TooMoist</name>
 		</location>
-		<location id="id3" x="306" y="144">
-			<name x="289" y="161">SendIdle</name>
-		</location>
-		<location id="id4" x="-119" y="25">
-		</location>
-		<location id="id5" x="-178" y="136">
-			<committed/>
-		</location>
-		<location id="id6" x="204" y="34">
-		</location>
-		<location id="id7" x="289" y="-17">
-		</location>
-		<init ref="id0"/>
-		<transition>
-			<source ref="id7"/>
-			<target ref="id0"/>
-		</transition>
-		<transition>
-			<source ref="id6"/>
-			<target ref="id7"/>
-		</transition>
-		<transition>
-			<source ref="id6"/>
-			<target ref="id3"/>
-		</transition>
-		<transition>
-			<source ref="id1"/>
-			<target ref="id6"/>
-			<label kind="synchronisation" x="144" y="-17">saturated?</label>
-		</transition>
-		<transition>
-			<source ref="id4"/>
-			<target ref="id0"/>
-			<nail x="-76" y="-76"/>
-		</transition>
-		<transition>
-			<source ref="id5"/>
-			<target ref="id0"/>
-			<nail x="-119" y="-119"/>
-		</transition>
-		<transition>
-			<source ref="id2"/>
-			<target ref="id5"/>
-			<label kind="guard" x="-161" y="76">pumpRunning == true</label>
-		</transition>
-		<transition>
-			<source ref="id2"/>
-			<target ref="id4"/>
-			<label kind="guard" x="-101" y="-1">pumpRunning == false</label>
-			<label kind="assignment" x="-101" y="33">startPump!</label>
-		</transition>
-		<transition>
-			<source ref="id3"/>
-			<target ref="id0"/>
-			<nail x="340" y="-51"/>
-		</transition>
+		<init ref="id1"/>
 		<transition>
 			<source ref="id1"/>
 			<target ref="id2"/>
-			<label kind="synchronisation" x="35" y="-30">notSaturated?</label>
-		</transition>
-		<transition>
-			<source ref="id0"/>
-			<target ref="id1"/>
-		</transition>
-	</template>
-	<template>
-		<name>Plant</name>
-		<location id="id8" x="-183" y="-98">
-			<name x="-217" y="-132">NeedWater</name>
-		</location>
-		<location id="id9" x="-17" y="-94">
-			<name x="-27" y="-128">NotNeedWater</name>
-		</location>
-		<location id="id10" x="-34" y="76">
-			<name x="-44" y="42">TooMoist</name>
-		</location>
-		<init ref="id9"/>
-		<transition>
-			<source ref="id9"/>
-			<target ref="id10"/>
 			<label kind="guard" x="-110" y="-25">moist &gt;=200</label>
-			<label kind="synchronisation" x="-119" y="0">TooSaturated!</label>
+			<label kind="synchronisation" x="-119" y="0">tooSaturated!</label>
 			<nail x="-76" y="17"/>
 		</transition>
 		<transition>
-			<source ref="id10"/>
-			<target ref="id9"/>
+			<source ref="id2"/>
+			<target ref="id1"/>
 			<label kind="guard" x="-8" y="16">moist &lt; 200</label>
-			<label kind="synchronisation" x="-8" y="33">Saturated!</label>
+			<label kind="synchronisation" x="-8" y="33">saturated!</label>
 			<nail x="17" y="25"/>
 		</transition>
 		<transition>
-			<source ref="id9"/>
-			<target ref="id9"/>
+			<source ref="id1"/>
+			<target ref="id1"/>
 			<label kind="guard" x="0" y="-103">MT&gt;=10</label>
 			<label kind="assignment" x="1" y="-69">moist:= moist-1,
 MT:=0</label>
@@ -122,15 +43,15 @@ MT:=0</label>
 			<nail x="67" y="-145"/>
 		</transition>
 		<transition>
-			<source ref="id9"/>
-			<target ref="id8"/>
+			<source ref="id1"/>
+			<target ref="id0"/>
 			<label kind="guard" x="-144" y="-76">moist&lt;100</label>
 			<label kind="synchronisation" x="-161" y="-59">notSaturated!</label>
 			<nail x="-106" y="-55"/>
 		</transition>
 		<transition>
-			<source ref="id8"/>
-			<target ref="id9"/>
+			<source ref="id0"/>
+			<target ref="id1"/>
 			<label kind="guard" x="-149" y="-174">moist &gt;= 100</label>
 			<label kind="synchronisation" x="-144" y="-161">saturated!</label>
 			<nail x="-106" y="-140"/>
@@ -140,16 +61,16 @@ MT:=0</label>
 	<template>
 		<name>Pump</name>
 		<declaration>clock PT;</declaration>
-		<location id="id11" x="-238" y="-68">
+		<location id="id3" x="-238" y="-68">
 			<name x="-255" y="-102">Active</name>
 		</location>
-		<location id="id12" x="-76" y="-68">
+		<location id="id4" x="-76" y="-68">
 			<name x="-93" y="-102">NotActive</name>
 		</location>
-		<init ref="id12"/>
+		<init ref="id4"/>
 		<transition>
-			<source ref="id11"/>
-			<target ref="id11"/>
+			<source ref="id3"/>
+			<target ref="id3"/>
 			<label kind="guard" x="-347" y="-93">PT&gt;10</label>
 			<label kind="assignment" x="-347" y="-59">PT:=0,
 moist:=moist+10</label>
@@ -157,18 +78,33 @@ moist:=moist+10</label>
 			<nail x="-374" y="-102"/>
 		</transition>
 		<transition>
-			<source ref="id12"/>
-			<target ref="id11"/>
-			<label kind="guard" x="-204" y="-34">startPump?</label>
-			<label kind="assignment" x="-221" y="-17">pumpRunning = true</label>
-			<nail x="-161" y="-34"/>
+			<source ref="id4"/>
+			<target ref="id3"/>
+			<label kind="synchronisation" x="-204" y="-34">startPump?</label>
+			<label kind="assignment" x="-231" y="-17">pumpRunning = true</label>
+			<nail x="-171" y="-34"/>
 		</transition>
 		<transition>
-			<source ref="id11"/>
-			<target ref="id12"/>
-			<label kind="guard" x="-195" y="-136">stopPump?</label>
+			<source ref="id3"/>
+			<target ref="id4"/>
+			<label kind="synchronisation" x="-204" y="-144">stopPump?</label>
 			<label kind="assignment" x="-221" y="-119">pumpRunning = false</label>
 			<nail x="-161" y="-102"/>
+		</transition>
+	</template>
+	<template>
+		<name>Rule1</name>
+		<location id="id5" x="-85" y="-195">
+			<name x="-102" y="-229">Idle</name>
+		</location>
+		<init ref="id5"/>
+		<transition>
+			<source ref="id5"/>
+			<target ref="id5"/>
+			<label kind="synchronisation" x="-67" y="-301">unSaturated?
+StartPump!</label>
+			<nail x="68" y="-374"/>
+			<nail x="144" y="-246"/>
 		</transition>
 	</template>
 	<system>// Place template instantiations here.

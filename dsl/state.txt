@@ -26,8 +26,9 @@ system greenhouse
         can close when receiving "close" by setting duty_cycle to 0
     Ruleset
         open window_opener1 20 percent when temp is temp.warm
-        open window_opener1 40 percent when temp is hot
-        close window_opener when temp is optimal
+        open window_opener1 40 percent for 10 minutes and windowopener is 20 percent when temp is hot
+        open window_opener1 when tem is warm
+        close window_opener1 when temp is cold
         ...
         open pump1 to 50 percent for 10 minutes when moisture1 is too_dry
         close pump1 when moisture1 is too_moist
