@@ -3,118 +3,228 @@
 <nta>
 	<declaration>// Place global declarations here.
 clock MT;
+//clock envTimer;
+clock timerOptimalCO2;
+clock timerNotOptimalCO2;
+
+
 bool needWater;
 bool pumpRunning;
 int moist:= 100;
-chan startPump, stopPump, notSaturated, saturated</declaration>
-	<template>
-		<name x="5" y="5">Controller</name>
-		<declaration>// Place local declarations here.
+chan startPump, stopPump, notSaturated, saturated, optimal, notOptimal, tooSaturated;
+
+int openPercentage := 0;
+
+int co2 := 2000;
 </declaration>
-		<location id="id0" x="110" y="-153">
-			<name x="100" y="-187">DataRecieve</name>
+	<template>
+		<name>CO2Sensor</name>
+		<location id="id0" x="-467" y="-178">
+			<name x="-493" y="-221">Optimal</name>
 		</location>
-		<location id="id1" x="110" y="-68">
-			<name x="34" y="-94">RuleCheck</name>
-		</location>
-		<location id="id2" x="17" y="42">
-			<name x="-34" y="50">GiveWater</name>
-		</location>
-		<location id="id3" x="306" y="144">
-			<name x="289" y="161">SendIdle</name>
-		</location>
-		<location id="id4" x="-119" y="25">
-		</location>
-		<location id="id5" x="-178" y="136">
-			<committed/>
-		</location>
-		<location id="id6" x="204" y="34">
-		</location>
-		<location id="id7" x="289" y="-17">
+		<location id="id1" x="-255" y="-178">
+			<name x="-265" y="-212">NeedO2</name>
+			<label kind="invariant" x="-348" y="-161">timerNotOptimalCO2 &gt; 10000</label>
 		</location>
 		<init ref="id0"/>
 		<transition>
-			<source ref="id7"/>
+			<source ref="id0"/>
 			<target ref="id0"/>
-		</transition>
-		<transition>
-			<source ref="id6"/>
-			<target ref="id7"/>
-		</transition>
-		<transition>
-			<source ref="id6"/>
-			<target ref="id3"/>
+			<label kind="guard" x="-714" y="-170">timerOptimalCO2 &gt; 10</label>
+			<label kind="synchronisation" x="-705" y="-212">optimal!</label>
+			<label kind="assignment" x="-705" y="-195">timerOptimalCO2 := 0</label>
+			<nail x="-544" y="-237"/>
+			<nail x="-544" y="-110"/>
 		</transition>
 		<transition>
 			<source ref="id1"/>
-			<target ref="id6"/>
-			<label kind="synchronisation" x="144" y="-17">saturated?</label>
-		</transition>
-		<transition>
-			<source ref="id4"/>
-			<target ref="id0"/>
-			<nail x="-76" y="-76"/>
-		</transition>
-		<transition>
-			<source ref="id5"/>
-			<target ref="id0"/>
-			<nail x="-119" y="-119"/>
-		</transition>
-		<transition>
-			<source ref="id2"/>
-			<target ref="id5"/>
-			<label kind="guard" x="-161" y="76">pumpRunning == true</label>
-		</transition>
-		<transition>
-			<source ref="id2"/>
-			<target ref="id4"/>
-			<label kind="guard" x="-101" y="-1">pumpRunning == false</label>
-			<label kind="assignment" x="-101" y="33">startPump!</label>
-		</transition>
-		<transition>
-			<source ref="id3"/>
-			<target ref="id0"/>
-			<nail x="340" y="-51"/>
+			<target ref="id1"/>
+			<label kind="synchronisation" x="-153" y="-221">notOptimal!</label>
+			<label kind="assignment" x="-153" y="-204">timerNotOptimalCO2 := 0</label>
+			<nail x="-170" y="-246"/>
+			<nail x="-170" y="-110"/>
 		</transition>
 		<transition>
 			<source ref="id1"/>
-			<target ref="id2"/>
-			<label kind="synchronisation" x="35" y="-30">notSaturated?</label>
+			<target ref="id0"/>
+			<label kind="guard" x="-399" y="-51">co2 &lt; 1000</label>
+			<label kind="synchronisation" x="-391" y="-68">optimal!</label>
+			<label kind="assignment" x="-442" y="-85">timerNotOptimalCO2 := 0</label>
+			<nail x="-365" y="-93"/>
 		</transition>
 		<transition>
 			<source ref="id0"/>
 			<target ref="id1"/>
+			<label kind="guard" x="-399" y="-306">co2 &gt; 1000</label>
+			<label kind="synchronisation" x="-399" y="-289">notOptimal!</label>
+			<nail x="-365" y="-263"/>
+		</transition>
+	</template>
+	<template>
+		<name>CO2Env</name>
+		<location id="id2" x="-161" y="0">
+			<name x="-170" y="-34">CO2Env</name>
+		</location>
+		<init ref="id2"/>
+		<transition>
+			<source ref="id2"/>
+			<target ref="id2"/>
+			<label kind="guard" x="8" y="25">co2 &lt; 1000</label>
+			<label kind="assignment" x="8" y="42">co2 := co2 + 50</label>
+			<nail x="0" y="25"/>
+			<nail x="0" y="153"/>
+		</transition>
+		<transition>
+			<source ref="id2"/>
+			<target ref="id2"/>
+			<label kind="guard" x="8" y="-127">co2 &gt;= 1000</label>
+			<label kind="assignment" x="8" y="-102">co2 := co2 - 50</label>
+			<nail x="0" y="-203"/>
+			<nail x="0" y="-42"/>
+		</transition>
+	</template>
+	<template>
+		<name>WindowOpener</name>
+		<location id="id3" x="-161" y="-8">
+			<name x="-171" y="-42">Idle</name>
+		</location>
+		<location id="id4" x="93" y="-8">
+			<name x="59" y="-51">Opening</name>
+		</location>
+		<init ref="id3"/>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id4"/>
+			<label kind="guard" x="246" y="-34">openPercentage &lt; 100</label>
+			<label kind="synchronisation" x="246" y="-17">notOptimal?</label>
+			<label kind="assignment" x="178" y="0">openPercentage := openPercentage + 20,
+co2 := co2 - (openPercentage * 0.05)</label>
+			<nail x="237" y="-76"/>
+			<nail x="237" y="68"/>
+		</transition>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id3"/>
+			<label kind="synchronisation" x="-68" y="76">optimal?</label>
+			<label kind="assignment" x="-170" y="93">openPercentage := openPercentage - 20</label>
+			<nail x="-42" y="76"/>
+		</transition>
+		<transition>
+			<source ref="id3"/>
+			<target ref="id4"/>
+			<label kind="synchronisation" x="-85" y="-119">notOptimal?</label>
+			<label kind="assignment" x="-153" y="-102">openPercentage := openPercentage + 20</label>
+			<nail x="-42" y="-85"/>
+		</transition>
+	</template>
+	<template>
+		<name x="5" y="5">Controller</name>
+		<declaration>// Place local declarations here.
+</declaration>
+		<location id="id5" x="110" y="-153">
+			<name x="100" y="-187">DataRecieve</name>
+		</location>
+		<location id="id6" x="110" y="-68">
+			<name x="34" y="-94">RuleCheck</name>
+		</location>
+		<location id="id7" x="17" y="42">
+			<name x="-34" y="50">GiveWater</name>
+		</location>
+		<location id="id8" x="306" y="144">
+			<name x="289" y="161">SendIdle</name>
+		</location>
+		<location id="id9" x="-119" y="25">
+		</location>
+		<location id="id10" x="-178" y="136">
+			<committed/>
+		</location>
+		<location id="id11" x="204" y="34">
+		</location>
+		<location id="id12" x="289" y="-17">
+		</location>
+		<init ref="id5"/>
+		<transition>
+			<source ref="id12"/>
+			<target ref="id5"/>
+		</transition>
+		<transition>
+			<source ref="id11"/>
+			<target ref="id12"/>
+		</transition>
+		<transition>
+			<source ref="id11"/>
+			<target ref="id8"/>
+		</transition>
+		<transition>
+			<source ref="id6"/>
+			<target ref="id11"/>
+			<label kind="synchronisation" x="144" y="-17">saturated?</label>
+		</transition>
+		<transition>
+			<source ref="id9"/>
+			<target ref="id5"/>
+			<nail x="-76" y="-76"/>
+		</transition>
+		<transition>
+			<source ref="id10"/>
+			<target ref="id5"/>
+			<nail x="-119" y="-119"/>
+		</transition>
+		<transition>
+			<source ref="id7"/>
+			<target ref="id10"/>
+			<label kind="guard" x="-161" y="76">pumpRunning == true</label>
+		</transition>
+		<transition>
+			<source ref="id7"/>
+			<target ref="id9"/>
+			<label kind="guard" x="-101" y="-1">pumpRunning == false</label>
+			<label kind="synchronisation" x="-101" y="16">startPump!</label>
+		</transition>
+		<transition>
+			<source ref="id8"/>
+			<target ref="id5"/>
+			<nail x="340" y="-51"/>
+		</transition>
+		<transition>
+			<source ref="id6"/>
+			<target ref="id7"/>
+			<label kind="synchronisation" x="35" y="-30">notSaturated?</label>
+		</transition>
+		<transition>
+			<source ref="id5"/>
+			<target ref="id6"/>
 		</transition>
 	</template>
 	<template>
 		<name>Plant</name>
-		<location id="id8" x="-183" y="-98">
+		<location id="id13" x="-183" y="-98">
 			<name x="-217" y="-132">NeedWater</name>
 		</location>
-		<location id="id9" x="-17" y="-94">
+		<location id="id14" x="-17" y="-94">
 			<name x="-27" y="-128">NotNeedWater</name>
 		</location>
-		<location id="id10" x="-34" y="76">
+		<location id="id15" x="-34" y="76">
 			<name x="-44" y="42">TooMoist</name>
 		</location>
-		<init ref="id9"/>
+		<init ref="id14"/>
 		<transition>
-			<source ref="id9"/>
-			<target ref="id10"/>
+			<source ref="id14"/>
+			<target ref="id15"/>
 			<label kind="guard" x="-110" y="-25">moist &gt;=200</label>
-			<label kind="synchronisation" x="-119" y="0">TooSaturated!</label>
+			<label kind="synchronisation" x="-119" y="0">tooSaturated!</label>
 			<nail x="-76" y="17"/>
 		</transition>
 		<transition>
-			<source ref="id10"/>
-			<target ref="id9"/>
-			<label kind="guard" x="-8" y="16">moist &lt; 200</label>
-			<label kind="synchronisation" x="-8" y="33">Saturated!</label>
+			<source ref="id15"/>
+			<target ref="id14"/>
+			<label kind="guard" x="0" y="0">moist &lt; 200</label>
+			<label kind="synchronisation" x="8" y="25">saturated!</label>
 			<nail x="17" y="25"/>
 		</transition>
 		<transition>
-			<source ref="id9"/>
-			<target ref="id9"/>
+			<source ref="id14"/>
+			<target ref="id14"/>
 			<label kind="guard" x="0" y="-103">MT&gt;=10</label>
 			<label kind="assignment" x="1" y="-69">moist:= moist-1,
 MT:=0</label>
@@ -122,15 +232,15 @@ MT:=0</label>
 			<nail x="67" y="-145"/>
 		</transition>
 		<transition>
-			<source ref="id9"/>
-			<target ref="id8"/>
+			<source ref="id14"/>
+			<target ref="id13"/>
 			<label kind="guard" x="-144" y="-76">moist&lt;100</label>
 			<label kind="synchronisation" x="-161" y="-59">notSaturated!</label>
 			<nail x="-106" y="-55"/>
 		</transition>
 		<transition>
-			<source ref="id8"/>
-			<target ref="id9"/>
+			<source ref="id13"/>
+			<target ref="id14"/>
 			<label kind="guard" x="-149" y="-174">moist &gt;= 100</label>
 			<label kind="synchronisation" x="-144" y="-161">saturated!</label>
 			<nail x="-106" y="-140"/>
@@ -140,16 +250,16 @@ MT:=0</label>
 	<template>
 		<name>Pump</name>
 		<declaration>clock PT;</declaration>
-		<location id="id11" x="-238" y="-68">
+		<location id="id16" x="-238" y="-68">
 			<name x="-255" y="-102">Active</name>
 		</location>
-		<location id="id12" x="-76" y="-68">
+		<location id="id17" x="-76" y="-68">
 			<name x="-93" y="-102">NotActive</name>
 		</location>
-		<init ref="id12"/>
+		<init ref="id17"/>
 		<transition>
-			<source ref="id11"/>
-			<target ref="id11"/>
+			<source ref="id16"/>
+			<target ref="id16"/>
 			<label kind="guard" x="-347" y="-93">PT&gt;10</label>
 			<label kind="assignment" x="-347" y="-59">PT:=0,
 moist:=moist+10</label>
@@ -157,26 +267,30 @@ moist:=moist+10</label>
 			<nail x="-374" y="-102"/>
 		</transition>
 		<transition>
-			<source ref="id12"/>
-			<target ref="id11"/>
-			<label kind="guard" x="-204" y="-34">startPump?</label>
+			<source ref="id17"/>
+			<target ref="id16"/>
+			<label kind="synchronisation" x="-195" y="-34">startPump?</label>
 			<label kind="assignment" x="-221" y="-17">pumpRunning = true</label>
 			<nail x="-161" y="-34"/>
 		</transition>
 		<transition>
-			<source ref="id11"/>
-			<target ref="id12"/>
-			<label kind="guard" x="-195" y="-136">stopPump?</label>
+			<source ref="id16"/>
+			<target ref="id17"/>
+			<label kind="synchronisation" x="-220" y="-102">stopPump?</label>
 			<label kind="assignment" x="-221" y="-119">pumpRunning = false</label>
 			<nail x="-161" y="-102"/>
 		</transition>
 	</template>
 	<system>// Place template instantiations here.
+//controller:=Controller();
+co2Sensor:=CO2Sensor();
+co2Env:=CO2Env();
+windowOpener:=WindowOpener();
 controller:=Controller();
 plant:=Plant();
 pump:=Pump();
 // List one or more processes to be composed into a system.
-system controller, plant, pump;
+system co2Sensor, co2Env, windowOpener, controller, plant, pump;
     </system>
 	<queries>
 		<query>
