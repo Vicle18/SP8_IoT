@@ -9,6 +9,7 @@ clock timerOptimalCO2;
 clock timerNotOptimalCO2;
 clock DHT;
 clock HT;
+clock MHealthTimer;
 bool needWater;
 bool pumpRunning;
 bool windowOpen:= false;
@@ -361,9 +362,10 @@ temp &lt; 40</label>
 		</transition>
 	</template>
 	<template>
-		<name>Plant</name>
-		<location id="id19" x="-183" y="-98">
-			<name x="-217" y="-132">NeedWater</name>
+		<name>Moisture</name>
+		<location id="id19" x="-187" y="-102">
+			<name x="-221" y="-136">NeedWater</name>
+			<label kind="invariant" x="-314" y="-119">moist &lt;= 150</label>
 		</location>
 		<location id="id20" x="-17" y="-94">
 			<name x="-27" y="-128">NotNeedWater</name>
@@ -373,7 +375,7 @@ temp &lt; 40</label>
 			<source ref="id20"/>
 			<target ref="id20"/>
 			<label kind="guard" x="0" y="-103">MT&gt;=10</label>
-			<label kind="assignment" x="1" y="-69">moist:= moist-1,
+			<label kind="assignment" x="0" y="-68">moist:= moist-10,
 MT:=0</label>
 			<nail x="67" y="-43"/>
 			<nail x="67" y="-145"/>
@@ -382,13 +384,14 @@ MT:=0</label>
 			<source ref="id20"/>
 			<target ref="id19"/>
 			<label kind="guard" x="-144" y="-76">moist&lt;100</label>
-			<label kind="synchronisation" x="-161" y="-59">startPump!</label>
+			<label kind="synchronisation" x="-144" y="-59">startPump!</label>
+			<label kind="assignment" x="-178" y="-42">MHealthTimer := 0</label>
 			<nail x="-106" y="-55"/>
 		</transition>
 		<transition>
 			<source ref="id19"/>
 			<target ref="id20"/>
-			<label kind="guard" x="-149" y="-174">moist &gt;= 100</label>
+			<label kind="guard" x="-149" y="-174">moist &gt;= 100 and moist &lt;=200</label>
 			<label kind="synchronisation" x="-144" y="-161">stopPump!</label>
 			<nail x="-106" y="-140"/>
 			<nail x="-98" y="-140"/>
@@ -407,42 +410,42 @@ MT:=0</label>
 		<transition>
 			<source ref="id21"/>
 			<target ref="id21"/>
-			<label kind="guard" x="-347" y="-93">PT&gt;10</label>
-			<label kind="assignment" x="-347" y="-59">PT:=0,
-moist:=moist+10</label>
-			<nail x="-365" y="-51"/>
-			<nail x="-374" y="-102"/>
+			<label kind="guard" x="-356" y="-93">PT&gt;10</label>
+			<label kind="assignment" x="-357" y="-59">PT:=0,
+moist:=moist+6</label>
+			<nail x="-382" y="-51"/>
+			<nail x="-383" y="-102"/>
 		</transition>
 		<transition>
 			<source ref="id22"/>
 			<target ref="id21"/>
-			<label kind="synchronisation" x="-195" y="-34">startPump?</label>
-			<label kind="assignment" x="-221" y="-17">pumpRunning = true</label>
-			<nail x="-161" y="-34"/>
+			<label kind="synchronisation" x="-143" y="-34">startPump?</label>
+			<label kind="assignment" x="-170" y="-17">pumpRunning = true</label>
+			<nail x="-153" y="-42"/>
 		</transition>
 		<transition>
 			<source ref="id21"/>
 			<target ref="id22"/>
-			<label kind="synchronisation" x="-195" y="-136">stopPump?</label>
+			<label kind="synchronisation" x="-204" y="-144">stopPump?</label>
 			<label kind="assignment" x="-221" y="-119">pumpRunning = false</label>
 			<nail x="-161" y="-102"/>
 		</transition>
 	</template>
 	<template>
 		<name>HumiditySensor</name>
-		<location id="id8" x="-858" y="-161">
+		<location id="id23" x="-858" y="-161">
 			<name x="-875" y="-204">Dihumidify</name>
 		</location>
-		<location id="id9" x="-629" y="-161">
+		<location id="id24" x="-629" y="-161">
 			<name x="-654" y="-204">Stop</name>
 		</location>
-		<location id="id10" x="-374" y="-161">
+		<location id="id25" x="-374" y="-161">
 			<name x="-425" y="-212">NeedHumidity</name>
 		</location>
-		<init ref="id9"/>
+		<init ref="id24"/>
 		<transition>
-			<source ref="id8"/>
-			<target ref="id8"/>
+			<source ref="id23"/>
+			<target ref="id23"/>
 			<label kind="guard" x="-986" y="-161">MT&gt;=10</label>
 			<label kind="assignment" x="-1079" y="-212">humidity:=humidity-1,
 MT:=0</label>
@@ -450,16 +453,16 @@ MT:=0</label>
 			<nail x="-918" y="-136"/>
 		</transition>
 		<transition>
-			<source ref="id10"/>
-			<target ref="id9"/>
+			<source ref="id25"/>
+			<target ref="id24"/>
 			<label kind="guard" x="-569" y="-85">humidity&gt;40 &amp;&amp; humidity&lt;60</label>
 			<label kind="synchronisation" x="-476" y="-110">stophumidifier!</label>
 			<nail x="-493" y="-102"/>
 			<nail x="-493" y="-102"/>
 		</transition>
 		<transition>
-			<source ref="id10"/>
-			<target ref="id10"/>
+			<source ref="id25"/>
+			<target ref="id25"/>
 			<label kind="guard" x="-289" y="-195">MT &gt;= 10</label>
 			<label kind="assignment" x="-289" y="-170">humidity:=humidity+1,
 MT := 0</label>
@@ -468,22 +471,22 @@ MT := 0</label>
 			<nail x="-306" y="-110"/>
 		</transition>
 		<transition>
-			<source ref="id9"/>
-			<target ref="id10"/>
+			<source ref="id24"/>
+			<target ref="id25"/>
 			<label kind="guard" x="-552" y="-280">humidity&lt;40</label>
 			<label kind="synchronisation" x="-544" y="-255">startHumidifier!</label>
 			<nail x="-518" y="-229"/>
 		</transition>
 		<transition>
-			<source ref="id9"/>
-			<target ref="id8"/>
+			<source ref="id24"/>
+			<target ref="id23"/>
 			<label kind="guard" x="-765" y="-68">humidity&gt;60</label>
 			<label kind="synchronisation" x="-756" y="-93">startDihumidifier!</label>
 			<nail x="-714" y="-93"/>
 		</transition>
 		<transition>
-			<source ref="id8"/>
-			<target ref="id9"/>
+			<source ref="id23"/>
+			<target ref="id24"/>
 			<label kind="guard" x="-824" y="-263">humidity&gt;40 &amp;&amp; humidity &lt;60</label>
 			<label kind="synchronisation" x="-782" y="-238">stoppedDihumidifier!</label>
 			<nail x="-723" y="-217"/>
@@ -491,16 +494,16 @@ MT := 0</label>
 	</template>
 	<template>
 		<name>Humidifier</name>
-		<location id="id11" x="-782" y="-144">
+		<location id="id26" x="-782" y="-144">
 			<name x="-792" y="-178">Stopped</name>
 		</location>
-		<location id="id12" x="-501" y="-144">
+		<location id="id27" x="-501" y="-144">
 			<name x="-511" y="-178">Started</name>
 		</location>
-		<init ref="id11"/>
+		<init ref="id26"/>
 		<transition>
-			<source ref="id12"/>
-			<target ref="id12"/>
+			<source ref="id27"/>
+			<target ref="id27"/>
 			<label kind="guard" x="-476" y="-153">HT&gt;10</label>
 			<label kind="assignment" x="-399" y="-161">humidity:=humidity+1,
 HT:=0</label>
@@ -508,16 +511,16 @@ HT:=0</label>
 			<nail x="-433" y="-76"/>
 		</transition>
 		<transition>
-			<source ref="id12"/>
-			<target ref="id11"/>
+			<source ref="id27"/>
+			<target ref="id26"/>
 			<label kind="synchronisation" x="-671" y="-85">stophumidifier?</label>
 			<label kind="assignment" x="-697" y="-68">humidifierWorking = false</label>
 			<nail x="-586" y="-93"/>
 			<nail x="-586" y="-93"/>
 		</transition>
 		<transition>
-			<source ref="id11"/>
-			<target ref="id12"/>
+			<source ref="id26"/>
+			<target ref="id27"/>
 			<label kind="synchronisation" x="-697" y="-255">startHumidifier?</label>
 			<label kind="assignment" x="-714" y="-229">humidifierWorking = true</label>
 			<nail x="-603" y="-195"/>
@@ -525,16 +528,16 @@ HT:=0</label>
 	</template>
 	<template>
 		<name>Dihumidifier</name>
-		<location id="id13" x="-391" y="-68">
+		<location id="id28" x="-391" y="-68">
 			<name x="-468" y="-102">Stopped</name>
 		</location>
-		<location id="id14" x="-76" y="-76">
+		<location id="id29" x="-76" y="-76">
 			<name x="-102" y="-118">Started</name>
 		</location>
-		<init ref="id13"/>
+		<init ref="id28"/>
 		<transition>
-			<source ref="id14"/>
-			<target ref="id14"/>
+			<source ref="id29"/>
+			<target ref="id29"/>
 			<label kind="guard" x="34" y="-144">DHT&gt;10</label>
 			<label kind="assignment" x="42" y="-102">humidity:=humidity-1,
 HT:=0</label>
@@ -542,15 +545,15 @@ HT:=0</label>
 			<nail x="26" y="-34"/>
 		</transition>
 		<transition>
-			<source ref="id14"/>
-			<target ref="id13"/>
+			<source ref="id29"/>
+			<target ref="id28"/>
 			<label kind="synchronisation" x="-306" y="0">stoppedDihumidifier?</label>
 			<label kind="assignment" x="-323" y="17">dihumidifierWorking = false</label>
 			<nail x="-255" y="-8"/>
 		</transition>
 		<transition>
-			<source ref="id13"/>
-			<target ref="id14"/>
+			<source ref="id28"/>
+			<target ref="id29"/>
 			<label kind="synchronisation" x="-306" y="-178">startDihumidifier?</label>
 			<label kind="assignment" x="-323" y="-153">dihumidifierWorking = true</label>
 			<nail x="-272" y="-127"/>
@@ -558,12 +561,12 @@ HT:=0</label>
 	</template>
 	<template>
 		<name>Humid</name>
-		<location id="id20" x="-382" y="-127">
+		<location id="id30" x="-382" y="-127">
 		</location>
-		<init ref="id20"/>
+		<init ref="id30"/>
 		<transition>
-			<source ref="id20"/>
-			<target ref="id20"/>
+			<source ref="id30"/>
+			<target ref="id30"/>
 			<label kind="guard" x="-289" y="-153">HT&gt;10</label>
 			<label kind="assignment" x="-323" y="-85">humidity:=humidity+1,
 HT:=0</label>
@@ -572,8 +575,8 @@ HT:=0</label>
 			<nail x="-297" y="-93"/>
 		</transition>
 		<transition>
-			<source ref="id20"/>
-			<target ref="id20"/>
+			<source ref="id30"/>
+			<target ref="id30"/>
 			<label kind="guard" x="-535" y="-144">DHT&gt;10</label>
 			<label kind="assignment" x="-586" y="-68">humidity:=humidity-1,
 DHT:=0</label>
@@ -585,7 +588,7 @@ DHT:=0</label>
 co2Sensor:=CO2Sensor();
 co2Env:=CO2Env();
 windowOpener:=WindowOpener();
-plant:=Plant();
+moisture:=Moisture();
 pump:=Pump();
 fan:=Fan();
 aircondition:=Aircondition();
@@ -596,10 +599,14 @@ humidifier:=Humidifier();
 dihumidifier:=Dihumidifier();
 humid:=Humid();
 // List one or more processes to be composed into a system.
-system co2Sensor, co2Env, windowOpener, plant, pump, fan, aircondition, tempSensor, temperatur, humiditysensor,humidifier,dihumidifier,humid;</system>
+system co2Sensor, co2Env, windowOpener, moisture, pump, fan, aircondition, tempSensor, temperatur, humiditysensor,humidifier,dihumidifier,humid;</system>
 	<queries>
 		<query>
 			<formula>E&lt;&gt; (tempSensor.AirconditionLow or tempSensor.AirconditionHigh) imply ( aircondition.CoolingActive)</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>E&lt;&gt; tempSensor.AirconditionLow</formula>
 			<comment></comment>
 		</query>
 	</queries>
