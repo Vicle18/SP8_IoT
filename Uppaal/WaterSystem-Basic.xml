@@ -25,7 +25,7 @@ chan fanNeeded, fanStop;
 chan startHumidifier,stophumidifier,startDihumidifier,stoppedDihumidifier;
 chan startAircondition, stopAircondition, stopAirconditionHeating, startAirconditionHeating, optimal, notOptimal;</declaration>
 	<template>
-		<name>TemperatureSensor</name>
+		<name>Temperature</name>
 		<location id="id0" x="0" y="0">
 		</location>
 		<init ref="id0"/>
@@ -595,7 +595,7 @@ pump:=Pump();
 fan:=Fan();
 aircondition:=Aircondition();
 tempSensor:=TempSensor();
-temperatur:=TemperatureSensor();
+temperatur:=Temperature();
 humiditysensor:=HumiditySensor();
 humidifier:=Humidifier();
 dihumidifier:=Dihumidifier();
@@ -604,11 +604,15 @@ humid:=Humid();
 system co2Sensor, co2Env, windowOpener, moisture, pump, fan, aircondition, tempSensor, temperatur, humiditysensor,humidifier,dihumidifier,humid;</system>
 	<queries>
 		<query>
-			<formula>E&lt;&gt; (tempSensor.AirconditionLow or tempSensor.AirconditionHigh) imply ( aircondition.CoolingActive)</formula>
+			<formula>E[] (tempSensor.AirconditionLow or tempSensor.AirconditionHigh) imply ( aircondition.CoolingActive)</formula>
 			<comment></comment>
 		</query>
 		<query>
-			<formula>E&lt;&gt; tempSensor.AirconditionLow</formula>
+			<formula>(tempSensor.Warm &amp;&amp; windowOpen==true) or (tempSensor.Hot &amp;&amp; windowOpen==true) --&gt; tempSensor.Fan</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>E&lt;&gt; (tempSensor.Chilled or tempSensor.Cold) imply ( aircondition.HeatingActive)</formula>
 			<comment></comment>
 		</query>
 	</queries>
