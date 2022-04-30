@@ -15,6 +15,7 @@ bool pumpRunning;
 bool windowOpen:= false;
 bool humidifierWorking;
 bool dihumidifierWorking;
+bool aircon_cooling;
 int moist:= 100;
 int temp := 25;
 int openPercentage := 0;
@@ -153,6 +154,7 @@ FT:=0</label>
 		</location>
 		<location id="id7" x="93" y="-8">
 			<name x="59" y="-51">Opening</name>
+			<label kind="invariant" x="51" y="8">aircon_cooling == false</label>
 		</location>
 		<init ref="id6"/>
 		<transition>
@@ -169,14 +171,16 @@ co2 := co2 - (openPercentage * 5)</label>
 			<source ref="id7"/>
 			<target ref="id6"/>
 			<label kind="synchronisation" x="-68" y="76">optimal?</label>
-			<label kind="assignment" x="-170" y="93">openPercentage := openPercentage - 20</label>
+			<label kind="assignment" x="-170" y="93">openPercentage := openPercentage - 20,
+windowOpen = false</label>
 			<nail x="-42" y="76"/>
 		</transition>
 		<transition>
 			<source ref="id6"/>
 			<target ref="id7"/>
 			<label kind="synchronisation" x="-85" y="-119">notOptimal?</label>
-			<label kind="assignment" x="-153" y="-102">openPercentage := openPercentage + 20</label>
+			<label kind="assignment" x="-153" y="-102">openPercentage := openPercentage + 20,
+windowOpen = true</label>
 			<nail x="-42" y="-85"/>
 		</transition>
 	</template>
@@ -227,12 +231,14 @@ AT:=0</label>
 			<source ref="id9"/>
 			<target ref="id8"/>
 			<label kind="synchronisation" x="-280" y="0">startAircondition?</label>
+			<label kind="assignment" x="-220" y="-8">aircon_cooling = true</label>
 			<nail x="-238" y="9"/>
 		</transition>
 		<transition>
 			<source ref="id8"/>
 			<target ref="id9"/>
 			<label kind="synchronisation" x="-281" y="-76">stopAircondition?</label>
+			<label kind="assignment" x="-297" y="-42">aircon_cooling = true</label>
 			<nail x="-238" y="-59"/>
 		</transition>
 	</template>
@@ -607,6 +613,62 @@ system co2Sensor, co2Env, windowOpener, moisture, pump, fan, aircondition, tempS
 		</query>
 		<query>
 			<formula>E&lt;&gt; tempSensor.AirconditionLow</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>A[] moisture.NotNeedWater imply MHealthTimer &gt;= 5000</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>A&lt;&gt;moisture.NotNeedWater</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>A&lt;&gt; moisture.NeedWater imply pump.Active</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>A[] pump.Active imply moisture.NeedWater</formula>
+			<comment>Not working</comment>
+		</query>
+		<query>
+			<formula>E&lt;&gt; openPercentage == 100</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>E&lt;&gt; windowOpener.Idle</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>E&lt;&gt; openPercentage == 20</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>A[] aircondition.CoolingActive imply windowOpener.Idle</formula>
+			<comment>Not working</comment>
+		</query>
+		<query>
+			<formula>A&lt;&gt; co2Sensor.NeedO2 imply co2Sensor.Optimal</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>A&lt;&gt; co2Sensor.NeedO2 imply windowOpener.Opening</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>A&lt;&gt; co2 &lt; 2100</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>E[] (tempSensor.AirconditionLow or tempSensor.AirconditionHigh) imply ( aircondition.CoolingActive)</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>(tempSensor.Warm and windowOpen==true) or (tempSensor.Hot and windowOpen==true) --&gt; tempSensor.Fan</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>E&lt;&gt; (tempSensor.Chilled or tempSensor.Cold) imply ( aircondition.HeatingActive)</formula>
 			<comment></comment>
 		</query>
 	</queries>
