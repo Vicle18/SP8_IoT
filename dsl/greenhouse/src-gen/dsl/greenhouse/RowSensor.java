@@ -7,23 +7,23 @@ import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Sensor</b></em>'.
+ * A representation of the model object '<em><b>Row Sensor</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link dsl.greenhouse.Sensor#getName <em>Name</em>}</li>
- *   <li>{@link dsl.greenhouse.Sensor#getVariable <em>Variable</em>}</li>
- *   <li>{@link dsl.greenhouse.Sensor#getStates <em>States</em>}</li>
+ *   <li>{@link dsl.greenhouse.RowSensor#getName <em>Name</em>}</li>
+ *   <li>{@link dsl.greenhouse.RowSensor#getVariable <em>Variable</em>}</li>
+ *   <li>{@link dsl.greenhouse.RowSensor#getStates <em>States</em>}</li>
  * </ul>
  *
- * @see dsl.greenhouse.GreenhousePackage#getSensor()
+ * @see dsl.greenhouse.GreenhousePackage#getRowSensor()
  * @model
  * @generated
  */
-public interface Sensor extends RowElement
+public interface RowSensor extends RowElement
 {
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.
@@ -31,14 +31,14 @@ public interface Sensor extends RowElement
    * <!-- end-user-doc -->
    * @return the value of the '<em>Name</em>' attribute.
    * @see #setName(String)
-   * @see dsl.greenhouse.GreenhousePackage#getSensor_Name()
+   * @see dsl.greenhouse.GreenhousePackage#getRowSensor_Name()
    * @model
    * @generated
    */
   String getName();
 
   /**
-   * Sets the value of the '{@link dsl.greenhouse.Sensor#getName <em>Name</em>}' attribute.
+   * Sets the value of the '{@link dsl.greenhouse.RowSensor#getName <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Name</em>' attribute.
@@ -53,14 +53,14 @@ public interface Sensor extends RowElement
    * <!-- end-user-doc -->
    * @return the value of the '<em>Variable</em>' containment reference.
    * @see #setVariable(Variable)
-   * @see dsl.greenhouse.GreenhousePackage#getSensor_Variable()
+   * @see dsl.greenhouse.GreenhousePackage#getRowSensor_Variable()
    * @model containment="true"
    * @generated
    */
   Variable getVariable();
 
   /**
-   * Sets the value of the '{@link dsl.greenhouse.Sensor#getVariable <em>Variable</em>}' containment reference.
+   * Sets the value of the '{@link dsl.greenhouse.RowSensor#getVariable <em>Variable</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Variable</em>' containment reference.
@@ -75,10 +75,10 @@ public interface Sensor extends RowElement
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>States</em>' containment reference list.
-   * @see dsl.greenhouse.GreenhousePackage#getSensor_States()
+   * @see dsl.greenhouse.GreenhousePackage#getRowSensor_States()
    * @model containment="true"
    * @generated
    */
   EList<State> getStates();
 
-} // Sensor
+} // RowSensor

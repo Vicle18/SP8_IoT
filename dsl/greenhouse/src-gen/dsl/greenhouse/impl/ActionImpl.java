@@ -4,8 +4,8 @@
 package dsl.greenhouse.impl;
 
 import dsl.greenhouse.Action;
+import dsl.greenhouse.Condition;
 import dsl.greenhouse.GreenhousePackage;
-import dsl.greenhouse.Setting;
 import dsl.greenhouse.Trigger;
 import dsl.greenhouse.Value;
 
@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <ul>
  *   <li>{@link dsl.greenhouse.impl.ActionImpl#getName <em>Name</em>}</li>
  *   <li>{@link dsl.greenhouse.impl.ActionImpl#getTrigger <em>Trigger</em>}</li>
- *   <li>{@link dsl.greenhouse.impl.ActionImpl#getSetting <em>Setting</em>}</li>
+ *   <li>{@link dsl.greenhouse.impl.ActionImpl#getCondition <em>Condition</em>}</li>
  *   <li>{@link dsl.greenhouse.impl.ActionImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
@@ -67,14 +67,14 @@ public class ActionImpl extends MinimalEObjectImpl.Container implements Action
   protected Trigger trigger;
 
   /**
-   * The cached value of the '{@link #getSetting() <em>Setting</em>}' containment reference.
+   * The cached value of the '{@link #getCondition() <em>Condition</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getSetting()
+   * @see #getCondition()
    * @generated
    * @ordered
    */
-  protected Setting setting;
+  protected Condition condition;
 
   /**
    * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
@@ -188,9 +188,9 @@ public class ActionImpl extends MinimalEObjectImpl.Container implements Action
    * @generated
    */
   @Override
-  public Setting getSetting()
+  public Condition getCondition()
   {
-    return setting;
+    return condition;
   }
 
   /**
@@ -198,13 +198,13 @@ public class ActionImpl extends MinimalEObjectImpl.Container implements Action
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetSetting(Setting newSetting, NotificationChain msgs)
+  public NotificationChain basicSetCondition(Condition newCondition, NotificationChain msgs)
   {
-    Setting oldSetting = setting;
-    setting = newSetting;
+    Condition oldCondition = condition;
+    condition = newCondition;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GreenhousePackage.ACTION__SETTING, oldSetting, newSetting);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GreenhousePackage.ACTION__CONDITION, oldCondition, newCondition);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -216,20 +216,20 @@ public class ActionImpl extends MinimalEObjectImpl.Container implements Action
    * @generated
    */
   @Override
-  public void setSetting(Setting newSetting)
+  public void setCondition(Condition newCondition)
   {
-    if (newSetting != setting)
+    if (newCondition != condition)
     {
       NotificationChain msgs = null;
-      if (setting != null)
-        msgs = ((InternalEObject)setting).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GreenhousePackage.ACTION__SETTING, null, msgs);
-      if (newSetting != null)
-        msgs = ((InternalEObject)newSetting).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GreenhousePackage.ACTION__SETTING, null, msgs);
-      msgs = basicSetSetting(newSetting, msgs);
+      if (condition != null)
+        msgs = ((InternalEObject)condition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GreenhousePackage.ACTION__CONDITION, null, msgs);
+      if (newCondition != null)
+        msgs = ((InternalEObject)newCondition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GreenhousePackage.ACTION__CONDITION, null, msgs);
+      msgs = basicSetCondition(newCondition, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GreenhousePackage.ACTION__SETTING, newSetting, newSetting));
+      eNotify(new ENotificationImpl(this, Notification.SET, GreenhousePackage.ACTION__CONDITION, newCondition, newCondition));
   }
 
   /**
@@ -294,8 +294,8 @@ public class ActionImpl extends MinimalEObjectImpl.Container implements Action
     {
       case GreenhousePackage.ACTION__TRIGGER:
         return basicSetTrigger(null, msgs);
-      case GreenhousePackage.ACTION__SETTING:
-        return basicSetSetting(null, msgs);
+      case GreenhousePackage.ACTION__CONDITION:
+        return basicSetCondition(null, msgs);
       case GreenhousePackage.ACTION__VALUE:
         return basicSetValue(null, msgs);
     }
@@ -316,8 +316,8 @@ public class ActionImpl extends MinimalEObjectImpl.Container implements Action
         return getName();
       case GreenhousePackage.ACTION__TRIGGER:
         return getTrigger();
-      case GreenhousePackage.ACTION__SETTING:
-        return getSetting();
+      case GreenhousePackage.ACTION__CONDITION:
+        return getCondition();
       case GreenhousePackage.ACTION__VALUE:
         return getValue();
     }
@@ -340,8 +340,8 @@ public class ActionImpl extends MinimalEObjectImpl.Container implements Action
       case GreenhousePackage.ACTION__TRIGGER:
         setTrigger((Trigger)newValue);
         return;
-      case GreenhousePackage.ACTION__SETTING:
-        setSetting((Setting)newValue);
+      case GreenhousePackage.ACTION__CONDITION:
+        setCondition((Condition)newValue);
         return;
       case GreenhousePackage.ACTION__VALUE:
         setValue((Value)newValue);
@@ -366,8 +366,8 @@ public class ActionImpl extends MinimalEObjectImpl.Container implements Action
       case GreenhousePackage.ACTION__TRIGGER:
         setTrigger((Trigger)null);
         return;
-      case GreenhousePackage.ACTION__SETTING:
-        setSetting((Setting)null);
+      case GreenhousePackage.ACTION__CONDITION:
+        setCondition((Condition)null);
         return;
       case GreenhousePackage.ACTION__VALUE:
         setValue((Value)null);
@@ -390,8 +390,8 @@ public class ActionImpl extends MinimalEObjectImpl.Container implements Action
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case GreenhousePackage.ACTION__TRIGGER:
         return trigger != null;
-      case GreenhousePackage.ACTION__SETTING:
-        return setting != null;
+      case GreenhousePackage.ACTION__CONDITION:
+        return condition != null;
       case GreenhousePackage.ACTION__VALUE:
         return value != null;
     }

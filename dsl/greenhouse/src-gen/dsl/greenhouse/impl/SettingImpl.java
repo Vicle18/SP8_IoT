@@ -4,14 +4,20 @@
 package dsl.greenhouse.impl;
 
 import dsl.greenhouse.GreenhousePackage;
+import dsl.greenhouse.Hardware;
 import dsl.greenhouse.Setting;
 
-import org.eclipse.emf.common.notify.Notification;
+import java.util.Collection;
+
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,32 +27,22 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link dsl.greenhouse.impl.SettingImpl#getName <em>Name</em>}</li>
+ *   <li>{@link dsl.greenhouse.impl.SettingImpl#getHardware <em>Hardware</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class SettingImpl extends MinimalEObjectImpl.Container implements Setting
+public class SettingImpl extends HardwareSetupImpl implements Setting
 {
   /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The cached value of the '{@link #getHardware() <em>Hardware</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getHardware()
    * @generated
    * @ordered
    */
-  protected static final String NAME_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected String name = NAME_EDEFAULT;
+  protected EList<Hardware> hardware;
 
   /**
    * <!-- begin-user-doc -->
@@ -75,9 +71,13 @@ public class SettingImpl extends MinimalEObjectImpl.Container implements Setting
    * @generated
    */
   @Override
-  public String getName()
+  public EList<Hardware> getHardware()
   {
-    return name;
+    if (hardware == null)
+    {
+      hardware = new EObjectContainmentEList<Hardware>(Hardware.class, this, GreenhousePackage.SETTING__HARDWARE);
+    }
+    return hardware;
   }
 
   /**
@@ -86,12 +86,14 @@ public class SettingImpl extends MinimalEObjectImpl.Container implements Setting
    * @generated
    */
   @Override
-  public void setName(String newName)
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
-    String oldName = name;
-    name = newName;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GreenhousePackage.SETTING__NAME, oldName, name));
+    switch (featureID)
+    {
+      case GreenhousePackage.SETTING__HARDWARE:
+        return ((InternalEList<?>)getHardware()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -104,8 +106,8 @@ public class SettingImpl extends MinimalEObjectImpl.Container implements Setting
   {
     switch (featureID)
     {
-      case GreenhousePackage.SETTING__NAME:
-        return getName();
+      case GreenhousePackage.SETTING__HARDWARE:
+        return getHardware();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -115,13 +117,15 @@ public class SettingImpl extends MinimalEObjectImpl.Container implements Setting
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
-      case GreenhousePackage.SETTING__NAME:
-        setName((String)newValue);
+      case GreenhousePackage.SETTING__HARDWARE:
+        getHardware().clear();
+        getHardware().addAll((Collection<? extends Hardware>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -137,8 +141,8 @@ public class SettingImpl extends MinimalEObjectImpl.Container implements Setting
   {
     switch (featureID)
     {
-      case GreenhousePackage.SETTING__NAME:
-        setName(NAME_EDEFAULT);
+      case GreenhousePackage.SETTING__HARDWARE:
+        getHardware().clear();
         return;
     }
     super.eUnset(featureID);
@@ -154,27 +158,10 @@ public class SettingImpl extends MinimalEObjectImpl.Container implements Setting
   {
     switch (featureID)
     {
-      case GreenhousePackage.SETTING__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case GreenhousePackage.SETTING__HARDWARE:
+        return hardware != null && !hardware.isEmpty();
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (name: ");
-    result.append(name);
-    result.append(')');
-    return result.toString();
   }
 
 } //SettingImpl

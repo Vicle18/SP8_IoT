@@ -3,40 +3,30 @@
  */
 package dsl.greenhouse.impl;
 
-import dsl.greenhouse.Action;
-import dsl.greenhouse.Actuator;
+import dsl.greenhouse.Condition;
 import dsl.greenhouse.GreenhousePackage;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Actuator</b></em>'.
+ * An implementation of the model object '<em><b>Condition</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link dsl.greenhouse.impl.ActuatorImpl#getName <em>Name</em>}</li>
- *   <li>{@link dsl.greenhouse.impl.ActuatorImpl#getAction <em>Action</em>}</li>
+ *   <li>{@link dsl.greenhouse.impl.ConditionImpl#getName <em>Name</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ActuatorImpl extends RowElementImpl implements Actuator
+public class ConditionImpl extends MinimalEObjectImpl.Container implements Condition
 {
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -59,21 +49,11 @@ public class ActuatorImpl extends RowElementImpl implements Actuator
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getAction() <em>Action</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getAction()
-   * @generated
-   * @ordered
-   */
-  protected EList<Action> action;
-
-  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ActuatorImpl()
+  protected ConditionImpl()
   {
     super();
   }
@@ -86,7 +66,7 @@ public class ActuatorImpl extends RowElementImpl implements Actuator
   @Override
   protected EClass eStaticClass()
   {
-    return GreenhousePackage.Literals.ACTUATOR;
+    return GreenhousePackage.Literals.CONDITION;
   }
 
   /**
@@ -111,38 +91,7 @@ public class ActuatorImpl extends RowElementImpl implements Actuator
     String oldName = name;
     name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GreenhousePackage.ACTUATOR__NAME, oldName, name));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EList<Action> getAction()
-  {
-    if (action == null)
-    {
-      action = new EObjectContainmentEList<Action>(Action.class, this, GreenhousePackage.ACTUATOR__ACTION);
-    }
-    return action;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case GreenhousePackage.ACTUATOR__ACTION:
-        return ((InternalEList<?>)getAction()).basicRemove(otherEnd, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
+      eNotify(new ENotificationImpl(this, Notification.SET, GreenhousePackage.CONDITION__NAME, oldName, name));
   }
 
   /**
@@ -155,10 +104,8 @@ public class ActuatorImpl extends RowElementImpl implements Actuator
   {
     switch (featureID)
     {
-      case GreenhousePackage.ACTUATOR__NAME:
+      case GreenhousePackage.CONDITION__NAME:
         return getName();
-      case GreenhousePackage.ACTUATOR__ACTION:
-        return getAction();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -168,18 +115,13 @@ public class ActuatorImpl extends RowElementImpl implements Actuator
    * <!-- end-user-doc -->
    * @generated
    */
-  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
-      case GreenhousePackage.ACTUATOR__NAME:
+      case GreenhousePackage.CONDITION__NAME:
         setName((String)newValue);
-        return;
-      case GreenhousePackage.ACTUATOR__ACTION:
-        getAction().clear();
-        getAction().addAll((Collection<? extends Action>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -195,11 +137,8 @@ public class ActuatorImpl extends RowElementImpl implements Actuator
   {
     switch (featureID)
     {
-      case GreenhousePackage.ACTUATOR__NAME:
+      case GreenhousePackage.CONDITION__NAME:
         setName(NAME_EDEFAULT);
-        return;
-      case GreenhousePackage.ACTUATOR__ACTION:
-        getAction().clear();
         return;
     }
     super.eUnset(featureID);
@@ -215,10 +154,8 @@ public class ActuatorImpl extends RowElementImpl implements Actuator
   {
     switch (featureID)
     {
-      case GreenhousePackage.ACTUATOR__NAME:
+      case GreenhousePackage.CONDITION__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case GreenhousePackage.ACTUATOR__ACTION:
-        return action != null && !action.isEmpty();
     }
     return super.eIsSet(featureID);
   }
@@ -240,4 +177,4 @@ public class ActuatorImpl extends RowElementImpl implements Actuator
     return result.toString();
   }
 
-} //ActuatorImpl
+} //ConditionImpl

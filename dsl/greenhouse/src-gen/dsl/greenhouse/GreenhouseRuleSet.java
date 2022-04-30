@@ -30,12 +30,12 @@ public interface GreenhouseRuleSet extends GreenhouseElement
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Actuator</em>' reference.
-   * @see #setActuator(Actuator)
+   * @see #setActuator(GreenhouseActuator)
    * @see dsl.greenhouse.GreenhousePackage#getGreenhouseRuleSet_Actuator()
    * @model
    * @generated
    */
-  Actuator getActuator();
+  GreenhouseActuator getActuator();
 
   /**
    * Sets the value of the '{@link dsl.greenhouse.GreenhouseRuleSet#getActuator <em>Actuator</em>}' reference.
@@ -45,7 +45,7 @@ public interface GreenhouseRuleSet extends GreenhouseElement
    * @see #getActuator()
    * @generated
    */
-  void setActuator(Actuator value);
+  void setActuator(GreenhouseActuator value);
 
   /**
    * Returns the value of the '<em><b>Action</b></em>' reference.
@@ -74,12 +74,12 @@ public interface GreenhouseRuleSet extends GreenhouseElement
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Sensor</em>' reference.
-   * @see #setSensor(Sensor)
+   * @see #setSensor(GreenhouseSensor)
    * @see dsl.greenhouse.GreenhousePackage#getGreenhouseRuleSet_Sensor()
    * @model
    * @generated
    */
-  Sensor getSensor();
+  GreenhouseSensor getSensor();
 
   /**
    * Sets the value of the '{@link dsl.greenhouse.GreenhouseRuleSet#getSensor <em>Sensor</em>}' reference.
@@ -89,7 +89,7 @@ public interface GreenhouseRuleSet extends GreenhouseElement
    * @see #getSensor()
    * @generated
    */
-  void setSensor(Sensor value);
+  void setSensor(GreenhouseSensor value);
 
   /**
    * Returns the value of the '<em><b>State</b></em>' reference.

@@ -7,12 +7,13 @@ import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.xtext.scoping.IScope
 import org.eclipse.xtext.scoping.Scopes
-import dsl.greenhouse.RuleSet
-import dsl.greenhouse.Sensor
-import dsl.greenhouse.Actuator
 import org.eclipse.xtext.EcoreUtil2
 import dsl.greenhouse.Action
 import dsl.greenhouse.State
+import dsl.greenhouse.RowSensor
+import dsl.greenhouse.RowActuator
+import dsl.greenhouse.RowRuleSet
+import dsl.greenhouse.SettingSensor
 
 /**
  * This class contains custom scoping description.
@@ -31,52 +32,42 @@ class GreenhouseScopeProvider extends AbstractGreenhouseScopeProvider {
 		return super.getScope(context.eContainer, reference)
 	}
 	
-//	def dispatch scopeForEObject(Actuator context, EReference reference) {
-//		Scopes.scopeFor(context.action)
-//	}
-//	
-//	def dispatch scopeForEObject(Sensor context, EReference reference) {
-//		
-//		Scopes.scopeFor(context.states)
-//	}
-	
-//	def dispatch scopeForEObject(RuleSet rule, EReference reference) {	
-//		
-//		System.out.println(rule.eContainer.eContents)
-//		val row = rule.eContainer
-//		Scopes.scopeFor(#[row], Scopes.scopeFor(row.eContents))
-//		val allActions = EcoreUtil2.getAllContentsOfType(row, Action)
-//		val allSensor = EcoreUtil2.getAllContentsOfType(row, Sensor)
-//		val allStates = EcoreUtil2.getAllContentsOfType(row, State)
-//		val allActuators = EcoreUtil2.getAllContentsOfType(row, Actuator)
-//		
-//		System.out.println(allActions)
-//		return Scopes.scopeFor(allActions, Scopes.scopeFor(allSensor, Scopes.scopeFor(allStates, Scopes.scopeFor(allActuators))))
-//		
-//		row.eContents.filter[it != rule].forEach[
-//			System.out.println(it.eContents)
-//			switch it{
-//				Actuator: {
-//					if(it.name == rule.actuator.name){
-//						System.out.println(it.name)
-//						//it.eContents.forEach[list.add(it)]
-//					}
-//				}
-//				Sensor:{
-//					if(it.name == rule.sensor.name){
-//						System.out.println(it.name)
-//						//it.eContents.forEach[list.add(it)]
-//					}
-//				}
-//			}
-//		]
-//		Scopes.scopeFor(rule.eContainer.eContents.filter[it != rule])
-//	}
-	
-	def IScope scopeForAction(EObject context){
-		
+	def dispatch scopeForEObject(RowActuator context, EReference reference) {
+		Scopes.scopeFor(context.action)
 	}
 	
+//	def dispatch scopeForEObject(RowSensor sensor, EReference reference) {
+//		System.out.println(sensor.eContainer.eContents)
+//		val root = EcoreUtil2.getRootContainer(sensor)
+//		
+//		//Scopes.scopeFor(#[row], Scopes.scopeFor(row.eContents))
+//		val allActions = EcoreUtil2.getAllContentsOfType(root, SettingSensor)
+//		
+//		System.out.println(allActions)
+//		Scopes.scopeFor(#[sensor], Scopes.scopeFor(allActions))
+//	}
+	
+	def dispatch scopeForEObject(RowRuleSet rule, EReference reference) {	
+		
+		System.out.println(rule.eContainer.eContents)
+		val row = rule.eContainer
+		//Scopes.scopeFor(#[row], Scopes.scopeFor(row.eContents))
+		val allActions = EcoreUtil2.getAllContentsOfType(row, Action)
+		val allSensor = EcoreUtil2.getAllContentsOfType(row, RowSensor)
+		val allStates = EcoreUtil2.getAllContentsOfType(row, State)
+		val allActuators = EcoreUtil2.getAllContentsOfType(row, RowActuator)
+		
+		System.out.println(allActions)
+		Scopes.scopeFor(allSensor, 
+			Scopes.scopeFor(allActuators,
+				Scopes.scopeFor(allActions, 
+					Scopes.scopeFor(allStates
+					)
+				)
+			)
+		)
+	}
+		
 	
 
 

@@ -4,7 +4,7 @@
 package dsl.greenhouse.impl;
 
 import dsl.greenhouse.Action;
-import dsl.greenhouse.Actuator;
+import dsl.greenhouse.Condition;
 import dsl.greenhouse.Greenhouse;
 import dsl.greenhouse.GreenhouseActuator;
 import dsl.greenhouse.GreenhouseElement;
@@ -12,13 +12,21 @@ import dsl.greenhouse.GreenhouseFactory;
 import dsl.greenhouse.GreenhousePackage;
 import dsl.greenhouse.GreenhouseRuleSet;
 import dsl.greenhouse.GreenhouseSensor;
+import dsl.greenhouse.Hardware;
+import dsl.greenhouse.HardwareSetup;
 import dsl.greenhouse.Model;
 import dsl.greenhouse.Row;
+import dsl.greenhouse.RowActuator;
 import dsl.greenhouse.RowElement;
-import dsl.greenhouse.RuleSet;
-import dsl.greenhouse.Sensor;
+import dsl.greenhouse.RowRuleSet;
+import dsl.greenhouse.RowSensor;
 import dsl.greenhouse.Setting;
+import dsl.greenhouse.SettingAction;
+import dsl.greenhouse.SettingActuator;
+import dsl.greenhouse.SettingSensor;
+import dsl.greenhouse.SettingValue;
 import dsl.greenhouse.State;
+import dsl.greenhouse.Topic;
 import dsl.greenhouse.Trigger;
 import dsl.greenhouse.Value;
 import dsl.greenhouse.Variable;
@@ -44,6 +52,55 @@ public class GreenhousePackageImpl extends EPackageImpl implements GreenhousePac
    * @generated
    */
   private EClass modelEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass hardwareSetupEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass hardwareEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass settingActuatorEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass settingSensorEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass topicEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass settingActionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass settingValueEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -85,7 +142,7 @@ public class GreenhousePackageImpl extends EPackageImpl implements GreenhousePac
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass actuatorEClass = null;
+  private EClass rowActuatorEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -99,7 +156,7 @@ public class GreenhousePackageImpl extends EPackageImpl implements GreenhousePac
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass sensorEClass = null;
+  private EClass rowSensorEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -134,7 +191,7 @@ public class GreenhousePackageImpl extends EPackageImpl implements GreenhousePac
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass settingEClass = null;
+  private EClass conditionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -148,7 +205,7 @@ public class GreenhousePackageImpl extends EPackageImpl implements GreenhousePac
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass ruleSetEClass = null;
+  private EClass rowRuleSetEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -156,6 +213,13 @@ public class GreenhousePackageImpl extends EPackageImpl implements GreenhousePac
    * @generated
    */
   private EClass greenhouseRuleSetEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass settingEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -248,9 +312,174 @@ public class GreenhousePackageImpl extends EPackageImpl implements GreenhousePac
    * @generated
    */
   @Override
-  public EReference getModel_Greenhouses()
+  public EReference getModel_HardwareSetup()
   {
     return (EReference)modelEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getModel_Greenhouses()
+  {
+    return (EReference)modelEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getHardwareSetup()
+  {
+    return hardwareSetupEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getHardware()
+  {
+    return hardwareEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getHardware_Name()
+  {
+    return (EAttribute)hardwareEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getHardware_Topic()
+  {
+    return (EReference)hardwareEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getSettingActuator()
+  {
+    return settingActuatorEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getSettingActuator_SettingAction()
+  {
+    return (EReference)settingActuatorEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getSettingSensor()
+  {
+    return settingSensorEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getTopic()
+  {
+    return topicEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getTopic_Name()
+  {
+    return (EAttribute)topicEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getSettingAction()
+  {
+    return settingActionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getSettingAction_Name()
+  {
+    return (EAttribute)settingActionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getSettingAction_SettingValue()
+  {
+    return (EReference)settingActionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getSettingValue()
+  {
+    return settingValueEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getSettingValue_Name()
+  {
+    return (EAttribute)settingValueEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -391,9 +620,9 @@ public class GreenhousePackageImpl extends EPackageImpl implements GreenhousePac
    * @generated
    */
   @Override
-  public EClass getActuator()
+  public EClass getRowActuator()
   {
-    return actuatorEClass;
+    return rowActuatorEClass;
   }
 
   /**
@@ -402,9 +631,9 @@ public class GreenhousePackageImpl extends EPackageImpl implements GreenhousePac
    * @generated
    */
   @Override
-  public EAttribute getActuator_Name()
+  public EAttribute getRowActuator_Name()
   {
-    return (EAttribute)actuatorEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)rowActuatorEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -413,9 +642,9 @@ public class GreenhousePackageImpl extends EPackageImpl implements GreenhousePac
    * @generated
    */
   @Override
-  public EReference getActuator_Action()
+  public EReference getRowActuator_Action()
   {
-    return (EReference)actuatorEClass.getEStructuralFeatures().get(1);
+    return (EReference)rowActuatorEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -468,9 +697,9 @@ public class GreenhousePackageImpl extends EPackageImpl implements GreenhousePac
    * @generated
    */
   @Override
-  public EClass getSensor()
+  public EClass getRowSensor()
   {
-    return sensorEClass;
+    return rowSensorEClass;
   }
 
   /**
@@ -479,9 +708,9 @@ public class GreenhousePackageImpl extends EPackageImpl implements GreenhousePac
    * @generated
    */
   @Override
-  public EAttribute getSensor_Name()
+  public EAttribute getRowSensor_Name()
   {
-    return (EAttribute)sensorEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)rowSensorEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -490,9 +719,9 @@ public class GreenhousePackageImpl extends EPackageImpl implements GreenhousePac
    * @generated
    */
   @Override
-  public EReference getSensor_Variable()
+  public EReference getRowSensor_Variable()
   {
-    return (EReference)sensorEClass.getEStructuralFeatures().get(1);
+    return (EReference)rowSensorEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -501,9 +730,9 @@ public class GreenhousePackageImpl extends EPackageImpl implements GreenhousePac
    * @generated
    */
   @Override
-  public EReference getSensor_States()
+  public EReference getRowSensor_States()
   {
-    return (EReference)sensorEClass.getEStructuralFeatures().get(2);
+    return (EReference)rowSensorEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -622,7 +851,7 @@ public class GreenhousePackageImpl extends EPackageImpl implements GreenhousePac
    * @generated
    */
   @Override
-  public EReference getAction_Setting()
+  public EReference getAction_Condition()
   {
     return (EReference)actionEClass.getEStructuralFeatures().get(2);
   }
@@ -666,9 +895,9 @@ public class GreenhousePackageImpl extends EPackageImpl implements GreenhousePac
    * @generated
    */
   @Override
-  public EClass getSetting()
+  public EClass getCondition()
   {
-    return settingEClass;
+    return conditionEClass;
   }
 
   /**
@@ -677,9 +906,9 @@ public class GreenhousePackageImpl extends EPackageImpl implements GreenhousePac
    * @generated
    */
   @Override
-  public EAttribute getSetting_Name()
+  public EAttribute getCondition_Name()
   {
-    return (EAttribute)settingEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)conditionEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -710,9 +939,9 @@ public class GreenhousePackageImpl extends EPackageImpl implements GreenhousePac
    * @generated
    */
   @Override
-  public EClass getRuleSet()
+  public EClass getRowRuleSet()
   {
-    return ruleSetEClass;
+    return rowRuleSetEClass;
   }
 
   /**
@@ -721,9 +950,9 @@ public class GreenhousePackageImpl extends EPackageImpl implements GreenhousePac
    * @generated
    */
   @Override
-  public EReference getRuleSet_Actuator()
+  public EReference getRowRuleSet_Actuator()
   {
-    return (EReference)ruleSetEClass.getEStructuralFeatures().get(0);
+    return (EReference)rowRuleSetEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -732,9 +961,9 @@ public class GreenhousePackageImpl extends EPackageImpl implements GreenhousePac
    * @generated
    */
   @Override
-  public EAttribute getRuleSet_Action()
+  public EReference getRowRuleSet_Action()
   {
-    return (EAttribute)ruleSetEClass.getEStructuralFeatures().get(1);
+    return (EReference)rowRuleSetEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -743,9 +972,9 @@ public class GreenhousePackageImpl extends EPackageImpl implements GreenhousePac
    * @generated
    */
   @Override
-  public EReference getRuleSet_Sensor()
+  public EReference getRowRuleSet_Sensor()
   {
-    return (EReference)ruleSetEClass.getEStructuralFeatures().get(2);
+    return (EReference)rowRuleSetEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -754,9 +983,9 @@ public class GreenhousePackageImpl extends EPackageImpl implements GreenhousePac
    * @generated
    */
   @Override
-  public EAttribute getRuleSet_State()
+  public EReference getRowRuleSet_State()
   {
-    return (EAttribute)ruleSetEClass.getEStructuralFeatures().get(3);
+    return (EReference)rowRuleSetEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -820,6 +1049,28 @@ public class GreenhousePackageImpl extends EPackageImpl implements GreenhousePac
    * @generated
    */
   @Override
+  public EClass getSetting()
+  {
+    return settingEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getSetting_Hardware()
+  {
+    return (EReference)settingEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public GreenhouseFactory getGreenhouseFactory()
   {
     return (GreenhouseFactory)getEFactoryInstance();
@@ -847,7 +1098,29 @@ public class GreenhousePackageImpl extends EPackageImpl implements GreenhousePac
     // Create classes and their features
     modelEClass = createEClass(MODEL);
     createEAttribute(modelEClass, MODEL__NAME);
+    createEReference(modelEClass, MODEL__HARDWARE_SETUP);
     createEReference(modelEClass, MODEL__GREENHOUSES);
+
+    hardwareSetupEClass = createEClass(HARDWARE_SETUP);
+
+    hardwareEClass = createEClass(HARDWARE);
+    createEAttribute(hardwareEClass, HARDWARE__NAME);
+    createEReference(hardwareEClass, HARDWARE__TOPIC);
+
+    settingActuatorEClass = createEClass(SETTING_ACTUATOR);
+    createEReference(settingActuatorEClass, SETTING_ACTUATOR__SETTING_ACTION);
+
+    settingSensorEClass = createEClass(SETTING_SENSOR);
+
+    topicEClass = createEClass(TOPIC);
+    createEAttribute(topicEClass, TOPIC__NAME);
+
+    settingActionEClass = createEClass(SETTING_ACTION);
+    createEAttribute(settingActionEClass, SETTING_ACTION__NAME);
+    createEReference(settingActionEClass, SETTING_ACTION__SETTING_VALUE);
+
+    settingValueEClass = createEClass(SETTING_VALUE);
+    createEAttribute(settingValueEClass, SETTING_VALUE__NAME);
 
     greenhouseEClass = createEClass(GREENHOUSE);
     createEAttribute(greenhouseEClass, GREENHOUSE__NAME);
@@ -866,19 +1139,19 @@ public class GreenhousePackageImpl extends EPackageImpl implements GreenhousePac
     createEAttribute(greenhouseActuatorEClass, GREENHOUSE_ACTUATOR__NAME);
     createEReference(greenhouseActuatorEClass, GREENHOUSE_ACTUATOR__ACTION);
 
-    actuatorEClass = createEClass(ACTUATOR);
-    createEAttribute(actuatorEClass, ACTUATOR__NAME);
-    createEReference(actuatorEClass, ACTUATOR__ACTION);
+    rowActuatorEClass = createEClass(ROW_ACTUATOR);
+    createEAttribute(rowActuatorEClass, ROW_ACTUATOR__NAME);
+    createEReference(rowActuatorEClass, ROW_ACTUATOR__ACTION);
 
     greenhouseSensorEClass = createEClass(GREENHOUSE_SENSOR);
     createEAttribute(greenhouseSensorEClass, GREENHOUSE_SENSOR__NAME);
     createEReference(greenhouseSensorEClass, GREENHOUSE_SENSOR__VARIABLE);
     createEReference(greenhouseSensorEClass, GREENHOUSE_SENSOR__STATES);
 
-    sensorEClass = createEClass(SENSOR);
-    createEAttribute(sensorEClass, SENSOR__NAME);
-    createEReference(sensorEClass, SENSOR__VARIABLE);
-    createEReference(sensorEClass, SENSOR__STATES);
+    rowSensorEClass = createEClass(ROW_SENSOR);
+    createEAttribute(rowSensorEClass, ROW_SENSOR__NAME);
+    createEReference(rowSensorEClass, ROW_SENSOR__VARIABLE);
+    createEReference(rowSensorEClass, ROW_SENSOR__STATES);
 
     stateEClass = createEClass(STATE);
     createEAttribute(stateEClass, STATE__NAME);
@@ -892,29 +1165,32 @@ public class GreenhousePackageImpl extends EPackageImpl implements GreenhousePac
     actionEClass = createEClass(ACTION);
     createEAttribute(actionEClass, ACTION__NAME);
     createEReference(actionEClass, ACTION__TRIGGER);
-    createEReference(actionEClass, ACTION__SETTING);
+    createEReference(actionEClass, ACTION__CONDITION);
     createEReference(actionEClass, ACTION__VALUE);
 
     triggerEClass = createEClass(TRIGGER);
     createEAttribute(triggerEClass, TRIGGER__NAME);
 
-    settingEClass = createEClass(SETTING);
-    createEAttribute(settingEClass, SETTING__NAME);
+    conditionEClass = createEClass(CONDITION);
+    createEAttribute(conditionEClass, CONDITION__NAME);
 
     valueEClass = createEClass(VALUE);
     createEAttribute(valueEClass, VALUE__NAME);
 
-    ruleSetEClass = createEClass(RULE_SET);
-    createEReference(ruleSetEClass, RULE_SET__ACTUATOR);
-    createEAttribute(ruleSetEClass, RULE_SET__ACTION);
-    createEReference(ruleSetEClass, RULE_SET__SENSOR);
-    createEAttribute(ruleSetEClass, RULE_SET__STATE);
+    rowRuleSetEClass = createEClass(ROW_RULE_SET);
+    createEReference(rowRuleSetEClass, ROW_RULE_SET__ACTUATOR);
+    createEReference(rowRuleSetEClass, ROW_RULE_SET__ACTION);
+    createEReference(rowRuleSetEClass, ROW_RULE_SET__SENSOR);
+    createEReference(rowRuleSetEClass, ROW_RULE_SET__STATE);
 
     greenhouseRuleSetEClass = createEClass(GREENHOUSE_RULE_SET);
     createEReference(greenhouseRuleSetEClass, GREENHOUSE_RULE_SET__ACTUATOR);
     createEReference(greenhouseRuleSetEClass, GREENHOUSE_RULE_SET__ACTION);
     createEReference(greenhouseRuleSetEClass, GREENHOUSE_RULE_SET__SENSOR);
     createEReference(greenhouseRuleSetEClass, GREENHOUSE_RULE_SET__STATE);
+
+    settingEClass = createEClass(SETTING);
+    createEReference(settingEClass, SETTING__HARDWARE);
   }
 
   /**
@@ -946,17 +1222,42 @@ public class GreenhousePackageImpl extends EPackageImpl implements GreenhousePac
     // Set bounds for type parameters
 
     // Add supertypes to classes
+    settingActuatorEClass.getESuperTypes().add(this.getHardware());
+    settingSensorEClass.getESuperTypes().add(this.getHardware());
     greenhouseActuatorEClass.getESuperTypes().add(this.getGreenhouseElement());
-    actuatorEClass.getESuperTypes().add(this.getRowElement());
+    rowActuatorEClass.getESuperTypes().add(this.getRowElement());
     greenhouseSensorEClass.getESuperTypes().add(this.getGreenhouseElement());
-    sensorEClass.getESuperTypes().add(this.getRowElement());
-    ruleSetEClass.getESuperTypes().add(this.getRowElement());
+    rowSensorEClass.getESuperTypes().add(this.getRowElement());
+    rowRuleSetEClass.getESuperTypes().add(this.getRowElement());
     greenhouseRuleSetEClass.getESuperTypes().add(this.getGreenhouseElement());
+    settingEClass.getESuperTypes().add(this.getHardwareSetup());
 
     // Initialize classes and features; add operations and parameters
     initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getModel_Name(), ecorePackage.getEString(), "name", null, 0, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getModel_HardwareSetup(), this.getHardwareSetup(), null, "hardwareSetup", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getModel_Greenhouses(), this.getGreenhouse(), null, "greenhouses", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(hardwareSetupEClass, HardwareSetup.class, "HardwareSetup", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(hardwareEClass, Hardware.class, "Hardware", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getHardware_Name(), ecorePackage.getEString(), "name", null, 0, 1, Hardware.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getHardware_Topic(), this.getTopic(), null, "topic", null, 0, 1, Hardware.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(settingActuatorEClass, SettingActuator.class, "SettingActuator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getSettingActuator_SettingAction(), this.getSettingAction(), null, "settingAction", null, 0, -1, SettingActuator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(settingSensorEClass, SettingSensor.class, "SettingSensor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(topicEClass, Topic.class, "Topic", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getTopic_Name(), ecorePackage.getEString(), "name", null, 0, 1, Topic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(settingActionEClass, SettingAction.class, "SettingAction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getSettingAction_Name(), ecorePackage.getEString(), "name", null, 0, 1, SettingAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSettingAction_SettingValue(), this.getSettingValue(), null, "settingValue", null, 0, -1, SettingAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(settingValueEClass, SettingValue.class, "SettingValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getSettingValue_Name(), ecorePackage.getEInt(), "name", null, 0, 1, SettingValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(greenhouseEClass, Greenhouse.class, "Greenhouse", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getGreenhouse_Name(), ecorePackage.getEString(), "name", null, 0, 1, Greenhouse.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -975,19 +1276,19 @@ public class GreenhousePackageImpl extends EPackageImpl implements GreenhousePac
     initEAttribute(getGreenhouseActuator_Name(), ecorePackage.getEString(), "name", null, 0, 1, GreenhouseActuator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getGreenhouseActuator_Action(), this.getAction(), null, "action", null, 0, -1, GreenhouseActuator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(actuatorEClass, Actuator.class, "Actuator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getActuator_Name(), ecorePackage.getEString(), "name", null, 0, 1, Actuator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getActuator_Action(), this.getAction(), null, "action", null, 0, -1, Actuator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(rowActuatorEClass, RowActuator.class, "RowActuator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getRowActuator_Name(), ecorePackage.getEString(), "name", null, 0, 1, RowActuator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRowActuator_Action(), this.getAction(), null, "action", null, 0, -1, RowActuator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(greenhouseSensorEClass, GreenhouseSensor.class, "GreenhouseSensor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getGreenhouseSensor_Name(), ecorePackage.getEString(), "name", null, 0, 1, GreenhouseSensor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getGreenhouseSensor_Variable(), this.getVariable(), null, "variable", null, 0, 1, GreenhouseSensor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getGreenhouseSensor_States(), this.getState(), null, "states", null, 0, -1, GreenhouseSensor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(sensorEClass, Sensor.class, "Sensor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getSensor_Name(), ecorePackage.getEString(), "name", null, 0, 1, Sensor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getSensor_Variable(), this.getVariable(), null, "variable", null, 0, 1, Sensor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getSensor_States(), this.getState(), null, "states", null, 0, -1, Sensor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(rowSensorEClass, RowSensor.class, "RowSensor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getRowSensor_Name(), ecorePackage.getEString(), "name", null, 0, 1, RowSensor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRowSensor_Variable(), this.getVariable(), null, "variable", null, 0, 1, RowSensor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRowSensor_States(), this.getState(), null, "states", null, 0, -1, RowSensor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(stateEClass, State.class, "State", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getState_Name(), ecorePackage.getEString(), "name", null, 0, 1, State.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1001,29 +1302,32 @@ public class GreenhousePackageImpl extends EPackageImpl implements GreenhousePac
     initEClass(actionEClass, Action.class, "Action", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getAction_Name(), ecorePackage.getEString(), "name", null, 0, 1, Action.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAction_Trigger(), this.getTrigger(), null, "trigger", null, 0, 1, Action.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getAction_Setting(), this.getSetting(), null, "setting", null, 0, 1, Action.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAction_Condition(), this.getCondition(), null, "condition", null, 0, 1, Action.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAction_Value(), this.getValue(), null, "value", null, 0, 1, Action.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(triggerEClass, Trigger.class, "Trigger", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getTrigger_Name(), ecorePackage.getEString(), "name", null, 0, 1, Trigger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(settingEClass, Setting.class, "Setting", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getSetting_Name(), ecorePackage.getEString(), "name", null, 0, 1, Setting.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(conditionEClass, Condition.class, "Condition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getCondition_Name(), ecorePackage.getEString(), "name", null, 0, 1, Condition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(valueEClass, Value.class, "Value", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getValue_Name(), ecorePackage.getEInt(), "name", null, 0, 1, Value.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(ruleSetEClass, RuleSet.class, "RuleSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getRuleSet_Actuator(), this.getActuator(), null, "actuator", null, 0, 1, RuleSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getRuleSet_Action(), ecorePackage.getEString(), "action", null, 0, 1, RuleSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getRuleSet_Sensor(), this.getSensor(), null, "sensor", null, 0, 1, RuleSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getRuleSet_State(), ecorePackage.getEString(), "state", null, 0, 1, RuleSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(rowRuleSetEClass, RowRuleSet.class, "RowRuleSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getRowRuleSet_Actuator(), this.getRowActuator(), null, "Actuator", null, 0, 1, RowRuleSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRowRuleSet_Action(), this.getAction(), null, "action", null, 0, 1, RowRuleSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRowRuleSet_Sensor(), this.getRowSensor(), null, "sensor", null, 0, 1, RowRuleSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRowRuleSet_State(), this.getState(), null, "state", null, 0, 1, RowRuleSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(greenhouseRuleSetEClass, GreenhouseRuleSet.class, "GreenhouseRuleSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getGreenhouseRuleSet_Actuator(), this.getActuator(), null, "actuator", null, 0, 1, GreenhouseRuleSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getGreenhouseRuleSet_Actuator(), this.getGreenhouseActuator(), null, "Actuator", null, 0, 1, GreenhouseRuleSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getGreenhouseRuleSet_Action(), this.getAction(), null, "action", null, 0, 1, GreenhouseRuleSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getGreenhouseRuleSet_Sensor(), this.getSensor(), null, "sensor", null, 0, 1, GreenhouseRuleSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getGreenhouseRuleSet_Sensor(), this.getGreenhouseSensor(), null, "sensor", null, 0, 1, GreenhouseRuleSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getGreenhouseRuleSet_State(), this.getState(), null, "state", null, 0, 1, GreenhouseRuleSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(settingEClass, Setting.class, "Setting", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getSetting_Hardware(), this.getHardware(), null, "hardware", null, 0, -1, Setting.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

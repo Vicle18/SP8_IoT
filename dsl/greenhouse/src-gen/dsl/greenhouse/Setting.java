@@ -3,7 +3,7 @@
  */
 package dsl.greenhouse;
 
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,35 +14,25 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link dsl.greenhouse.Setting#getName <em>Name</em>}</li>
+ *   <li>{@link dsl.greenhouse.Setting#getHardware <em>Hardware</em>}</li>
  * </ul>
  *
  * @see dsl.greenhouse.GreenhousePackage#getSetting()
  * @model
  * @generated
  */
-public interface Setting extends EObject
+public interface Setting extends HardwareSetup
 {
   /**
-   * Returns the value of the '<em><b>Name</b></em>' attribute.
+   * Returns the value of the '<em><b>Hardware</b></em>' containment reference list.
+   * The list contents are of type {@link dsl.greenhouse.Hardware}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Name</em>' attribute.
-   * @see #setName(String)
-   * @see dsl.greenhouse.GreenhousePackage#getSetting_Name()
-   * @model
+   * @return the value of the '<em>Hardware</em>' containment reference list.
+   * @see dsl.greenhouse.GreenhousePackage#getSetting_Hardware()
+   * @model containment="true"
    * @generated
    */
-  String getName();
-
-  /**
-   * Sets the value of the '{@link dsl.greenhouse.Setting#getName <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Name</em>' attribute.
-   * @see #getName()
-   * @generated
-   */
-  void setName(String value);
+  EList<Hardware> getHardware();
 
 } // Setting

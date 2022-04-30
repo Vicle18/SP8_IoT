@@ -3,9 +3,18 @@
  */
 package dsl.scoping;
 
+import dsl.greenhouse.Action;
+import dsl.greenhouse.RowActuator;
+import dsl.greenhouse.RowRuleSet;
+import dsl.greenhouse.RowSensor;
+import dsl.greenhouse.State;
+import java.util.Arrays;
+import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.scoping.IScope;
+import org.eclipse.xtext.scoping.Scopes;
 
 /**
  * This class contains custom scoping description.
@@ -24,11 +33,38 @@ public class GreenhouseScopeProvider extends AbstractGreenhouseScopeProvider {
     return super.getScope(context.eContainer(), reference);
   }
   
-  public IScope scopeForAction(final EObject context) {
-    return null;
+  protected IScope _scopeForEObject(final RowActuator context, final EReference reference) {
+    return Scopes.scopeFor(context.getAction());
+  }
+  
+  protected IScope _scopeForEObject(final RowRuleSet rule, final EReference reference) {
+    IScope _xblockexpression = null;
+    {
+      System.out.println(rule.eContainer().eContents());
+      final EObject row = rule.eContainer();
+      final List<Action> allActions = EcoreUtil2.<Action>getAllContentsOfType(row, Action.class);
+      final List<RowSensor> allSensor = EcoreUtil2.<RowSensor>getAllContentsOfType(row, RowSensor.class);
+      final List<State> allStates = EcoreUtil2.<State>getAllContentsOfType(row, State.class);
+      final List<RowActuator> allActuators = EcoreUtil2.<RowActuator>getAllContentsOfType(row, RowActuator.class);
+      System.out.println(allActions);
+      _xblockexpression = Scopes.scopeFor(allSensor, 
+        Scopes.scopeFor(allActuators, 
+          Scopes.scopeFor(allActions, 
+            Scopes.scopeFor(allStates))));
+    }
+    return _xblockexpression;
   }
   
   public IScope scopeForEObject(final EObject context, final EReference reference) {
-    return _scopeForEObject(context, reference);
+    if (context instanceof RowActuator) {
+      return _scopeForEObject((RowActuator)context, reference);
+    } else if (context instanceof RowRuleSet) {
+      return _scopeForEObject((RowRuleSet)context, reference);
+    } else if (context != null) {
+      return _scopeForEObject(context, reference);
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        Arrays.<Object>asList(context, reference).toString());
+    }
   }
 }

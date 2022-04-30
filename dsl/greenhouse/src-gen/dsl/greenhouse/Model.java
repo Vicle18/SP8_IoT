@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link dsl.greenhouse.Model#getName <em>Name</em>}</li>
+ *   <li>{@link dsl.greenhouse.Model#getHardwareSetup <em>Hardware Setup</em>}</li>
  *   <li>{@link dsl.greenhouse.Model#getGreenhouses <em>Greenhouses</em>}</li>
  * </ul>
  *
@@ -47,6 +48,18 @@ public interface Model extends EObject
    * @generated
    */
   void setName(String value);
+
+  /**
+   * Returns the value of the '<em><b>Hardware Setup</b></em>' containment reference list.
+   * The list contents are of type {@link dsl.greenhouse.HardwareSetup}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Hardware Setup</em>' containment reference list.
+   * @see dsl.greenhouse.GreenhousePackage#getModel_HardwareSetup()
+   * @model containment="true"
+   * @generated
+   */
+  EList<HardwareSetup> getHardwareSetup();
 
   /**
    * Returns the value of the '<em><b>Greenhouses</b></em>' containment reference list.

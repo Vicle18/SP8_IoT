@@ -4,7 +4,7 @@
 package dsl.greenhouse.impl;
 
 import dsl.greenhouse.GreenhousePackage;
-import dsl.greenhouse.Sensor;
+import dsl.greenhouse.RowSensor;
 import dsl.greenhouse.State;
 import dsl.greenhouse.Variable;
 
@@ -25,20 +25,20 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Sensor</b></em>'.
+ * An implementation of the model object '<em><b>Row Sensor</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link dsl.greenhouse.impl.SensorImpl#getName <em>Name</em>}</li>
- *   <li>{@link dsl.greenhouse.impl.SensorImpl#getVariable <em>Variable</em>}</li>
- *   <li>{@link dsl.greenhouse.impl.SensorImpl#getStates <em>States</em>}</li>
+ *   <li>{@link dsl.greenhouse.impl.RowSensorImpl#getName <em>Name</em>}</li>
+ *   <li>{@link dsl.greenhouse.impl.RowSensorImpl#getVariable <em>Variable</em>}</li>
+ *   <li>{@link dsl.greenhouse.impl.RowSensorImpl#getStates <em>States</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class SensorImpl extends RowElementImpl implements Sensor
+public class RowSensorImpl extends RowElementImpl implements RowSensor
 {
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -85,7 +85,7 @@ public class SensorImpl extends RowElementImpl implements Sensor
    * <!-- end-user-doc -->
    * @generated
    */
-  protected SensorImpl()
+  protected RowSensorImpl()
   {
     super();
   }
@@ -98,7 +98,7 @@ public class SensorImpl extends RowElementImpl implements Sensor
   @Override
   protected EClass eStaticClass()
   {
-    return GreenhousePackage.Literals.SENSOR;
+    return GreenhousePackage.Literals.ROW_SENSOR;
   }
 
   /**
@@ -123,7 +123,7 @@ public class SensorImpl extends RowElementImpl implements Sensor
     String oldName = name;
     name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GreenhousePackage.SENSOR__NAME, oldName, name));
+      eNotify(new ENotificationImpl(this, Notification.SET, GreenhousePackage.ROW_SENSOR__NAME, oldName, name));
   }
 
   /**
@@ -148,7 +148,7 @@ public class SensorImpl extends RowElementImpl implements Sensor
     variable = newVariable;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GreenhousePackage.SENSOR__VARIABLE, oldVariable, newVariable);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GreenhousePackage.ROW_SENSOR__VARIABLE, oldVariable, newVariable);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -166,14 +166,14 @@ public class SensorImpl extends RowElementImpl implements Sensor
     {
       NotificationChain msgs = null;
       if (variable != null)
-        msgs = ((InternalEObject)variable).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GreenhousePackage.SENSOR__VARIABLE, null, msgs);
+        msgs = ((InternalEObject)variable).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GreenhousePackage.ROW_SENSOR__VARIABLE, null, msgs);
       if (newVariable != null)
-        msgs = ((InternalEObject)newVariable).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GreenhousePackage.SENSOR__VARIABLE, null, msgs);
+        msgs = ((InternalEObject)newVariable).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GreenhousePackage.ROW_SENSOR__VARIABLE, null, msgs);
       msgs = basicSetVariable(newVariable, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GreenhousePackage.SENSOR__VARIABLE, newVariable, newVariable));
+      eNotify(new ENotificationImpl(this, Notification.SET, GreenhousePackage.ROW_SENSOR__VARIABLE, newVariable, newVariable));
   }
 
   /**
@@ -186,7 +186,7 @@ public class SensorImpl extends RowElementImpl implements Sensor
   {
     if (states == null)
     {
-      states = new EObjectContainmentEList<State>(State.class, this, GreenhousePackage.SENSOR__STATES);
+      states = new EObjectContainmentEList<State>(State.class, this, GreenhousePackage.ROW_SENSOR__STATES);
     }
     return states;
   }
@@ -201,9 +201,9 @@ public class SensorImpl extends RowElementImpl implements Sensor
   {
     switch (featureID)
     {
-      case GreenhousePackage.SENSOR__VARIABLE:
+      case GreenhousePackage.ROW_SENSOR__VARIABLE:
         return basicSetVariable(null, msgs);
-      case GreenhousePackage.SENSOR__STATES:
+      case GreenhousePackage.ROW_SENSOR__STATES:
         return ((InternalEList<?>)getStates()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -219,11 +219,11 @@ public class SensorImpl extends RowElementImpl implements Sensor
   {
     switch (featureID)
     {
-      case GreenhousePackage.SENSOR__NAME:
+      case GreenhousePackage.ROW_SENSOR__NAME:
         return getName();
-      case GreenhousePackage.SENSOR__VARIABLE:
+      case GreenhousePackage.ROW_SENSOR__VARIABLE:
         return getVariable();
-      case GreenhousePackage.SENSOR__STATES:
+      case GreenhousePackage.ROW_SENSOR__STATES:
         return getStates();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -240,13 +240,13 @@ public class SensorImpl extends RowElementImpl implements Sensor
   {
     switch (featureID)
     {
-      case GreenhousePackage.SENSOR__NAME:
+      case GreenhousePackage.ROW_SENSOR__NAME:
         setName((String)newValue);
         return;
-      case GreenhousePackage.SENSOR__VARIABLE:
+      case GreenhousePackage.ROW_SENSOR__VARIABLE:
         setVariable((Variable)newValue);
         return;
-      case GreenhousePackage.SENSOR__STATES:
+      case GreenhousePackage.ROW_SENSOR__STATES:
         getStates().clear();
         getStates().addAll((Collection<? extends State>)newValue);
         return;
@@ -264,13 +264,13 @@ public class SensorImpl extends RowElementImpl implements Sensor
   {
     switch (featureID)
     {
-      case GreenhousePackage.SENSOR__NAME:
+      case GreenhousePackage.ROW_SENSOR__NAME:
         setName(NAME_EDEFAULT);
         return;
-      case GreenhousePackage.SENSOR__VARIABLE:
+      case GreenhousePackage.ROW_SENSOR__VARIABLE:
         setVariable((Variable)null);
         return;
-      case GreenhousePackage.SENSOR__STATES:
+      case GreenhousePackage.ROW_SENSOR__STATES:
         getStates().clear();
         return;
     }
@@ -287,11 +287,11 @@ public class SensorImpl extends RowElementImpl implements Sensor
   {
     switch (featureID)
     {
-      case GreenhousePackage.SENSOR__NAME:
+      case GreenhousePackage.ROW_SENSOR__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case GreenhousePackage.SENSOR__VARIABLE:
+      case GreenhousePackage.ROW_SENSOR__VARIABLE:
         return variable != null;
-      case GreenhousePackage.SENSOR__STATES:
+      case GreenhousePackage.ROW_SENSOR__STATES:
         return states != null && !states.isEmpty();
     }
     return super.eIsSet(featureID);
@@ -314,4 +314,4 @@ public class SensorImpl extends RowElementImpl implements Sensor
     return result.toString();
   }
 
-} //SensorImpl
+} //RowSensorImpl

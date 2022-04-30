@@ -5,6 +5,7 @@ package dsl.greenhouse.impl;
 
 import dsl.greenhouse.Greenhouse;
 import dsl.greenhouse.GreenhousePackage;
+import dsl.greenhouse.HardwareSetup;
 import dsl.greenhouse.Model;
 
 import java.util.Collection;
@@ -32,6 +33,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link dsl.greenhouse.impl.ModelImpl#getName <em>Name</em>}</li>
+ *   <li>{@link dsl.greenhouse.impl.ModelImpl#getHardwareSetup <em>Hardware Setup</em>}</li>
  *   <li>{@link dsl.greenhouse.impl.ModelImpl#getGreenhouses <em>Greenhouses</em>}</li>
  * </ul>
  *
@@ -58,6 +60,16 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * @ordered
    */
   protected String name = NAME_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getHardwareSetup() <em>Hardware Setup</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getHardwareSetup()
+   * @generated
+   * @ordered
+   */
+  protected EList<HardwareSetup> hardwareSetup;
 
   /**
    * The cached value of the '{@link #getGreenhouses() <em>Greenhouses</em>}' containment reference list.
@@ -121,6 +133,21 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * @generated
    */
   @Override
+  public EList<HardwareSetup> getHardwareSetup()
+  {
+    if (hardwareSetup == null)
+    {
+      hardwareSetup = new EObjectContainmentEList<HardwareSetup>(HardwareSetup.class, this, GreenhousePackage.MODEL__HARDWARE_SETUP);
+    }
+    return hardwareSetup;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EList<Greenhouse> getGreenhouses()
   {
     if (greenhouses == null)
@@ -140,6 +167,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
+      case GreenhousePackage.MODEL__HARDWARE_SETUP:
+        return ((InternalEList<?>)getHardwareSetup()).basicRemove(otherEnd, msgs);
       case GreenhousePackage.MODEL__GREENHOUSES:
         return ((InternalEList<?>)getGreenhouses()).basicRemove(otherEnd, msgs);
     }
@@ -158,6 +187,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
     {
       case GreenhousePackage.MODEL__NAME:
         return getName();
+      case GreenhousePackage.MODEL__HARDWARE_SETUP:
+        return getHardwareSetup();
       case GreenhousePackage.MODEL__GREENHOUSES:
         return getGreenhouses();
     }
@@ -177,6 +208,10 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
     {
       case GreenhousePackage.MODEL__NAME:
         setName((String)newValue);
+        return;
+      case GreenhousePackage.MODEL__HARDWARE_SETUP:
+        getHardwareSetup().clear();
+        getHardwareSetup().addAll((Collection<? extends HardwareSetup>)newValue);
         return;
       case GreenhousePackage.MODEL__GREENHOUSES:
         getGreenhouses().clear();
@@ -199,6 +234,9 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
       case GreenhousePackage.MODEL__NAME:
         setName(NAME_EDEFAULT);
         return;
+      case GreenhousePackage.MODEL__HARDWARE_SETUP:
+        getHardwareSetup().clear();
+        return;
       case GreenhousePackage.MODEL__GREENHOUSES:
         getGreenhouses().clear();
         return;
@@ -218,6 +256,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
     {
       case GreenhousePackage.MODEL__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case GreenhousePackage.MODEL__HARDWARE_SETUP:
+        return hardwareSetup != null && !hardwareSetup.isEmpty();
       case GreenhousePackage.MODEL__GREENHOUSES:
         return greenhouses != null && !greenhouses.isEmpty();
     }

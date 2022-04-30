@@ -4,18 +4,50 @@ generate greenhouse "http://www.Greenhouse.dsl"
 
 Model:
     "system" name=ID
+    hardwareSetup+=HardwareSetup?
     greenhouses+=Greenhouse*
 ;
 
+HardwareSetup:
+	{Setting}
+	'hardware'
+	hardware+=Hardware*
+;
+
+Hardware:
+	SettingActuator | SettingSensor
+;
+
+
+SettingActuator:
+	'actuator' name=ID 'has' 'action' settingAction+=SettingAction (',' settingAction+=SettingAction)* 'and' 'listens' 'on'
+	topic=Topic
+;
+
+SettingSensor:
+	'sensor' name=ID 'publishes' 'to' topic=Topic
+;
+
+Topic:
+	'topic' name=ID	
+;
+
+SettingAction:
+	name=ID 'with' 'values' settingValue+=SettingValue (',' settingValue+=SettingValue)*
+;
+
+SettingValue:
+	name=INT
+;
 
 Greenhouse:
     'greenhouse' name=ID
-    '[' row+=Row* elements+=GreenhouseElement* ']'
+    row+=Row* elements+=GreenhouseElement*
 ;
 
 Row:
     'row' name=ID 'includes' 
-    '[' elements+=RowElement* ']'
+    elements+=RowElement*
 ;
 
 GreenhouseElement:
@@ -23,7 +55,7 @@ GreenhouseElement:
 ;
 
 RowElement:
-     Sensor |  Actuator | RuleSet
+     RowSensor |  RowActuator | RowRuleSet
 ;
 
 
@@ -31,7 +63,7 @@ GreenhouseActuator:
       'global' 'actuator' name=ID ('can' action+=Action)? (',' 'can' action+=Action)* 
 ;
 
-Actuator:
+RowActuator:
      'actuator' name=ID ('can' action+=Action)? (',' 'can' action+=Action)* 
 ;
 
@@ -40,7 +72,7 @@ GreenhouseSensor:
         states+=State(',' states+=State)*
 ;
 
-Sensor:
+RowSensor:
     'sensor' name=ID 'has' variable=Variable 'and' 'states'
         states+=State(',' states+=State)*
 ;
@@ -54,14 +86,14 @@ Variable:
 ;
 
 Action:
-    name=ID 'when' 'receiving' trigger=Trigger 'by' 'setting' setting=Setting 'to' value=Value
+    name=ID 'when' 'receiving' trigger=Trigger 'by' 'condition' condition=Condition 'to' value=Value
 ;
 
 Trigger:
     {Trigger} name=ID 
 ;
-Setting:
-    {Setting}
+Condition:
+    {Condition}
     name=ID 
 ;
 
@@ -70,10 +102,10 @@ Value:
     name=INT 
 ;
 
-RuleSet:
-	'rule' actuator=[Actuator] 'set' action=ID 'when' sensor=[Sensor] 'is' state=ID
+RowRuleSet:
+	'rule' Actuator=[RowActuator] 'set' action=[Action] 'when' sensor=[RowSensor] 'is' state=[State]
 ;
 
 GreenhouseRuleSet:
-    'global rule' actuator=[Actuator] 'set' action=[Action] 'when' sensor=[Sensor] 'is' state=[State]
+    'global' 'rule' Actuator=[GreenhouseActuator] 'set' action=[Action] 'when' sensor=[GreenhouseSensor] 'is' state=[State]
 ;
