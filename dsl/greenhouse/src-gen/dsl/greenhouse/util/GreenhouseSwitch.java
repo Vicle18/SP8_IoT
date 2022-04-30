@@ -80,6 +80,48 @@ public class GreenhouseSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case GreenhousePackage.SETTING:
+      {
+        Setting setting = (Setting)theEObject;
+        T result = caseSetting(setting);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case GreenhousePackage.SETTING_ACTUATOR:
+      {
+        SettingActuator settingActuator = (SettingActuator)theEObject;
+        T result = caseSettingActuator(settingActuator);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case GreenhousePackage.SETTING_SENSOR:
+      {
+        SettingSensor settingSensor = (SettingSensor)theEObject;
+        T result = caseSettingSensor(settingSensor);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case GreenhousePackage.TOPIC:
+      {
+        Topic topic = (Topic)theEObject;
+        T result = caseTopic(topic);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case GreenhousePackage.SETTING_ACTION:
+      {
+        SettingAction settingAction = (SettingAction)theEObject;
+        T result = caseSettingAction(settingAction);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case GreenhousePackage.SETTING_VALUE:
+      {
+        SettingValue settingValue = (SettingValue)theEObject;
+        T result = caseSettingValue(settingValue);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case GreenhousePackage.GREENHOUSE:
       {
         Greenhouse greenhouse = (Greenhouse)theEObject;
@@ -116,11 +158,11 @@ public class GreenhouseSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case GreenhousePackage.ACTUATOR:
+      case GreenhousePackage.ROW_ACTUATOR:
       {
-        Actuator actuator = (Actuator)theEObject;
-        T result = caseActuator(actuator);
-        if (result == null) result = caseRowElement(actuator);
+        RowActuator rowActuator = (RowActuator)theEObject;
+        T result = caseRowActuator(rowActuator);
+        if (result == null) result = caseRowElement(rowActuator);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -132,11 +174,11 @@ public class GreenhouseSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case GreenhousePackage.SENSOR:
+      case GreenhousePackage.ROW_SENSOR:
       {
-        Sensor sensor = (Sensor)theEObject;
-        T result = caseSensor(sensor);
-        if (result == null) result = caseRowElement(sensor);
+        RowSensor rowSensor = (RowSensor)theEObject;
+        T result = caseRowSensor(rowSensor);
+        if (result == null) result = caseRowElement(rowSensor);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -168,10 +210,10 @@ public class GreenhouseSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case GreenhousePackage.SETTING:
+      case GreenhousePackage.CONDITION:
       {
-        Setting setting = (Setting)theEObject;
-        T result = caseSetting(setting);
+        Condition condition = (Condition)theEObject;
+        T result = caseCondition(condition);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -182,11 +224,19 @@ public class GreenhouseSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case GreenhousePackage.RULE_SET:
+      case GreenhousePackage.ROW_RULE_SET:
       {
-        RuleSet ruleSet = (RuleSet)theEObject;
-        T result = caseRuleSet(ruleSet);
-        if (result == null) result = caseGreenhouseElement(ruleSet);
+        RowRuleSet rowRuleSet = (RowRuleSet)theEObject;
+        T result = caseRowRuleSet(rowRuleSet);
+        if (result == null) result = caseRowElement(rowRuleSet);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case GreenhousePackage.GREENHOUSE_RULE_SET:
+      {
+        GreenhouseRuleSet greenhouseRuleSet = (GreenhouseRuleSet)theEObject;
+        T result = caseGreenhouseRuleSet(greenhouseRuleSet);
+        if (result == null) result = caseGreenhouseElement(greenhouseRuleSet);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -206,6 +256,102 @@ public class GreenhouseSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseModel(Model object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Setting</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Setting</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseSetting(Setting object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Setting Actuator</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Setting Actuator</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseSettingActuator(SettingActuator object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Setting Sensor</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Setting Sensor</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseSettingSensor(SettingSensor object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Topic</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Topic</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTopic(Topic object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Setting Action</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Setting Action</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseSettingAction(SettingAction object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Setting Value</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Setting Value</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseSettingValue(SettingValue object)
   {
     return null;
   }
@@ -291,17 +437,17 @@ public class GreenhouseSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Actuator</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Row Actuator</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Actuator</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Row Actuator</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseActuator(Actuator object)
+  public T caseRowActuator(RowActuator object)
   {
     return null;
   }
@@ -323,17 +469,17 @@ public class GreenhouseSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Sensor</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Row Sensor</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Sensor</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Row Sensor</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseSensor(Sensor object)
+  public T caseRowSensor(RowSensor object)
   {
     return null;
   }
@@ -403,17 +549,17 @@ public class GreenhouseSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Setting</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Condition</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Setting</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Condition</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseSetting(Setting object)
+  public T caseCondition(Condition object)
   {
     return null;
   }
@@ -435,6 +581,22 @@ public class GreenhouseSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Row Rule Set</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Row Rule Set</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseRowRuleSet(RowRuleSet object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Rule Set</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -445,7 +607,7 @@ public class GreenhouseSwitch<T> extends Switch<T>
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseRuleSet(RuleSet object)
+  public T caseGreenhouseRuleSet(GreenhouseRuleSet object)
   {
     return null;
   }

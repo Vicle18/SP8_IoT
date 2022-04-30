@@ -5,13 +5,24 @@ package dsl.greenhouse.impl;
 
 import dsl.greenhouse.GreenhousePackage;
 import dsl.greenhouse.Setting;
+import dsl.greenhouse.SettingActuator;
+import dsl.greenhouse.SettingSensor;
+
+import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,6 +33,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * </p>
  * <ul>
  *   <li>{@link dsl.greenhouse.impl.SettingImpl#getName <em>Name</em>}</li>
+ *   <li>{@link dsl.greenhouse.impl.SettingImpl#getSettingActuator <em>Setting Actuator</em>}</li>
+ *   <li>{@link dsl.greenhouse.impl.SettingImpl#getSettingSensor <em>Setting Sensor</em>}</li>
  * </ul>
  *
  * @generated
@@ -47,6 +60,26 @@ public class SettingImpl extends MinimalEObjectImpl.Container implements Setting
    * @ordered
    */
   protected String name = NAME_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getSettingActuator() <em>Setting Actuator</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getSettingActuator()
+   * @generated
+   * @ordered
+   */
+  protected EList<SettingActuator> settingActuator;
+
+  /**
+   * The cached value of the '{@link #getSettingSensor() <em>Setting Sensor</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getSettingSensor()
+   * @generated
+   * @ordered
+   */
+  protected EList<SettingSensor> settingSensor;
 
   /**
    * <!-- begin-user-doc -->
@@ -100,12 +133,64 @@ public class SettingImpl extends MinimalEObjectImpl.Container implements Setting
    * @generated
    */
   @Override
+  public EList<SettingActuator> getSettingActuator()
+  {
+    if (settingActuator == null)
+    {
+      settingActuator = new EObjectContainmentEList<SettingActuator>(SettingActuator.class, this, GreenhousePackage.SETTING__SETTING_ACTUATOR);
+    }
+    return settingActuator;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EList<SettingSensor> getSettingSensor()
+  {
+    if (settingSensor == null)
+    {
+      settingSensor = new EObjectContainmentEList<SettingSensor>(SettingSensor.class, this, GreenhousePackage.SETTING__SETTING_SENSOR);
+    }
+    return settingSensor;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case GreenhousePackage.SETTING__SETTING_ACTUATOR:
+        return ((InternalEList<?>)getSettingActuator()).basicRemove(otherEnd, msgs);
+      case GreenhousePackage.SETTING__SETTING_SENSOR:
+        return ((InternalEList<?>)getSettingSensor()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
     {
       case GreenhousePackage.SETTING__NAME:
         return getName();
+      case GreenhousePackage.SETTING__SETTING_ACTUATOR:
+        return getSettingActuator();
+      case GreenhousePackage.SETTING__SETTING_SENSOR:
+        return getSettingSensor();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -115,6 +200,7 @@ public class SettingImpl extends MinimalEObjectImpl.Container implements Setting
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
@@ -122,6 +208,14 @@ public class SettingImpl extends MinimalEObjectImpl.Container implements Setting
     {
       case GreenhousePackage.SETTING__NAME:
         setName((String)newValue);
+        return;
+      case GreenhousePackage.SETTING__SETTING_ACTUATOR:
+        getSettingActuator().clear();
+        getSettingActuator().addAll((Collection<? extends SettingActuator>)newValue);
+        return;
+      case GreenhousePackage.SETTING__SETTING_SENSOR:
+        getSettingSensor().clear();
+        getSettingSensor().addAll((Collection<? extends SettingSensor>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -140,6 +234,12 @@ public class SettingImpl extends MinimalEObjectImpl.Container implements Setting
       case GreenhousePackage.SETTING__NAME:
         setName(NAME_EDEFAULT);
         return;
+      case GreenhousePackage.SETTING__SETTING_ACTUATOR:
+        getSettingActuator().clear();
+        return;
+      case GreenhousePackage.SETTING__SETTING_SENSOR:
+        getSettingSensor().clear();
+        return;
     }
     super.eUnset(featureID);
   }
@@ -156,6 +256,10 @@ public class SettingImpl extends MinimalEObjectImpl.Container implements Setting
     {
       case GreenhousePackage.SETTING__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case GreenhousePackage.SETTING__SETTING_ACTUATOR:
+        return settingActuator != null && !settingActuator.isEmpty();
+      case GreenhousePackage.SETTING__SETTING_SENSOR:
+        return settingSensor != null && !settingSensor.isEmpty();
     }
     return super.eIsSet(featureID);
   }

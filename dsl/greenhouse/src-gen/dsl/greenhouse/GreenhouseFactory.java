@@ -33,6 +33,60 @@ public interface GreenhouseFactory extends EFactory
   Model createModel();
 
   /**
+   * Returns a new object of class '<em>Setting</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Setting</em>'.
+   * @generated
+   */
+  Setting createSetting();
+
+  /**
+   * Returns a new object of class '<em>Setting Actuator</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Setting Actuator</em>'.
+   * @generated
+   */
+  SettingActuator createSettingActuator();
+
+  /**
+   * Returns a new object of class '<em>Setting Sensor</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Setting Sensor</em>'.
+   * @generated
+   */
+  SettingSensor createSettingSensor();
+
+  /**
+   * Returns a new object of class '<em>Topic</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Topic</em>'.
+   * @generated
+   */
+  Topic createTopic();
+
+  /**
+   * Returns a new object of class '<em>Setting Action</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Setting Action</em>'.
+   * @generated
+   */
+  SettingAction createSettingAction();
+
+  /**
+   * Returns a new object of class '<em>Setting Value</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Setting Value</em>'.
+   * @generated
+   */
+  SettingValue createSettingValue();
+
+  /**
    * Returns a new object of class '<em>Greenhouse</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -78,13 +132,13 @@ public interface GreenhouseFactory extends EFactory
   GreenhouseActuator createGreenhouseActuator();
 
   /**
-   * Returns a new object of class '<em>Actuator</em>'.
+   * Returns a new object of class '<em>Row Actuator</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Actuator</em>'.
+   * @return a new object of class '<em>Row Actuator</em>'.
    * @generated
    */
-  Actuator createActuator();
+  RowActuator createRowActuator();
 
   /**
    * Returns a new object of class '<em>Sensor</em>'.
@@ -96,13 +150,13 @@ public interface GreenhouseFactory extends EFactory
   GreenhouseSensor createGreenhouseSensor();
 
   /**
-   * Returns a new object of class '<em>Sensor</em>'.
+   * Returns a new object of class '<em>Row Sensor</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Sensor</em>'.
+   * @return a new object of class '<em>Row Sensor</em>'.
    * @generated
    */
-  Sensor createSensor();
+  RowSensor createRowSensor();
 
   /**
    * Returns a new object of class '<em>State</em>'.
@@ -141,13 +195,13 @@ public interface GreenhouseFactory extends EFactory
   Trigger createTrigger();
 
   /**
-   * Returns a new object of class '<em>Setting</em>'.
+   * Returns a new object of class '<em>Condition</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Setting</em>'.
+   * @return a new object of class '<em>Condition</em>'.
    * @generated
    */
-  Setting createSetting();
+  Condition createCondition();
 
   /**
    * Returns a new object of class '<em>Value</em>'.
@@ -159,13 +213,22 @@ public interface GreenhouseFactory extends EFactory
   Value createValue();
 
   /**
+   * Returns a new object of class '<em>Row Rule Set</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Row Rule Set</em>'.
+   * @generated
+   */
+  RowRuleSet createRowRuleSet();
+
+  /**
    * Returns a new object of class '<em>Rule Set</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return a new object of class '<em>Rule Set</em>'.
    * @generated
    */
-  RuleSet createRuleSet();
+  GreenhouseRuleSet createGreenhouseRuleSet();
 
   /**
    * Returns the package supported by this factory.

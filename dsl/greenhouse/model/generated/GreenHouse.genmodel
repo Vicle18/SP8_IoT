@@ -8,7 +8,32 @@
       fileExtensions="green" ecorePackage="Greenhouse.ecore#/">
     <genClasses ecoreClass="Greenhouse.ecore#//Model">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Greenhouse.ecore#//Model/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//Model/settings"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//Model/greenhouses"/>
+    </genClasses>
+    <genClasses ecoreClass="Greenhouse.ecore#//Setting">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Greenhouse.ecore#//Setting/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//Setting/settingActuator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//Setting/settingSensor"/>
+    </genClasses>
+    <genClasses ecoreClass="Greenhouse.ecore#//SettingActuator">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Greenhouse.ecore#//SettingActuator/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//SettingActuator/settingAction"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//SettingActuator/topic"/>
+    </genClasses>
+    <genClasses ecoreClass="Greenhouse.ecore#//SettingSensor">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Greenhouse.ecore#//SettingSensor/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//SettingSensor/topic"/>
+    </genClasses>
+    <genClasses ecoreClass="Greenhouse.ecore#//Topic">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Greenhouse.ecore#//Topic/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Greenhouse.ecore#//SettingAction">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Greenhouse.ecore#//SettingAction/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//SettingAction/settingValue"/>
+    </genClasses>
+    <genClasses ecoreClass="Greenhouse.ecore#//SettingValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Greenhouse.ecore#//SettingValue/name"/>
     </genClasses>
     <genClasses ecoreClass="Greenhouse.ecore#//Greenhouse">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Greenhouse.ecore#//Greenhouse/name"/>
@@ -20,24 +45,24 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//Row/elements"/>
     </genClasses>
     <genClasses ecoreClass="Greenhouse.ecore#//GreenhouseElement"/>
-    <genClasses ecoreClass="Greenhouse.ecore#//RowElement">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Greenhouse.ecore#//RowElement/name"/>
-    </genClasses>
+    <genClasses ecoreClass="Greenhouse.ecore#//RowElement"/>
     <genClasses ecoreClass="Greenhouse.ecore#//GreenhouseActuator">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Greenhouse.ecore#//GreenhouseActuator/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//GreenhouseActuator/action"/>
     </genClasses>
-    <genClasses ecoreClass="Greenhouse.ecore#//Actuator">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//Actuator/action"/>
+    <genClasses ecoreClass="Greenhouse.ecore#//RowActuator">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Greenhouse.ecore#//RowActuator/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//RowActuator/action"/>
     </genClasses>
     <genClasses ecoreClass="Greenhouse.ecore#//GreenhouseSensor">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Greenhouse.ecore#//GreenhouseSensor/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//GreenhouseSensor/variable"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//GreenhouseSensor/states"/>
     </genClasses>
-    <genClasses ecoreClass="Greenhouse.ecore#//Sensor">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//Sensor/variable"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//Sensor/states"/>
+    <genClasses ecoreClass="Greenhouse.ecore#//RowSensor">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Greenhouse.ecore#//RowSensor/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//RowSensor/variable"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//RowSensor/states"/>
     </genClasses>
     <genClasses ecoreClass="Greenhouse.ecore#//State">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Greenhouse.ecore#//State/name"/>
@@ -51,23 +76,29 @@
     <genClasses ecoreClass="Greenhouse.ecore#//Action">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Greenhouse.ecore#//Action/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//Action/trigger"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//Action/setting"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//Action/condition"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//Action/value"/>
     </genClasses>
     <genClasses ecoreClass="Greenhouse.ecore#//Trigger">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Greenhouse.ecore#//Trigger/name"/>
     </genClasses>
-    <genClasses ecoreClass="Greenhouse.ecore#//Setting">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Greenhouse.ecore#//Setting/name"/>
+    <genClasses ecoreClass="Greenhouse.ecore#//Condition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Greenhouse.ecore#//Condition/name"/>
     </genClasses>
     <genClasses ecoreClass="Greenhouse.ecore#//Value">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Greenhouse.ecore#//Value/name"/>
     </genClasses>
-    <genClasses ecoreClass="Greenhouse.ecore#//RuleSet">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//RuleSet/actuator"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//RuleSet/action"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//RuleSet/sensor"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//RuleSet/state"/>
+    <genClasses ecoreClass="Greenhouse.ecore#//RowRuleSet">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//RowRuleSet/Actuator"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//RowRuleSet/action"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//RowRuleSet/sensor"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//RowRuleSet/state"/>
+    </genClasses>
+    <genClasses ecoreClass="Greenhouse.ecore#//GreenhouseRuleSet">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//GreenhouseRuleSet/Actuator"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//GreenhouseRuleSet/action"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//GreenhouseRuleSet/sensor"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//GreenhouseRuleSet/state"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

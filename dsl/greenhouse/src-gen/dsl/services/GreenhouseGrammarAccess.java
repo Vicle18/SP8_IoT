@@ -30,16 +30,20 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		private final Keyword cSystemKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Assignment cGreenhousesAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cGreenhousesGreenhouseParserRuleCall_2_0 = (RuleCall)cGreenhousesAssignment_2.eContents().get(0);
+		private final Assignment cSettingsAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cSettingsSettingParserRuleCall_2_0 = (RuleCall)cSettingsAssignment_2.eContents().get(0);
+		private final Assignment cGreenhousesAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cGreenhousesGreenhouseParserRuleCall_3_0 = (RuleCall)cGreenhousesAssignment_3.eContents().get(0);
 		
 		//Model:
 		//    "system" name=ID
+		//    settings+=Setting*
 		//    greenhouses+=Greenhouse*
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//"system" name=ID
+		//settings+=Setting*
 		//greenhouses+=Greenhouse*
 		public Group getGroup() { return cGroup; }
 		
@@ -52,11 +56,271 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 		
+		//settings+=Setting*
+		public Assignment getSettingsAssignment_2() { return cSettingsAssignment_2; }
+		
+		//Setting
+		public RuleCall getSettingsSettingParserRuleCall_2_0() { return cSettingsSettingParserRuleCall_2_0; }
+		
 		//greenhouses+=Greenhouse*
-		public Assignment getGreenhousesAssignment_2() { return cGreenhousesAssignment_2; }
+		public Assignment getGreenhousesAssignment_3() { return cGreenhousesAssignment_3; }
 		
 		//Greenhouse
-		public RuleCall getGreenhousesGreenhouseParserRuleCall_2_0() { return cGreenhousesGreenhouseParserRuleCall_2_0; }
+		public RuleCall getGreenhousesGreenhouseParserRuleCall_3_0() { return cGreenhousesGreenhouseParserRuleCall_3_0; }
+	}
+	public class SettingElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "dsl.Greenhouse.Setting");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cSettingKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Assignment cSettingActuatorAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cSettingActuatorSettingActuatorParserRuleCall_2_0 = (RuleCall)cSettingActuatorAssignment_2.eContents().get(0);
+		private final Assignment cSettingSensorAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cSettingSensorSettingSensorParserRuleCall_3_0 = (RuleCall)cSettingSensorAssignment_3.eContents().get(0);
+		
+		//Setting:
+		//    'setting' name=ID
+		//    settingActuator += SettingActuator
+		//    settingSensor += SettingSensor
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'setting' name=ID
+		//settingActuator += SettingActuator
+		//settingSensor += SettingSensor
+		public Group getGroup() { return cGroup; }
+		
+		//'setting'
+		public Keyword getSettingKeyword_0() { return cSettingKeyword_0; }
+		
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		
+		//settingActuator += SettingActuator
+		public Assignment getSettingActuatorAssignment_2() { return cSettingActuatorAssignment_2; }
+		
+		//SettingActuator
+		public RuleCall getSettingActuatorSettingActuatorParserRuleCall_2_0() { return cSettingActuatorSettingActuatorParserRuleCall_2_0; }
+		
+		//settingSensor += SettingSensor
+		public Assignment getSettingSensorAssignment_3() { return cSettingSensorAssignment_3; }
+		
+		//SettingSensor
+		public RuleCall getSettingSensorSettingSensorParserRuleCall_3_0() { return cSettingSensorSettingSensorParserRuleCall_3_0; }
+	}
+	public class SettingActuatorElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "dsl.Greenhouse.SettingActuator");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cActuatorKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Keyword cHasKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Keyword cActionKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cSettingActionAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cSettingActionSettingActionParserRuleCall_4_0 = (RuleCall)cSettingActionAssignment_4.eContents().get(0);
+		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
+		private final Keyword cCommaKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
+		private final Assignment cSettingActionAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
+		private final RuleCall cSettingActionSettingActionParserRuleCall_5_1_0 = (RuleCall)cSettingActionAssignment_5_1.eContents().get(0);
+		private final Keyword cAndKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Keyword cListensKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Keyword cOnKeyword_8 = (Keyword)cGroup.eContents().get(8);
+		private final Assignment cTopicAssignment_9 = (Assignment)cGroup.eContents().get(9);
+		private final RuleCall cTopicTopicParserRuleCall_9_0 = (RuleCall)cTopicAssignment_9.eContents().get(0);
+		
+		//SettingActuator:
+		//    'actuator' name=ID 'has' 'action' settingAction+=SettingAction (',' settingAction+=SettingAction)* 'and' 'listens' 'on'
+		//    topic=Topic
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'actuator' name=ID 'has' 'action' settingAction+=SettingAction (',' settingAction+=SettingAction)* 'and' 'listens' 'on'
+		//topic=Topic
+		public Group getGroup() { return cGroup; }
+		
+		//'actuator'
+		public Keyword getActuatorKeyword_0() { return cActuatorKeyword_0; }
+		
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		
+		//'has'
+		public Keyword getHasKeyword_2() { return cHasKeyword_2; }
+		
+		//'action'
+		public Keyword getActionKeyword_3() { return cActionKeyword_3; }
+		
+		//settingAction+=SettingAction
+		public Assignment getSettingActionAssignment_4() { return cSettingActionAssignment_4; }
+		
+		//SettingAction
+		public RuleCall getSettingActionSettingActionParserRuleCall_4_0() { return cSettingActionSettingActionParserRuleCall_4_0; }
+		
+		//(',' settingAction+=SettingAction)*
+		public Group getGroup_5() { return cGroup_5; }
+		
+		//','
+		public Keyword getCommaKeyword_5_0() { return cCommaKeyword_5_0; }
+		
+		//settingAction+=SettingAction
+		public Assignment getSettingActionAssignment_5_1() { return cSettingActionAssignment_5_1; }
+		
+		//SettingAction
+		public RuleCall getSettingActionSettingActionParserRuleCall_5_1_0() { return cSettingActionSettingActionParserRuleCall_5_1_0; }
+		
+		//'and'
+		public Keyword getAndKeyword_6() { return cAndKeyword_6; }
+		
+		//'listens'
+		public Keyword getListensKeyword_7() { return cListensKeyword_7; }
+		
+		//'on'
+		public Keyword getOnKeyword_8() { return cOnKeyword_8; }
+		
+		//topic=Topic
+		public Assignment getTopicAssignment_9() { return cTopicAssignment_9; }
+		
+		//Topic
+		public RuleCall getTopicTopicParserRuleCall_9_0() { return cTopicTopicParserRuleCall_9_0; }
+	}
+	public class SettingSensorElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "dsl.Greenhouse.SettingSensor");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cSensorKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Keyword cPublishesKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Keyword cToKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cTopicAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cTopicTopicParserRuleCall_4_0 = (RuleCall)cTopicAssignment_4.eContents().get(0);
+		
+		//SettingSensor:
+		//    'sensor' name=ID 'publishes' 'to' topic=Topic
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'sensor' name=ID 'publishes' 'to' topic=Topic
+		public Group getGroup() { return cGroup; }
+		
+		//'sensor'
+		public Keyword getSensorKeyword_0() { return cSensorKeyword_0; }
+		
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		
+		//'publishes'
+		public Keyword getPublishesKeyword_2() { return cPublishesKeyword_2; }
+		
+		//'to'
+		public Keyword getToKeyword_3() { return cToKeyword_3; }
+		
+		//topic=Topic
+		public Assignment getTopicAssignment_4() { return cTopicAssignment_4; }
+		
+		//Topic
+		public RuleCall getTopicTopicParserRuleCall_4_0() { return cTopicTopicParserRuleCall_4_0; }
+	}
+	public class TopicElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "dsl.Greenhouse.Topic");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cTopicKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		
+		//Topic:
+		//    'topic' name=ID
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'topic' name=ID
+		public Group getGroup() { return cGroup; }
+		
+		//'topic'
+		public Keyword getTopicKeyword_0() { return cTopicKeyword_0; }
+		
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+	}
+	public class SettingActionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "dsl.Greenhouse.SettingAction");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNameIDTerminalRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final Keyword cWithKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cValuesKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cSettingValueAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cSettingValueSettingValueParserRuleCall_3_0 = (RuleCall)cSettingValueAssignment_3.eContents().get(0);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Keyword cCommaKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Assignment cSettingValueAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cSettingValueSettingValueParserRuleCall_4_1_0 = (RuleCall)cSettingValueAssignment_4_1.eContents().get(0);
+		
+		//SettingAction:
+		//    name=ID 'with' 'values' settingValue+=SettingValue (',' settingValue+=SettingValue)*
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//name=ID 'with' 'values' settingValue+=SettingValue (',' settingValue+=SettingValue)*
+		public Group getGroup() { return cGroup; }
+		
+		//name=ID
+		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_0_0() { return cNameIDTerminalRuleCall_0_0; }
+		
+		//'with'
+		public Keyword getWithKeyword_1() { return cWithKeyword_1; }
+		
+		//'values'
+		public Keyword getValuesKeyword_2() { return cValuesKeyword_2; }
+		
+		//settingValue+=SettingValue
+		public Assignment getSettingValueAssignment_3() { return cSettingValueAssignment_3; }
+		
+		//SettingValue
+		public RuleCall getSettingValueSettingValueParserRuleCall_3_0() { return cSettingValueSettingValueParserRuleCall_3_0; }
+		
+		//(',' settingValue+=SettingValue)*
+		public Group getGroup_4() { return cGroup_4; }
+		
+		//','
+		public Keyword getCommaKeyword_4_0() { return cCommaKeyword_4_0; }
+		
+		//settingValue+=SettingValue
+		public Assignment getSettingValueAssignment_4_1() { return cSettingValueAssignment_4_1; }
+		
+		//SettingValue
+		public RuleCall getSettingValueSettingValueParserRuleCall_4_1_0() { return cSettingValueSettingValueParserRuleCall_4_1_0; }
+	}
+	public class SettingValueElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "dsl.Greenhouse.SettingValue");
+		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cNameINTTerminalRuleCall_0 = (RuleCall)cNameAssignment.eContents().get(0);
+		
+		//SettingValue:
+		//    name=INT
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//name=INT
+		public Assignment getNameAssignment() { return cNameAssignment; }
+		
+		//INT
+		public RuleCall getNameINTTerminalRuleCall_0() { return cNameINTTerminalRuleCall_0; }
 	}
 	public class GreenhouseElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "dsl.Greenhouse.Greenhouse");
@@ -64,21 +328,19 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		private final Keyword cGreenhouseKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cLeftSquareBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cRowAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cRowRowParserRuleCall_3_0 = (RuleCall)cRowAssignment_3.eContents().get(0);
-		private final Assignment cElementsAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cElementsGreenhouseElementParserRuleCall_4_0 = (RuleCall)cElementsAssignment_4.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cRowAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cRowRowParserRuleCall_2_0 = (RuleCall)cRowAssignment_2.eContents().get(0);
+		private final Assignment cElementsAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cElementsGreenhouseElementParserRuleCall_3_0 = (RuleCall)cElementsAssignment_3.eContents().get(0);
 		
 		//Greenhouse:
 		//    'greenhouse' name=ID
-		//    '[' row+=Row* elements+=GreenhouseElement* ']'
+		//    row+=Row* elements+=GreenhouseElement*
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'greenhouse' name=ID
-		//'[' row+=Row* elements+=GreenhouseElement* ']'
+		//row+=Row* elements+=GreenhouseElement*
 		public Group getGroup() { return cGroup; }
 		
 		//'greenhouse'
@@ -90,23 +352,17 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 		
-		//'['
-		public Keyword getLeftSquareBracketKeyword_2() { return cLeftSquareBracketKeyword_2; }
-		
 		//row+=Row*
-		public Assignment getRowAssignment_3() { return cRowAssignment_3; }
+		public Assignment getRowAssignment_2() { return cRowAssignment_2; }
 		
 		//Row
-		public RuleCall getRowRowParserRuleCall_3_0() { return cRowRowParserRuleCall_3_0; }
+		public RuleCall getRowRowParserRuleCall_2_0() { return cRowRowParserRuleCall_2_0; }
 		
 		//elements+=GreenhouseElement*
-		public Assignment getElementsAssignment_4() { return cElementsAssignment_4; }
+		public Assignment getElementsAssignment_3() { return cElementsAssignment_3; }
 		
 		//GreenhouseElement
-		public RuleCall getElementsGreenhouseElementParserRuleCall_4_0() { return cElementsGreenhouseElementParserRuleCall_4_0; }
-		
-		//']'
-		public Keyword getRightSquareBracketKeyword_5() { return cRightSquareBracketKeyword_5; }
+		public RuleCall getElementsGreenhouseElementParserRuleCall_3_0() { return cElementsGreenhouseElementParserRuleCall_3_0; }
 	}
 	public class RowElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "dsl.Greenhouse.Row");
@@ -115,19 +371,17 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Keyword cIncludesKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Keyword cLeftSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cElementsAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cElementsRowElementParserRuleCall_4_0 = (RuleCall)cElementsAssignment_4.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cElementsAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cElementsRowElementParserRuleCall_3_0 = (RuleCall)cElementsAssignment_3.eContents().get(0);
 		
 		//Row:
 		//    'row' name=ID 'includes'
-		//    '[' elements+=RowElement* ']'
+		//    elements+=RowElement*
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'row' name=ID 'includes'
-		//'[' elements+=RowElement* ']'
+		//elements+=RowElement*
 		public Group getGroup() { return cGroup; }
 		
 		//'row'
@@ -142,31 +396,25 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		//'includes'
 		public Keyword getIncludesKeyword_2() { return cIncludesKeyword_2; }
 		
-		//'['
-		public Keyword getLeftSquareBracketKeyword_3() { return cLeftSquareBracketKeyword_3; }
-		
 		//elements+=RowElement*
-		public Assignment getElementsAssignment_4() { return cElementsAssignment_4; }
+		public Assignment getElementsAssignment_3() { return cElementsAssignment_3; }
 		
 		//RowElement
-		public RuleCall getElementsRowElementParserRuleCall_4_0() { return cElementsRowElementParserRuleCall_4_0; }
-		
-		//']'
-		public Keyword getRightSquareBracketKeyword_5() { return cRightSquareBracketKeyword_5; }
+		public RuleCall getElementsRowElementParserRuleCall_3_0() { return cElementsRowElementParserRuleCall_3_0; }
 	}
 	public class GreenhouseElementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "dsl.Greenhouse.GreenhouseElement");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cGreenhouseSensorParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cGreenhouseActuatorParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cRuleSetParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cGreenhouseRuleSetParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		//GreenhouseElement:
-		//     GreenhouseSensor |  GreenhouseActuator |  RuleSet
+		//     GreenhouseSensor |  GreenhouseActuator |  GreenhouseRuleSet
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//GreenhouseSensor |  GreenhouseActuator |  RuleSet
+		//GreenhouseSensor |  GreenhouseActuator |  GreenhouseRuleSet
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//GreenhouseSensor
@@ -175,28 +423,32 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		//GreenhouseActuator
 		public RuleCall getGreenhouseActuatorParserRuleCall_1() { return cGreenhouseActuatorParserRuleCall_1; }
 		
-		//RuleSet
-		public RuleCall getRuleSetParserRuleCall_2() { return cRuleSetParserRuleCall_2; }
+		//GreenhouseRuleSet
+		public RuleCall getGreenhouseRuleSetParserRuleCall_2() { return cGreenhouseRuleSetParserRuleCall_2; }
 	}
 	public class RowElementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "dsl.Greenhouse.RowElement");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cSensorParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cActuatorParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cRowSensorParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cRowActuatorParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cRowRuleSetParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		//RowElement:
-		//     Sensor |  Actuator
+		//     RowSensor |  RowActuator | RowRuleSet
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Sensor |  Actuator
+		//RowSensor |  RowActuator | RowRuleSet
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//Sensor
-		public RuleCall getSensorParserRuleCall_0() { return cSensorParserRuleCall_0; }
+		//RowSensor
+		public RuleCall getRowSensorParserRuleCall_0() { return cRowSensorParserRuleCall_0; }
 		
-		//Actuator
-		public RuleCall getActuatorParserRuleCall_1() { return cActuatorParserRuleCall_1; }
+		//RowActuator
+		public RuleCall getRowActuatorParserRuleCall_1() { return cRowActuatorParserRuleCall_1; }
+		
+		//RowRuleSet
+		public RuleCall getRowRuleSetParserRuleCall_2() { return cRowRuleSetParserRuleCall_2; }
 	}
 	public class GreenhouseActuatorElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "dsl.Greenhouse.GreenhouseActuator");
@@ -262,8 +514,8 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		//Action
 		public RuleCall getActionActionParserRuleCall_4_2_0() { return cActionActionParserRuleCall_4_2_0; }
 	}
-	public class ActuatorElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "dsl.Greenhouse.Actuator");
+	public class RowActuatorElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "dsl.Greenhouse.RowActuator");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cActuatorKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
@@ -278,7 +530,7 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		private final Assignment cActionAssignment_3_2 = (Assignment)cGroup_3.eContents().get(2);
 		private final RuleCall cActionActionParserRuleCall_3_2_0 = (RuleCall)cActionAssignment_3_2.eContents().get(0);
 		
-		//Actuator:
+		//RowActuator:
 		//     'actuator' name=ID ('can' action+=Action)? (',' 'can' action+=Action)*
 		//;
 		@Override public ParserRule getRule() { return rule; }
@@ -392,8 +644,8 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		//State
 		public RuleCall getStatesStateParserRuleCall_7_1_0() { return cStatesStateParserRuleCall_7_1_0; }
 	}
-	public class SensorElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "dsl.Greenhouse.Sensor");
+	public class RowSensorElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "dsl.Greenhouse.RowSensor");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cSensorKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
@@ -410,7 +662,7 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		private final Assignment cStatesAssignment_7_1 = (Assignment)cGroup_7.eContents().get(1);
 		private final RuleCall cStatesStateParserRuleCall_7_1_0 = (RuleCall)cStatesAssignment_7_1.eContents().get(0);
 		
-		//Sensor:
+		//RowSensor:
 		//    'sensor' name=ID 'has' variable=Variable 'and' 'states'
 		//        states+=State(',' states+=State)*
 		//;
@@ -560,19 +812,19 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		private final Assignment cTriggerAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cTriggerTriggerParserRuleCall_3_0 = (RuleCall)cTriggerAssignment_3.eContents().get(0);
 		private final Keyword cByKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Keyword cSettingKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final Assignment cSettingAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final RuleCall cSettingSettingParserRuleCall_6_0 = (RuleCall)cSettingAssignment_6.eContents().get(0);
+		private final Keyword cConditionKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cConditionAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cConditionConditionParserRuleCall_6_0 = (RuleCall)cConditionAssignment_6.eContents().get(0);
 		private final Keyword cToKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		private final Assignment cValueAssignment_8 = (Assignment)cGroup.eContents().get(8);
 		private final RuleCall cValueValueParserRuleCall_8_0 = (RuleCall)cValueAssignment_8.eContents().get(0);
 		
 		//Action:
-		//    name=ID 'when' 'receiving' trigger=Trigger 'by' 'setting' setting=Setting 'to' value=Value
+		//    name=ID 'when' 'receiving' trigger=Trigger 'by' 'condition' condition=Condition 'to' value=Value
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//name=ID 'when' 'receiving' trigger=Trigger 'by' 'setting' setting=Setting 'to' value=Value
+		//name=ID 'when' 'receiving' trigger=Trigger 'by' 'condition' condition=Condition 'to' value=Value
 		public Group getGroup() { return cGroup; }
 		
 		//name=ID
@@ -596,14 +848,14 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		//'by'
 		public Keyword getByKeyword_4() { return cByKeyword_4; }
 		
-		//'setting'
-		public Keyword getSettingKeyword_5() { return cSettingKeyword_5; }
+		//'condition'
+		public Keyword getConditionKeyword_5() { return cConditionKeyword_5; }
 		
-		//setting=Setting
-		public Assignment getSettingAssignment_6() { return cSettingAssignment_6; }
+		//condition=Condition
+		public Assignment getConditionAssignment_6() { return cConditionAssignment_6; }
 		
-		//Setting
-		public RuleCall getSettingSettingParserRuleCall_6_0() { return cSettingSettingParserRuleCall_6_0; }
+		//Condition
+		public RuleCall getConditionConditionParserRuleCall_6_0() { return cConditionConditionParserRuleCall_6_0; }
 		
 		//'to'
 		public Keyword getToKeyword_7() { return cToKeyword_7; }
@@ -638,25 +890,25 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 	}
-	public class SettingElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "dsl.Greenhouse.Setting");
+	public class ConditionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "dsl.Greenhouse.Condition");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cSettingAction_0 = (Action)cGroup.eContents().get(0);
+		private final Action cConditionAction_0 = (Action)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		
-		//Setting:
-		//    {Setting}
+		//Condition:
+		//    {Condition}
 		//    name=ID
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{Setting}
+		//{Condition}
 		//name=ID
 		public Group getGroup() { return cGroup; }
 		
-		//{Setting}
-		public Action getSettingAction_0() { return cSettingAction_0; }
+		//{Condition}
+		public Action getConditionAction_0() { return cConditionAction_0; }
 		
 		//name=ID
 		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
@@ -690,45 +942,45 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		//INT
 		public RuleCall getNameINTTerminalRuleCall_1_0() { return cNameINTTerminalRuleCall_1_0; }
 	}
-	public class RuleSetElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "dsl.Greenhouse.RuleSet");
+	public class RowRuleSetElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "dsl.Greenhouse.RowRuleSet");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cRuleKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cActuatorAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final CrossReference cActuatorActuatorCrossReference_1_0 = (CrossReference)cActuatorAssignment_1.eContents().get(0);
-		private final RuleCall cActuatorActuatorIDTerminalRuleCall_1_0_1 = (RuleCall)cActuatorActuatorCrossReference_1_0.eContents().get(1);
+		private final CrossReference cActuatorRowActuatorCrossReference_1_0 = (CrossReference)cActuatorAssignment_1.eContents().get(0);
+		private final RuleCall cActuatorRowActuatorIDTerminalRuleCall_1_0_1 = (RuleCall)cActuatorRowActuatorCrossReference_1_0.eContents().get(1);
 		private final Keyword cSetKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cActionAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final CrossReference cActionActionCrossReference_3_0 = (CrossReference)cActionAssignment_3.eContents().get(0);
 		private final RuleCall cActionActionIDTerminalRuleCall_3_0_1 = (RuleCall)cActionActionCrossReference_3_0.eContents().get(1);
 		private final Keyword cWhenKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Assignment cSensorAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final CrossReference cSensorSensorCrossReference_5_0 = (CrossReference)cSensorAssignment_5.eContents().get(0);
-		private final RuleCall cSensorSensorIDTerminalRuleCall_5_0_1 = (RuleCall)cSensorSensorCrossReference_5_0.eContents().get(1);
+		private final CrossReference cSensorRowSensorCrossReference_5_0 = (CrossReference)cSensorAssignment_5.eContents().get(0);
+		private final RuleCall cSensorRowSensorIDTerminalRuleCall_5_0_1 = (RuleCall)cSensorRowSensorCrossReference_5_0.eContents().get(1);
 		private final Keyword cIsKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		private final Assignment cStateAssignment_7 = (Assignment)cGroup.eContents().get(7);
 		private final CrossReference cStateStateCrossReference_7_0 = (CrossReference)cStateAssignment_7.eContents().get(0);
 		private final RuleCall cStateStateIDTerminalRuleCall_7_0_1 = (RuleCall)cStateStateCrossReference_7_0.eContents().get(1);
 		
-		//RuleSet:
-		//    'rule' actuator=[Actuator] 'set' action=[Action] 'when' sensor=[Sensor] 'is' state=[State]
+		//RowRuleSet:
+		//    'rule' Actuator=[RowActuator] 'set' action=[Action] 'when' sensor=[RowSensor] 'is' state=[State]
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'rule' actuator=[Actuator] 'set' action=[Action] 'when' sensor=[Sensor] 'is' state=[State]
+		//'rule' Actuator=[RowActuator] 'set' action=[Action] 'when' sensor=[RowSensor] 'is' state=[State]
 		public Group getGroup() { return cGroup; }
 		
 		//'rule'
 		public Keyword getRuleKeyword_0() { return cRuleKeyword_0; }
 		
-		//actuator=[Actuator]
+		//Actuator=[RowActuator]
 		public Assignment getActuatorAssignment_1() { return cActuatorAssignment_1; }
 		
-		//[Actuator]
-		public CrossReference getActuatorActuatorCrossReference_1_0() { return cActuatorActuatorCrossReference_1_0; }
+		//[RowActuator]
+		public CrossReference getActuatorRowActuatorCrossReference_1_0() { return cActuatorRowActuatorCrossReference_1_0; }
 		
 		//ID
-		public RuleCall getActuatorActuatorIDTerminalRuleCall_1_0_1() { return cActuatorActuatorIDTerminalRuleCall_1_0_1; }
+		public RuleCall getActuatorRowActuatorIDTerminalRuleCall_1_0_1() { return cActuatorRowActuatorIDTerminalRuleCall_1_0_1; }
 		
 		//'set'
 		public Keyword getSetKeyword_2() { return cSetKeyword_2; }
@@ -745,14 +997,14 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		//'when'
 		public Keyword getWhenKeyword_4() { return cWhenKeyword_4; }
 		
-		//sensor=[Sensor]
+		//sensor=[RowSensor]
 		public Assignment getSensorAssignment_5() { return cSensorAssignment_5; }
 		
-		//[Sensor]
-		public CrossReference getSensorSensorCrossReference_5_0() { return cSensorSensorCrossReference_5_0; }
+		//[RowSensor]
+		public CrossReference getSensorRowSensorCrossReference_5_0() { return cSensorRowSensorCrossReference_5_0; }
 		
 		//ID
-		public RuleCall getSensorSensorIDTerminalRuleCall_5_0_1() { return cSensorSensorIDTerminalRuleCall_5_0_1; }
+		public RuleCall getSensorRowSensorIDTerminalRuleCall_5_0_1() { return cSensorRowSensorIDTerminalRuleCall_5_0_1; }
 		
 		//'is'
 		public Keyword getIsKeyword_6() { return cIsKeyword_6; }
@@ -766,24 +1018,111 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		//ID
 		public RuleCall getStateStateIDTerminalRuleCall_7_0_1() { return cStateStateIDTerminalRuleCall_7_0_1; }
 	}
+	public class GreenhouseRuleSetElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "dsl.Greenhouse.GreenhouseRuleSet");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cGlobalKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cRuleKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cActuatorAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final CrossReference cActuatorGreenhouseActuatorCrossReference_2_0 = (CrossReference)cActuatorAssignment_2.eContents().get(0);
+		private final RuleCall cActuatorGreenhouseActuatorIDTerminalRuleCall_2_0_1 = (RuleCall)cActuatorGreenhouseActuatorCrossReference_2_0.eContents().get(1);
+		private final Keyword cSetKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cActionAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final CrossReference cActionActionCrossReference_4_0 = (CrossReference)cActionAssignment_4.eContents().get(0);
+		private final RuleCall cActionActionIDTerminalRuleCall_4_0_1 = (RuleCall)cActionActionCrossReference_4_0.eContents().get(1);
+		private final Keyword cWhenKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cSensorAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final CrossReference cSensorGreenhouseSensorCrossReference_6_0 = (CrossReference)cSensorAssignment_6.eContents().get(0);
+		private final RuleCall cSensorGreenhouseSensorIDTerminalRuleCall_6_0_1 = (RuleCall)cSensorGreenhouseSensorCrossReference_6_0.eContents().get(1);
+		private final Keyword cIsKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Assignment cStateAssignment_8 = (Assignment)cGroup.eContents().get(8);
+		private final CrossReference cStateStateCrossReference_8_0 = (CrossReference)cStateAssignment_8.eContents().get(0);
+		private final RuleCall cStateStateIDTerminalRuleCall_8_0_1 = (RuleCall)cStateStateCrossReference_8_0.eContents().get(1);
+		
+		//GreenhouseRuleSet:
+		//    'global' 'rule' Actuator=[GreenhouseActuator] 'set' action=[Action] 'when' sensor=[GreenhouseSensor] 'is' state=[State]
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'global' 'rule' Actuator=[GreenhouseActuator] 'set' action=[Action] 'when' sensor=[GreenhouseSensor] 'is' state=[State]
+		public Group getGroup() { return cGroup; }
+		
+		//'global'
+		public Keyword getGlobalKeyword_0() { return cGlobalKeyword_0; }
+		
+		//'rule'
+		public Keyword getRuleKeyword_1() { return cRuleKeyword_1; }
+		
+		//Actuator=[GreenhouseActuator]
+		public Assignment getActuatorAssignment_2() { return cActuatorAssignment_2; }
+		
+		//[GreenhouseActuator]
+		public CrossReference getActuatorGreenhouseActuatorCrossReference_2_0() { return cActuatorGreenhouseActuatorCrossReference_2_0; }
+		
+		//ID
+		public RuleCall getActuatorGreenhouseActuatorIDTerminalRuleCall_2_0_1() { return cActuatorGreenhouseActuatorIDTerminalRuleCall_2_0_1; }
+		
+		//'set'
+		public Keyword getSetKeyword_3() { return cSetKeyword_3; }
+		
+		//action=[Action]
+		public Assignment getActionAssignment_4() { return cActionAssignment_4; }
+		
+		//[Action]
+		public CrossReference getActionActionCrossReference_4_0() { return cActionActionCrossReference_4_0; }
+		
+		//ID
+		public RuleCall getActionActionIDTerminalRuleCall_4_0_1() { return cActionActionIDTerminalRuleCall_4_0_1; }
+		
+		//'when'
+		public Keyword getWhenKeyword_5() { return cWhenKeyword_5; }
+		
+		//sensor=[GreenhouseSensor]
+		public Assignment getSensorAssignment_6() { return cSensorAssignment_6; }
+		
+		//[GreenhouseSensor]
+		public CrossReference getSensorGreenhouseSensorCrossReference_6_0() { return cSensorGreenhouseSensorCrossReference_6_0; }
+		
+		//ID
+		public RuleCall getSensorGreenhouseSensorIDTerminalRuleCall_6_0_1() { return cSensorGreenhouseSensorIDTerminalRuleCall_6_0_1; }
+		
+		//'is'
+		public Keyword getIsKeyword_7() { return cIsKeyword_7; }
+		
+		//state=[State]
+		public Assignment getStateAssignment_8() { return cStateAssignment_8; }
+		
+		//[State]
+		public CrossReference getStateStateCrossReference_8_0() { return cStateStateCrossReference_8_0; }
+		
+		//ID
+		public RuleCall getStateStateIDTerminalRuleCall_8_0_1() { return cStateStateIDTerminalRuleCall_8_0_1; }
+	}
 	
 	
 	private final ModelElements pModel;
+	private final SettingElements pSetting;
+	private final SettingActuatorElements pSettingActuator;
+	private final SettingSensorElements pSettingSensor;
+	private final TopicElements pTopic;
+	private final SettingActionElements pSettingAction;
+	private final SettingValueElements pSettingValue;
 	private final GreenhouseElements pGreenhouse;
 	private final RowElements pRow;
 	private final GreenhouseElementElements pGreenhouseElement;
 	private final RowElementElements pRowElement;
 	private final GreenhouseActuatorElements pGreenhouseActuator;
-	private final ActuatorElements pActuator;
+	private final RowActuatorElements pRowActuator;
 	private final GreenhouseSensorElements pGreenhouseSensor;
-	private final SensorElements pSensor;
+	private final RowSensorElements pRowSensor;
 	private final StateElements pState;
 	private final VariableElements pVariable;
 	private final ActionElements pAction;
 	private final TriggerElements pTrigger;
-	private final SettingElements pSetting;
+	private final ConditionElements pCondition;
 	private final ValueElements pValue;
-	private final RuleSetElements pRuleSet;
+	private final RowRuleSetElements pRowRuleSet;
+	private final GreenhouseRuleSetElements pGreenhouseRuleSet;
 	
 	private final Grammar grammar;
 	
@@ -795,21 +1134,28 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		this.grammar = internalFindGrammar(grammarProvider);
 		this.gaTerminals = gaTerminals;
 		this.pModel = new ModelElements();
+		this.pSetting = new SettingElements();
+		this.pSettingActuator = new SettingActuatorElements();
+		this.pSettingSensor = new SettingSensorElements();
+		this.pTopic = new TopicElements();
+		this.pSettingAction = new SettingActionElements();
+		this.pSettingValue = new SettingValueElements();
 		this.pGreenhouse = new GreenhouseElements();
 		this.pRow = new RowElements();
 		this.pGreenhouseElement = new GreenhouseElementElements();
 		this.pRowElement = new RowElementElements();
 		this.pGreenhouseActuator = new GreenhouseActuatorElements();
-		this.pActuator = new ActuatorElements();
+		this.pRowActuator = new RowActuatorElements();
 		this.pGreenhouseSensor = new GreenhouseSensorElements();
-		this.pSensor = new SensorElements();
+		this.pRowSensor = new RowSensorElements();
 		this.pState = new StateElements();
 		this.pVariable = new VariableElements();
 		this.pAction = new ActionElements();
 		this.pTrigger = new TriggerElements();
-		this.pSetting = new SettingElements();
+		this.pCondition = new ConditionElements();
 		this.pValue = new ValueElements();
-		this.pRuleSet = new RuleSetElements();
+		this.pRowRuleSet = new RowRuleSetElements();
+		this.pGreenhouseRuleSet = new GreenhouseRuleSetElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -841,6 +1187,7 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 	
 	//Model:
 	//    "system" name=ID
+	//    settings+=Setting*
 	//    greenhouses+=Greenhouse*
 	//;
 	public ModelElements getModelAccess() {
@@ -851,9 +1198,78 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		return getModelAccess().getRule();
 	}
 	
+	//Setting:
+	//    'setting' name=ID
+	//    settingActuator += SettingActuator
+	//    settingSensor += SettingSensor
+	//;
+	public SettingElements getSettingAccess() {
+		return pSetting;
+	}
+	
+	public ParserRule getSettingRule() {
+		return getSettingAccess().getRule();
+	}
+	
+	//SettingActuator:
+	//    'actuator' name=ID 'has' 'action' settingAction+=SettingAction (',' settingAction+=SettingAction)* 'and' 'listens' 'on'
+	//    topic=Topic
+	//;
+	public SettingActuatorElements getSettingActuatorAccess() {
+		return pSettingActuator;
+	}
+	
+	public ParserRule getSettingActuatorRule() {
+		return getSettingActuatorAccess().getRule();
+	}
+	
+	//SettingSensor:
+	//    'sensor' name=ID 'publishes' 'to' topic=Topic
+	//;
+	public SettingSensorElements getSettingSensorAccess() {
+		return pSettingSensor;
+	}
+	
+	public ParserRule getSettingSensorRule() {
+		return getSettingSensorAccess().getRule();
+	}
+	
+	//Topic:
+	//    'topic' name=ID
+	//;
+	public TopicElements getTopicAccess() {
+		return pTopic;
+	}
+	
+	public ParserRule getTopicRule() {
+		return getTopicAccess().getRule();
+	}
+	
+	//SettingAction:
+	//    name=ID 'with' 'values' settingValue+=SettingValue (',' settingValue+=SettingValue)*
+	//;
+	public SettingActionElements getSettingActionAccess() {
+		return pSettingAction;
+	}
+	
+	public ParserRule getSettingActionRule() {
+		return getSettingActionAccess().getRule();
+	}
+	
+	//SettingValue:
+	//    name=INT
+	//;
+	public SettingValueElements getSettingValueAccess() {
+		return pSettingValue;
+	}
+	
+	public ParserRule getSettingValueRule() {
+		return getSettingValueAccess().getRule();
+	}
+	
 	//Greenhouse:
 	//    'greenhouse' name=ID
-	//    '[' row+=Row* elements+=GreenhouseElement* ']'
+	//    row+=Row* elements+=GreenhouseElement*
 	//;
 	public GreenhouseElements getGreenhouseAccess() {
 		return pGreenhouse;
@@ -865,7 +1281,7 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 	
 	//Row:
 	//    'row' name=ID 'includes'
-	//    '[' elements+=RowElement* ']'
+	//    elements+=RowElement*
 	//;
 	public RowElements getRowAccess() {
 		return pRow;
@@ -876,7 +1292,7 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 	}
 	
 	//GreenhouseElement:
-	//     GreenhouseSensor |  GreenhouseActuator |  RuleSet
+	//     GreenhouseSensor |  GreenhouseActuator |  GreenhouseRuleSet
 	//;
 	public GreenhouseElementElements getGreenhouseElementAccess() {
 		return pGreenhouseElement;
@@ -887,7 +1303,7 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 	}
 	
 	//RowElement:
-	//     Sensor |  Actuator
+	//     RowSensor |  RowActuator | RowRuleSet
 	//;
 	public RowElementElements getRowElementAccess() {
 		return pRowElement;
@@ -908,15 +1324,15 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		return getGreenhouseActuatorAccess().getRule();
 	}
 	
-	//Actuator:
+	//RowActuator:
 	//     'actuator' name=ID ('can' action+=Action)? (',' 'can' action+=Action)*
 	//;
-	public ActuatorElements getActuatorAccess() {
-		return pActuator;
+	public RowActuatorElements getRowActuatorAccess() {
+		return pRowActuator;
 	}
 	
-	public ParserRule getActuatorRule() {
-		return getActuatorAccess().getRule();
+	public ParserRule getRowActuatorRule() {
+		return getRowActuatorAccess().getRule();
 	}
 	
 	//GreenhouseSensor:
@@ -931,16 +1347,16 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		return getGreenhouseSensorAccess().getRule();
 	}
 	
-	//Sensor:
+	//RowSensor:
 	//    'sensor' name=ID 'has' variable=Variable 'and' 'states'
 	//        states+=State(',' states+=State)*
 	//;
-	public SensorElements getSensorAccess() {
-		return pSensor;
+	public RowSensorElements getRowSensorAccess() {
+		return pRowSensor;
 	}
 	
-	public ParserRule getSensorRule() {
-		return getSensorAccess().getRule();
+	public ParserRule getRowSensorRule() {
+		return getRowSensorAccess().getRule();
 	}
 	
 	//State:
@@ -966,7 +1382,7 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 	}
 	
 	//Action:
-	//    name=ID 'when' 'receiving' trigger=Trigger 'by' 'setting' setting=Setting 'to' value=Value
+	//    name=ID 'when' 'receiving' trigger=Trigger 'by' 'condition' condition=Condition 'to' value=Value
 	//;
 	public ActionElements getActionAccess() {
 		return pAction;
@@ -987,16 +1403,16 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		return getTriggerAccess().getRule();
 	}
 	
-	//Setting:
-	//    {Setting}
+	//Condition:
+	//    {Condition}
 	//    name=ID
 	//;
-	public SettingElements getSettingAccess() {
-		return pSetting;
+	public ConditionElements getConditionAccess() {
+		return pCondition;
 	}
 	
-	public ParserRule getSettingRule() {
-		return getSettingAccess().getRule();
+	public ParserRule getConditionRule() {
+		return getConditionAccess().getRule();
 	}
 	
 	//Value:
@@ -1011,15 +1427,26 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		return getValueAccess().getRule();
 	}
 	
-	//RuleSet:
-	//    'rule' actuator=[Actuator] 'set' action=[Action] 'when' sensor=[Sensor] 'is' state=[State]
+	//RowRuleSet:
+	//    'rule' Actuator=[RowActuator] 'set' action=[Action] 'when' sensor=[RowSensor] 'is' state=[State]
 	//;
-	public RuleSetElements getRuleSetAccess() {
-		return pRuleSet;
+	public RowRuleSetElements getRowRuleSetAccess() {
+		return pRowRuleSet;
 	}
 	
-	public ParserRule getRuleSetRule() {
-		return getRuleSetAccess().getRule();
+	public ParserRule getRowRuleSetRule() {
+		return getRowRuleSetAccess().getRule();
+	}
+	
+	//GreenhouseRuleSet:
+	//    'global' 'rule' Actuator=[GreenhouseActuator] 'set' action=[Action] 'when' sensor=[GreenhouseSensor] 'is' state=[State]
+	//;
+	public GreenhouseRuleSetElements getGreenhouseRuleSetAccess() {
+		return pGreenhouseRuleSet;
+	}
+	
+	public ParserRule getGreenhouseRuleSetRule() {
+		return getGreenhouseRuleSetAccess().getRule();
 	}
 	
 	//terminal ID: '^'?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;

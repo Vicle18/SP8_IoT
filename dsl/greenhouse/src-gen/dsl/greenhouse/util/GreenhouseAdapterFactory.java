@@ -81,6 +81,36 @@ public class GreenhouseAdapterFactory extends AdapterFactoryImpl
         return createModelAdapter();
       }
       @Override
+      public Adapter caseSetting(Setting object)
+      {
+        return createSettingAdapter();
+      }
+      @Override
+      public Adapter caseSettingActuator(SettingActuator object)
+      {
+        return createSettingActuatorAdapter();
+      }
+      @Override
+      public Adapter caseSettingSensor(SettingSensor object)
+      {
+        return createSettingSensorAdapter();
+      }
+      @Override
+      public Adapter caseTopic(Topic object)
+      {
+        return createTopicAdapter();
+      }
+      @Override
+      public Adapter caseSettingAction(SettingAction object)
+      {
+        return createSettingActionAdapter();
+      }
+      @Override
+      public Adapter caseSettingValue(SettingValue object)
+      {
+        return createSettingValueAdapter();
+      }
+      @Override
       public Adapter caseGreenhouse(Greenhouse object)
       {
         return createGreenhouseAdapter();
@@ -106,9 +136,9 @@ public class GreenhouseAdapterFactory extends AdapterFactoryImpl
         return createGreenhouseActuatorAdapter();
       }
       @Override
-      public Adapter caseActuator(Actuator object)
+      public Adapter caseRowActuator(RowActuator object)
       {
-        return createActuatorAdapter();
+        return createRowActuatorAdapter();
       }
       @Override
       public Adapter caseGreenhouseSensor(GreenhouseSensor object)
@@ -116,9 +146,9 @@ public class GreenhouseAdapterFactory extends AdapterFactoryImpl
         return createGreenhouseSensorAdapter();
       }
       @Override
-      public Adapter caseSensor(Sensor object)
+      public Adapter caseRowSensor(RowSensor object)
       {
-        return createSensorAdapter();
+        return createRowSensorAdapter();
       }
       @Override
       public Adapter caseState(State object)
@@ -141,9 +171,9 @@ public class GreenhouseAdapterFactory extends AdapterFactoryImpl
         return createTriggerAdapter();
       }
       @Override
-      public Adapter caseSetting(Setting object)
+      public Adapter caseCondition(Condition object)
       {
-        return createSettingAdapter();
+        return createConditionAdapter();
       }
       @Override
       public Adapter caseValue(Value object)
@@ -151,9 +181,14 @@ public class GreenhouseAdapterFactory extends AdapterFactoryImpl
         return createValueAdapter();
       }
       @Override
-      public Adapter caseRuleSet(RuleSet object)
+      public Adapter caseRowRuleSet(RowRuleSet object)
       {
-        return createRuleSetAdapter();
+        return createRowRuleSetAdapter();
+      }
+      @Override
+      public Adapter caseGreenhouseRuleSet(GreenhouseRuleSet object)
+      {
+        return createGreenhouseRuleSetAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -188,6 +223,96 @@ public class GreenhouseAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createModelAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link dsl.greenhouse.Setting <em>Setting</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see dsl.greenhouse.Setting
+   * @generated
+   */
+  public Adapter createSettingAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link dsl.greenhouse.SettingActuator <em>Setting Actuator</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see dsl.greenhouse.SettingActuator
+   * @generated
+   */
+  public Adapter createSettingActuatorAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link dsl.greenhouse.SettingSensor <em>Setting Sensor</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see dsl.greenhouse.SettingSensor
+   * @generated
+   */
+  public Adapter createSettingSensorAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link dsl.greenhouse.Topic <em>Topic</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see dsl.greenhouse.Topic
+   * @generated
+   */
+  public Adapter createTopicAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link dsl.greenhouse.SettingAction <em>Setting Action</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see dsl.greenhouse.SettingAction
+   * @generated
+   */
+  public Adapter createSettingActionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link dsl.greenhouse.SettingValue <em>Setting Value</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see dsl.greenhouse.SettingValue
+   * @generated
+   */
+  public Adapter createSettingValueAdapter()
   {
     return null;
   }
@@ -268,16 +393,16 @@ public class GreenhouseAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link dsl.greenhouse.Actuator <em>Actuator</em>}'.
+   * Creates a new adapter for an object of class '{@link dsl.greenhouse.RowActuator <em>Row Actuator</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see dsl.greenhouse.Actuator
+   * @see dsl.greenhouse.RowActuator
    * @generated
    */
-  public Adapter createActuatorAdapter()
+  public Adapter createRowActuatorAdapter()
   {
     return null;
   }
@@ -298,16 +423,16 @@ public class GreenhouseAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link dsl.greenhouse.Sensor <em>Sensor</em>}'.
+   * Creates a new adapter for an object of class '{@link dsl.greenhouse.RowSensor <em>Row Sensor</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see dsl.greenhouse.Sensor
+   * @see dsl.greenhouse.RowSensor
    * @generated
    */
-  public Adapter createSensorAdapter()
+  public Adapter createRowSensorAdapter()
   {
     return null;
   }
@@ -373,16 +498,16 @@ public class GreenhouseAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link dsl.greenhouse.Setting <em>Setting</em>}'.
+   * Creates a new adapter for an object of class '{@link dsl.greenhouse.Condition <em>Condition</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see dsl.greenhouse.Setting
+   * @see dsl.greenhouse.Condition
    * @generated
    */
-  public Adapter createSettingAdapter()
+  public Adapter createConditionAdapter()
   {
     return null;
   }
@@ -403,16 +528,31 @@ public class GreenhouseAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link dsl.greenhouse.RuleSet <em>Rule Set</em>}'.
+   * Creates a new adapter for an object of class '{@link dsl.greenhouse.RowRuleSet <em>Row Rule Set</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see dsl.greenhouse.RuleSet
+   * @see dsl.greenhouse.RowRuleSet
    * @generated
    */
-  public Adapter createRuleSetAdapter()
+  public Adapter createRowRuleSetAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link dsl.greenhouse.GreenhouseRuleSet <em>Rule Set</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see dsl.greenhouse.GreenhouseRuleSet
+   * @generated
+   */
+  public Adapter createGreenhouseRuleSetAdapter()
   {
     return null;
   }

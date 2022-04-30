@@ -66,21 +66,28 @@ public class GreenhouseFactoryImpl extends EFactoryImpl implements GreenhouseFac
     switch (eClass.getClassifierID())
     {
       case GreenhousePackage.MODEL: return createModel();
+      case GreenhousePackage.SETTING: return createSetting();
+      case GreenhousePackage.SETTING_ACTUATOR: return createSettingActuator();
+      case GreenhousePackage.SETTING_SENSOR: return createSettingSensor();
+      case GreenhousePackage.TOPIC: return createTopic();
+      case GreenhousePackage.SETTING_ACTION: return createSettingAction();
+      case GreenhousePackage.SETTING_VALUE: return createSettingValue();
       case GreenhousePackage.GREENHOUSE: return createGreenhouse();
       case GreenhousePackage.ROW: return createRow();
       case GreenhousePackage.GREENHOUSE_ELEMENT: return createGreenhouseElement();
       case GreenhousePackage.ROW_ELEMENT: return createRowElement();
       case GreenhousePackage.GREENHOUSE_ACTUATOR: return createGreenhouseActuator();
-      case GreenhousePackage.ACTUATOR: return createActuator();
+      case GreenhousePackage.ROW_ACTUATOR: return createRowActuator();
       case GreenhousePackage.GREENHOUSE_SENSOR: return createGreenhouseSensor();
-      case GreenhousePackage.SENSOR: return createSensor();
+      case GreenhousePackage.ROW_SENSOR: return createRowSensor();
       case GreenhousePackage.STATE: return createState();
       case GreenhousePackage.VARIABLE: return createVariable();
       case GreenhousePackage.ACTION: return createAction();
       case GreenhousePackage.TRIGGER: return createTrigger();
-      case GreenhousePackage.SETTING: return createSetting();
+      case GreenhousePackage.CONDITION: return createCondition();
       case GreenhousePackage.VALUE: return createValue();
-      case GreenhousePackage.RULE_SET: return createRuleSet();
+      case GreenhousePackage.ROW_RULE_SET: return createRowRuleSet();
+      case GreenhousePackage.GREENHOUSE_RULE_SET: return createGreenhouseRuleSet();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -96,6 +103,78 @@ public class GreenhouseFactoryImpl extends EFactoryImpl implements GreenhouseFac
   {
     ModelImpl model = new ModelImpl();
     return model;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Setting createSetting()
+  {
+    SettingImpl setting = new SettingImpl();
+    return setting;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public SettingActuator createSettingActuator()
+  {
+    SettingActuatorImpl settingActuator = new SettingActuatorImpl();
+    return settingActuator;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public SettingSensor createSettingSensor()
+  {
+    SettingSensorImpl settingSensor = new SettingSensorImpl();
+    return settingSensor;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Topic createTopic()
+  {
+    TopicImpl topic = new TopicImpl();
+    return topic;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public SettingAction createSettingAction()
+  {
+    SettingActionImpl settingAction = new SettingActionImpl();
+    return settingAction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public SettingValue createSettingValue()
+  {
+    SettingValueImpl settingValue = new SettingValueImpl();
+    return settingValue;
   }
 
   /**
@@ -164,10 +243,10 @@ public class GreenhouseFactoryImpl extends EFactoryImpl implements GreenhouseFac
    * @generated
    */
   @Override
-  public Actuator createActuator()
+  public RowActuator createRowActuator()
   {
-    ActuatorImpl actuator = new ActuatorImpl();
-    return actuator;
+    RowActuatorImpl rowActuator = new RowActuatorImpl();
+    return rowActuator;
   }
 
   /**
@@ -188,10 +267,10 @@ public class GreenhouseFactoryImpl extends EFactoryImpl implements GreenhouseFac
    * @generated
    */
   @Override
-  public Sensor createSensor()
+  public RowSensor createRowSensor()
   {
-    SensorImpl sensor = new SensorImpl();
-    return sensor;
+    RowSensorImpl rowSensor = new RowSensorImpl();
+    return rowSensor;
   }
 
   /**
@@ -248,10 +327,10 @@ public class GreenhouseFactoryImpl extends EFactoryImpl implements GreenhouseFac
    * @generated
    */
   @Override
-  public Setting createSetting()
+  public Condition createCondition()
   {
-    SettingImpl setting = new SettingImpl();
-    return setting;
+    ConditionImpl condition = new ConditionImpl();
+    return condition;
   }
 
   /**
@@ -272,10 +351,22 @@ public class GreenhouseFactoryImpl extends EFactoryImpl implements GreenhouseFac
    * @generated
    */
   @Override
-  public RuleSet createRuleSet()
+  public RowRuleSet createRowRuleSet()
   {
-    RuleSetImpl ruleSet = new RuleSetImpl();
-    return ruleSet;
+    RowRuleSetImpl rowRuleSet = new RowRuleSetImpl();
+    return rowRuleSet;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public GreenhouseRuleSet createGreenhouseRuleSet()
+  {
+    GreenhouseRuleSetImpl greenhouseRuleSet = new GreenhouseRuleSetImpl();
+    return greenhouseRuleSet;
   }
 
   /**

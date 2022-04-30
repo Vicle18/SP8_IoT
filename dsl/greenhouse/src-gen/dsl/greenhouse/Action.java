@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link dsl.greenhouse.Action#getName <em>Name</em>}</li>
  *   <li>{@link dsl.greenhouse.Action#getTrigger <em>Trigger</em>}</li>
- *   <li>{@link dsl.greenhouse.Action#getSetting <em>Setting</em>}</li>
+ *   <li>{@link dsl.greenhouse.Action#getCondition <em>Condition</em>}</li>
  *   <li>{@link dsl.greenhouse.Action#getValue <em>Value</em>}</li>
  * </ul>
  *
@@ -71,26 +71,26 @@ public interface Action extends EObject
   void setTrigger(Trigger value);
 
   /**
-   * Returns the value of the '<em><b>Setting</b></em>' containment reference.
+   * Returns the value of the '<em><b>Condition</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Setting</em>' containment reference.
-   * @see #setSetting(Setting)
-   * @see dsl.greenhouse.GreenhousePackage#getAction_Setting()
+   * @return the value of the '<em>Condition</em>' containment reference.
+   * @see #setCondition(Condition)
+   * @see dsl.greenhouse.GreenhousePackage#getAction_Condition()
    * @model containment="true"
    * @generated
    */
-  Setting getSetting();
+  Condition getCondition();
 
   /**
-   * Sets the value of the '{@link dsl.greenhouse.Action#getSetting <em>Setting</em>}' containment reference.
+   * Sets the value of the '{@link dsl.greenhouse.Action#getCondition <em>Condition</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Setting</em>' containment reference.
-   * @see #getSetting()
+   * @param value the new value of the '<em>Condition</em>' containment reference.
+   * @see #getCondition()
    * @generated
    */
-  void setSetting(Setting value);
+  void setCondition(Condition value);
 
   /**
    * Returns the value of the '<em><b>Value</b></em>' containment reference.

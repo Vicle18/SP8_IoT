@@ -3,6 +3,8 @@
  */
 package dsl.greenhouse;
 
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -15,6 +17,8 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link dsl.greenhouse.Setting#getName <em>Name</em>}</li>
+ *   <li>{@link dsl.greenhouse.Setting#getSettingActuator <em>Setting Actuator</em>}</li>
+ *   <li>{@link dsl.greenhouse.Setting#getSettingSensor <em>Setting Sensor</em>}</li>
  * </ul>
  *
  * @see dsl.greenhouse.GreenhousePackage#getSetting()
@@ -44,5 +48,29 @@ public interface Setting extends EObject
    * @generated
    */
   void setName(String value);
+
+  /**
+   * Returns the value of the '<em><b>Setting Actuator</b></em>' containment reference list.
+   * The list contents are of type {@link dsl.greenhouse.SettingActuator}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Setting Actuator</em>' containment reference list.
+   * @see dsl.greenhouse.GreenhousePackage#getSetting_SettingActuator()
+   * @model containment="true"
+   * @generated
+   */
+  EList<SettingActuator> getSettingActuator();
+
+  /**
+   * Returns the value of the '<em><b>Setting Sensor</b></em>' containment reference list.
+   * The list contents are of type {@link dsl.greenhouse.SettingSensor}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Setting Sensor</em>' containment reference list.
+   * @see dsl.greenhouse.GreenhousePackage#getSetting_SettingSensor()
+   * @model containment="true"
+   * @generated
+   */
+  EList<SettingSensor> getSettingSensor();
 
 } // Setting
