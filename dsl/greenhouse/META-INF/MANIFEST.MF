@@ -15,15 +15,15 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.emf.common,
  org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
 Bundle-RequiredExecutionEnvironment: JavaSE-11
-Export-Package: greenhouse.greenHouse,
- greenhouse.services,
- greenhouse.greenHouse.util,
- greenhouse.parser.antlr.internal,
- greenhouse.generator,
- greenhouse.scoping,
- greenhouse,
- greenhouse.parser.antlr,
- greenhouse.serializer,
- greenhouse.greenHouse.impl,
- greenhouse.validation
+Export-Package: dsl.services,
+ dsl.greenhouse,
+ dsl.validation,
+ dsl.scoping,
+ dsl.generator,
+ dsl.serializer,
+ dsl.greenhouse.impl,
+ dsl,
+ dsl.greenhouse.util,
+ dsl.parser.antlr.internal,
+ dsl.parser.antlr
 Import-Package: org.apache.log4j

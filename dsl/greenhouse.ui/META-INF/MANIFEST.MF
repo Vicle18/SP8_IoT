@@ -18,7 +18,7 @@ Require-Bundle: greenhouse,
  org.eclipse.xtext.builder
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: JavaSE-11
-Export-Package: greenhouse.ui.internal,
- greenhouse.ui.quickfix,
- greenhouse.ui.contentassist
+Export-Package: dsl.ui.contentassist,
+ greenhouse.ui.internal,
+ dsl.ui.quickfix
 Bundle-Activator: greenhouse.ui.internal.GreenhouseActivator

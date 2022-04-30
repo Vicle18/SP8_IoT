@@ -6,8 +6,8 @@ package greenhouse.ui.internal;
 import com.google.common.collect.Maps;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import greenhouse.GreenHouseRuntimeModule;
-import greenhouse.ui.GreenHouseUiModule;
+import dsl.GreenhouseRuntimeModule;
+import dsl.ui.GreenhouseUiModule;
 import java.util.Collections;
 import java.util.Map;
 import org.apache.log4j.Logger;
@@ -23,7 +23,7 @@ import org.osgi.framework.BundleContext;
 public class GreenhouseActivator extends AbstractUIPlugin {
 
 	public static final String PLUGIN_ID = "greenhouse.ui";
-	public static final String GREENHOUSE_GREENHOUSE = "greenhouse.GreenHouse";
+	public static final String DSL_GREENHOUSE = "dsl.Greenhouse";
 	
 	private static final Logger logger = Logger.getLogger(GreenhouseActivator.class);
 	
@@ -73,15 +73,15 @@ public class GreenhouseActivator extends AbstractUIPlugin {
 	}
 	
 	protected com.google.inject.Module getRuntimeModule(String grammar) {
-		if (GREENHOUSE_GREENHOUSE.equals(grammar)) {
-			return new GreenHouseRuntimeModule();
+		if (DSL_GREENHOUSE.equals(grammar)) {
+			return new GreenhouseRuntimeModule();
 		}
 		throw new IllegalArgumentException(grammar);
 	}
 	
 	protected com.google.inject.Module getUiModule(String grammar) {
-		if (GREENHOUSE_GREENHOUSE.equals(grammar)) {
-			return new GreenHouseUiModule(this);
+		if (DSL_GREENHOUSE.equals(grammar)) {
+			return new GreenhouseUiModule(this);
 		}
 		throw new IllegalArgumentException(grammar);
 	}

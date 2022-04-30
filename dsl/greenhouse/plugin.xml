@@ -3,8 +3,8 @@
 <plugin>
 	<extension point="org.eclipse.emf.ecore.generated_package">
 		<package
-			uri = "http://www.GreenHouse.greenhouse"
-			class = "greenhouse.greenHouse.GreenHousePackage"
-			genModel = "model/generated/GreenHouse.genmodel" />
+			uri = "http://www.Greenhouse.dsl"
+			class = "dsl.greenhouse.GreenhousePackage"
+			genModel = "model/generated/Greenhouse.genmodel" />
 	</extension>
 </plugin>

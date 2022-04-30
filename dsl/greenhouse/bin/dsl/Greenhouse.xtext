@@ -1,0 +1,79 @@
+grammar dsl.Greenhouse with org.eclipse.xtext.common.Terminals
+
+generate greenhouse "http://www.Greenhouse.dsl"
+
+Model:
+    "system" name=ID
+    greenhouses+=Greenhouse*
+;
+
+
+Greenhouse:
+    'greenhouse' name=ID
+    '[' row+=Row* elements+=GreenhouseElement* ']'
+;
+
+Row:
+    'row' name=ID 'includes' 
+    '[' elements+=RowElement* ']'
+;
+
+GreenhouseElement:
+     GreenhouseSensor |  GreenhouseActuator |  GreenhouseRuleSet
+;
+
+RowElement:
+     Sensor |  Actuator | RuleSet
+;
+
+
+GreenhouseActuator:
+      'global' 'actuator' name=ID ('can' action+=Action)? (',' 'can' action+=Action)* 
+;
+
+Actuator:
+     'actuator' name=ID ('can' action+=Action)? (',' 'can' action+=Action)* 
+;
+
+GreenhouseSensor:
+     'global' 'sensor' name=ID 'has' 'value' variable=Variable
+        states+=State(',' states+=State)*
+;
+
+Sensor:
+    'sensor' name=ID 'has' variable=Variable 'and' 'states'
+        states+=State(',' states+=State)*
+;
+
+State:
+    name=ID 'when' variable=[Variable] op = ('<' | '>' | '=') threshold=INT
+;
+
+Variable:
+    'variable' name=ID
+;
+
+Action:
+    name=ID 'when' 'receiving' trigger=Trigger 'by' 'setting' setting=Setting 'to' value=Value
+;
+
+Trigger:
+    {Trigger} name=ID 
+;
+Setting:
+    {Setting}
+    name=ID 
+;
+
+Value:
+    {Value}
+    name=INT 
+;
+
+RuleSet:
+	'rule' actuator=[Actuator] 'set' action=[Action] 'when' sensor=[Sensor] 'is' state=[State]
+;
+
+GreenhouseRuleSet:
+    'global rule' actuator=[Actuator] 'set' action=[Action] 'when' sensor=[Sensor] 'is' state=[State]
+;
