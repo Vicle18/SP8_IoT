@@ -26,7 +26,7 @@ chan fanNeeded, fanStop;
 chan startHumidifier,stophumidifier,startDihumidifier,stoppedDihumidifier;
 chan startAircondition, stopAircondition, stopAirconditionHeating, startAirconditionHeating, optimal, notOptimal;</declaration>
 	<template>
-		<name>Temperatur</name>
+		<name>Temperature</name>
 		<location id="id0" x="0" y="0">
 		</location>
 		<init ref="id0"/>
@@ -172,7 +172,7 @@ co2 := co2 - (openPercentage * 5)</label>
 			<target ref="id6"/>
 			<label kind="synchronisation" x="-68" y="76">optimal?</label>
 			<label kind="assignment" x="-170" y="93">openPercentage := openPercentage - 20,
-windowOpen = false</label>
+windowOpen := false</label>
 			<nail x="-42" y="76"/>
 		</transition>
 		<transition>
@@ -180,7 +180,7 @@ windowOpen = false</label>
 			<target ref="id7"/>
 			<label kind="synchronisation" x="-85" y="-119">notOptimal?</label>
 			<label kind="assignment" x="-153" y="-102">openPercentage := openPercentage + 20,
-windowOpen = true</label>
+windowOpen := true</label>
 			<nail x="-42" y="-85"/>
 		</transition>
 	</template>
@@ -368,7 +368,7 @@ temp &lt; 40</label>
 		</transition>
 	</template>
 	<template>
-		<name>Moisture</name>
+		<name>MoistureSensor</name>
 		<location id="id19" x="-187" y="-102">
 			<name x="-221" y="-136">NeedWater</name>
 			<label kind="invariant" x="-314" y="-119">moist &lt;= 150</label>
@@ -608,11 +608,15 @@ humid:=Humid();
 system co2Sensor, co2Env, windowOpener, moisture, pump, fan, aircondition, tempSensor, temperatur, humiditysensor,humidifier,dihumidifier,humid;</system>
 	<queries>
 		<query>
-			<formula>E&lt;&gt; (tempSensor.AirconditionLow or tempSensor.AirconditionHigh) imply ( aircondition.CoolingActive)</formula>
+			<formula>E[] (tempSensor.AirconditionLow or tempSensor.AirconditionHigh) imply ( aircondition.CoolingActive)</formula>
 			<comment></comment>
 		</query>
 		<query>
-			<formula>E&lt;&gt; tempSensor.AirconditionLow</formula>
+			<formula>(tempSensor.Warm &amp;&amp; windowOpen==true) or (tempSensor.Hot &amp;&amp; windowOpen==true) --&gt; tempSensor.Fan</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>E&lt;&gt; (tempSensor.Chilled or tempSensor.Cold) imply ( aircondition.HeatingActive)</formula>
 			<comment></comment>
 		</query>
 		<query>
