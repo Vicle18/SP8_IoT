@@ -168,6 +168,15 @@ public interface GreenhouseFactory extends EFactory
   RuleSet createRuleSet();
 
   /**
+   * Returns a new object of class '<em>Rule Set</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Rule Set</em>'.
+   * @generated
+   */
+  GreenhouseRuleSet createGreenhouseRuleSet();
+
+  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

@@ -156,6 +156,11 @@ public class GreenhouseAdapterFactory extends AdapterFactoryImpl
         return createRuleSetAdapter();
       }
       @Override
+      public Adapter caseGreenhouseRuleSet(GreenhouseRuleSet object)
+      {
+        return createGreenhouseRuleSetAdapter();
+      }
+      @Override
       public Adapter defaultCase(EObject object)
       {
         return createEObjectAdapter();
@@ -413,6 +418,21 @@ public class GreenhouseAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createRuleSetAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link dsl.greenhouse.GreenhouseRuleSet <em>Rule Set</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see dsl.greenhouse.GreenhouseRuleSet
+   * @generated
+   */
+  public Adapter createGreenhouseRuleSetAdapter()
   {
     return null;
   }

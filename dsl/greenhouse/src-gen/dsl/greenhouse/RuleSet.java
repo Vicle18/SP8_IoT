@@ -23,7 +23,7 @@ package dsl.greenhouse;
  * @model
  * @generated
  */
-public interface RuleSet extends GreenhouseElement
+public interface RuleSet extends RowElement
 {
   /**
    * Returns the value of the '<em><b>Actuator</b></em>' reference.
@@ -48,26 +48,26 @@ public interface RuleSet extends GreenhouseElement
   void setActuator(Actuator value);
 
   /**
-   * Returns the value of the '<em><b>Action</b></em>' reference.
+   * Returns the value of the '<em><b>Action</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Action</em>' reference.
-   * @see #setAction(Action)
+   * @return the value of the '<em>Action</em>' attribute.
+   * @see #setAction(String)
    * @see dsl.greenhouse.GreenhousePackage#getRuleSet_Action()
    * @model
    * @generated
    */
-  Action getAction();
+  String getAction();
 
   /**
-   * Sets the value of the '{@link dsl.greenhouse.RuleSet#getAction <em>Action</em>}' reference.
+   * Sets the value of the '{@link dsl.greenhouse.RuleSet#getAction <em>Action</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Action</em>' reference.
+   * @param value the new value of the '<em>Action</em>' attribute.
    * @see #getAction()
    * @generated
    */
-  void setAction(Action value);
+  void setAction(String value);
 
   /**
    * Returns the value of the '<em><b>Sensor</b></em>' reference.
@@ -92,25 +92,25 @@ public interface RuleSet extends GreenhouseElement
   void setSensor(Sensor value);
 
   /**
-   * Returns the value of the '<em><b>State</b></em>' reference.
+   * Returns the value of the '<em><b>State</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>State</em>' reference.
-   * @see #setState(State)
+   * @return the value of the '<em>State</em>' attribute.
+   * @see #setState(String)
    * @see dsl.greenhouse.GreenhousePackage#getRuleSet_State()
    * @model
    * @generated
    */
-  State getState();
+  String getState();
 
   /**
-   * Sets the value of the '{@link dsl.greenhouse.RuleSet#getState <em>State</em>}' reference.
+   * Sets the value of the '{@link dsl.greenhouse.RuleSet#getState <em>State</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>State</em>' reference.
+   * @param value the new value of the '<em>State</em>' attribute.
    * @see #getState()
    * @generated
    */
-  void setState(State value);
+  void setState(String value);
 
 } // RuleSet

@@ -207,22 +207,13 @@ public interface GreenhousePackage extends EPackage
   int ROW_ELEMENT = 4;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ROW_ELEMENT__NAME = 0;
-
-  /**
    * The number of structural features of the '<em>Row Element</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ROW_ELEMENT_FEATURE_COUNT = 1;
+  int ROW_ELEMENT_FEATURE_COUNT = 0;
 
   /**
    * The meta object id for the '{@link dsl.greenhouse.impl.GreenhouseActuatorImpl <em>Actuator</em>}' class.
@@ -278,7 +269,7 @@ public interface GreenhousePackage extends EPackage
    * @generated
    * @ordered
    */
-  int ACTUATOR__NAME = ROW_ELEMENT__NAME;
+  int ACTUATOR__NAME = ROW_ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Action</b></em>' containment reference list.
@@ -287,7 +278,7 @@ public interface GreenhousePackage extends EPackage
    * @generated
    * @ordered
    */
-  int ACTUATOR__ACTION = ROW_ELEMENT_FEATURE_COUNT + 0;
+  int ACTUATOR__ACTION = ROW_ELEMENT_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Actuator</em>' class.
@@ -296,7 +287,7 @@ public interface GreenhousePackage extends EPackage
    * @generated
    * @ordered
    */
-  int ACTUATOR_FEATURE_COUNT = ROW_ELEMENT_FEATURE_COUNT + 1;
+  int ACTUATOR_FEATURE_COUNT = ROW_ELEMENT_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link dsl.greenhouse.impl.GreenhouseSensorImpl <em>Sensor</em>}' class.
@@ -361,7 +352,7 @@ public interface GreenhousePackage extends EPackage
    * @generated
    * @ordered
    */
-  int SENSOR__NAME = ROW_ELEMENT__NAME;
+  int SENSOR__NAME = ROW_ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Variable</b></em>' containment reference.
@@ -370,7 +361,7 @@ public interface GreenhousePackage extends EPackage
    * @generated
    * @ordered
    */
-  int SENSOR__VARIABLE = ROW_ELEMENT_FEATURE_COUNT + 0;
+  int SENSOR__VARIABLE = ROW_ELEMENT_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>States</b></em>' containment reference list.
@@ -379,7 +370,7 @@ public interface GreenhousePackage extends EPackage
    * @generated
    * @ordered
    */
-  int SENSOR__STATES = ROW_ELEMENT_FEATURE_COUNT + 1;
+  int SENSOR__STATES = ROW_ELEMENT_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Sensor</em>' class.
@@ -388,7 +379,7 @@ public interface GreenhousePackage extends EPackage
    * @generated
    * @ordered
    */
-  int SENSOR_FEATURE_COUNT = ROW_ELEMENT_FEATURE_COUNT + 2;
+  int SENSOR_FEATURE_COUNT = ROW_ELEMENT_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link dsl.greenhouse.impl.StateImpl <em>State</em>}' class.
@@ -629,16 +620,16 @@ public interface GreenhousePackage extends EPackage
    * @generated
    * @ordered
    */
-  int RULE_SET__ACTUATOR = GREENHOUSE_ELEMENT_FEATURE_COUNT + 0;
+  int RULE_SET__ACTUATOR = ROW_ELEMENT_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Action</b></em>' reference.
+   * The feature id for the '<em><b>Action</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int RULE_SET__ACTION = GREENHOUSE_ELEMENT_FEATURE_COUNT + 1;
+  int RULE_SET__ACTION = ROW_ELEMENT_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Sensor</b></em>' reference.
@@ -647,16 +638,16 @@ public interface GreenhousePackage extends EPackage
    * @generated
    * @ordered
    */
-  int RULE_SET__SENSOR = GREENHOUSE_ELEMENT_FEATURE_COUNT + 2;
+  int RULE_SET__SENSOR = ROW_ELEMENT_FEATURE_COUNT + 2;
 
   /**
-   * The feature id for the '<em><b>State</b></em>' reference.
+   * The feature id for the '<em><b>State</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int RULE_SET__STATE = GREENHOUSE_ELEMENT_FEATURE_COUNT + 3;
+  int RULE_SET__STATE = ROW_ELEMENT_FEATURE_COUNT + 3;
 
   /**
    * The number of structural features of the '<em>Rule Set</em>' class.
@@ -665,7 +656,62 @@ public interface GreenhousePackage extends EPackage
    * @generated
    * @ordered
    */
-  int RULE_SET_FEATURE_COUNT = GREENHOUSE_ELEMENT_FEATURE_COUNT + 4;
+  int RULE_SET_FEATURE_COUNT = ROW_ELEMENT_FEATURE_COUNT + 4;
+
+  /**
+   * The meta object id for the '{@link dsl.greenhouse.impl.GreenhouseRuleSetImpl <em>Rule Set</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see dsl.greenhouse.impl.GreenhouseRuleSetImpl
+   * @see dsl.greenhouse.impl.GreenhousePackageImpl#getGreenhouseRuleSet()
+   * @generated
+   */
+  int GREENHOUSE_RULE_SET = 16;
+
+  /**
+   * The feature id for the '<em><b>Actuator</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int GREENHOUSE_RULE_SET__ACTUATOR = GREENHOUSE_ELEMENT_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Action</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int GREENHOUSE_RULE_SET__ACTION = GREENHOUSE_ELEMENT_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Sensor</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int GREENHOUSE_RULE_SET__SENSOR = GREENHOUSE_ELEMENT_FEATURE_COUNT + 2;
+
+  /**
+   * The feature id for the '<em><b>State</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int GREENHOUSE_RULE_SET__STATE = GREENHOUSE_ELEMENT_FEATURE_COUNT + 3;
+
+  /**
+   * The number of structural features of the '<em>Rule Set</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int GREENHOUSE_RULE_SET_FEATURE_COUNT = GREENHOUSE_ELEMENT_FEATURE_COUNT + 4;
 
 
   /**
@@ -796,17 +842,6 @@ public interface GreenhousePackage extends EPackage
   EClass getRowElement();
 
   /**
-   * Returns the meta object for the attribute '{@link dsl.greenhouse.RowElement#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see dsl.greenhouse.RowElement#getName()
-   * @see #getRowElement()
-   * @generated
-   */
-  EAttribute getRowElement_Name();
-
-  /**
    * Returns the meta object for class '{@link dsl.greenhouse.GreenhouseActuator <em>Actuator</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -847,6 +882,17 @@ public interface GreenhousePackage extends EPackage
    * @generated
    */
   EClass getActuator();
+
+  /**
+   * Returns the meta object for the attribute '{@link dsl.greenhouse.Actuator#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see dsl.greenhouse.Actuator#getName()
+   * @see #getActuator()
+   * @generated
+   */
+  EAttribute getActuator_Name();
 
   /**
    * Returns the meta object for the containment reference list '{@link dsl.greenhouse.Actuator#getAction <em>Action</em>}'.
@@ -911,6 +957,17 @@ public interface GreenhousePackage extends EPackage
    * @generated
    */
   EClass getSensor();
+
+  /**
+   * Returns the meta object for the attribute '{@link dsl.greenhouse.Sensor#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see dsl.greenhouse.Sensor#getName()
+   * @see #getSensor()
+   * @generated
+   */
+  EAttribute getSensor_Name();
 
   /**
    * Returns the meta object for the containment reference '{@link dsl.greenhouse.Sensor#getVariable <em>Variable</em>}'.
@@ -1148,15 +1205,15 @@ public interface GreenhousePackage extends EPackage
   EReference getRuleSet_Actuator();
 
   /**
-   * Returns the meta object for the reference '{@link dsl.greenhouse.RuleSet#getAction <em>Action</em>}'.
+   * Returns the meta object for the attribute '{@link dsl.greenhouse.RuleSet#getAction <em>Action</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Action</em>'.
+   * @return the meta object for the attribute '<em>Action</em>'.
    * @see dsl.greenhouse.RuleSet#getAction()
    * @see #getRuleSet()
    * @generated
    */
-  EReference getRuleSet_Action();
+  EAttribute getRuleSet_Action();
 
   /**
    * Returns the meta object for the reference '{@link dsl.greenhouse.RuleSet#getSensor <em>Sensor</em>}'.
@@ -1170,15 +1227,69 @@ public interface GreenhousePackage extends EPackage
   EReference getRuleSet_Sensor();
 
   /**
-   * Returns the meta object for the reference '{@link dsl.greenhouse.RuleSet#getState <em>State</em>}'.
+   * Returns the meta object for the attribute '{@link dsl.greenhouse.RuleSet#getState <em>State</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>State</em>'.
+   * @return the meta object for the attribute '<em>State</em>'.
    * @see dsl.greenhouse.RuleSet#getState()
    * @see #getRuleSet()
    * @generated
    */
-  EReference getRuleSet_State();
+  EAttribute getRuleSet_State();
+
+  /**
+   * Returns the meta object for class '{@link dsl.greenhouse.GreenhouseRuleSet <em>Rule Set</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Rule Set</em>'.
+   * @see dsl.greenhouse.GreenhouseRuleSet
+   * @generated
+   */
+  EClass getGreenhouseRuleSet();
+
+  /**
+   * Returns the meta object for the reference '{@link dsl.greenhouse.GreenhouseRuleSet#getActuator <em>Actuator</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Actuator</em>'.
+   * @see dsl.greenhouse.GreenhouseRuleSet#getActuator()
+   * @see #getGreenhouseRuleSet()
+   * @generated
+   */
+  EReference getGreenhouseRuleSet_Actuator();
+
+  /**
+   * Returns the meta object for the reference '{@link dsl.greenhouse.GreenhouseRuleSet#getAction <em>Action</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Action</em>'.
+   * @see dsl.greenhouse.GreenhouseRuleSet#getAction()
+   * @see #getGreenhouseRuleSet()
+   * @generated
+   */
+  EReference getGreenhouseRuleSet_Action();
+
+  /**
+   * Returns the meta object for the reference '{@link dsl.greenhouse.GreenhouseRuleSet#getSensor <em>Sensor</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Sensor</em>'.
+   * @see dsl.greenhouse.GreenhouseRuleSet#getSensor()
+   * @see #getGreenhouseRuleSet()
+   * @generated
+   */
+  EReference getGreenhouseRuleSet_Sensor();
+
+  /**
+   * Returns the meta object for the reference '{@link dsl.greenhouse.GreenhouseRuleSet#getState <em>State</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>State</em>'.
+   * @see dsl.greenhouse.GreenhouseRuleSet#getState()
+   * @see #getGreenhouseRuleSet()
+   * @generated
+   */
+  EReference getGreenhouseRuleSet_State();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -1310,14 +1421,6 @@ public interface GreenhousePackage extends EPackage
     EClass ROW_ELEMENT = eINSTANCE.getRowElement();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ROW_ELEMENT__NAME = eINSTANCE.getRowElement_Name();
-
-    /**
      * The meta object literal for the '{@link dsl.greenhouse.impl.GreenhouseActuatorImpl <em>Actuator</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1352,6 +1455,14 @@ public interface GreenhousePackage extends EPackage
      * @generated
      */
     EClass ACTUATOR = eINSTANCE.getActuator();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ACTUATOR__NAME = eINSTANCE.getActuator_Name();
 
     /**
      * The meta object literal for the '<em><b>Action</b></em>' containment reference list feature.
@@ -1404,6 +1515,14 @@ public interface GreenhousePackage extends EPackage
      * @generated
      */
     EClass SENSOR = eINSTANCE.getSensor();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute SENSOR__NAME = eINSTANCE.getSensor_Name();
 
     /**
      * The meta object literal for the '<em><b>Variable</b></em>' containment reference feature.
@@ -1596,12 +1715,12 @@ public interface GreenhousePackage extends EPackage
     EReference RULE_SET__ACTUATOR = eINSTANCE.getRuleSet_Actuator();
 
     /**
-     * The meta object literal for the '<em><b>Action</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Action</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference RULE_SET__ACTION = eINSTANCE.getRuleSet_Action();
+    EAttribute RULE_SET__ACTION = eINSTANCE.getRuleSet_Action();
 
     /**
      * The meta object literal for the '<em><b>Sensor</b></em>' reference feature.
@@ -1612,12 +1731,54 @@ public interface GreenhousePackage extends EPackage
     EReference RULE_SET__SENSOR = eINSTANCE.getRuleSet_Sensor();
 
     /**
+     * The meta object literal for the '<em><b>State</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute RULE_SET__STATE = eINSTANCE.getRuleSet_State();
+
+    /**
+     * The meta object literal for the '{@link dsl.greenhouse.impl.GreenhouseRuleSetImpl <em>Rule Set</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see dsl.greenhouse.impl.GreenhouseRuleSetImpl
+     * @see dsl.greenhouse.impl.GreenhousePackageImpl#getGreenhouseRuleSet()
+     * @generated
+     */
+    EClass GREENHOUSE_RULE_SET = eINSTANCE.getGreenhouseRuleSet();
+
+    /**
+     * The meta object literal for the '<em><b>Actuator</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference GREENHOUSE_RULE_SET__ACTUATOR = eINSTANCE.getGreenhouseRuleSet_Actuator();
+
+    /**
+     * The meta object literal for the '<em><b>Action</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference GREENHOUSE_RULE_SET__ACTION = eINSTANCE.getGreenhouseRuleSet_Action();
+
+    /**
+     * The meta object literal for the '<em><b>Sensor</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference GREENHOUSE_RULE_SET__SENSOR = eINSTANCE.getGreenhouseRuleSet_Sensor();
+
+    /**
      * The meta object literal for the '<em><b>State</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference RULE_SET__STATE = eINSTANCE.getRuleSet_State();
+    EReference GREENHOUSE_RULE_SET__STATE = eINSTANCE.getGreenhouseRuleSet_State();
 
   }
 

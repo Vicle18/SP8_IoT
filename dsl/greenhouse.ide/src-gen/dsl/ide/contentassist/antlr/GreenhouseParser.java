@@ -54,6 +54,7 @@ public class GreenhouseParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getSettingAccess().getGroup(), "rule__Setting__Group__0");
 			builder.put(grammarAccess.getValueAccess().getGroup(), "rule__Value__Group__0");
 			builder.put(grammarAccess.getRuleSetAccess().getGroup(), "rule__RuleSet__Group__0");
+			builder.put(grammarAccess.getGreenhouseRuleSetAccess().getGroup(), "rule__GreenhouseRuleSet__Group__0");
 			builder.put(grammarAccess.getModelAccess().getNameAssignment_1(), "rule__Model__NameAssignment_1");
 			builder.put(grammarAccess.getModelAccess().getGreenhousesAssignment_2(), "rule__Model__GreenhousesAssignment_2");
 			builder.put(grammarAccess.getGreenhouseAccess().getNameAssignment_1(), "rule__Greenhouse__NameAssignment_1");
@@ -91,6 +92,10 @@ public class GreenhouseParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getRuleSetAccess().getActionAssignment_3(), "rule__RuleSet__ActionAssignment_3");
 			builder.put(grammarAccess.getRuleSetAccess().getSensorAssignment_5(), "rule__RuleSet__SensorAssignment_5");
 			builder.put(grammarAccess.getRuleSetAccess().getStateAssignment_7(), "rule__RuleSet__StateAssignment_7");
+			builder.put(grammarAccess.getGreenhouseRuleSetAccess().getActuatorAssignment_1(), "rule__GreenhouseRuleSet__ActuatorAssignment_1");
+			builder.put(grammarAccess.getGreenhouseRuleSetAccess().getActionAssignment_3(), "rule__GreenhouseRuleSet__ActionAssignment_3");
+			builder.put(grammarAccess.getGreenhouseRuleSetAccess().getSensorAssignment_5(), "rule__GreenhouseRuleSet__SensorAssignment_5");
+			builder.put(grammarAccess.getGreenhouseRuleSetAccess().getStateAssignment_7(), "rule__GreenhouseRuleSet__StateAssignment_7");
 		}
 	}
 	

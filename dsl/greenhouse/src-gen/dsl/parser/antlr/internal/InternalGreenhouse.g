@@ -314,11 +314,11 @@ ruleGreenhouseElement returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getGreenhouseElementAccess().getRuleSetParserRuleCall_2());
+			newCompositeNode(grammarAccess.getGreenhouseElementAccess().getGreenhouseRuleSetParserRuleCall_2());
 		}
-		this_RuleSet_2=ruleRuleSet
+		this_GreenhouseRuleSet_2=ruleGreenhouseRuleSet
 		{
-			$current = $this_RuleSet_2.current;
+			$current = $this_GreenhouseRuleSet_2.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -355,6 +355,15 @@ ruleRowElement returns [EObject current=null]
 		this_Actuator_1=ruleActuator
 		{
 			$current = $this_Actuator_1.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getRowElementAccess().getRuleSetParserRuleCall_2());
+		}
+		this_RuleSet_2=ruleRuleSet
+		{
+			$current = $this_RuleSet_2.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -1222,14 +1231,19 @@ ruleRuleSet returns [EObject current=null]
 		}
 		(
 			(
+				lv_action_3_0=RULE_ID
+				{
+					newLeafNode(lv_action_3_0, grammarAccess.getRuleSetAccess().getActionIDTerminalRuleCall_3_0());
+				}
 				{
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getRuleSetRule());
 					}
-				}
-				otherlv_3=RULE_ID
-				{
-					newLeafNode(otherlv_3, grammarAccess.getRuleSetAccess().getActionActionCrossReference_3_0());
+					setWithLastConsumed(
+						$current,
+						"action",
+						lv_action_3_0,
+						"org.eclipse.xtext.common.Terminals.ID");
 				}
 			)
 		)
@@ -1256,14 +1270,106 @@ ruleRuleSet returns [EObject current=null]
 		}
 		(
 			(
+				lv_state_7_0=RULE_ID
+				{
+					newLeafNode(lv_state_7_0, grammarAccess.getRuleSetAccess().getStateIDTerminalRuleCall_7_0());
+				}
 				{
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getRuleSetRule());
 					}
+					setWithLastConsumed(
+						$current,
+						"state",
+						lv_state_7_0,
+						"org.eclipse.xtext.common.Terminals.ID");
+				}
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleGreenhouseRuleSet
+entryRuleGreenhouseRuleSet returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getGreenhouseRuleSetRule()); }
+	iv_ruleGreenhouseRuleSet=ruleGreenhouseRuleSet
+	{ $current=$iv_ruleGreenhouseRuleSet.current; }
+	EOF;
+
+// Rule GreenhouseRuleSet
+ruleGreenhouseRuleSet returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='global rule'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getGreenhouseRuleSetAccess().getGlobalRuleKeyword_0());
+		}
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getGreenhouseRuleSetRule());
+					}
+				}
+				otherlv_1=RULE_ID
+				{
+					newLeafNode(otherlv_1, grammarAccess.getGreenhouseRuleSetAccess().getActuatorActuatorCrossReference_1_0());
+				}
+			)
+		)
+		otherlv_2='set'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getGreenhouseRuleSetAccess().getSetKeyword_2());
+		}
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getGreenhouseRuleSetRule());
+					}
+				}
+				otherlv_3=RULE_ID
+				{
+					newLeafNode(otherlv_3, grammarAccess.getGreenhouseRuleSetAccess().getActionActionCrossReference_3_0());
+				}
+			)
+		)
+		otherlv_4='when'
+		{
+			newLeafNode(otherlv_4, grammarAccess.getGreenhouseRuleSetAccess().getWhenKeyword_4());
+		}
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getGreenhouseRuleSetRule());
+					}
+				}
+				otherlv_5=RULE_ID
+				{
+					newLeafNode(otherlv_5, grammarAccess.getGreenhouseRuleSetAccess().getSensorSensorCrossReference_5_0());
+				}
+			)
+		)
+		otherlv_6='is'
+		{
+			newLeafNode(otherlv_6, grammarAccess.getGreenhouseRuleSetAccess().getIsKeyword_6());
+		}
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getGreenhouseRuleSetRule());
+					}
 				}
 				otherlv_7=RULE_ID
 				{
-					newLeafNode(otherlv_7, grammarAccess.getRuleSetAccess().getStateStateCrossReference_7_0());
+					newLeafNode(otherlv_7, grammarAccess.getGreenhouseRuleSetAccess().getStateStateCrossReference_7_0());
 				}
 			)
 		)

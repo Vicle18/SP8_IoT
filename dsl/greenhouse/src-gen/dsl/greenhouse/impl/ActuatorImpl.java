@@ -9,12 +9,15 @@ import dsl.greenhouse.GreenhousePackage;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -27,6 +30,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link dsl.greenhouse.impl.ActuatorImpl#getName <em>Name</em>}</li>
  *   <li>{@link dsl.greenhouse.impl.ActuatorImpl#getAction <em>Action</em>}</li>
  * </ul>
  *
@@ -34,6 +38,26 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class ActuatorImpl extends RowElementImpl implements Actuator
 {
+  /**
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
+  protected static final String NAME_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
+  protected String name = NAME_EDEFAULT;
+
   /**
    * The cached value of the '{@link #getAction() <em>Action</em>}' containment reference list.
    * <!-- begin-user-doc -->
@@ -63,6 +87,31 @@ public class ActuatorImpl extends RowElementImpl implements Actuator
   protected EClass eStaticClass()
   {
     return GreenhousePackage.Literals.ACTUATOR;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String getName()
+  {
+    return name;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setName(String newName)
+  {
+    String oldName = name;
+    name = newName;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GreenhousePackage.ACTUATOR__NAME, oldName, name));
   }
 
   /**
@@ -106,6 +155,8 @@ public class ActuatorImpl extends RowElementImpl implements Actuator
   {
     switch (featureID)
     {
+      case GreenhousePackage.ACTUATOR__NAME:
+        return getName();
       case GreenhousePackage.ACTUATOR__ACTION:
         return getAction();
     }
@@ -123,6 +174,9 @@ public class ActuatorImpl extends RowElementImpl implements Actuator
   {
     switch (featureID)
     {
+      case GreenhousePackage.ACTUATOR__NAME:
+        setName((String)newValue);
+        return;
       case GreenhousePackage.ACTUATOR__ACTION:
         getAction().clear();
         getAction().addAll((Collection<? extends Action>)newValue);
@@ -141,6 +195,9 @@ public class ActuatorImpl extends RowElementImpl implements Actuator
   {
     switch (featureID)
     {
+      case GreenhousePackage.ACTUATOR__NAME:
+        setName(NAME_EDEFAULT);
+        return;
       case GreenhousePackage.ACTUATOR__ACTION:
         getAction().clear();
         return;
@@ -158,10 +215,29 @@ public class ActuatorImpl extends RowElementImpl implements Actuator
   {
     switch (featureID)
     {
+      case GreenhousePackage.ACTUATOR__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case GreenhousePackage.ACTUATOR__ACTION:
         return action != null && !action.isEmpty();
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (name: ");
+    result.append(name);
+    result.append(')');
+    return result.toString();
   }
 
 } //ActuatorImpl

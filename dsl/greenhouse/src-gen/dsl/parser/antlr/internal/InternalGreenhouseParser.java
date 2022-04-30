@@ -21,7 +21,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'system'", "'greenhouse'", "'['", "']'", "'row'", "'includes'", "'global'", "'actuator'", "'can'", "','", "'sensor'", "'has'", "'value'", "'and'", "'states'", "'when'", "'<'", "'>'", "'='", "'variable'", "'receiving'", "'by'", "'setting'", "'to'", "'rule'", "'set'", "'is'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'system'", "'greenhouse'", "'['", "']'", "'row'", "'includes'", "'global'", "'actuator'", "'can'", "','", "'sensor'", "'has'", "'value'", "'and'", "'states'", "'when'", "'<'", "'>'", "'='", "'variable'", "'receiving'", "'by'", "'setting'", "'to'", "'rule'", "'set'", "'is'", "'global rule'"
     };
     public static final int RULE_STRING=6;
     public static final int RULE_SL_COMMENT=8;
@@ -29,6 +29,7 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
     public static final int T__15=15;
     public static final int T__37=37;
     public static final int T__16=16;
+    public static final int T__38=38;
     public static final int T__17=17;
     public static final int T__18=18;
     public static final int T__11=11;
@@ -404,7 +405,7 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
                 int alt3=2;
                 int LA3_0 = input.LA(1);
 
-                if ( (LA3_0==17||LA3_0==35) ) {
+                if ( (LA3_0==17||LA3_0==38) ) {
                     alt3=1;
                 }
 
@@ -576,7 +577,7 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
                 int alt4=2;
                 int LA4_0 = input.LA(1);
 
-                if ( (LA4_0==18||LA4_0==21) ) {
+                if ( (LA4_0==18||LA4_0==21||LA4_0==35) ) {
                     alt4=1;
                 }
 
@@ -682,7 +683,7 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleGreenhouseElement"
-    // InternalGreenhouse.g:290:1: ruleGreenhouseElement returns [EObject current=null] : (this_GreenhouseSensor_0= ruleGreenhouseSensor | this_GreenhouseActuator_1= ruleGreenhouseActuator | this_RuleSet_2= ruleRuleSet ) ;
+    // InternalGreenhouse.g:290:1: ruleGreenhouseElement returns [EObject current=null] : (this_GreenhouseSensor_0= ruleGreenhouseSensor | this_GreenhouseActuator_1= ruleGreenhouseActuator | this_GreenhouseRuleSet_2= ruleGreenhouseRuleSet ) ;
     public final EObject ruleGreenhouseElement() throws RecognitionException {
         EObject current = null;
 
@@ -690,17 +691,17 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
         EObject this_GreenhouseActuator_1 = null;
 
-        EObject this_RuleSet_2 = null;
+        EObject this_GreenhouseRuleSet_2 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalGreenhouse.g:296:2: ( (this_GreenhouseSensor_0= ruleGreenhouseSensor | this_GreenhouseActuator_1= ruleGreenhouseActuator | this_RuleSet_2= ruleRuleSet ) )
-            // InternalGreenhouse.g:297:2: (this_GreenhouseSensor_0= ruleGreenhouseSensor | this_GreenhouseActuator_1= ruleGreenhouseActuator | this_RuleSet_2= ruleRuleSet )
+            // InternalGreenhouse.g:296:2: ( (this_GreenhouseSensor_0= ruleGreenhouseSensor | this_GreenhouseActuator_1= ruleGreenhouseActuator | this_GreenhouseRuleSet_2= ruleGreenhouseRuleSet ) )
+            // InternalGreenhouse.g:297:2: (this_GreenhouseSensor_0= ruleGreenhouseSensor | this_GreenhouseActuator_1= ruleGreenhouseActuator | this_GreenhouseRuleSet_2= ruleGreenhouseRuleSet )
             {
-            // InternalGreenhouse.g:297:2: (this_GreenhouseSensor_0= ruleGreenhouseSensor | this_GreenhouseActuator_1= ruleGreenhouseActuator | this_RuleSet_2= ruleRuleSet )
+            // InternalGreenhouse.g:297:2: (this_GreenhouseSensor_0= ruleGreenhouseSensor | this_GreenhouseActuator_1= ruleGreenhouseActuator | this_GreenhouseRuleSet_2= ruleGreenhouseRuleSet )
             int alt5=3;
             int LA5_0 = input.LA(1);
 
@@ -720,7 +721,7 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
                     throw nvae;
                 }
             }
-            else if ( (LA5_0==35) ) {
+            else if ( (LA5_0==38) ) {
                 alt5=3;
             }
             else {
@@ -767,18 +768,18 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalGreenhouse.g:316:3: this_RuleSet_2= ruleRuleSet
+                    // InternalGreenhouse.g:316:3: this_GreenhouseRuleSet_2= ruleGreenhouseRuleSet
                     {
 
-                    			newCompositeNode(grammarAccess.getGreenhouseElementAccess().getRuleSetParserRuleCall_2());
+                    			newCompositeNode(grammarAccess.getGreenhouseElementAccess().getGreenhouseRuleSetParserRuleCall_2());
                     		
                     pushFollow(FOLLOW_2);
-                    this_RuleSet_2=ruleRuleSet();
+                    this_GreenhouseRuleSet_2=ruleGreenhouseRuleSet();
 
                     state._fsp--;
 
 
-                    			current = this_RuleSet_2;
+                    			current = this_GreenhouseRuleSet_2;
                     			afterParserOrEnumRuleCall();
                     		
 
@@ -843,7 +844,7 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleRowElement"
-    // InternalGreenhouse.g:335:1: ruleRowElement returns [EObject current=null] : (this_Sensor_0= ruleSensor | this_Actuator_1= ruleActuator ) ;
+    // InternalGreenhouse.g:335:1: ruleRowElement returns [EObject current=null] : (this_Sensor_0= ruleSensor | this_Actuator_1= ruleActuator | this_RuleSet_2= ruleRuleSet ) ;
     public final EObject ruleRowElement() throws RecognitionException {
         EObject current = null;
 
@@ -851,30 +852,41 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
         EObject this_Actuator_1 = null;
 
+        EObject this_RuleSet_2 = null;
+
 
 
         	enterRule();
 
         try {
-            // InternalGreenhouse.g:341:2: ( (this_Sensor_0= ruleSensor | this_Actuator_1= ruleActuator ) )
-            // InternalGreenhouse.g:342:2: (this_Sensor_0= ruleSensor | this_Actuator_1= ruleActuator )
+            // InternalGreenhouse.g:341:2: ( (this_Sensor_0= ruleSensor | this_Actuator_1= ruleActuator | this_RuleSet_2= ruleRuleSet ) )
+            // InternalGreenhouse.g:342:2: (this_Sensor_0= ruleSensor | this_Actuator_1= ruleActuator | this_RuleSet_2= ruleRuleSet )
             {
-            // InternalGreenhouse.g:342:2: (this_Sensor_0= ruleSensor | this_Actuator_1= ruleActuator )
-            int alt6=2;
-            int LA6_0 = input.LA(1);
-
-            if ( (LA6_0==21) ) {
+            // InternalGreenhouse.g:342:2: (this_Sensor_0= ruleSensor | this_Actuator_1= ruleActuator | this_RuleSet_2= ruleRuleSet )
+            int alt6=3;
+            switch ( input.LA(1) ) {
+            case 21:
+                {
                 alt6=1;
-            }
-            else if ( (LA6_0==18) ) {
+                }
+                break;
+            case 18:
+                {
                 alt6=2;
-            }
-            else {
+                }
+                break;
+            case 35:
+                {
+                alt6=3;
+                }
+                break;
+            default:
                 NoViableAltException nvae =
                     new NoViableAltException("", 6, 0, input);
 
                 throw nvae;
             }
+
             switch (alt6) {
                 case 1 :
                     // InternalGreenhouse.g:343:3: this_Sensor_0= ruleSensor
@@ -912,6 +924,24 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
                     }
                     break;
+                case 3 :
+                    // InternalGreenhouse.g:361:3: this_RuleSet_2= ruleRuleSet
+                    {
+
+                    			newCompositeNode(grammarAccess.getRowElementAccess().getRuleSetParserRuleCall_2());
+                    		
+                    pushFollow(FOLLOW_2);
+                    this_RuleSet_2=ruleRuleSet();
+
+                    state._fsp--;
+
+
+                    			current = this_RuleSet_2;
+                    			afterParserOrEnumRuleCall();
+                    		
+
+                    }
+                    break;
 
             }
 
@@ -935,7 +965,7 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleGreenhouseActuator"
-    // InternalGreenhouse.g:364:1: entryRuleGreenhouseActuator returns [EObject current=null] : iv_ruleGreenhouseActuator= ruleGreenhouseActuator EOF ;
+    // InternalGreenhouse.g:373:1: entryRuleGreenhouseActuator returns [EObject current=null] : iv_ruleGreenhouseActuator= ruleGreenhouseActuator EOF ;
     public final EObject entryRuleGreenhouseActuator() throws RecognitionException {
         EObject current = null;
 
@@ -943,8 +973,8 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalGreenhouse.g:364:59: (iv_ruleGreenhouseActuator= ruleGreenhouseActuator EOF )
-            // InternalGreenhouse.g:365:2: iv_ruleGreenhouseActuator= ruleGreenhouseActuator EOF
+            // InternalGreenhouse.g:373:59: (iv_ruleGreenhouseActuator= ruleGreenhouseActuator EOF )
+            // InternalGreenhouse.g:374:2: iv_ruleGreenhouseActuator= ruleGreenhouseActuator EOF
             {
              newCompositeNode(grammarAccess.getGreenhouseActuatorRule()); 
             pushFollow(FOLLOW_1);
@@ -971,7 +1001,7 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleGreenhouseActuator"
-    // InternalGreenhouse.g:371:1: ruleGreenhouseActuator returns [EObject current=null] : (otherlv_0= 'global' otherlv_1= 'actuator' ( (lv_name_2_0= RULE_ID ) ) (otherlv_3= 'can' ( (lv_action_4_0= ruleAction ) ) )? (otherlv_5= ',' otherlv_6= 'can' ( (lv_action_7_0= ruleAction ) ) )* ) ;
+    // InternalGreenhouse.g:380:1: ruleGreenhouseActuator returns [EObject current=null] : (otherlv_0= 'global' otherlv_1= 'actuator' ( (lv_name_2_0= RULE_ID ) ) (otherlv_3= 'can' ( (lv_action_4_0= ruleAction ) ) )? (otherlv_5= ',' otherlv_6= 'can' ( (lv_action_7_0= ruleAction ) ) )* ) ;
     public final EObject ruleGreenhouseActuator() throws RecognitionException {
         EObject current = null;
 
@@ -990,11 +1020,11 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalGreenhouse.g:377:2: ( (otherlv_0= 'global' otherlv_1= 'actuator' ( (lv_name_2_0= RULE_ID ) ) (otherlv_3= 'can' ( (lv_action_4_0= ruleAction ) ) )? (otherlv_5= ',' otherlv_6= 'can' ( (lv_action_7_0= ruleAction ) ) )* ) )
-            // InternalGreenhouse.g:378:2: (otherlv_0= 'global' otherlv_1= 'actuator' ( (lv_name_2_0= RULE_ID ) ) (otherlv_3= 'can' ( (lv_action_4_0= ruleAction ) ) )? (otherlv_5= ',' otherlv_6= 'can' ( (lv_action_7_0= ruleAction ) ) )* )
+            // InternalGreenhouse.g:386:2: ( (otherlv_0= 'global' otherlv_1= 'actuator' ( (lv_name_2_0= RULE_ID ) ) (otherlv_3= 'can' ( (lv_action_4_0= ruleAction ) ) )? (otherlv_5= ',' otherlv_6= 'can' ( (lv_action_7_0= ruleAction ) ) )* ) )
+            // InternalGreenhouse.g:387:2: (otherlv_0= 'global' otherlv_1= 'actuator' ( (lv_name_2_0= RULE_ID ) ) (otherlv_3= 'can' ( (lv_action_4_0= ruleAction ) ) )? (otherlv_5= ',' otherlv_6= 'can' ( (lv_action_7_0= ruleAction ) ) )* )
             {
-            // InternalGreenhouse.g:378:2: (otherlv_0= 'global' otherlv_1= 'actuator' ( (lv_name_2_0= RULE_ID ) ) (otherlv_3= 'can' ( (lv_action_4_0= ruleAction ) ) )? (otherlv_5= ',' otherlv_6= 'can' ( (lv_action_7_0= ruleAction ) ) )* )
-            // InternalGreenhouse.g:379:3: otherlv_0= 'global' otherlv_1= 'actuator' ( (lv_name_2_0= RULE_ID ) ) (otherlv_3= 'can' ( (lv_action_4_0= ruleAction ) ) )? (otherlv_5= ',' otherlv_6= 'can' ( (lv_action_7_0= ruleAction ) ) )*
+            // InternalGreenhouse.g:387:2: (otherlv_0= 'global' otherlv_1= 'actuator' ( (lv_name_2_0= RULE_ID ) ) (otherlv_3= 'can' ( (lv_action_4_0= ruleAction ) ) )? (otherlv_5= ',' otherlv_6= 'can' ( (lv_action_7_0= ruleAction ) ) )* )
+            // InternalGreenhouse.g:388:3: otherlv_0= 'global' otherlv_1= 'actuator' ( (lv_name_2_0= RULE_ID ) ) (otherlv_3= 'can' ( (lv_action_4_0= ruleAction ) ) )? (otherlv_5= ',' otherlv_6= 'can' ( (lv_action_7_0= ruleAction ) ) )*
             {
             otherlv_0=(Token)match(input,17,FOLLOW_10); 
 
@@ -1004,11 +1034,11 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_1, grammarAccess.getGreenhouseActuatorAccess().getActuatorKeyword_1());
             		
-            // InternalGreenhouse.g:387:3: ( (lv_name_2_0= RULE_ID ) )
-            // InternalGreenhouse.g:388:4: (lv_name_2_0= RULE_ID )
+            // InternalGreenhouse.g:396:3: ( (lv_name_2_0= RULE_ID ) )
+            // InternalGreenhouse.g:397:4: (lv_name_2_0= RULE_ID )
             {
-            // InternalGreenhouse.g:388:4: (lv_name_2_0= RULE_ID )
-            // InternalGreenhouse.g:389:5: lv_name_2_0= RULE_ID
+            // InternalGreenhouse.g:397:4: (lv_name_2_0= RULE_ID )
+            // InternalGreenhouse.g:398:5: lv_name_2_0= RULE_ID
             {
             lv_name_2_0=(Token)match(input,RULE_ID,FOLLOW_11); 
 
@@ -1030,7 +1060,7 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalGreenhouse.g:405:3: (otherlv_3= 'can' ( (lv_action_4_0= ruleAction ) ) )?
+            // InternalGreenhouse.g:414:3: (otherlv_3= 'can' ( (lv_action_4_0= ruleAction ) ) )?
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -1039,17 +1069,17 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
             }
             switch (alt7) {
                 case 1 :
-                    // InternalGreenhouse.g:406:4: otherlv_3= 'can' ( (lv_action_4_0= ruleAction ) )
+                    // InternalGreenhouse.g:415:4: otherlv_3= 'can' ( (lv_action_4_0= ruleAction ) )
                     {
                     otherlv_3=(Token)match(input,19,FOLLOW_3); 
 
                     				newLeafNode(otherlv_3, grammarAccess.getGreenhouseActuatorAccess().getCanKeyword_3_0());
                     			
-                    // InternalGreenhouse.g:410:4: ( (lv_action_4_0= ruleAction ) )
-                    // InternalGreenhouse.g:411:5: (lv_action_4_0= ruleAction )
+                    // InternalGreenhouse.g:419:4: ( (lv_action_4_0= ruleAction ) )
+                    // InternalGreenhouse.g:420:5: (lv_action_4_0= ruleAction )
                     {
-                    // InternalGreenhouse.g:411:5: (lv_action_4_0= ruleAction )
-                    // InternalGreenhouse.g:412:6: lv_action_4_0= ruleAction
+                    // InternalGreenhouse.g:420:5: (lv_action_4_0= ruleAction )
+                    // InternalGreenhouse.g:421:6: lv_action_4_0= ruleAction
                     {
 
                     						newCompositeNode(grammarAccess.getGreenhouseActuatorAccess().getActionActionParserRuleCall_3_1_0());
@@ -1082,7 +1112,7 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalGreenhouse.g:430:3: (otherlv_5= ',' otherlv_6= 'can' ( (lv_action_7_0= ruleAction ) ) )*
+            // InternalGreenhouse.g:439:3: (otherlv_5= ',' otherlv_6= 'can' ( (lv_action_7_0= ruleAction ) ) )*
             loop8:
             do {
                 int alt8=2;
@@ -1095,7 +1125,7 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
                 switch (alt8) {
             	case 1 :
-            	    // InternalGreenhouse.g:431:4: otherlv_5= ',' otherlv_6= 'can' ( (lv_action_7_0= ruleAction ) )
+            	    // InternalGreenhouse.g:440:4: otherlv_5= ',' otherlv_6= 'can' ( (lv_action_7_0= ruleAction ) )
             	    {
             	    otherlv_5=(Token)match(input,20,FOLLOW_13); 
 
@@ -1105,11 +1135,11 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
             	    				newLeafNode(otherlv_6, grammarAccess.getGreenhouseActuatorAccess().getCanKeyword_4_1());
             	    			
-            	    // InternalGreenhouse.g:439:4: ( (lv_action_7_0= ruleAction ) )
-            	    // InternalGreenhouse.g:440:5: (lv_action_7_0= ruleAction )
+            	    // InternalGreenhouse.g:448:4: ( (lv_action_7_0= ruleAction ) )
+            	    // InternalGreenhouse.g:449:5: (lv_action_7_0= ruleAction )
             	    {
-            	    // InternalGreenhouse.g:440:5: (lv_action_7_0= ruleAction )
-            	    // InternalGreenhouse.g:441:6: lv_action_7_0= ruleAction
+            	    // InternalGreenhouse.g:449:5: (lv_action_7_0= ruleAction )
+            	    // InternalGreenhouse.g:450:6: lv_action_7_0= ruleAction
             	    {
 
             	    						newCompositeNode(grammarAccess.getGreenhouseActuatorAccess().getActionActionParserRuleCall_4_2_0());
@@ -1168,7 +1198,7 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleActuator"
-    // InternalGreenhouse.g:463:1: entryRuleActuator returns [EObject current=null] : iv_ruleActuator= ruleActuator EOF ;
+    // InternalGreenhouse.g:472:1: entryRuleActuator returns [EObject current=null] : iv_ruleActuator= ruleActuator EOF ;
     public final EObject entryRuleActuator() throws RecognitionException {
         EObject current = null;
 
@@ -1176,8 +1206,8 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalGreenhouse.g:463:49: (iv_ruleActuator= ruleActuator EOF )
-            // InternalGreenhouse.g:464:2: iv_ruleActuator= ruleActuator EOF
+            // InternalGreenhouse.g:472:49: (iv_ruleActuator= ruleActuator EOF )
+            // InternalGreenhouse.g:473:2: iv_ruleActuator= ruleActuator EOF
             {
              newCompositeNode(grammarAccess.getActuatorRule()); 
             pushFollow(FOLLOW_1);
@@ -1204,7 +1234,7 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleActuator"
-    // InternalGreenhouse.g:470:1: ruleActuator returns [EObject current=null] : (otherlv_0= 'actuator' ( (lv_name_1_0= RULE_ID ) ) (otherlv_2= 'can' ( (lv_action_3_0= ruleAction ) ) )? (otherlv_4= ',' otherlv_5= 'can' ( (lv_action_6_0= ruleAction ) ) )* ) ;
+    // InternalGreenhouse.g:479:1: ruleActuator returns [EObject current=null] : (otherlv_0= 'actuator' ( (lv_name_1_0= RULE_ID ) ) (otherlv_2= 'can' ( (lv_action_3_0= ruleAction ) ) )? (otherlv_4= ',' otherlv_5= 'can' ( (lv_action_6_0= ruleAction ) ) )* ) ;
     public final EObject ruleActuator() throws RecognitionException {
         EObject current = null;
 
@@ -1222,21 +1252,21 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalGreenhouse.g:476:2: ( (otherlv_0= 'actuator' ( (lv_name_1_0= RULE_ID ) ) (otherlv_2= 'can' ( (lv_action_3_0= ruleAction ) ) )? (otherlv_4= ',' otherlv_5= 'can' ( (lv_action_6_0= ruleAction ) ) )* ) )
-            // InternalGreenhouse.g:477:2: (otherlv_0= 'actuator' ( (lv_name_1_0= RULE_ID ) ) (otherlv_2= 'can' ( (lv_action_3_0= ruleAction ) ) )? (otherlv_4= ',' otherlv_5= 'can' ( (lv_action_6_0= ruleAction ) ) )* )
+            // InternalGreenhouse.g:485:2: ( (otherlv_0= 'actuator' ( (lv_name_1_0= RULE_ID ) ) (otherlv_2= 'can' ( (lv_action_3_0= ruleAction ) ) )? (otherlv_4= ',' otherlv_5= 'can' ( (lv_action_6_0= ruleAction ) ) )* ) )
+            // InternalGreenhouse.g:486:2: (otherlv_0= 'actuator' ( (lv_name_1_0= RULE_ID ) ) (otherlv_2= 'can' ( (lv_action_3_0= ruleAction ) ) )? (otherlv_4= ',' otherlv_5= 'can' ( (lv_action_6_0= ruleAction ) ) )* )
             {
-            // InternalGreenhouse.g:477:2: (otherlv_0= 'actuator' ( (lv_name_1_0= RULE_ID ) ) (otherlv_2= 'can' ( (lv_action_3_0= ruleAction ) ) )? (otherlv_4= ',' otherlv_5= 'can' ( (lv_action_6_0= ruleAction ) ) )* )
-            // InternalGreenhouse.g:478:3: otherlv_0= 'actuator' ( (lv_name_1_0= RULE_ID ) ) (otherlv_2= 'can' ( (lv_action_3_0= ruleAction ) ) )? (otherlv_4= ',' otherlv_5= 'can' ( (lv_action_6_0= ruleAction ) ) )*
+            // InternalGreenhouse.g:486:2: (otherlv_0= 'actuator' ( (lv_name_1_0= RULE_ID ) ) (otherlv_2= 'can' ( (lv_action_3_0= ruleAction ) ) )? (otherlv_4= ',' otherlv_5= 'can' ( (lv_action_6_0= ruleAction ) ) )* )
+            // InternalGreenhouse.g:487:3: otherlv_0= 'actuator' ( (lv_name_1_0= RULE_ID ) ) (otherlv_2= 'can' ( (lv_action_3_0= ruleAction ) ) )? (otherlv_4= ',' otherlv_5= 'can' ( (lv_action_6_0= ruleAction ) ) )*
             {
             otherlv_0=(Token)match(input,18,FOLLOW_3); 
 
             			newLeafNode(otherlv_0, grammarAccess.getActuatorAccess().getActuatorKeyword_0());
             		
-            // InternalGreenhouse.g:482:3: ( (lv_name_1_0= RULE_ID ) )
-            // InternalGreenhouse.g:483:4: (lv_name_1_0= RULE_ID )
+            // InternalGreenhouse.g:491:3: ( (lv_name_1_0= RULE_ID ) )
+            // InternalGreenhouse.g:492:4: (lv_name_1_0= RULE_ID )
             {
-            // InternalGreenhouse.g:483:4: (lv_name_1_0= RULE_ID )
-            // InternalGreenhouse.g:484:5: lv_name_1_0= RULE_ID
+            // InternalGreenhouse.g:492:4: (lv_name_1_0= RULE_ID )
+            // InternalGreenhouse.g:493:5: lv_name_1_0= RULE_ID
             {
             lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_11); 
 
@@ -1258,7 +1288,7 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalGreenhouse.g:500:3: (otherlv_2= 'can' ( (lv_action_3_0= ruleAction ) ) )?
+            // InternalGreenhouse.g:509:3: (otherlv_2= 'can' ( (lv_action_3_0= ruleAction ) ) )?
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -1267,17 +1297,17 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
             }
             switch (alt9) {
                 case 1 :
-                    // InternalGreenhouse.g:501:4: otherlv_2= 'can' ( (lv_action_3_0= ruleAction ) )
+                    // InternalGreenhouse.g:510:4: otherlv_2= 'can' ( (lv_action_3_0= ruleAction ) )
                     {
                     otherlv_2=(Token)match(input,19,FOLLOW_3); 
 
                     				newLeafNode(otherlv_2, grammarAccess.getActuatorAccess().getCanKeyword_2_0());
                     			
-                    // InternalGreenhouse.g:505:4: ( (lv_action_3_0= ruleAction ) )
-                    // InternalGreenhouse.g:506:5: (lv_action_3_0= ruleAction )
+                    // InternalGreenhouse.g:514:4: ( (lv_action_3_0= ruleAction ) )
+                    // InternalGreenhouse.g:515:5: (lv_action_3_0= ruleAction )
                     {
-                    // InternalGreenhouse.g:506:5: (lv_action_3_0= ruleAction )
-                    // InternalGreenhouse.g:507:6: lv_action_3_0= ruleAction
+                    // InternalGreenhouse.g:515:5: (lv_action_3_0= ruleAction )
+                    // InternalGreenhouse.g:516:6: lv_action_3_0= ruleAction
                     {
 
                     						newCompositeNode(grammarAccess.getActuatorAccess().getActionActionParserRuleCall_2_1_0());
@@ -1310,7 +1340,7 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalGreenhouse.g:525:3: (otherlv_4= ',' otherlv_5= 'can' ( (lv_action_6_0= ruleAction ) ) )*
+            // InternalGreenhouse.g:534:3: (otherlv_4= ',' otherlv_5= 'can' ( (lv_action_6_0= ruleAction ) ) )*
             loop10:
             do {
                 int alt10=2;
@@ -1323,7 +1353,7 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
                 switch (alt10) {
             	case 1 :
-            	    // InternalGreenhouse.g:526:4: otherlv_4= ',' otherlv_5= 'can' ( (lv_action_6_0= ruleAction ) )
+            	    // InternalGreenhouse.g:535:4: otherlv_4= ',' otherlv_5= 'can' ( (lv_action_6_0= ruleAction ) )
             	    {
             	    otherlv_4=(Token)match(input,20,FOLLOW_13); 
 
@@ -1333,11 +1363,11 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
             	    				newLeafNode(otherlv_5, grammarAccess.getActuatorAccess().getCanKeyword_3_1());
             	    			
-            	    // InternalGreenhouse.g:534:4: ( (lv_action_6_0= ruleAction ) )
-            	    // InternalGreenhouse.g:535:5: (lv_action_6_0= ruleAction )
+            	    // InternalGreenhouse.g:543:4: ( (lv_action_6_0= ruleAction ) )
+            	    // InternalGreenhouse.g:544:5: (lv_action_6_0= ruleAction )
             	    {
-            	    // InternalGreenhouse.g:535:5: (lv_action_6_0= ruleAction )
-            	    // InternalGreenhouse.g:536:6: lv_action_6_0= ruleAction
+            	    // InternalGreenhouse.g:544:5: (lv_action_6_0= ruleAction )
+            	    // InternalGreenhouse.g:545:6: lv_action_6_0= ruleAction
             	    {
 
             	    						newCompositeNode(grammarAccess.getActuatorAccess().getActionActionParserRuleCall_3_2_0());
@@ -1396,7 +1426,7 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleGreenhouseSensor"
-    // InternalGreenhouse.g:558:1: entryRuleGreenhouseSensor returns [EObject current=null] : iv_ruleGreenhouseSensor= ruleGreenhouseSensor EOF ;
+    // InternalGreenhouse.g:567:1: entryRuleGreenhouseSensor returns [EObject current=null] : iv_ruleGreenhouseSensor= ruleGreenhouseSensor EOF ;
     public final EObject entryRuleGreenhouseSensor() throws RecognitionException {
         EObject current = null;
 
@@ -1404,8 +1434,8 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalGreenhouse.g:558:57: (iv_ruleGreenhouseSensor= ruleGreenhouseSensor EOF )
-            // InternalGreenhouse.g:559:2: iv_ruleGreenhouseSensor= ruleGreenhouseSensor EOF
+            // InternalGreenhouse.g:567:57: (iv_ruleGreenhouseSensor= ruleGreenhouseSensor EOF )
+            // InternalGreenhouse.g:568:2: iv_ruleGreenhouseSensor= ruleGreenhouseSensor EOF
             {
              newCompositeNode(grammarAccess.getGreenhouseSensorRule()); 
             pushFollow(FOLLOW_1);
@@ -1432,7 +1462,7 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleGreenhouseSensor"
-    // InternalGreenhouse.g:565:1: ruleGreenhouseSensor returns [EObject current=null] : (otherlv_0= 'global' otherlv_1= 'sensor' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= 'has' otherlv_4= 'value' ( (lv_variable_5_0= ruleVariable ) ) ( (lv_states_6_0= ruleState ) ) (otherlv_7= ',' ( (lv_states_8_0= ruleState ) ) )* ) ;
+    // InternalGreenhouse.g:574:1: ruleGreenhouseSensor returns [EObject current=null] : (otherlv_0= 'global' otherlv_1= 'sensor' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= 'has' otherlv_4= 'value' ( (lv_variable_5_0= ruleVariable ) ) ( (lv_states_6_0= ruleState ) ) (otherlv_7= ',' ( (lv_states_8_0= ruleState ) ) )* ) ;
     public final EObject ruleGreenhouseSensor() throws RecognitionException {
         EObject current = null;
 
@@ -1453,11 +1483,11 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalGreenhouse.g:571:2: ( (otherlv_0= 'global' otherlv_1= 'sensor' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= 'has' otherlv_4= 'value' ( (lv_variable_5_0= ruleVariable ) ) ( (lv_states_6_0= ruleState ) ) (otherlv_7= ',' ( (lv_states_8_0= ruleState ) ) )* ) )
-            // InternalGreenhouse.g:572:2: (otherlv_0= 'global' otherlv_1= 'sensor' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= 'has' otherlv_4= 'value' ( (lv_variable_5_0= ruleVariable ) ) ( (lv_states_6_0= ruleState ) ) (otherlv_7= ',' ( (lv_states_8_0= ruleState ) ) )* )
+            // InternalGreenhouse.g:580:2: ( (otherlv_0= 'global' otherlv_1= 'sensor' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= 'has' otherlv_4= 'value' ( (lv_variable_5_0= ruleVariable ) ) ( (lv_states_6_0= ruleState ) ) (otherlv_7= ',' ( (lv_states_8_0= ruleState ) ) )* ) )
+            // InternalGreenhouse.g:581:2: (otherlv_0= 'global' otherlv_1= 'sensor' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= 'has' otherlv_4= 'value' ( (lv_variable_5_0= ruleVariable ) ) ( (lv_states_6_0= ruleState ) ) (otherlv_7= ',' ( (lv_states_8_0= ruleState ) ) )* )
             {
-            // InternalGreenhouse.g:572:2: (otherlv_0= 'global' otherlv_1= 'sensor' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= 'has' otherlv_4= 'value' ( (lv_variable_5_0= ruleVariable ) ) ( (lv_states_6_0= ruleState ) ) (otherlv_7= ',' ( (lv_states_8_0= ruleState ) ) )* )
-            // InternalGreenhouse.g:573:3: otherlv_0= 'global' otherlv_1= 'sensor' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= 'has' otherlv_4= 'value' ( (lv_variable_5_0= ruleVariable ) ) ( (lv_states_6_0= ruleState ) ) (otherlv_7= ',' ( (lv_states_8_0= ruleState ) ) )*
+            // InternalGreenhouse.g:581:2: (otherlv_0= 'global' otherlv_1= 'sensor' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= 'has' otherlv_4= 'value' ( (lv_variable_5_0= ruleVariable ) ) ( (lv_states_6_0= ruleState ) ) (otherlv_7= ',' ( (lv_states_8_0= ruleState ) ) )* )
+            // InternalGreenhouse.g:582:3: otherlv_0= 'global' otherlv_1= 'sensor' ( (lv_name_2_0= RULE_ID ) ) otherlv_3= 'has' otherlv_4= 'value' ( (lv_variable_5_0= ruleVariable ) ) ( (lv_states_6_0= ruleState ) ) (otherlv_7= ',' ( (lv_states_8_0= ruleState ) ) )*
             {
             otherlv_0=(Token)match(input,17,FOLLOW_14); 
 
@@ -1467,11 +1497,11 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_1, grammarAccess.getGreenhouseSensorAccess().getSensorKeyword_1());
             		
-            // InternalGreenhouse.g:581:3: ( (lv_name_2_0= RULE_ID ) )
-            // InternalGreenhouse.g:582:4: (lv_name_2_0= RULE_ID )
+            // InternalGreenhouse.g:590:3: ( (lv_name_2_0= RULE_ID ) )
+            // InternalGreenhouse.g:591:4: (lv_name_2_0= RULE_ID )
             {
-            // InternalGreenhouse.g:582:4: (lv_name_2_0= RULE_ID )
-            // InternalGreenhouse.g:583:5: lv_name_2_0= RULE_ID
+            // InternalGreenhouse.g:591:4: (lv_name_2_0= RULE_ID )
+            // InternalGreenhouse.g:592:5: lv_name_2_0= RULE_ID
             {
             lv_name_2_0=(Token)match(input,RULE_ID,FOLLOW_15); 
 
@@ -1501,11 +1531,11 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_4, grammarAccess.getGreenhouseSensorAccess().getValueKeyword_4());
             		
-            // InternalGreenhouse.g:607:3: ( (lv_variable_5_0= ruleVariable ) )
-            // InternalGreenhouse.g:608:4: (lv_variable_5_0= ruleVariable )
+            // InternalGreenhouse.g:616:3: ( (lv_variable_5_0= ruleVariable ) )
+            // InternalGreenhouse.g:617:4: (lv_variable_5_0= ruleVariable )
             {
-            // InternalGreenhouse.g:608:4: (lv_variable_5_0= ruleVariable )
-            // InternalGreenhouse.g:609:5: lv_variable_5_0= ruleVariable
+            // InternalGreenhouse.g:617:4: (lv_variable_5_0= ruleVariable )
+            // InternalGreenhouse.g:618:5: lv_variable_5_0= ruleVariable
             {
 
             					newCompositeNode(grammarAccess.getGreenhouseSensorAccess().getVariableVariableParserRuleCall_5_0());
@@ -1532,11 +1562,11 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalGreenhouse.g:626:3: ( (lv_states_6_0= ruleState ) )
-            // InternalGreenhouse.g:627:4: (lv_states_6_0= ruleState )
+            // InternalGreenhouse.g:635:3: ( (lv_states_6_0= ruleState ) )
+            // InternalGreenhouse.g:636:4: (lv_states_6_0= ruleState )
             {
-            // InternalGreenhouse.g:627:4: (lv_states_6_0= ruleState )
-            // InternalGreenhouse.g:628:5: lv_states_6_0= ruleState
+            // InternalGreenhouse.g:636:4: (lv_states_6_0= ruleState )
+            // InternalGreenhouse.g:637:5: lv_states_6_0= ruleState
             {
 
             					newCompositeNode(grammarAccess.getGreenhouseSensorAccess().getStatesStateParserRuleCall_6_0());
@@ -1563,7 +1593,7 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalGreenhouse.g:645:3: (otherlv_7= ',' ( (lv_states_8_0= ruleState ) ) )*
+            // InternalGreenhouse.g:654:3: (otherlv_7= ',' ( (lv_states_8_0= ruleState ) ) )*
             loop11:
             do {
                 int alt11=2;
@@ -1576,17 +1606,17 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
                 switch (alt11) {
             	case 1 :
-            	    // InternalGreenhouse.g:646:4: otherlv_7= ',' ( (lv_states_8_0= ruleState ) )
+            	    // InternalGreenhouse.g:655:4: otherlv_7= ',' ( (lv_states_8_0= ruleState ) )
             	    {
             	    otherlv_7=(Token)match(input,20,FOLLOW_3); 
 
             	    				newLeafNode(otherlv_7, grammarAccess.getGreenhouseSensorAccess().getCommaKeyword_7_0());
             	    			
-            	    // InternalGreenhouse.g:650:4: ( (lv_states_8_0= ruleState ) )
-            	    // InternalGreenhouse.g:651:5: (lv_states_8_0= ruleState )
+            	    // InternalGreenhouse.g:659:4: ( (lv_states_8_0= ruleState ) )
+            	    // InternalGreenhouse.g:660:5: (lv_states_8_0= ruleState )
             	    {
-            	    // InternalGreenhouse.g:651:5: (lv_states_8_0= ruleState )
-            	    // InternalGreenhouse.g:652:6: lv_states_8_0= ruleState
+            	    // InternalGreenhouse.g:660:5: (lv_states_8_0= ruleState )
+            	    // InternalGreenhouse.g:661:6: lv_states_8_0= ruleState
             	    {
 
             	    						newCompositeNode(grammarAccess.getGreenhouseSensorAccess().getStatesStateParserRuleCall_7_1_0());
@@ -1645,7 +1675,7 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleSensor"
-    // InternalGreenhouse.g:674:1: entryRuleSensor returns [EObject current=null] : iv_ruleSensor= ruleSensor EOF ;
+    // InternalGreenhouse.g:683:1: entryRuleSensor returns [EObject current=null] : iv_ruleSensor= ruleSensor EOF ;
     public final EObject entryRuleSensor() throws RecognitionException {
         EObject current = null;
 
@@ -1653,8 +1683,8 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalGreenhouse.g:674:47: (iv_ruleSensor= ruleSensor EOF )
-            // InternalGreenhouse.g:675:2: iv_ruleSensor= ruleSensor EOF
+            // InternalGreenhouse.g:683:47: (iv_ruleSensor= ruleSensor EOF )
+            // InternalGreenhouse.g:684:2: iv_ruleSensor= ruleSensor EOF
             {
              newCompositeNode(grammarAccess.getSensorRule()); 
             pushFollow(FOLLOW_1);
@@ -1681,7 +1711,7 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleSensor"
-    // InternalGreenhouse.g:681:1: ruleSensor returns [EObject current=null] : (otherlv_0= 'sensor' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'has' ( (lv_variable_3_0= ruleVariable ) ) otherlv_4= 'and' otherlv_5= 'states' ( (lv_states_6_0= ruleState ) ) (otherlv_7= ',' ( (lv_states_8_0= ruleState ) ) )* ) ;
+    // InternalGreenhouse.g:690:1: ruleSensor returns [EObject current=null] : (otherlv_0= 'sensor' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'has' ( (lv_variable_3_0= ruleVariable ) ) otherlv_4= 'and' otherlv_5= 'states' ( (lv_states_6_0= ruleState ) ) (otherlv_7= ',' ( (lv_states_8_0= ruleState ) ) )* ) ;
     public final EObject ruleSensor() throws RecognitionException {
         EObject current = null;
 
@@ -1702,21 +1732,21 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalGreenhouse.g:687:2: ( (otherlv_0= 'sensor' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'has' ( (lv_variable_3_0= ruleVariable ) ) otherlv_4= 'and' otherlv_5= 'states' ( (lv_states_6_0= ruleState ) ) (otherlv_7= ',' ( (lv_states_8_0= ruleState ) ) )* ) )
-            // InternalGreenhouse.g:688:2: (otherlv_0= 'sensor' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'has' ( (lv_variable_3_0= ruleVariable ) ) otherlv_4= 'and' otherlv_5= 'states' ( (lv_states_6_0= ruleState ) ) (otherlv_7= ',' ( (lv_states_8_0= ruleState ) ) )* )
+            // InternalGreenhouse.g:696:2: ( (otherlv_0= 'sensor' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'has' ( (lv_variable_3_0= ruleVariable ) ) otherlv_4= 'and' otherlv_5= 'states' ( (lv_states_6_0= ruleState ) ) (otherlv_7= ',' ( (lv_states_8_0= ruleState ) ) )* ) )
+            // InternalGreenhouse.g:697:2: (otherlv_0= 'sensor' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'has' ( (lv_variable_3_0= ruleVariable ) ) otherlv_4= 'and' otherlv_5= 'states' ( (lv_states_6_0= ruleState ) ) (otherlv_7= ',' ( (lv_states_8_0= ruleState ) ) )* )
             {
-            // InternalGreenhouse.g:688:2: (otherlv_0= 'sensor' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'has' ( (lv_variable_3_0= ruleVariable ) ) otherlv_4= 'and' otherlv_5= 'states' ( (lv_states_6_0= ruleState ) ) (otherlv_7= ',' ( (lv_states_8_0= ruleState ) ) )* )
-            // InternalGreenhouse.g:689:3: otherlv_0= 'sensor' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'has' ( (lv_variable_3_0= ruleVariable ) ) otherlv_4= 'and' otherlv_5= 'states' ( (lv_states_6_0= ruleState ) ) (otherlv_7= ',' ( (lv_states_8_0= ruleState ) ) )*
+            // InternalGreenhouse.g:697:2: (otherlv_0= 'sensor' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'has' ( (lv_variable_3_0= ruleVariable ) ) otherlv_4= 'and' otherlv_5= 'states' ( (lv_states_6_0= ruleState ) ) (otherlv_7= ',' ( (lv_states_8_0= ruleState ) ) )* )
+            // InternalGreenhouse.g:698:3: otherlv_0= 'sensor' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'has' ( (lv_variable_3_0= ruleVariable ) ) otherlv_4= 'and' otherlv_5= 'states' ( (lv_states_6_0= ruleState ) ) (otherlv_7= ',' ( (lv_states_8_0= ruleState ) ) )*
             {
             otherlv_0=(Token)match(input,21,FOLLOW_3); 
 
             			newLeafNode(otherlv_0, grammarAccess.getSensorAccess().getSensorKeyword_0());
             		
-            // InternalGreenhouse.g:693:3: ( (lv_name_1_0= RULE_ID ) )
-            // InternalGreenhouse.g:694:4: (lv_name_1_0= RULE_ID )
+            // InternalGreenhouse.g:702:3: ( (lv_name_1_0= RULE_ID ) )
+            // InternalGreenhouse.g:703:4: (lv_name_1_0= RULE_ID )
             {
-            // InternalGreenhouse.g:694:4: (lv_name_1_0= RULE_ID )
-            // InternalGreenhouse.g:695:5: lv_name_1_0= RULE_ID
+            // InternalGreenhouse.g:703:4: (lv_name_1_0= RULE_ID )
+            // InternalGreenhouse.g:704:5: lv_name_1_0= RULE_ID
             {
             lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_15); 
 
@@ -1742,11 +1772,11 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_2, grammarAccess.getSensorAccess().getHasKeyword_2());
             		
-            // InternalGreenhouse.g:715:3: ( (lv_variable_3_0= ruleVariable ) )
-            // InternalGreenhouse.g:716:4: (lv_variable_3_0= ruleVariable )
+            // InternalGreenhouse.g:724:3: ( (lv_variable_3_0= ruleVariable ) )
+            // InternalGreenhouse.g:725:4: (lv_variable_3_0= ruleVariable )
             {
-            // InternalGreenhouse.g:716:4: (lv_variable_3_0= ruleVariable )
-            // InternalGreenhouse.g:717:5: lv_variable_3_0= ruleVariable
+            // InternalGreenhouse.g:725:4: (lv_variable_3_0= ruleVariable )
+            // InternalGreenhouse.g:726:5: lv_variable_3_0= ruleVariable
             {
 
             					newCompositeNode(grammarAccess.getSensorAccess().getVariableVariableParserRuleCall_3_0());
@@ -1781,11 +1811,11 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_5, grammarAccess.getSensorAccess().getStatesKeyword_5());
             		
-            // InternalGreenhouse.g:742:3: ( (lv_states_6_0= ruleState ) )
-            // InternalGreenhouse.g:743:4: (lv_states_6_0= ruleState )
+            // InternalGreenhouse.g:751:3: ( (lv_states_6_0= ruleState ) )
+            // InternalGreenhouse.g:752:4: (lv_states_6_0= ruleState )
             {
-            // InternalGreenhouse.g:743:4: (lv_states_6_0= ruleState )
-            // InternalGreenhouse.g:744:5: lv_states_6_0= ruleState
+            // InternalGreenhouse.g:752:4: (lv_states_6_0= ruleState )
+            // InternalGreenhouse.g:753:5: lv_states_6_0= ruleState
             {
 
             					newCompositeNode(grammarAccess.getSensorAccess().getStatesStateParserRuleCall_6_0());
@@ -1812,7 +1842,7 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalGreenhouse.g:761:3: (otherlv_7= ',' ( (lv_states_8_0= ruleState ) ) )*
+            // InternalGreenhouse.g:770:3: (otherlv_7= ',' ( (lv_states_8_0= ruleState ) ) )*
             loop12:
             do {
                 int alt12=2;
@@ -1825,17 +1855,17 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
                 switch (alt12) {
             	case 1 :
-            	    // InternalGreenhouse.g:762:4: otherlv_7= ',' ( (lv_states_8_0= ruleState ) )
+            	    // InternalGreenhouse.g:771:4: otherlv_7= ',' ( (lv_states_8_0= ruleState ) )
             	    {
             	    otherlv_7=(Token)match(input,20,FOLLOW_3); 
 
             	    				newLeafNode(otherlv_7, grammarAccess.getSensorAccess().getCommaKeyword_7_0());
             	    			
-            	    // InternalGreenhouse.g:766:4: ( (lv_states_8_0= ruleState ) )
-            	    // InternalGreenhouse.g:767:5: (lv_states_8_0= ruleState )
+            	    // InternalGreenhouse.g:775:4: ( (lv_states_8_0= ruleState ) )
+            	    // InternalGreenhouse.g:776:5: (lv_states_8_0= ruleState )
             	    {
-            	    // InternalGreenhouse.g:767:5: (lv_states_8_0= ruleState )
-            	    // InternalGreenhouse.g:768:6: lv_states_8_0= ruleState
+            	    // InternalGreenhouse.g:776:5: (lv_states_8_0= ruleState )
+            	    // InternalGreenhouse.g:777:6: lv_states_8_0= ruleState
             	    {
 
             	    						newCompositeNode(grammarAccess.getSensorAccess().getStatesStateParserRuleCall_7_1_0());
@@ -1894,7 +1924,7 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleState"
-    // InternalGreenhouse.g:790:1: entryRuleState returns [EObject current=null] : iv_ruleState= ruleState EOF ;
+    // InternalGreenhouse.g:799:1: entryRuleState returns [EObject current=null] : iv_ruleState= ruleState EOF ;
     public final EObject entryRuleState() throws RecognitionException {
         EObject current = null;
 
@@ -1902,8 +1932,8 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalGreenhouse.g:790:46: (iv_ruleState= ruleState EOF )
-            // InternalGreenhouse.g:791:2: iv_ruleState= ruleState EOF
+            // InternalGreenhouse.g:799:46: (iv_ruleState= ruleState EOF )
+            // InternalGreenhouse.g:800:2: iv_ruleState= ruleState EOF
             {
              newCompositeNode(grammarAccess.getStateRule()); 
             pushFollow(FOLLOW_1);
@@ -1930,7 +1960,7 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleState"
-    // InternalGreenhouse.g:797:1: ruleState returns [EObject current=null] : ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'when' ( (otherlv_2= RULE_ID ) ) ( ( (lv_op_3_1= '<' | lv_op_3_2= '>' | lv_op_3_3= '=' ) ) ) ( (lv_threshold_4_0= RULE_INT ) ) ) ;
+    // InternalGreenhouse.g:806:1: ruleState returns [EObject current=null] : ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'when' ( (otherlv_2= RULE_ID ) ) ( ( (lv_op_3_1= '<' | lv_op_3_2= '>' | lv_op_3_3= '=' ) ) ) ( (lv_threshold_4_0= RULE_INT ) ) ) ;
     public final EObject ruleState() throws RecognitionException {
         EObject current = null;
 
@@ -1946,17 +1976,17 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalGreenhouse.g:803:2: ( ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'when' ( (otherlv_2= RULE_ID ) ) ( ( (lv_op_3_1= '<' | lv_op_3_2= '>' | lv_op_3_3= '=' ) ) ) ( (lv_threshold_4_0= RULE_INT ) ) ) )
-            // InternalGreenhouse.g:804:2: ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'when' ( (otherlv_2= RULE_ID ) ) ( ( (lv_op_3_1= '<' | lv_op_3_2= '>' | lv_op_3_3= '=' ) ) ) ( (lv_threshold_4_0= RULE_INT ) ) )
+            // InternalGreenhouse.g:812:2: ( ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'when' ( (otherlv_2= RULE_ID ) ) ( ( (lv_op_3_1= '<' | lv_op_3_2= '>' | lv_op_3_3= '=' ) ) ) ( (lv_threshold_4_0= RULE_INT ) ) ) )
+            // InternalGreenhouse.g:813:2: ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'when' ( (otherlv_2= RULE_ID ) ) ( ( (lv_op_3_1= '<' | lv_op_3_2= '>' | lv_op_3_3= '=' ) ) ) ( (lv_threshold_4_0= RULE_INT ) ) )
             {
-            // InternalGreenhouse.g:804:2: ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'when' ( (otherlv_2= RULE_ID ) ) ( ( (lv_op_3_1= '<' | lv_op_3_2= '>' | lv_op_3_3= '=' ) ) ) ( (lv_threshold_4_0= RULE_INT ) ) )
-            // InternalGreenhouse.g:805:3: ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'when' ( (otherlv_2= RULE_ID ) ) ( ( (lv_op_3_1= '<' | lv_op_3_2= '>' | lv_op_3_3= '=' ) ) ) ( (lv_threshold_4_0= RULE_INT ) )
+            // InternalGreenhouse.g:813:2: ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'when' ( (otherlv_2= RULE_ID ) ) ( ( (lv_op_3_1= '<' | lv_op_3_2= '>' | lv_op_3_3= '=' ) ) ) ( (lv_threshold_4_0= RULE_INT ) ) )
+            // InternalGreenhouse.g:814:3: ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'when' ( (otherlv_2= RULE_ID ) ) ( ( (lv_op_3_1= '<' | lv_op_3_2= '>' | lv_op_3_3= '=' ) ) ) ( (lv_threshold_4_0= RULE_INT ) )
             {
-            // InternalGreenhouse.g:805:3: ( (lv_name_0_0= RULE_ID ) )
-            // InternalGreenhouse.g:806:4: (lv_name_0_0= RULE_ID )
+            // InternalGreenhouse.g:814:3: ( (lv_name_0_0= RULE_ID ) )
+            // InternalGreenhouse.g:815:4: (lv_name_0_0= RULE_ID )
             {
-            // InternalGreenhouse.g:806:4: (lv_name_0_0= RULE_ID )
-            // InternalGreenhouse.g:807:5: lv_name_0_0= RULE_ID
+            // InternalGreenhouse.g:815:4: (lv_name_0_0= RULE_ID )
+            // InternalGreenhouse.g:816:5: lv_name_0_0= RULE_ID
             {
             lv_name_0_0=(Token)match(input,RULE_ID,FOLLOW_20); 
 
@@ -1982,11 +2012,11 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_1, grammarAccess.getStateAccess().getWhenKeyword_1());
             		
-            // InternalGreenhouse.g:827:3: ( (otherlv_2= RULE_ID ) )
-            // InternalGreenhouse.g:828:4: (otherlv_2= RULE_ID )
+            // InternalGreenhouse.g:836:3: ( (otherlv_2= RULE_ID ) )
+            // InternalGreenhouse.g:837:4: (otherlv_2= RULE_ID )
             {
-            // InternalGreenhouse.g:828:4: (otherlv_2= RULE_ID )
-            // InternalGreenhouse.g:829:5: otherlv_2= RULE_ID
+            // InternalGreenhouse.g:837:4: (otherlv_2= RULE_ID )
+            // InternalGreenhouse.g:838:5: otherlv_2= RULE_ID
             {
 
             					if (current==null) {
@@ -2003,13 +2033,13 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalGreenhouse.g:840:3: ( ( (lv_op_3_1= '<' | lv_op_3_2= '>' | lv_op_3_3= '=' ) ) )
-            // InternalGreenhouse.g:841:4: ( (lv_op_3_1= '<' | lv_op_3_2= '>' | lv_op_3_3= '=' ) )
+            // InternalGreenhouse.g:849:3: ( ( (lv_op_3_1= '<' | lv_op_3_2= '>' | lv_op_3_3= '=' ) ) )
+            // InternalGreenhouse.g:850:4: ( (lv_op_3_1= '<' | lv_op_3_2= '>' | lv_op_3_3= '=' ) )
             {
-            // InternalGreenhouse.g:841:4: ( (lv_op_3_1= '<' | lv_op_3_2= '>' | lv_op_3_3= '=' ) )
-            // InternalGreenhouse.g:842:5: (lv_op_3_1= '<' | lv_op_3_2= '>' | lv_op_3_3= '=' )
+            // InternalGreenhouse.g:850:4: ( (lv_op_3_1= '<' | lv_op_3_2= '>' | lv_op_3_3= '=' ) )
+            // InternalGreenhouse.g:851:5: (lv_op_3_1= '<' | lv_op_3_2= '>' | lv_op_3_3= '=' )
             {
-            // InternalGreenhouse.g:842:5: (lv_op_3_1= '<' | lv_op_3_2= '>' | lv_op_3_3= '=' )
+            // InternalGreenhouse.g:851:5: (lv_op_3_1= '<' | lv_op_3_2= '>' | lv_op_3_3= '=' )
             int alt13=3;
             switch ( input.LA(1) ) {
             case 27:
@@ -2036,7 +2066,7 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
             switch (alt13) {
                 case 1 :
-                    // InternalGreenhouse.g:843:6: lv_op_3_1= '<'
+                    // InternalGreenhouse.g:852:6: lv_op_3_1= '<'
                     {
                     lv_op_3_1=(Token)match(input,27,FOLLOW_22); 
 
@@ -2052,7 +2082,7 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalGreenhouse.g:854:6: lv_op_3_2= '>'
+                    // InternalGreenhouse.g:863:6: lv_op_3_2= '>'
                     {
                     lv_op_3_2=(Token)match(input,28,FOLLOW_22); 
 
@@ -2068,7 +2098,7 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalGreenhouse.g:865:6: lv_op_3_3= '='
+                    // InternalGreenhouse.g:874:6: lv_op_3_3= '='
                     {
                     lv_op_3_3=(Token)match(input,29,FOLLOW_22); 
 
@@ -2092,11 +2122,11 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalGreenhouse.g:878:3: ( (lv_threshold_4_0= RULE_INT ) )
-            // InternalGreenhouse.g:879:4: (lv_threshold_4_0= RULE_INT )
+            // InternalGreenhouse.g:887:3: ( (lv_threshold_4_0= RULE_INT ) )
+            // InternalGreenhouse.g:888:4: (lv_threshold_4_0= RULE_INT )
             {
-            // InternalGreenhouse.g:879:4: (lv_threshold_4_0= RULE_INT )
-            // InternalGreenhouse.g:880:5: lv_threshold_4_0= RULE_INT
+            // InternalGreenhouse.g:888:4: (lv_threshold_4_0= RULE_INT )
+            // InternalGreenhouse.g:889:5: lv_threshold_4_0= RULE_INT
             {
             lv_threshold_4_0=(Token)match(input,RULE_INT,FOLLOW_2); 
 
@@ -2141,7 +2171,7 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleVariable"
-    // InternalGreenhouse.g:900:1: entryRuleVariable returns [EObject current=null] : iv_ruleVariable= ruleVariable EOF ;
+    // InternalGreenhouse.g:909:1: entryRuleVariable returns [EObject current=null] : iv_ruleVariable= ruleVariable EOF ;
     public final EObject entryRuleVariable() throws RecognitionException {
         EObject current = null;
 
@@ -2149,8 +2179,8 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalGreenhouse.g:900:49: (iv_ruleVariable= ruleVariable EOF )
-            // InternalGreenhouse.g:901:2: iv_ruleVariable= ruleVariable EOF
+            // InternalGreenhouse.g:909:49: (iv_ruleVariable= ruleVariable EOF )
+            // InternalGreenhouse.g:910:2: iv_ruleVariable= ruleVariable EOF
             {
              newCompositeNode(grammarAccess.getVariableRule()); 
             pushFollow(FOLLOW_1);
@@ -2177,7 +2207,7 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleVariable"
-    // InternalGreenhouse.g:907:1: ruleVariable returns [EObject current=null] : (otherlv_0= 'variable' ( (lv_name_1_0= RULE_ID ) ) ) ;
+    // InternalGreenhouse.g:916:1: ruleVariable returns [EObject current=null] : (otherlv_0= 'variable' ( (lv_name_1_0= RULE_ID ) ) ) ;
     public final EObject ruleVariable() throws RecognitionException {
         EObject current = null;
 
@@ -2188,21 +2218,21 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalGreenhouse.g:913:2: ( (otherlv_0= 'variable' ( (lv_name_1_0= RULE_ID ) ) ) )
-            // InternalGreenhouse.g:914:2: (otherlv_0= 'variable' ( (lv_name_1_0= RULE_ID ) ) )
+            // InternalGreenhouse.g:922:2: ( (otherlv_0= 'variable' ( (lv_name_1_0= RULE_ID ) ) ) )
+            // InternalGreenhouse.g:923:2: (otherlv_0= 'variable' ( (lv_name_1_0= RULE_ID ) ) )
             {
-            // InternalGreenhouse.g:914:2: (otherlv_0= 'variable' ( (lv_name_1_0= RULE_ID ) ) )
-            // InternalGreenhouse.g:915:3: otherlv_0= 'variable' ( (lv_name_1_0= RULE_ID ) )
+            // InternalGreenhouse.g:923:2: (otherlv_0= 'variable' ( (lv_name_1_0= RULE_ID ) ) )
+            // InternalGreenhouse.g:924:3: otherlv_0= 'variable' ( (lv_name_1_0= RULE_ID ) )
             {
             otherlv_0=(Token)match(input,30,FOLLOW_3); 
 
             			newLeafNode(otherlv_0, grammarAccess.getVariableAccess().getVariableKeyword_0());
             		
-            // InternalGreenhouse.g:919:3: ( (lv_name_1_0= RULE_ID ) )
-            // InternalGreenhouse.g:920:4: (lv_name_1_0= RULE_ID )
+            // InternalGreenhouse.g:928:3: ( (lv_name_1_0= RULE_ID ) )
+            // InternalGreenhouse.g:929:4: (lv_name_1_0= RULE_ID )
             {
-            // InternalGreenhouse.g:920:4: (lv_name_1_0= RULE_ID )
-            // InternalGreenhouse.g:921:5: lv_name_1_0= RULE_ID
+            // InternalGreenhouse.g:929:4: (lv_name_1_0= RULE_ID )
+            // InternalGreenhouse.g:930:5: lv_name_1_0= RULE_ID
             {
             lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_2); 
 
@@ -2247,7 +2277,7 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleAction"
-    // InternalGreenhouse.g:941:1: entryRuleAction returns [EObject current=null] : iv_ruleAction= ruleAction EOF ;
+    // InternalGreenhouse.g:950:1: entryRuleAction returns [EObject current=null] : iv_ruleAction= ruleAction EOF ;
     public final EObject entryRuleAction() throws RecognitionException {
         EObject current = null;
 
@@ -2255,8 +2285,8 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalGreenhouse.g:941:47: (iv_ruleAction= ruleAction EOF )
-            // InternalGreenhouse.g:942:2: iv_ruleAction= ruleAction EOF
+            // InternalGreenhouse.g:950:47: (iv_ruleAction= ruleAction EOF )
+            // InternalGreenhouse.g:951:2: iv_ruleAction= ruleAction EOF
             {
              newCompositeNode(grammarAccess.getActionRule()); 
             pushFollow(FOLLOW_1);
@@ -2283,7 +2313,7 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleAction"
-    // InternalGreenhouse.g:948:1: ruleAction returns [EObject current=null] : ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'when' otherlv_2= 'receiving' ( (lv_trigger_3_0= ruleTrigger ) ) otherlv_4= 'by' otherlv_5= 'setting' ( (lv_setting_6_0= ruleSetting ) ) otherlv_7= 'to' ( (lv_value_8_0= ruleValue ) ) ) ;
+    // InternalGreenhouse.g:957:1: ruleAction returns [EObject current=null] : ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'when' otherlv_2= 'receiving' ( (lv_trigger_3_0= ruleTrigger ) ) otherlv_4= 'by' otherlv_5= 'setting' ( (lv_setting_6_0= ruleSetting ) ) otherlv_7= 'to' ( (lv_value_8_0= ruleValue ) ) ) ;
     public final EObject ruleAction() throws RecognitionException {
         EObject current = null;
 
@@ -2304,17 +2334,17 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalGreenhouse.g:954:2: ( ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'when' otherlv_2= 'receiving' ( (lv_trigger_3_0= ruleTrigger ) ) otherlv_4= 'by' otherlv_5= 'setting' ( (lv_setting_6_0= ruleSetting ) ) otherlv_7= 'to' ( (lv_value_8_0= ruleValue ) ) ) )
-            // InternalGreenhouse.g:955:2: ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'when' otherlv_2= 'receiving' ( (lv_trigger_3_0= ruleTrigger ) ) otherlv_4= 'by' otherlv_5= 'setting' ( (lv_setting_6_0= ruleSetting ) ) otherlv_7= 'to' ( (lv_value_8_0= ruleValue ) ) )
+            // InternalGreenhouse.g:963:2: ( ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'when' otherlv_2= 'receiving' ( (lv_trigger_3_0= ruleTrigger ) ) otherlv_4= 'by' otherlv_5= 'setting' ( (lv_setting_6_0= ruleSetting ) ) otherlv_7= 'to' ( (lv_value_8_0= ruleValue ) ) ) )
+            // InternalGreenhouse.g:964:2: ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'when' otherlv_2= 'receiving' ( (lv_trigger_3_0= ruleTrigger ) ) otherlv_4= 'by' otherlv_5= 'setting' ( (lv_setting_6_0= ruleSetting ) ) otherlv_7= 'to' ( (lv_value_8_0= ruleValue ) ) )
             {
-            // InternalGreenhouse.g:955:2: ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'when' otherlv_2= 'receiving' ( (lv_trigger_3_0= ruleTrigger ) ) otherlv_4= 'by' otherlv_5= 'setting' ( (lv_setting_6_0= ruleSetting ) ) otherlv_7= 'to' ( (lv_value_8_0= ruleValue ) ) )
-            // InternalGreenhouse.g:956:3: ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'when' otherlv_2= 'receiving' ( (lv_trigger_3_0= ruleTrigger ) ) otherlv_4= 'by' otherlv_5= 'setting' ( (lv_setting_6_0= ruleSetting ) ) otherlv_7= 'to' ( (lv_value_8_0= ruleValue ) )
+            // InternalGreenhouse.g:964:2: ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'when' otherlv_2= 'receiving' ( (lv_trigger_3_0= ruleTrigger ) ) otherlv_4= 'by' otherlv_5= 'setting' ( (lv_setting_6_0= ruleSetting ) ) otherlv_7= 'to' ( (lv_value_8_0= ruleValue ) ) )
+            // InternalGreenhouse.g:965:3: ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'when' otherlv_2= 'receiving' ( (lv_trigger_3_0= ruleTrigger ) ) otherlv_4= 'by' otherlv_5= 'setting' ( (lv_setting_6_0= ruleSetting ) ) otherlv_7= 'to' ( (lv_value_8_0= ruleValue ) )
             {
-            // InternalGreenhouse.g:956:3: ( (lv_name_0_0= RULE_ID ) )
-            // InternalGreenhouse.g:957:4: (lv_name_0_0= RULE_ID )
+            // InternalGreenhouse.g:965:3: ( (lv_name_0_0= RULE_ID ) )
+            // InternalGreenhouse.g:966:4: (lv_name_0_0= RULE_ID )
             {
-            // InternalGreenhouse.g:957:4: (lv_name_0_0= RULE_ID )
-            // InternalGreenhouse.g:958:5: lv_name_0_0= RULE_ID
+            // InternalGreenhouse.g:966:4: (lv_name_0_0= RULE_ID )
+            // InternalGreenhouse.g:967:5: lv_name_0_0= RULE_ID
             {
             lv_name_0_0=(Token)match(input,RULE_ID,FOLLOW_20); 
 
@@ -2344,11 +2374,11 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_2, grammarAccess.getActionAccess().getReceivingKeyword_2());
             		
-            // InternalGreenhouse.g:982:3: ( (lv_trigger_3_0= ruleTrigger ) )
-            // InternalGreenhouse.g:983:4: (lv_trigger_3_0= ruleTrigger )
+            // InternalGreenhouse.g:991:3: ( (lv_trigger_3_0= ruleTrigger ) )
+            // InternalGreenhouse.g:992:4: (lv_trigger_3_0= ruleTrigger )
             {
-            // InternalGreenhouse.g:983:4: (lv_trigger_3_0= ruleTrigger )
-            // InternalGreenhouse.g:984:5: lv_trigger_3_0= ruleTrigger
+            // InternalGreenhouse.g:992:4: (lv_trigger_3_0= ruleTrigger )
+            // InternalGreenhouse.g:993:5: lv_trigger_3_0= ruleTrigger
             {
 
             					newCompositeNode(grammarAccess.getActionAccess().getTriggerTriggerParserRuleCall_3_0());
@@ -2383,11 +2413,11 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_5, grammarAccess.getActionAccess().getSettingKeyword_5());
             		
-            // InternalGreenhouse.g:1009:3: ( (lv_setting_6_0= ruleSetting ) )
-            // InternalGreenhouse.g:1010:4: (lv_setting_6_0= ruleSetting )
+            // InternalGreenhouse.g:1018:3: ( (lv_setting_6_0= ruleSetting ) )
+            // InternalGreenhouse.g:1019:4: (lv_setting_6_0= ruleSetting )
             {
-            // InternalGreenhouse.g:1010:4: (lv_setting_6_0= ruleSetting )
-            // InternalGreenhouse.g:1011:5: lv_setting_6_0= ruleSetting
+            // InternalGreenhouse.g:1019:4: (lv_setting_6_0= ruleSetting )
+            // InternalGreenhouse.g:1020:5: lv_setting_6_0= ruleSetting
             {
 
             					newCompositeNode(grammarAccess.getActionAccess().getSettingSettingParserRuleCall_6_0());
@@ -2418,11 +2448,11 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_7, grammarAccess.getActionAccess().getToKeyword_7());
             		
-            // InternalGreenhouse.g:1032:3: ( (lv_value_8_0= ruleValue ) )
-            // InternalGreenhouse.g:1033:4: (lv_value_8_0= ruleValue )
+            // InternalGreenhouse.g:1041:3: ( (lv_value_8_0= ruleValue ) )
+            // InternalGreenhouse.g:1042:4: (lv_value_8_0= ruleValue )
             {
-            // InternalGreenhouse.g:1033:4: (lv_value_8_0= ruleValue )
-            // InternalGreenhouse.g:1034:5: lv_value_8_0= ruleValue
+            // InternalGreenhouse.g:1042:4: (lv_value_8_0= ruleValue )
+            // InternalGreenhouse.g:1043:5: lv_value_8_0= ruleValue
             {
 
             					newCompositeNode(grammarAccess.getActionAccess().getValueValueParserRuleCall_8_0());
@@ -2472,7 +2502,7 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleTrigger"
-    // InternalGreenhouse.g:1055:1: entryRuleTrigger returns [EObject current=null] : iv_ruleTrigger= ruleTrigger EOF ;
+    // InternalGreenhouse.g:1064:1: entryRuleTrigger returns [EObject current=null] : iv_ruleTrigger= ruleTrigger EOF ;
     public final EObject entryRuleTrigger() throws RecognitionException {
         EObject current = null;
 
@@ -2480,8 +2510,8 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalGreenhouse.g:1055:48: (iv_ruleTrigger= ruleTrigger EOF )
-            // InternalGreenhouse.g:1056:2: iv_ruleTrigger= ruleTrigger EOF
+            // InternalGreenhouse.g:1064:48: (iv_ruleTrigger= ruleTrigger EOF )
+            // InternalGreenhouse.g:1065:2: iv_ruleTrigger= ruleTrigger EOF
             {
              newCompositeNode(grammarAccess.getTriggerRule()); 
             pushFollow(FOLLOW_1);
@@ -2508,7 +2538,7 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleTrigger"
-    // InternalGreenhouse.g:1062:1: ruleTrigger returns [EObject current=null] : ( () ( (lv_name_1_0= RULE_ID ) ) ) ;
+    // InternalGreenhouse.g:1071:1: ruleTrigger returns [EObject current=null] : ( () ( (lv_name_1_0= RULE_ID ) ) ) ;
     public final EObject ruleTrigger() throws RecognitionException {
         EObject current = null;
 
@@ -2518,14 +2548,14 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalGreenhouse.g:1068:2: ( ( () ( (lv_name_1_0= RULE_ID ) ) ) )
-            // InternalGreenhouse.g:1069:2: ( () ( (lv_name_1_0= RULE_ID ) ) )
+            // InternalGreenhouse.g:1077:2: ( ( () ( (lv_name_1_0= RULE_ID ) ) ) )
+            // InternalGreenhouse.g:1078:2: ( () ( (lv_name_1_0= RULE_ID ) ) )
             {
-            // InternalGreenhouse.g:1069:2: ( () ( (lv_name_1_0= RULE_ID ) ) )
-            // InternalGreenhouse.g:1070:3: () ( (lv_name_1_0= RULE_ID ) )
+            // InternalGreenhouse.g:1078:2: ( () ( (lv_name_1_0= RULE_ID ) ) )
+            // InternalGreenhouse.g:1079:3: () ( (lv_name_1_0= RULE_ID ) )
             {
-            // InternalGreenhouse.g:1070:3: ()
-            // InternalGreenhouse.g:1071:4: 
+            // InternalGreenhouse.g:1079:3: ()
+            // InternalGreenhouse.g:1080:4: 
             {
 
             				current = forceCreateModelElement(
@@ -2535,11 +2565,11 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalGreenhouse.g:1077:3: ( (lv_name_1_0= RULE_ID ) )
-            // InternalGreenhouse.g:1078:4: (lv_name_1_0= RULE_ID )
+            // InternalGreenhouse.g:1086:3: ( (lv_name_1_0= RULE_ID ) )
+            // InternalGreenhouse.g:1087:4: (lv_name_1_0= RULE_ID )
             {
-            // InternalGreenhouse.g:1078:4: (lv_name_1_0= RULE_ID )
-            // InternalGreenhouse.g:1079:5: lv_name_1_0= RULE_ID
+            // InternalGreenhouse.g:1087:4: (lv_name_1_0= RULE_ID )
+            // InternalGreenhouse.g:1088:5: lv_name_1_0= RULE_ID
             {
             lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_2); 
 
@@ -2584,7 +2614,7 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleSetting"
-    // InternalGreenhouse.g:1099:1: entryRuleSetting returns [EObject current=null] : iv_ruleSetting= ruleSetting EOF ;
+    // InternalGreenhouse.g:1108:1: entryRuleSetting returns [EObject current=null] : iv_ruleSetting= ruleSetting EOF ;
     public final EObject entryRuleSetting() throws RecognitionException {
         EObject current = null;
 
@@ -2592,8 +2622,8 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalGreenhouse.g:1099:48: (iv_ruleSetting= ruleSetting EOF )
-            // InternalGreenhouse.g:1100:2: iv_ruleSetting= ruleSetting EOF
+            // InternalGreenhouse.g:1108:48: (iv_ruleSetting= ruleSetting EOF )
+            // InternalGreenhouse.g:1109:2: iv_ruleSetting= ruleSetting EOF
             {
              newCompositeNode(grammarAccess.getSettingRule()); 
             pushFollow(FOLLOW_1);
@@ -2620,7 +2650,7 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleSetting"
-    // InternalGreenhouse.g:1106:1: ruleSetting returns [EObject current=null] : ( () ( (lv_name_1_0= RULE_ID ) ) ) ;
+    // InternalGreenhouse.g:1115:1: ruleSetting returns [EObject current=null] : ( () ( (lv_name_1_0= RULE_ID ) ) ) ;
     public final EObject ruleSetting() throws RecognitionException {
         EObject current = null;
 
@@ -2630,14 +2660,14 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalGreenhouse.g:1112:2: ( ( () ( (lv_name_1_0= RULE_ID ) ) ) )
-            // InternalGreenhouse.g:1113:2: ( () ( (lv_name_1_0= RULE_ID ) ) )
+            // InternalGreenhouse.g:1121:2: ( ( () ( (lv_name_1_0= RULE_ID ) ) ) )
+            // InternalGreenhouse.g:1122:2: ( () ( (lv_name_1_0= RULE_ID ) ) )
             {
-            // InternalGreenhouse.g:1113:2: ( () ( (lv_name_1_0= RULE_ID ) ) )
-            // InternalGreenhouse.g:1114:3: () ( (lv_name_1_0= RULE_ID ) )
+            // InternalGreenhouse.g:1122:2: ( () ( (lv_name_1_0= RULE_ID ) ) )
+            // InternalGreenhouse.g:1123:3: () ( (lv_name_1_0= RULE_ID ) )
             {
-            // InternalGreenhouse.g:1114:3: ()
-            // InternalGreenhouse.g:1115:4: 
+            // InternalGreenhouse.g:1123:3: ()
+            // InternalGreenhouse.g:1124:4: 
             {
 
             				current = forceCreateModelElement(
@@ -2647,11 +2677,11 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalGreenhouse.g:1121:3: ( (lv_name_1_0= RULE_ID ) )
-            // InternalGreenhouse.g:1122:4: (lv_name_1_0= RULE_ID )
+            // InternalGreenhouse.g:1130:3: ( (lv_name_1_0= RULE_ID ) )
+            // InternalGreenhouse.g:1131:4: (lv_name_1_0= RULE_ID )
             {
-            // InternalGreenhouse.g:1122:4: (lv_name_1_0= RULE_ID )
-            // InternalGreenhouse.g:1123:5: lv_name_1_0= RULE_ID
+            // InternalGreenhouse.g:1131:4: (lv_name_1_0= RULE_ID )
+            // InternalGreenhouse.g:1132:5: lv_name_1_0= RULE_ID
             {
             lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_2); 
 
@@ -2696,7 +2726,7 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleValue"
-    // InternalGreenhouse.g:1143:1: entryRuleValue returns [EObject current=null] : iv_ruleValue= ruleValue EOF ;
+    // InternalGreenhouse.g:1152:1: entryRuleValue returns [EObject current=null] : iv_ruleValue= ruleValue EOF ;
     public final EObject entryRuleValue() throws RecognitionException {
         EObject current = null;
 
@@ -2704,8 +2734,8 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalGreenhouse.g:1143:46: (iv_ruleValue= ruleValue EOF )
-            // InternalGreenhouse.g:1144:2: iv_ruleValue= ruleValue EOF
+            // InternalGreenhouse.g:1152:46: (iv_ruleValue= ruleValue EOF )
+            // InternalGreenhouse.g:1153:2: iv_ruleValue= ruleValue EOF
             {
              newCompositeNode(grammarAccess.getValueRule()); 
             pushFollow(FOLLOW_1);
@@ -2732,7 +2762,7 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleValue"
-    // InternalGreenhouse.g:1150:1: ruleValue returns [EObject current=null] : ( () ( (lv_name_1_0= RULE_INT ) ) ) ;
+    // InternalGreenhouse.g:1159:1: ruleValue returns [EObject current=null] : ( () ( (lv_name_1_0= RULE_INT ) ) ) ;
     public final EObject ruleValue() throws RecognitionException {
         EObject current = null;
 
@@ -2742,14 +2772,14 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalGreenhouse.g:1156:2: ( ( () ( (lv_name_1_0= RULE_INT ) ) ) )
-            // InternalGreenhouse.g:1157:2: ( () ( (lv_name_1_0= RULE_INT ) ) )
+            // InternalGreenhouse.g:1165:2: ( ( () ( (lv_name_1_0= RULE_INT ) ) ) )
+            // InternalGreenhouse.g:1166:2: ( () ( (lv_name_1_0= RULE_INT ) ) )
             {
-            // InternalGreenhouse.g:1157:2: ( () ( (lv_name_1_0= RULE_INT ) ) )
-            // InternalGreenhouse.g:1158:3: () ( (lv_name_1_0= RULE_INT ) )
+            // InternalGreenhouse.g:1166:2: ( () ( (lv_name_1_0= RULE_INT ) ) )
+            // InternalGreenhouse.g:1167:3: () ( (lv_name_1_0= RULE_INT ) )
             {
-            // InternalGreenhouse.g:1158:3: ()
-            // InternalGreenhouse.g:1159:4: 
+            // InternalGreenhouse.g:1167:3: ()
+            // InternalGreenhouse.g:1168:4: 
             {
 
             				current = forceCreateModelElement(
@@ -2759,11 +2789,11 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalGreenhouse.g:1165:3: ( (lv_name_1_0= RULE_INT ) )
-            // InternalGreenhouse.g:1166:4: (lv_name_1_0= RULE_INT )
+            // InternalGreenhouse.g:1174:3: ( (lv_name_1_0= RULE_INT ) )
+            // InternalGreenhouse.g:1175:4: (lv_name_1_0= RULE_INT )
             {
-            // InternalGreenhouse.g:1166:4: (lv_name_1_0= RULE_INT )
-            // InternalGreenhouse.g:1167:5: lv_name_1_0= RULE_INT
+            // InternalGreenhouse.g:1175:4: (lv_name_1_0= RULE_INT )
+            // InternalGreenhouse.g:1176:5: lv_name_1_0= RULE_INT
             {
             lv_name_1_0=(Token)match(input,RULE_INT,FOLLOW_2); 
 
@@ -2808,7 +2838,7 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleRuleSet"
-    // InternalGreenhouse.g:1187:1: entryRuleRuleSet returns [EObject current=null] : iv_ruleRuleSet= ruleRuleSet EOF ;
+    // InternalGreenhouse.g:1196:1: entryRuleRuleSet returns [EObject current=null] : iv_ruleRuleSet= ruleRuleSet EOF ;
     public final EObject entryRuleRuleSet() throws RecognitionException {
         EObject current = null;
 
@@ -2816,8 +2846,8 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalGreenhouse.g:1187:48: (iv_ruleRuleSet= ruleRuleSet EOF )
-            // InternalGreenhouse.g:1188:2: iv_ruleRuleSet= ruleRuleSet EOF
+            // InternalGreenhouse.g:1196:48: (iv_ruleRuleSet= ruleRuleSet EOF )
+            // InternalGreenhouse.g:1197:2: iv_ruleRuleSet= ruleRuleSet EOF
             {
              newCompositeNode(grammarAccess.getRuleSetRule()); 
             pushFollow(FOLLOW_1);
@@ -2844,38 +2874,38 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleRuleSet"
-    // InternalGreenhouse.g:1194:1: ruleRuleSet returns [EObject current=null] : (otherlv_0= 'rule' ( (otherlv_1= RULE_ID ) ) otherlv_2= 'set' ( (otherlv_3= RULE_ID ) ) otherlv_4= 'when' ( (otherlv_5= RULE_ID ) ) otherlv_6= 'is' ( (otherlv_7= RULE_ID ) ) ) ;
+    // InternalGreenhouse.g:1203:1: ruleRuleSet returns [EObject current=null] : (otherlv_0= 'rule' ( (otherlv_1= RULE_ID ) ) otherlv_2= 'set' ( (lv_action_3_0= RULE_ID ) ) otherlv_4= 'when' ( (otherlv_5= RULE_ID ) ) otherlv_6= 'is' ( (lv_state_7_0= RULE_ID ) ) ) ;
     public final EObject ruleRuleSet() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
         Token otherlv_1=null;
         Token otherlv_2=null;
-        Token otherlv_3=null;
+        Token lv_action_3_0=null;
         Token otherlv_4=null;
         Token otherlv_5=null;
         Token otherlv_6=null;
-        Token otherlv_7=null;
+        Token lv_state_7_0=null;
 
 
         	enterRule();
 
         try {
-            // InternalGreenhouse.g:1200:2: ( (otherlv_0= 'rule' ( (otherlv_1= RULE_ID ) ) otherlv_2= 'set' ( (otherlv_3= RULE_ID ) ) otherlv_4= 'when' ( (otherlv_5= RULE_ID ) ) otherlv_6= 'is' ( (otherlv_7= RULE_ID ) ) ) )
-            // InternalGreenhouse.g:1201:2: (otherlv_0= 'rule' ( (otherlv_1= RULE_ID ) ) otherlv_2= 'set' ( (otherlv_3= RULE_ID ) ) otherlv_4= 'when' ( (otherlv_5= RULE_ID ) ) otherlv_6= 'is' ( (otherlv_7= RULE_ID ) ) )
+            // InternalGreenhouse.g:1209:2: ( (otherlv_0= 'rule' ( (otherlv_1= RULE_ID ) ) otherlv_2= 'set' ( (lv_action_3_0= RULE_ID ) ) otherlv_4= 'when' ( (otherlv_5= RULE_ID ) ) otherlv_6= 'is' ( (lv_state_7_0= RULE_ID ) ) ) )
+            // InternalGreenhouse.g:1210:2: (otherlv_0= 'rule' ( (otherlv_1= RULE_ID ) ) otherlv_2= 'set' ( (lv_action_3_0= RULE_ID ) ) otherlv_4= 'when' ( (otherlv_5= RULE_ID ) ) otherlv_6= 'is' ( (lv_state_7_0= RULE_ID ) ) )
             {
-            // InternalGreenhouse.g:1201:2: (otherlv_0= 'rule' ( (otherlv_1= RULE_ID ) ) otherlv_2= 'set' ( (otherlv_3= RULE_ID ) ) otherlv_4= 'when' ( (otherlv_5= RULE_ID ) ) otherlv_6= 'is' ( (otherlv_7= RULE_ID ) ) )
-            // InternalGreenhouse.g:1202:3: otherlv_0= 'rule' ( (otherlv_1= RULE_ID ) ) otherlv_2= 'set' ( (otherlv_3= RULE_ID ) ) otherlv_4= 'when' ( (otherlv_5= RULE_ID ) ) otherlv_6= 'is' ( (otherlv_7= RULE_ID ) )
+            // InternalGreenhouse.g:1210:2: (otherlv_0= 'rule' ( (otherlv_1= RULE_ID ) ) otherlv_2= 'set' ( (lv_action_3_0= RULE_ID ) ) otherlv_4= 'when' ( (otherlv_5= RULE_ID ) ) otherlv_6= 'is' ( (lv_state_7_0= RULE_ID ) ) )
+            // InternalGreenhouse.g:1211:3: otherlv_0= 'rule' ( (otherlv_1= RULE_ID ) ) otherlv_2= 'set' ( (lv_action_3_0= RULE_ID ) ) otherlv_4= 'when' ( (otherlv_5= RULE_ID ) ) otherlv_6= 'is' ( (lv_state_7_0= RULE_ID ) )
             {
             otherlv_0=(Token)match(input,35,FOLLOW_3); 
 
             			newLeafNode(otherlv_0, grammarAccess.getRuleSetAccess().getRuleKeyword_0());
             		
-            // InternalGreenhouse.g:1206:3: ( (otherlv_1= RULE_ID ) )
-            // InternalGreenhouse.g:1207:4: (otherlv_1= RULE_ID )
+            // InternalGreenhouse.g:1215:3: ( (otherlv_1= RULE_ID ) )
+            // InternalGreenhouse.g:1216:4: (otherlv_1= RULE_ID )
             {
-            // InternalGreenhouse.g:1207:4: (otherlv_1= RULE_ID )
-            // InternalGreenhouse.g:1208:5: otherlv_1= RULE_ID
+            // InternalGreenhouse.g:1216:4: (otherlv_1= RULE_ID )
+            // InternalGreenhouse.g:1217:5: otherlv_1= RULE_ID
             {
 
             					if (current==null) {
@@ -2896,20 +2926,25 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_2, grammarAccess.getRuleSetAccess().getSetKeyword_2());
             		
-            // InternalGreenhouse.g:1223:3: ( (otherlv_3= RULE_ID ) )
-            // InternalGreenhouse.g:1224:4: (otherlv_3= RULE_ID )
+            // InternalGreenhouse.g:1232:3: ( (lv_action_3_0= RULE_ID ) )
+            // InternalGreenhouse.g:1233:4: (lv_action_3_0= RULE_ID )
             {
-            // InternalGreenhouse.g:1224:4: (otherlv_3= RULE_ID )
-            // InternalGreenhouse.g:1225:5: otherlv_3= RULE_ID
+            // InternalGreenhouse.g:1233:4: (lv_action_3_0= RULE_ID )
+            // InternalGreenhouse.g:1234:5: lv_action_3_0= RULE_ID
             {
+            lv_action_3_0=(Token)match(input,RULE_ID,FOLLOW_20); 
+
+            					newLeafNode(lv_action_3_0, grammarAccess.getRuleSetAccess().getActionIDTerminalRuleCall_3_0());
+            				
 
             					if (current==null) {
             						current = createModelElement(grammarAccess.getRuleSetRule());
             					}
-            				
-            otherlv_3=(Token)match(input,RULE_ID,FOLLOW_20); 
-
-            					newLeafNode(otherlv_3, grammarAccess.getRuleSetAccess().getActionActionCrossReference_3_0());
+            					setWithLastConsumed(
+            						current,
+            						"action",
+            						lv_action_3_0,
+            						"org.eclipse.xtext.common.Terminals.ID");
             				
 
             }
@@ -2921,11 +2956,11 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_4, grammarAccess.getRuleSetAccess().getWhenKeyword_4());
             		
-            // InternalGreenhouse.g:1240:3: ( (otherlv_5= RULE_ID ) )
-            // InternalGreenhouse.g:1241:4: (otherlv_5= RULE_ID )
+            // InternalGreenhouse.g:1254:3: ( (otherlv_5= RULE_ID ) )
+            // InternalGreenhouse.g:1255:4: (otherlv_5= RULE_ID )
             {
-            // InternalGreenhouse.g:1241:4: (otherlv_5= RULE_ID )
-            // InternalGreenhouse.g:1242:5: otherlv_5= RULE_ID
+            // InternalGreenhouse.g:1255:4: (otherlv_5= RULE_ID )
+            // InternalGreenhouse.g:1256:5: otherlv_5= RULE_ID
             {
 
             					if (current==null) {
@@ -2946,20 +2981,25 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_6, grammarAccess.getRuleSetAccess().getIsKeyword_6());
             		
-            // InternalGreenhouse.g:1257:3: ( (otherlv_7= RULE_ID ) )
-            // InternalGreenhouse.g:1258:4: (otherlv_7= RULE_ID )
+            // InternalGreenhouse.g:1271:3: ( (lv_state_7_0= RULE_ID ) )
+            // InternalGreenhouse.g:1272:4: (lv_state_7_0= RULE_ID )
             {
-            // InternalGreenhouse.g:1258:4: (otherlv_7= RULE_ID )
-            // InternalGreenhouse.g:1259:5: otherlv_7= RULE_ID
+            // InternalGreenhouse.g:1272:4: (lv_state_7_0= RULE_ID )
+            // InternalGreenhouse.g:1273:5: lv_state_7_0= RULE_ID
             {
+            lv_state_7_0=(Token)match(input,RULE_ID,FOLLOW_2); 
+
+            					newLeafNode(lv_state_7_0, grammarAccess.getRuleSetAccess().getStateIDTerminalRuleCall_7_0());
+            				
 
             					if (current==null) {
             						current = createModelElement(grammarAccess.getRuleSetRule());
             					}
-            				
-            otherlv_7=(Token)match(input,RULE_ID,FOLLOW_2); 
-
-            					newLeafNode(otherlv_7, grammarAccess.getRuleSetAccess().getStateStateCrossReference_7_0());
+            					setWithLastConsumed(
+            						current,
+            						"state",
+            						lv_state_7_0,
+            						"org.eclipse.xtext.common.Terminals.ID");
             				
 
             }
@@ -2988,6 +3028,188 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
     }
     // $ANTLR end "ruleRuleSet"
 
+
+    // $ANTLR start "entryRuleGreenhouseRuleSet"
+    // InternalGreenhouse.g:1293:1: entryRuleGreenhouseRuleSet returns [EObject current=null] : iv_ruleGreenhouseRuleSet= ruleGreenhouseRuleSet EOF ;
+    public final EObject entryRuleGreenhouseRuleSet() throws RecognitionException {
+        EObject current = null;
+
+        EObject iv_ruleGreenhouseRuleSet = null;
+
+
+        try {
+            // InternalGreenhouse.g:1293:58: (iv_ruleGreenhouseRuleSet= ruleGreenhouseRuleSet EOF )
+            // InternalGreenhouse.g:1294:2: iv_ruleGreenhouseRuleSet= ruleGreenhouseRuleSet EOF
+            {
+             newCompositeNode(grammarAccess.getGreenhouseRuleSetRule()); 
+            pushFollow(FOLLOW_1);
+            iv_ruleGreenhouseRuleSet=ruleGreenhouseRuleSet();
+
+            state._fsp--;
+
+             current =iv_ruleGreenhouseRuleSet; 
+            match(input,EOF,FOLLOW_2); 
+
+            }
+
+        }
+
+            catch (RecognitionException re) {
+                recover(input,re);
+                appendSkippedTokens();
+            }
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "entryRuleGreenhouseRuleSet"
+
+
+    // $ANTLR start "ruleGreenhouseRuleSet"
+    // InternalGreenhouse.g:1300:1: ruleGreenhouseRuleSet returns [EObject current=null] : (otherlv_0= 'global rule' ( (otherlv_1= RULE_ID ) ) otherlv_2= 'set' ( (otherlv_3= RULE_ID ) ) otherlv_4= 'when' ( (otherlv_5= RULE_ID ) ) otherlv_6= 'is' ( (otherlv_7= RULE_ID ) ) ) ;
+    public final EObject ruleGreenhouseRuleSet() throws RecognitionException {
+        EObject current = null;
+
+        Token otherlv_0=null;
+        Token otherlv_1=null;
+        Token otherlv_2=null;
+        Token otherlv_3=null;
+        Token otherlv_4=null;
+        Token otherlv_5=null;
+        Token otherlv_6=null;
+        Token otherlv_7=null;
+
+
+        	enterRule();
+
+        try {
+            // InternalGreenhouse.g:1306:2: ( (otherlv_0= 'global rule' ( (otherlv_1= RULE_ID ) ) otherlv_2= 'set' ( (otherlv_3= RULE_ID ) ) otherlv_4= 'when' ( (otherlv_5= RULE_ID ) ) otherlv_6= 'is' ( (otherlv_7= RULE_ID ) ) ) )
+            // InternalGreenhouse.g:1307:2: (otherlv_0= 'global rule' ( (otherlv_1= RULE_ID ) ) otherlv_2= 'set' ( (otherlv_3= RULE_ID ) ) otherlv_4= 'when' ( (otherlv_5= RULE_ID ) ) otherlv_6= 'is' ( (otherlv_7= RULE_ID ) ) )
+            {
+            // InternalGreenhouse.g:1307:2: (otherlv_0= 'global rule' ( (otherlv_1= RULE_ID ) ) otherlv_2= 'set' ( (otherlv_3= RULE_ID ) ) otherlv_4= 'when' ( (otherlv_5= RULE_ID ) ) otherlv_6= 'is' ( (otherlv_7= RULE_ID ) ) )
+            // InternalGreenhouse.g:1308:3: otherlv_0= 'global rule' ( (otherlv_1= RULE_ID ) ) otherlv_2= 'set' ( (otherlv_3= RULE_ID ) ) otherlv_4= 'when' ( (otherlv_5= RULE_ID ) ) otherlv_6= 'is' ( (otherlv_7= RULE_ID ) )
+            {
+            otherlv_0=(Token)match(input,38,FOLLOW_3); 
+
+            			newLeafNode(otherlv_0, grammarAccess.getGreenhouseRuleSetAccess().getGlobalRuleKeyword_0());
+            		
+            // InternalGreenhouse.g:1312:3: ( (otherlv_1= RULE_ID ) )
+            // InternalGreenhouse.g:1313:4: (otherlv_1= RULE_ID )
+            {
+            // InternalGreenhouse.g:1313:4: (otherlv_1= RULE_ID )
+            // InternalGreenhouse.g:1314:5: otherlv_1= RULE_ID
+            {
+
+            					if (current==null) {
+            						current = createModelElement(grammarAccess.getGreenhouseRuleSetRule());
+            					}
+            				
+            otherlv_1=(Token)match(input,RULE_ID,FOLLOW_27); 
+
+            					newLeafNode(otherlv_1, grammarAccess.getGreenhouseRuleSetAccess().getActuatorActuatorCrossReference_1_0());
+            				
+
+            }
+
+
+            }
+
+            otherlv_2=(Token)match(input,36,FOLLOW_3); 
+
+            			newLeafNode(otherlv_2, grammarAccess.getGreenhouseRuleSetAccess().getSetKeyword_2());
+            		
+            // InternalGreenhouse.g:1329:3: ( (otherlv_3= RULE_ID ) )
+            // InternalGreenhouse.g:1330:4: (otherlv_3= RULE_ID )
+            {
+            // InternalGreenhouse.g:1330:4: (otherlv_3= RULE_ID )
+            // InternalGreenhouse.g:1331:5: otherlv_3= RULE_ID
+            {
+
+            					if (current==null) {
+            						current = createModelElement(grammarAccess.getGreenhouseRuleSetRule());
+            					}
+            				
+            otherlv_3=(Token)match(input,RULE_ID,FOLLOW_20); 
+
+            					newLeafNode(otherlv_3, grammarAccess.getGreenhouseRuleSetAccess().getActionActionCrossReference_3_0());
+            				
+
+            }
+
+
+            }
+
+            otherlv_4=(Token)match(input,26,FOLLOW_3); 
+
+            			newLeafNode(otherlv_4, grammarAccess.getGreenhouseRuleSetAccess().getWhenKeyword_4());
+            		
+            // InternalGreenhouse.g:1346:3: ( (otherlv_5= RULE_ID ) )
+            // InternalGreenhouse.g:1347:4: (otherlv_5= RULE_ID )
+            {
+            // InternalGreenhouse.g:1347:4: (otherlv_5= RULE_ID )
+            // InternalGreenhouse.g:1348:5: otherlv_5= RULE_ID
+            {
+
+            					if (current==null) {
+            						current = createModelElement(grammarAccess.getGreenhouseRuleSetRule());
+            					}
+            				
+            otherlv_5=(Token)match(input,RULE_ID,FOLLOW_28); 
+
+            					newLeafNode(otherlv_5, grammarAccess.getGreenhouseRuleSetAccess().getSensorSensorCrossReference_5_0());
+            				
+
+            }
+
+
+            }
+
+            otherlv_6=(Token)match(input,37,FOLLOW_3); 
+
+            			newLeafNode(otherlv_6, grammarAccess.getGreenhouseRuleSetAccess().getIsKeyword_6());
+            		
+            // InternalGreenhouse.g:1363:3: ( (otherlv_7= RULE_ID ) )
+            // InternalGreenhouse.g:1364:4: (otherlv_7= RULE_ID )
+            {
+            // InternalGreenhouse.g:1364:4: (otherlv_7= RULE_ID )
+            // InternalGreenhouse.g:1365:5: otherlv_7= RULE_ID
+            {
+
+            					if (current==null) {
+            						current = createModelElement(grammarAccess.getGreenhouseRuleSetRule());
+            					}
+            				
+            otherlv_7=(Token)match(input,RULE_ID,FOLLOW_2); 
+
+            					newLeafNode(otherlv_7, grammarAccess.getGreenhouseRuleSetAccess().getStateStateCrossReference_7_0());
+            				
+
+            }
+
+
+            }
+
+
+            }
+
+
+            }
+
+
+            	leaveRule();
+
+        }
+
+            catch (RecognitionException re) {
+                recover(input,re);
+                appendSkippedTokens();
+            }
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "ruleGreenhouseRuleSet"
+
     // Delegated rules
 
 
@@ -2998,10 +3220,10 @@ public class InternalGreenhouseParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_3 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_4 = new BitSet(new long[]{0x0000000000001002L});
     public static final BitSet FOLLOW_5 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x000000080002C000L});
-    public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x0000000800024000L});
+    public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x000000400002C000L});
+    public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x0000004000024000L});
     public static final BitSet FOLLOW_8 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x0000000000244000L});
+    public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x0000000800244000L});
     public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x0000000000040000L});
     public static final BitSet FOLLOW_11 = new BitSet(new long[]{0x0000000000180002L});
     public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x0000000000100002L});

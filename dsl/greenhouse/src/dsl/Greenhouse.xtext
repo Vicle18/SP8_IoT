@@ -71,7 +71,7 @@ Value:
 ;
 
 RuleSet:
-	'rule' actuator=[Actuator] 'set' action=[Action] 'when' sensor=[Sensor] 'is' state=[State]
+	'rule' actuator=[Actuator] 'set' action=ID 'when' sensor=[Sensor] 'is' state=ID
 ;
 
 GreenhouseRuleSet:

@@ -81,6 +81,7 @@ public class GreenhouseFactoryImpl extends EFactoryImpl implements GreenhouseFac
       case GreenhousePackage.SETTING: return createSetting();
       case GreenhousePackage.VALUE: return createValue();
       case GreenhousePackage.RULE_SET: return createRuleSet();
+      case GreenhousePackage.GREENHOUSE_RULE_SET: return createGreenhouseRuleSet();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -276,6 +277,18 @@ public class GreenhouseFactoryImpl extends EFactoryImpl implements GreenhouseFac
   {
     RuleSetImpl ruleSet = new RuleSetImpl();
     return ruleSet;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public GreenhouseRuleSet createGreenhouseRuleSet()
+  {
+    GreenhouseRuleSetImpl greenhouseRuleSet = new GreenhouseRuleSetImpl();
+    return greenhouseRuleSet;
   }
 
   /**

@@ -3,12 +3,10 @@
  */
 package dsl.greenhouse.impl;
 
-import dsl.greenhouse.Action;
 import dsl.greenhouse.Actuator;
 import dsl.greenhouse.GreenhousePackage;
 import dsl.greenhouse.RuleSet;
 import dsl.greenhouse.Sensor;
-import dsl.greenhouse.State;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -33,7 +31,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class RuleSetImpl extends GreenhouseElementImpl implements RuleSet
+public class RuleSetImpl extends RowElementImpl implements RuleSet
 {
   /**
    * The cached value of the '{@link #getActuator() <em>Actuator</em>}' reference.
@@ -46,14 +44,24 @@ public class RuleSetImpl extends GreenhouseElementImpl implements RuleSet
   protected Actuator actuator;
 
   /**
-   * The cached value of the '{@link #getAction() <em>Action</em>}' reference.
+   * The default value of the '{@link #getAction() <em>Action</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getAction()
    * @generated
    * @ordered
    */
-  protected Action action;
+  protected static final String ACTION_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getAction() <em>Action</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getAction()
+   * @generated
+   * @ordered
+   */
+  protected String action = ACTION_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getSensor() <em>Sensor</em>}' reference.
@@ -66,14 +74,24 @@ public class RuleSetImpl extends GreenhouseElementImpl implements RuleSet
   protected Sensor sensor;
 
   /**
-   * The cached value of the '{@link #getState() <em>State</em>}' reference.
+   * The default value of the '{@link #getState() <em>State</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getState()
    * @generated
    * @ordered
    */
-  protected State state;
+  protected static final String STATE_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getState() <em>State</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getState()
+   * @generated
+   * @ordered
+   */
+  protected String state = STATE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -147,27 +165,7 @@ public class RuleSetImpl extends GreenhouseElementImpl implements RuleSet
    * @generated
    */
   @Override
-  public Action getAction()
-  {
-    if (action != null && action.eIsProxy())
-    {
-      InternalEObject oldAction = (InternalEObject)action;
-      action = (Action)eResolveProxy(oldAction);
-      if (action != oldAction)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, GreenhousePackage.RULE_SET__ACTION, oldAction, action));
-      }
-    }
-    return action;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Action basicGetAction()
+  public String getAction()
   {
     return action;
   }
@@ -178,9 +176,9 @@ public class RuleSetImpl extends GreenhouseElementImpl implements RuleSet
    * @generated
    */
   @Override
-  public void setAction(Action newAction)
+  public void setAction(String newAction)
   {
-    Action oldAction = action;
+    String oldAction = action;
     action = newAction;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, GreenhousePackage.RULE_SET__ACTION, oldAction, action));
@@ -237,27 +235,7 @@ public class RuleSetImpl extends GreenhouseElementImpl implements RuleSet
    * @generated
    */
   @Override
-  public State getState()
-  {
-    if (state != null && state.eIsProxy())
-    {
-      InternalEObject oldState = (InternalEObject)state;
-      state = (State)eResolveProxy(oldState);
-      if (state != oldState)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, GreenhousePackage.RULE_SET__STATE, oldState, state));
-      }
-    }
-    return state;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public State basicGetState()
+  public String getState()
   {
     return state;
   }
@@ -268,9 +246,9 @@ public class RuleSetImpl extends GreenhouseElementImpl implements RuleSet
    * @generated
    */
   @Override
-  public void setState(State newState)
+  public void setState(String newState)
   {
-    State oldState = state;
+    String oldState = state;
     state = newState;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, GreenhousePackage.RULE_SET__STATE, oldState, state));
@@ -290,14 +268,12 @@ public class RuleSetImpl extends GreenhouseElementImpl implements RuleSet
         if (resolve) return getActuator();
         return basicGetActuator();
       case GreenhousePackage.RULE_SET__ACTION:
-        if (resolve) return getAction();
-        return basicGetAction();
+        return getAction();
       case GreenhousePackage.RULE_SET__SENSOR:
         if (resolve) return getSensor();
         return basicGetSensor();
       case GreenhousePackage.RULE_SET__STATE:
-        if (resolve) return getState();
-        return basicGetState();
+        return getState();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -316,13 +292,13 @@ public class RuleSetImpl extends GreenhouseElementImpl implements RuleSet
         setActuator((Actuator)newValue);
         return;
       case GreenhousePackage.RULE_SET__ACTION:
-        setAction((Action)newValue);
+        setAction((String)newValue);
         return;
       case GreenhousePackage.RULE_SET__SENSOR:
         setSensor((Sensor)newValue);
         return;
       case GreenhousePackage.RULE_SET__STATE:
-        setState((State)newValue);
+        setState((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -342,13 +318,13 @@ public class RuleSetImpl extends GreenhouseElementImpl implements RuleSet
         setActuator((Actuator)null);
         return;
       case GreenhousePackage.RULE_SET__ACTION:
-        setAction((Action)null);
+        setAction(ACTION_EDEFAULT);
         return;
       case GreenhousePackage.RULE_SET__SENSOR:
         setSensor((Sensor)null);
         return;
       case GreenhousePackage.RULE_SET__STATE:
-        setState((State)null);
+        setState(STATE_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -367,13 +343,32 @@ public class RuleSetImpl extends GreenhouseElementImpl implements RuleSet
       case GreenhousePackage.RULE_SET__ACTUATOR:
         return actuator != null;
       case GreenhousePackage.RULE_SET__ACTION:
-        return action != null;
+        return ACTION_EDEFAULT == null ? action != null : !ACTION_EDEFAULT.equals(action);
       case GreenhousePackage.RULE_SET__SENSOR:
         return sensor != null;
       case GreenhousePackage.RULE_SET__STATE:
-        return state != null;
+        return STATE_EDEFAULT == null ? state != null : !STATE_EDEFAULT.equals(state);
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (action: ");
+    result.append(action);
+    result.append(", state: ");
+    result.append(state);
+    result.append(')');
+    return result.toString();
   }
 
 } //RuleSetImpl

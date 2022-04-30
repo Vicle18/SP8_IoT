@@ -186,7 +186,15 @@ public class GreenhouseSwitch<T> extends Switch<T>
       {
         RuleSet ruleSet = (RuleSet)theEObject;
         T result = caseRuleSet(ruleSet);
-        if (result == null) result = caseGreenhouseElement(ruleSet);
+        if (result == null) result = caseRowElement(ruleSet);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case GreenhousePackage.GREENHOUSE_RULE_SET:
+      {
+        GreenhouseRuleSet greenhouseRuleSet = (GreenhouseRuleSet)theEObject;
+        T result = caseGreenhouseRuleSet(greenhouseRuleSet);
+        if (result == null) result = caseGreenhouseElement(greenhouseRuleSet);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -446,6 +454,22 @@ public class GreenhouseSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseRuleSet(RuleSet object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Rule Set</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Rule Set</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseGreenhouseRuleSet(GreenhouseRuleSet object)
   {
     return null;
   }
