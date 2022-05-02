@@ -1,3 +1,9 @@
+Actuators
+    Pump has actions
+        open with values 0, 50, 100 
+        listens on topic pump1
+    WindowOpener
+
 system greenhouse
     row tomato
         sensor moisture1 has value moisture_value //(on topic "tomato/moisture1" with 10 herz)
@@ -21,14 +27,13 @@ system greenhouse
         can open 20 percent when receiving "open20" by setting duty_cycle to 20
         can open 40 percent when receiving "open40" by setting duty_cycle to 40
         can open 60 percent when receiving "open60" by setting duty_cycle to 60
-        can open 80 percent when receiving "open80" by setting duty_cycle to 80
+        can open 80 percent when receiving "open80" by setting duty_cycle to 80action+=Action
         can open 100 percent when receiving "open100" by setting duty_cycle to 100
         can close when receiving "close" by setting duty_cycle to 0
     Ruleset
         open window_opener1 20 percent when temp is temp.warm
-        open window_opener1 40 percent for 10 minutes and windowopener is 20 percent when temp is hot
-        open window_opener1 when tem is warm
-        close window_opener1 when temp is cold
+        open window_opener1 40 percent when temp is hot
+        close window_opener when temp is optimal
         ...
         open pump1 to 50 percent for 10 minutes when moisture1 is too_dry
         close pump1 when moisture1 is too_moist
