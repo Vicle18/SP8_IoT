@@ -66,8 +66,12 @@ public class GreenhouseFactoryImpl extends EFactoryImpl implements GreenhouseFac
     switch (eClass.getClassifierID())
     {
       case GreenhousePackage.MODEL: return createModel();
+<<<<<<< HEAD
       case GreenhousePackage.HARDWARE_SETUP: return createHardwareSetup();
       case GreenhousePackage.HARDWARE: return createHardware();
+=======
+      case GreenhousePackage.SETTING: return createSetting();
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
       case GreenhousePackage.SETTING_ACTUATOR: return createSettingActuator();
       case GreenhousePackage.SETTING_SENSOR: return createSettingSensor();
       case GreenhousePackage.TOPIC: return createTopic();
@@ -89,7 +93,10 @@ public class GreenhouseFactoryImpl extends EFactoryImpl implements GreenhouseFac
       case GreenhousePackage.VALUE: return createValue();
       case GreenhousePackage.ROW_RULE_SET: return createRowRuleSet();
       case GreenhousePackage.GREENHOUSE_RULE_SET: return createGreenhouseRuleSet();
+<<<<<<< HEAD
       case GreenhousePackage.SETTING: return createSetting();
+=======
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -113,6 +120,7 @@ public class GreenhouseFactoryImpl extends EFactoryImpl implements GreenhouseFac
    * @generated
    */
   @Override
+<<<<<<< HEAD
   public HardwareSetup createHardwareSetup()
   {
     HardwareSetupImpl hardwareSetup = new HardwareSetupImpl();
@@ -129,6 +137,12 @@ public class GreenhouseFactoryImpl extends EFactoryImpl implements GreenhouseFac
   {
     HardwareImpl hardware = new HardwareImpl();
     return hardware;
+=======
+  public Setting createSetting()
+  {
+    SettingImpl setting = new SettingImpl();
+    return setting;
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
   }
 
   /**
@@ -381,6 +395,7 @@ public class GreenhouseFactoryImpl extends EFactoryImpl implements GreenhouseFac
   {
     GreenhouseRuleSetImpl greenhouseRuleSet = new GreenhouseRuleSetImpl();
     return greenhouseRuleSet;
+<<<<<<< HEAD
   }
 
   /**
@@ -393,6 +408,8 @@ public class GreenhouseFactoryImpl extends EFactoryImpl implements GreenhouseFac
   {
     SettingImpl setting = new SettingImpl();
     return setting;
+=======
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
   }
 
   /**

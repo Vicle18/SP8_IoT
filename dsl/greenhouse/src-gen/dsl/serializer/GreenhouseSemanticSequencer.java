@@ -99,6 +99,18 @@ public class GreenhouseSemanticSequencer extends AbstractDelegatingSemanticSeque
 			case GreenhousePackage.SETTING_VALUE:
 				sequence_SettingValue(context, (SettingValue) semanticObject); 
 				return; 
+			case GreenhousePackage.SETTING_ACTION:
+				sequence_SettingAction(context, (SettingAction) semanticObject); 
+				return; 
+			case GreenhousePackage.SETTING_ACTUATOR:
+				sequence_SettingActuator(context, (SettingActuator) semanticObject); 
+				return; 
+			case GreenhousePackage.SETTING_SENSOR:
+				sequence_SettingSensor(context, (SettingSensor) semanticObject); 
+				return; 
+			case GreenhousePackage.SETTING_VALUE:
+				sequence_SettingValue(context, (SettingValue) semanticObject); 
+				return; 
 			case GreenhousePackage.STATE:
 				sequence_State(context, (State) semanticObject); 
 				return; 
@@ -247,7 +259,11 @@ public class GreenhouseSemanticSequencer extends AbstractDelegatingSemanticSeque
 	 *     Model returns Model
 	 *
 	 * Constraint:
+<<<<<<< HEAD
 	 *     (name=ID hardwareSetup+=HardwareSetup? greenhouses+=Greenhouse*)
+=======
+	 *     (name=ID settings+=Setting* greenhouses+=Greenhouse*)
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 	 */
 	protected void sequence_Model(ISerializationContext context, Model semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -260,7 +276,11 @@ public class GreenhouseSemanticSequencer extends AbstractDelegatingSemanticSeque
 	 *     RowActuator returns RowActuator
 	 *
 	 * Constraint:
+<<<<<<< HEAD
 	 *     (type=[SettingActuator|ID] name=ID action+=Action? action+=Action*)
+=======
+	 *     (name=ID action+=Action? action+=Action*)
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 	 */
 	protected void sequence_RowActuator(ISerializationContext context, RowActuator semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -329,6 +349,60 @@ public class GreenhouseSemanticSequencer extends AbstractDelegatingSemanticSeque
 	 */
 	protected void sequence_SettingAction(ISerializationContext context, SettingAction semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+<<<<<<< HEAD
+=======
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     SettingActuator returns SettingActuator
+	 *
+	 * Constraint:
+	 *     (name=ID settingAction+=SettingAction settingAction+=SettingAction* topic=Topic)
+	 */
+	protected void sequence_SettingActuator(ISerializationContext context, SettingActuator semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     SettingSensor returns SettingSensor
+	 *
+	 * Constraint:
+	 *     (name=ID topic=Topic)
+	 */
+	protected void sequence_SettingSensor(ISerializationContext context, SettingSensor semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, GreenhousePackage.Literals.SETTING_SENSOR__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, GreenhousePackage.Literals.SETTING_SENSOR__NAME));
+			if (transientValues.isValueTransient(semanticObject, GreenhousePackage.Literals.SETTING_SENSOR__TOPIC) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, GreenhousePackage.Literals.SETTING_SENSOR__TOPIC));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getSettingSensorAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getSettingSensorAccess().getTopicTopicParserRuleCall_4_0(), semanticObject.getTopic());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     SettingValue returns SettingValue
+	 *
+	 * Constraint:
+	 *     name=INT
+	 */
+	protected void sequence_SettingValue(ISerializationContext context, SettingValue semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, GreenhousePackage.Literals.SETTING_VALUE__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, GreenhousePackage.Literals.SETTING_VALUE__NAME));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getSettingValueAccess().getNameINTTerminalRuleCall_0(), semanticObject.getName());
+		feeder.finish();
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 	}
 	
 	
@@ -338,6 +412,7 @@ public class GreenhouseSemanticSequencer extends AbstractDelegatingSemanticSeque
 	 *     SettingActuator returns SettingActuator
 	 *
 	 * Constraint:
+<<<<<<< HEAD
 	 *     (name=ID settingAction+=SettingAction settingAction+=SettingAction* topic=Topic)
 	 */
 	protected void sequence_SettingActuator(ISerializationContext context, SettingActuator semanticObject) {
@@ -382,6 +457,12 @@ public class GreenhouseSemanticSequencer extends AbstractDelegatingSemanticSeque
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getSettingValueAccess().getNameINTTerminalRuleCall_0(), semanticObject.getName());
 		feeder.finish();
+=======
+	 *     (name=ID settingActuator+=SettingActuator settingSensor+=SettingSensor)
+	 */
+	protected void sequence_Setting(ISerializationContext context, Setting semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 	}
 	
 	

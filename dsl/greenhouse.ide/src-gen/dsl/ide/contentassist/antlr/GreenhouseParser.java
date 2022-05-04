@@ -36,7 +36,11 @@ public class GreenhouseParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getRowElementAccess().getAlternatives(), "rule__RowElement__Alternatives");
 			builder.put(grammarAccess.getStateAccess().getOpAlternatives_3_0(), "rule__State__OpAlternatives_3_0");
 			builder.put(grammarAccess.getModelAccess().getGroup(), "rule__Model__Group__0");
+<<<<<<< HEAD
 			builder.put(grammarAccess.getHardwareSetupAccess().getGroup(), "rule__HardwareSetup__Group__0");
+=======
+			builder.put(grammarAccess.getSettingAccess().getGroup(), "rule__Setting__Group__0");
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 			builder.put(grammarAccess.getSettingActuatorAccess().getGroup(), "rule__SettingActuator__Group__0");
 			builder.put(grammarAccess.getSettingActuatorAccess().getGroup_5(), "rule__SettingActuator__Group_5__0");
 			builder.put(grammarAccess.getSettingSensorAccess().getGroup(), "rule__SettingSensor__Group__0");
@@ -64,9 +68,17 @@ public class GreenhouseParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getRowRuleSetAccess().getGroup(), "rule__RowRuleSet__Group__0");
 			builder.put(grammarAccess.getGreenhouseRuleSetAccess().getGroup(), "rule__GreenhouseRuleSet__Group__0");
 			builder.put(grammarAccess.getModelAccess().getNameAssignment_1(), "rule__Model__NameAssignment_1");
+<<<<<<< HEAD
 			builder.put(grammarAccess.getModelAccess().getHardwareSetupAssignment_2(), "rule__Model__HardwareSetupAssignment_2");
 			builder.put(grammarAccess.getModelAccess().getGreenhousesAssignment_3(), "rule__Model__GreenhousesAssignment_3");
 			builder.put(grammarAccess.getHardwareSetupAccess().getHardwareAssignment_2(), "rule__HardwareSetup__HardwareAssignment_2");
+=======
+			builder.put(grammarAccess.getModelAccess().getSettingsAssignment_2(), "rule__Model__SettingsAssignment_2");
+			builder.put(grammarAccess.getModelAccess().getGreenhousesAssignment_3(), "rule__Model__GreenhousesAssignment_3");
+			builder.put(grammarAccess.getSettingAccess().getNameAssignment_1(), "rule__Setting__NameAssignment_1");
+			builder.put(grammarAccess.getSettingAccess().getSettingActuatorAssignment_2(), "rule__Setting__SettingActuatorAssignment_2");
+			builder.put(grammarAccess.getSettingAccess().getSettingSensorAssignment_3(), "rule__Setting__SettingSensorAssignment_3");
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 			builder.put(grammarAccess.getSettingActuatorAccess().getNameAssignment_1(), "rule__SettingActuator__NameAssignment_1");
 			builder.put(grammarAccess.getSettingActuatorAccess().getSettingActionAssignment_4(), "rule__SettingActuator__SettingActionAssignment_4");
 			builder.put(grammarAccess.getSettingActuatorAccess().getSettingActionAssignment_5_1(), "rule__SettingActuator__SettingActionAssignment_5_1");
@@ -86,7 +98,10 @@ public class GreenhouseParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getGreenhouseActuatorAccess().getNameAssignment_2(), "rule__GreenhouseActuator__NameAssignment_2");
 			builder.put(grammarAccess.getGreenhouseActuatorAccess().getActionAssignment_3_1(), "rule__GreenhouseActuator__ActionAssignment_3_1");
 			builder.put(grammarAccess.getGreenhouseActuatorAccess().getActionAssignment_4_2(), "rule__GreenhouseActuator__ActionAssignment_4_2");
+<<<<<<< HEAD
 			builder.put(grammarAccess.getRowActuatorAccess().getTypeAssignment_0(), "rule__RowActuator__TypeAssignment_0");
+=======
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 			builder.put(grammarAccess.getRowActuatorAccess().getNameAssignment_1(), "rule__RowActuator__NameAssignment_1");
 			builder.put(grammarAccess.getRowActuatorAccess().getActionAssignment_2_1(), "rule__RowActuator__ActionAssignment_2_1");
 			builder.put(grammarAccess.getRowActuatorAccess().getActionAssignment_3_2(), "rule__RowActuator__ActionAssignment_3_2");

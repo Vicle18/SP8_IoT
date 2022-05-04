@@ -3,6 +3,7 @@
  */
 package dsl.scoping
 
+<<<<<<< HEAD
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.xtext.scoping.IScope
@@ -15,6 +16,8 @@ import dsl.greenhouse.RowActuator
 import dsl.greenhouse.RowRuleSet
 import dsl.greenhouse.SettingSensor
 import dsl.greenhouse.SettingActuator
+=======
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 
 /**
  * This class contains custom scoping description.
@@ -23,6 +26,7 @@ import dsl.greenhouse.SettingActuator
  * on how and when to use it.
  */
 class GreenhouseScopeProvider extends AbstractGreenhouseScopeProvider {
+<<<<<<< HEAD
 	
 	
 	override getScope(EObject context, EReference reference) {
@@ -83,5 +87,7 @@ class GreenhouseScopeProvider extends AbstractGreenhouseScopeProvider {
 		
 	
 
+=======
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 
 }

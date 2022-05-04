@@ -80,6 +80,7 @@ public class GreenhouseSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+<<<<<<< HEAD
       case GreenhousePackage.HARDWARE_SETUP:
       {
         HardwareSetup hardwareSetup = (HardwareSetup)theEObject;
@@ -91,6 +92,12 @@ public class GreenhouseSwitch<T> extends Switch<T>
       {
         Hardware hardware = (Hardware)theEObject;
         T result = caseHardware(hardware);
+=======
+      case GreenhousePackage.SETTING:
+      {
+        Setting setting = (Setting)theEObject;
+        T result = caseSetting(setting);
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -98,7 +105,10 @@ public class GreenhouseSwitch<T> extends Switch<T>
       {
         SettingActuator settingActuator = (SettingActuator)theEObject;
         T result = caseSettingActuator(settingActuator);
+<<<<<<< HEAD
         if (result == null) result = caseHardware(settingActuator);
+=======
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -106,7 +116,10 @@ public class GreenhouseSwitch<T> extends Switch<T>
       {
         SettingSensor settingSensor = (SettingSensor)theEObject;
         T result = caseSettingSensor(settingSensor);
+<<<<<<< HEAD
         if (result == null) result = caseHardware(settingSensor);
+=======
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -246,6 +259,7 @@ public class GreenhouseSwitch<T> extends Switch<T>
         GreenhouseRuleSet greenhouseRuleSet = (GreenhouseRuleSet)theEObject;
         T result = caseGreenhouseRuleSet(greenhouseRuleSet);
         if (result == null) result = caseGreenhouseElement(greenhouseRuleSet);
+<<<<<<< HEAD
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -254,6 +268,8 @@ public class GreenhouseSwitch<T> extends Switch<T>
         Setting setting = (Setting)theEObject;
         T result = caseSetting(setting);
         if (result == null) result = caseHardwareSetup(setting);
+=======
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -278,12 +294,17 @@ public class GreenhouseSwitch<T> extends Switch<T>
   }
 
   /**
+<<<<<<< HEAD
    * Returns the result of interpreting the object as an instance of '<em>Hardware Setup</em>'.
+=======
+   * Returns the result of interpreting the object as an instance of '<em>Setting</em>'.
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
+<<<<<<< HEAD
    * @return the result of interpreting the object as an instance of '<em>Hardware Setup</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
@@ -305,6 +326,13 @@ public class GreenhouseSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseHardware(Hardware object)
+=======
+   * @return the result of interpreting the object as an instance of '<em>Setting</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseSetting(Setting object)
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
   {
     return null;
   }
@@ -641,6 +669,7 @@ public class GreenhouseSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseGreenhouseRuleSet(GreenhouseRuleSet object)
+<<<<<<< HEAD
   {
     return null;
   }
@@ -657,6 +686,8 @@ public class GreenhouseSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseSetting(Setting object)
+=======
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
   {
     return null;
   }

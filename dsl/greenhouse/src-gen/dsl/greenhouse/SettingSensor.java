@@ -3,17 +3,80 @@
  */
 package dsl.greenhouse;
 
+<<<<<<< HEAD
+=======
+import org.eclipse.emf.ecore.EObject;
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Setting Sensor</b></em>'.
  * <!-- end-user-doc -->
  *
+<<<<<<< HEAD
+=======
+ * <p>
+ * The following features are supported:
+ * </p>
+ * <ul>
+ *   <li>{@link dsl.greenhouse.SettingSensor#getName <em>Name</em>}</li>
+ *   <li>{@link dsl.greenhouse.SettingSensor#getTopic <em>Topic</em>}</li>
+ * </ul>
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
  *
  * @see dsl.greenhouse.GreenhousePackage#getSettingSensor()
  * @model
  * @generated
  */
+<<<<<<< HEAD
 public interface SettingSensor extends Hardware
 {
+=======
+public interface SettingSensor extends EObject
+{
+  /**
+   * Returns the value of the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Name</em>' attribute.
+   * @see #setName(String)
+   * @see dsl.greenhouse.GreenhousePackage#getSettingSensor_Name()
+   * @model
+   * @generated
+   */
+  String getName();
+
+  /**
+   * Sets the value of the '{@link dsl.greenhouse.SettingSensor#getName <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Name</em>' attribute.
+   * @see #getName()
+   * @generated
+   */
+  void setName(String value);
+
+  /**
+   * Returns the value of the '<em><b>Topic</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Topic</em>' containment reference.
+   * @see #setTopic(Topic)
+   * @see dsl.greenhouse.GreenhousePackage#getSettingSensor_Topic()
+   * @model containment="true"
+   * @generated
+   */
+  Topic getTopic();
+
+  /**
+   * Sets the value of the '{@link dsl.greenhouse.SettingSensor#getTopic <em>Topic</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Topic</em>' containment reference.
+   * @see #getTopic()
+   * @generated
+   */
+  void setTopic(Topic value);
+
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 } // SettingSensor

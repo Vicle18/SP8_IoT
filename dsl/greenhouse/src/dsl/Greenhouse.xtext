@@ -6,6 +6,7 @@ generate greenhouse "http://www.Greenhouse.dsl"
 
 Model:
     "system" name=ID
+<<<<<<< HEAD
     hardwareSetup+=HardwareSetup?
     greenhouses+=Greenhouse*
 ;
@@ -18,6 +19,16 @@ HardwareSetup:
 
 Hardware:
 	SettingActuator | SettingSensor
+=======
+    settings+=Setting*
+    greenhouses+=Greenhouse*
+;
+
+Setting:
+	'setting' name=ID 
+	settingActuator += SettingActuator 
+	settingSensor += SettingSensor
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 ;
 
 
@@ -66,7 +77,11 @@ GreenhouseActuator:
 ;
 
 RowActuator:
+<<<<<<< HEAD
      type=[SettingActuator] name=ID ('will' action+=Action)? (',' 'will' action+=Action)* 
+=======
+     'actuator' name=ID ('can' action+=Action)? (',' 'can' action+=Action)* 
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 ;
 
 GreenhouseSensor:
@@ -88,7 +103,11 @@ Variable:
 ;
 
 Action:
+<<<<<<< HEAD
     name=ID 'when' 'receiving' trigger=Trigger 'by' 'setting' condition=Condition 'to' value=Value
+=======
+    name=ID 'when' 'receiving' trigger=Trigger 'by' 'condition' condition=Condition 'to' value=Value
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 ;
 
 Trigger:

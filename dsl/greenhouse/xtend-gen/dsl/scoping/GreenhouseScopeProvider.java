@@ -3,6 +3,7 @@
  */
 package dsl.scoping;
 
+<<<<<<< HEAD
 import dsl.greenhouse.Action;
 import dsl.greenhouse.RowActuator;
 import dsl.greenhouse.RowRuleSet;
@@ -19,6 +20,8 @@ import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.Scopes;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 
+=======
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 /**
  * This class contains custom scoping description.
  * 
@@ -27,6 +30,7 @@ import org.eclipse.xtext.xbase.lib.CollectionLiterals;
  */
 @SuppressWarnings("all")
 public class GreenhouseScopeProvider extends AbstractGreenhouseScopeProvider {
+<<<<<<< HEAD
   @Override
   public IScope getScope(final EObject context, final EReference reference) {
     return this.scopeForEObject(context, reference);
@@ -77,4 +81,6 @@ public class GreenhouseScopeProvider extends AbstractGreenhouseScopeProvider {
         Arrays.<Object>asList(context, reference).toString());
     }
   }
+=======
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 }

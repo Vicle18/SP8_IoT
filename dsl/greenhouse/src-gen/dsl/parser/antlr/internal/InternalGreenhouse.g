@@ -101,15 +101,22 @@ ruleModel returns [EObject current=null]
 		(
 			(
 				{
+<<<<<<< HEAD
 					newCompositeNode(grammarAccess.getModelAccess().getHardwareSetupHardwareSetupParserRuleCall_2_0());
 				}
 				lv_hardwareSetup_2_0=ruleHardwareSetup
+=======
+					newCompositeNode(grammarAccess.getModelAccess().getSettingsSettingParserRuleCall_2_0());
+				}
+				lv_settings_2_0=ruleSetting
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getModelRule());
 					}
 					add(
 						$current,
+<<<<<<< HEAD
 						"hardwareSetup",
 						lv_hardwareSetup_2_0,
 						"dsl.Greenhouse.HardwareSetup");
@@ -117,6 +124,15 @@ ruleModel returns [EObject current=null]
 				}
 			)
 		)?
+=======
+						"settings",
+						lv_settings_2_0,
+						"dsl.Greenhouse.Setting");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)*
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 		(
 			(
 				{
@@ -139,6 +155,7 @@ ruleModel returns [EObject current=null]
 	)
 ;
 
+<<<<<<< HEAD
 // Entry rule entryRuleHardwareSetup
 entryRuleHardwareSetup returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getHardwareSetupRule()); }
@@ -148,6 +165,17 @@ entryRuleHardwareSetup returns [EObject current=null]:
 
 // Rule HardwareSetup
 ruleHardwareSetup returns [EObject current=null]
+=======
+// Entry rule entryRuleSetting
+entryRuleSetting returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getSettingRule()); }
+	iv_ruleSetting=ruleSetting
+	{ $current=$iv_ruleSetting.current; }
+	EOF;
+
+// Rule Setting
+ruleSetting returns [EObject current=null]
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 @init {
 	enterRule();
 }
@@ -155,6 +183,7 @@ ruleHardwareSetup returns [EObject current=null]
 	leaveRule();
 }:
 	(
+<<<<<<< HEAD
 		(
 			{
 				$current = forceCreateModelElement(
@@ -221,6 +250,68 @@ ruleHardware returns [EObject current=null]
 			$current = $this_SettingSensor_1.current;
 			afterParserOrEnumRuleCall();
 		}
+=======
+		otherlv_0='setting'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getSettingAccess().getSettingKeyword_0());
+		}
+		(
+			(
+				lv_name_1_0=RULE_ID
+				{
+					newLeafNode(lv_name_1_0, grammarAccess.getSettingAccess().getNameIDTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getSettingRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"name",
+						lv_name_1_0,
+						"org.eclipse.xtext.common.Terminals.ID");
+				}
+			)
+		)
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getSettingAccess().getSettingActuatorSettingActuatorParserRuleCall_2_0());
+				}
+				lv_settingActuator_2_0=ruleSettingActuator
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getSettingRule());
+					}
+					add(
+						$current,
+						"settingActuator",
+						lv_settingActuator_2_0,
+						"dsl.Greenhouse.SettingActuator");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getSettingAccess().getSettingSensorSettingSensorParserRuleCall_3_0());
+				}
+				lv_settingSensor_3_0=ruleSettingSensor
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getSettingRule());
+					}
+					add(
+						$current,
+						"settingSensor",
+						lv_settingSensor_3_0,
+						"dsl.Greenhouse.SettingSensor");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 	)
 ;
 
@@ -929,6 +1020,7 @@ ruleRowActuator returns [EObject current=null]
 	leaveRule();
 }:
 	(
+<<<<<<< HEAD
 		(
 			(
 				{
@@ -942,6 +1034,12 @@ ruleRowActuator returns [EObject current=null]
 				}
 			)
 		)
+=======
+		otherlv_0='actuator'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getRowActuatorAccess().getActuatorKeyword_0());
+		}
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 		(
 			(
 				lv_name_1_0=RULE_ID
@@ -963,7 +1061,11 @@ ruleRowActuator returns [EObject current=null]
 		(
 			otherlv_2='will'
 			{
+<<<<<<< HEAD
 				newLeafNode(otherlv_2, grammarAccess.getRowActuatorAccess().getWillKeyword_2_0());
+=======
+				newLeafNode(otherlv_2, grammarAccess.getRowActuatorAccess().getCanKeyword_2_0());
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 			}
 			(
 				(
@@ -992,7 +1094,11 @@ ruleRowActuator returns [EObject current=null]
 			}
 			otherlv_5='will'
 			{
+<<<<<<< HEAD
 				newLeafNode(otherlv_5, grammarAccess.getRowActuatorAccess().getWillKeyword_3_1());
+=======
+				newLeafNode(otherlv_5, grammarAccess.getRowActuatorAccess().getCanKeyword_3_1());
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 			}
 			(
 				(
@@ -1465,9 +1571,9 @@ ruleAction returns [EObject current=null]
 		{
 			newLeafNode(otherlv_4, grammarAccess.getActionAccess().getByKeyword_4());
 		}
-		otherlv_5='setting'
+		otherlv_5='condition'
 		{
-			newLeafNode(otherlv_5, grammarAccess.getActionAccess().getSettingKeyword_5());
+			newLeafNode(otherlv_5, grammarAccess.getActionAccess().getConditionKeyword_5());
 		}
 		(
 			(

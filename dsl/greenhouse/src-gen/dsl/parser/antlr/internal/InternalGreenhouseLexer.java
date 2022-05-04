@@ -93,10 +93,17 @@ public class InternalGreenhouseLexer extends Lexer {
         try {
             int _type = T__12;
             int _channel = DEFAULT_TOKEN_CHANNEL;
+<<<<<<< HEAD
             // InternalGreenhouse.g:12:7: ( 'configuration' )
             // InternalGreenhouse.g:12:9: 'configuration'
             {
             match("configuration"); 
+=======
+            // InternalGreenhouse.g:12:7: ( 'setting' )
+            // InternalGreenhouse.g:12:9: 'setting'
+            {
+            match("setting"); 
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 
 
             }
@@ -470,10 +477,17 @@ public class InternalGreenhouseLexer extends Lexer {
         try {
             int _type = T__30;
             int _channel = DEFAULT_TOKEN_CHANNEL;
+<<<<<<< HEAD
             // InternalGreenhouse.g:30:7: ( 'will' )
             // InternalGreenhouse.g:30:9: 'will'
             {
             match("will"); 
+=======
+            // InternalGreenhouse.g:30:7: ( 'can' )
+            // InternalGreenhouse.g:30:9: 'can'
+            {
+            match("can"); 
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 
 
             }
@@ -677,10 +691,17 @@ public class InternalGreenhouseLexer extends Lexer {
         try {
             int _type = T__40;
             int _channel = DEFAULT_TOKEN_CHANNEL;
+<<<<<<< HEAD
             // InternalGreenhouse.g:40:7: ( 'setting' )
             // InternalGreenhouse.g:40:9: 'setting'
             {
             match("setting"); 
+=======
+            // InternalGreenhouse.g:40:7: ( 'condition' )
+            // InternalGreenhouse.g:40:9: 'condition'
+            {
+            match("condition"); 
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 
 
             }
@@ -761,10 +782,17 @@ public class InternalGreenhouseLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
+<<<<<<< HEAD
             // InternalGreenhouse.g:1827:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
             // InternalGreenhouse.g:1827:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
             // InternalGreenhouse.g:1827:11: ( '^' )?
+=======
+            // InternalGreenhouse.g:1812:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // InternalGreenhouse.g:1812:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            {
+            // InternalGreenhouse.g:1812:11: ( '^' )?
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -773,7 +801,11 @@ public class InternalGreenhouseLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
+<<<<<<< HEAD
                     // InternalGreenhouse.g:1827:11: '^'
+=======
+                    // InternalGreenhouse.g:1812:11: '^'
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
                     {
                     match('^'); 
 
@@ -791,7 +823,11 @@ public class InternalGreenhouseLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
+<<<<<<< HEAD
             // InternalGreenhouse.g:1827:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+=======
+            // InternalGreenhouse.g:1812:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
             loop2:
             do {
                 int alt2=2;
@@ -840,10 +876,17 @@ public class InternalGreenhouseLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
+<<<<<<< HEAD
             // InternalGreenhouse.g:1829:10: ( ( '0' .. '9' )+ )
             // InternalGreenhouse.g:1829:12: ( '0' .. '9' )+
             {
             // InternalGreenhouse.g:1829:12: ( '0' .. '9' )+
+=======
+            // InternalGreenhouse.g:1814:10: ( ( '0' .. '9' )+ )
+            // InternalGreenhouse.g:1814:12: ( '0' .. '9' )+
+            {
+            // InternalGreenhouse.g:1814:12: ( '0' .. '9' )+
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
             int cnt3=0;
             loop3:
             do {
@@ -857,7 +900,11 @@ public class InternalGreenhouseLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
+<<<<<<< HEAD
             	    // InternalGreenhouse.g:1829:13: '0' .. '9'
+=======
+            	    // InternalGreenhouse.g:1814:13: '0' .. '9'
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
             	    {
             	    matchRange('0','9'); 
 
@@ -889,10 +936,17 @@ public class InternalGreenhouseLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
+<<<<<<< HEAD
             // InternalGreenhouse.g:1831:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
             // InternalGreenhouse.g:1831:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
             // InternalGreenhouse.g:1831:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+=======
+            // InternalGreenhouse.g:1816:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // InternalGreenhouse.g:1816:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            {
+            // InternalGreenhouse.g:1816:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -910,10 +964,17 @@ public class InternalGreenhouseLexer extends Lexer {
             }
             switch (alt6) {
                 case 1 :
+<<<<<<< HEAD
                     // InternalGreenhouse.g:1831:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
                     // InternalGreenhouse.g:1831:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
+=======
+                    // InternalGreenhouse.g:1816:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    {
+                    match('\"'); 
+                    // InternalGreenhouse.g:1816:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
                     loop4:
                     do {
                         int alt4=3;
@@ -929,7 +990,11 @@ public class InternalGreenhouseLexer extends Lexer {
 
                         switch (alt4) {
                     	case 1 :
+<<<<<<< HEAD
                     	    // InternalGreenhouse.g:1831:21: '\\\\' .
+=======
+                    	    // InternalGreenhouse.g:1816:21: '\\\\' .
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -937,7 +1002,11 @@ public class InternalGreenhouseLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
+<<<<<<< HEAD
                     	    // InternalGreenhouse.g:1831:28: ~ ( ( '\\\\' | '\"' ) )
+=======
+                    	    // InternalGreenhouse.g:1816:28: ~ ( ( '\\\\' | '\"' ) )
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -962,10 +1031,17 @@ public class InternalGreenhouseLexer extends Lexer {
                     }
                     break;
                 case 2 :
+<<<<<<< HEAD
                     // InternalGreenhouse.g:1831:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
                     // InternalGreenhouse.g:1831:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
+=======
+                    // InternalGreenhouse.g:1816:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    {
+                    match('\''); 
+                    // InternalGreenhouse.g:1816:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
                     loop5:
                     do {
                         int alt5=3;
@@ -981,7 +1057,11 @@ public class InternalGreenhouseLexer extends Lexer {
 
                         switch (alt5) {
                     	case 1 :
+<<<<<<< HEAD
                     	    // InternalGreenhouse.g:1831:54: '\\\\' .
+=======
+                    	    // InternalGreenhouse.g:1816:54: '\\\\' .
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -989,7 +1069,11 @@ public class InternalGreenhouseLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
+<<<<<<< HEAD
                     	    // InternalGreenhouse.g:1831:61: ~ ( ( '\\\\' | '\\'' ) )
+=======
+                    	    // InternalGreenhouse.g:1816:61: ~ ( ( '\\\\' | '\\'' ) )
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -1032,12 +1116,21 @@ public class InternalGreenhouseLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
+<<<<<<< HEAD
             // InternalGreenhouse.g:1833:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
             // InternalGreenhouse.g:1833:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
             // InternalGreenhouse.g:1833:24: ( options {greedy=false; } : . )*
+=======
+            // InternalGreenhouse.g:1818:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // InternalGreenhouse.g:1818:19: '/*' ( options {greedy=false; } : . )* '*/'
+            {
+            match("/*"); 
+
+            // InternalGreenhouse.g:1818:24: ( options {greedy=false; } : . )*
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
             loop7:
             do {
                 int alt7=2;
@@ -1062,7 +1155,11 @@ public class InternalGreenhouseLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
+<<<<<<< HEAD
             	    // InternalGreenhouse.g:1833:52: .
+=======
+            	    // InternalGreenhouse.g:1818:52: .
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
             	    {
             	    matchAny(); 
 
@@ -1092,12 +1189,21 @@ public class InternalGreenhouseLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
+<<<<<<< HEAD
             // InternalGreenhouse.g:1835:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
             // InternalGreenhouse.g:1835:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
             // InternalGreenhouse.g:1835:24: (~ ( ( '\\n' | '\\r' ) ) )*
+=======
+            // InternalGreenhouse.g:1820:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // InternalGreenhouse.g:1820:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            {
+            match("//"); 
+
+            // InternalGreenhouse.g:1820:24: (~ ( ( '\\n' | '\\r' ) ) )*
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
             loop8:
             do {
                 int alt8=2;
@@ -1110,7 +1216,11 @@ public class InternalGreenhouseLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
+<<<<<<< HEAD
             	    // InternalGreenhouse.g:1835:24: ~ ( ( '\\n' | '\\r' ) )
+=======
+            	    // InternalGreenhouse.g:1820:24: ~ ( ( '\\n' | '\\r' ) )
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -1130,7 +1240,11 @@ public class InternalGreenhouseLexer extends Lexer {
                 }
             } while (true);
 
+<<<<<<< HEAD
             // InternalGreenhouse.g:1835:40: ( ( '\\r' )? '\\n' )?
+=======
+            // InternalGreenhouse.g:1820:40: ( ( '\\r' )? '\\n' )?
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -1139,9 +1253,15 @@ public class InternalGreenhouseLexer extends Lexer {
             }
             switch (alt10) {
                 case 1 :
+<<<<<<< HEAD
                     // InternalGreenhouse.g:1835:41: ( '\\r' )? '\\n'
                     {
                     // InternalGreenhouse.g:1835:41: ( '\\r' )?
+=======
+                    // InternalGreenhouse.g:1820:41: ( '\\r' )? '\\n'
+                    {
+                    // InternalGreenhouse.g:1820:41: ( '\\r' )?
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
                     int alt9=2;
                     int LA9_0 = input.LA(1);
 
@@ -1150,7 +1270,11 @@ public class InternalGreenhouseLexer extends Lexer {
                     }
                     switch (alt9) {
                         case 1 :
+<<<<<<< HEAD
                             // InternalGreenhouse.g:1835:41: '\\r'
+=======
+                            // InternalGreenhouse.g:1820:41: '\\r'
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
                             {
                             match('\r'); 
 
@@ -1182,10 +1306,17 @@ public class InternalGreenhouseLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
+<<<<<<< HEAD
             // InternalGreenhouse.g:1837:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
             // InternalGreenhouse.g:1837:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
             // InternalGreenhouse.g:1837:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+=======
+            // InternalGreenhouse.g:1822:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // InternalGreenhouse.g:1822:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            {
+            // InternalGreenhouse.g:1822:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
             int cnt11=0;
             loop11:
             do {
@@ -1239,8 +1370,13 @@ public class InternalGreenhouseLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
+<<<<<<< HEAD
             // InternalGreenhouse.g:1839:16: ( . )
             // InternalGreenhouse.g:1839:18: .
+=======
+            // InternalGreenhouse.g:1824:16: ( . )
+            // InternalGreenhouse.g:1824:18: .
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
             {
             matchAny(); 
 
@@ -1547,6 +1683,7 @@ public class InternalGreenhouseLexer extends Lexer {
 
     protected DFA12 dfa12 = new DFA12(this);
     static final String DFA12_eotS =
+<<<<<<< HEAD
         "\1\uffff\4\36\1\uffff\11\36\3\uffff\1\36\1\32\2\uffff\3\32\2\uffff\3\36\1\uffff\4\36\1\uffff\1\36\1\104\1\36\1\107\11\36\1\123\3\uffff\1\124\5\uffff\2\36\1\130\3\36\1\135\1\136\1\36\1\uffff\2\36\1\uffff\7\36\1\151\3\36\2\uffff\3\36\1\uffff\4\36\2\uffff\3\36\1\167\1\170\1\171\4\36\1\uffff\1\36\1\177\12\36\1\u008a\3\uffff\1\u008c\4\36\1\uffff\1\36\1\u0092\1\u0093\1\36\1\u0095\2\36\1\u0098\2\36\1\uffff\1\u009b\1\uffff\2\36\1\u009e\2\36\2\uffff\1\u00a1\1\uffff\2\36\1\uffff\1\u00a4\1\36\1\uffff\2\36\1\uffff\2\36\1\uffff\1\36\1\u00ab\1\uffff\1\36\1\u00ad\2\36\1\u00b0\1\36\1\uffff\1\u00b2\1\uffff\1\36\1\u00b4\1\uffff\1\36\1\uffff\1\u00b6\1\uffff\1\36\1\uffff\1\36\1\u00b9\1\uffff";
     static final String DFA12_eofS =
         "\u00ba\uffff";
@@ -1590,7 +1727,51 @@ public class InternalGreenhouseLexer extends Lexer {
             "\1\74\5\uffff\1\75",
             "\1\76",
             "",
+=======
+        "\1\uffff\3\36\1\uffff\12\36\3\uffff\1\36\1\32\2\uffff\3\32\2\uffff\3\36\1\uffff\3\36\1\uffff\1\36\1\104\1\36\1\107\11\36\1\122\2\36\3\uffff\1\125\5\uffff\1\36\1\130\3\36\1\135\1\136\1\36\1\uffff\2\36\1\uffff\6\36\1\150\3\36\1\uffff\1\154\1\36\1\uffff\2\36\1\uffff\4\36\2\uffff\3\36\1\167\1\170\4\36\1\uffff\1\36\1\176\1\36\1\uffff\11\36\1\u0089\2\uffff\1\u008b\4\36\1\uffff\2\36\1\u0092\1\36\1\u0094\1\u0095\1\36\1\u0097\2\36\1\uffff\1\u009a\1\uffff\2\36\1\u009d\3\36\1\uffff\1\u00a1\2\uffff\1\36\1\uffff\1\u00a3\1\36\1\uffff\2\36\1\uffff\3\36\1\uffff\1\u00aa\1\uffff\1\36\1\u00ac\2\36\1\u00af\1\36\1\uffff\1\u00b1\1\uffff\1\36\1\u00b3\1\uffff\1\u00b4\1\uffff\1\u00b5\3\uffff";
+    static final String DFA12_eofS =
+        "\u00b6\uffff";
+    static final String DFA12_minS =
+        "\1\0\1\145\1\143\1\141\1\uffff\1\151\1\156\1\165\1\157\1\150\1\141\1\154\1\145\1\156\1\141\3\uffff\1\171\1\101\2\uffff\2\0\1\52\2\uffff\1\163\1\156\1\141\1\uffff\1\164\1\144\1\163\1\uffff\1\163\1\60\1\142\1\60\1\164\1\145\1\154\1\145\1\157\1\167\1\143\1\154\1\143\1\60\2\156\3\uffff\1\60\5\uffff\1\164\1\60\1\163\1\164\1\151\2\60\1\164\1\uffff\1\154\1\151\1\uffff\1\150\1\156\1\165\1\151\1\145\1\142\1\60\2\145\1\154\1\uffff\1\60\1\144\1\uffff\1\145\1\151\1\uffff\1\157\1\145\1\141\1\157\2\uffff\1\145\1\151\1\143\2\60\1\145\1\141\1\156\1\141\1\uffff\1\151\1\60\1\165\1\uffff\1\151\1\155\1\156\1\162\1\163\1\164\2\156\1\163\1\60\2\uffff\1\60\1\142\1\150\1\154\1\166\1\uffff\1\144\1\164\1\60\1\147\2\60\1\157\1\60\1\163\1\150\1\uffff\1\60\1\uffff\1\154\1\157\1\60\1\151\1\145\1\151\1\uffff\1\60\2\uffff\1\162\1\uffff\1\60\1\145\1\uffff\1\145\1\165\1\uffff\1\156\1\163\1\157\1\uffff\1\60\1\uffff\1\163\1\60\1\163\1\147\1\60\1\156\1\uffff\1\60\1\uffff\1\145\1\60\1\uffff\1\60\1\uffff\1\60\3\uffff";
+    static final String DFA12_maxS =
+        "\1\uffff\1\171\1\156\1\141\1\uffff\1\151\1\156\1\165\1\157\1\151\1\141\1\162\1\165\1\163\1\157\3\uffff\1\171\1\172\2\uffff\2\uffff\1\57\2\uffff\1\163\1\164\1\141\1\uffff\1\164\1\144\1\163\1\uffff\1\163\1\172\1\142\1\172\1\164\1\145\1\162\1\145\1\157\1\167\1\143\1\154\1\143\1\172\2\156\3\uffff\1\172\5\uffff\1\164\1\172\1\163\1\164\1\165\2\172\1\164\1\uffff\1\154\1\151\1\uffff\1\150\1\156\1\165\1\151\1\145\1\142\1\172\2\145\1\154\1\uffff\1\172\1\144\1\uffff\1\145\1\151\1\uffff\1\157\1\145\1\141\1\157\2\uffff\1\145\1\151\1\143\2\172\1\145\1\141\1\156\1\141\1\uffff\1\151\1\172\1\165\1\uffff\1\151\1\155\1\156\1\162\1\163\1\164\2\156\1\163\1\172\2\uffff\1\172\1\142\1\150\1\154\1\166\1\uffff\1\144\1\164\1\172\1\147\2\172\1\157\1\172\1\163\1\150\1\uffff\1\172\1\uffff\1\154\1\157\1\172\1\151\1\145\1\151\1\uffff\1\172\2\uffff\1\162\1\uffff\1\172\1\145\1\uffff\1\145\1\165\1\uffff\1\156\1\163\1\157\1\uffff\1\172\1\uffff\1\163\1\172\1\163\1\147\1\172\1\156\1\uffff\1\172\1\uffff\1\145\1\172\1\uffff\1\172\1\uffff\1\172\3\uffff";
+    static final String DFA12_acceptS =
+        "\4\uffff\1\6\12\uffff\1\30\1\31\1\32\2\uffff\1\42\1\43\3\uffff\1\47\1\50\3\uffff\1\42\3\uffff\1\6\20\uffff\1\30\1\31\1\32\1\uffff\1\43\1\44\1\45\1\46\1\47\10\uffff\1\11\2\uffff\1\14\12\uffff\1\41\2\uffff\1\35\2\uffff\1\40\4\uffff\1\7\1\4\11\uffff\1\21\3\uffff\1\24\12\uffff\1\16\1\27\5\uffff\1\37\12\uffff\1\15\1\uffff\1\25\6\uffff\1\1\1\uffff\1\12\1\26\1\uffff\1\5\2\uffff\1\17\2\uffff\1\23\3\uffff\1\2\1\uffff\1\10\6\uffff\1\3\1\uffff\1\33\2\uffff\1\22\1\uffff\1\13\1\uffff\1\34\1\36\1\20";
+    static final String DFA12_specialS =
+        "\1\2\25\uffff\1\1\1\0\u009e\uffff}>";
+    static final String[] DFA12_transitionS = {
+            "\11\32\2\31\2\32\1\31\22\32\1\31\1\32\1\26\4\32\1\27\4\32\1\4\2\32\1\30\12\25\2\32\1\17\1\21\1\20\2\32\32\24\3\32\1\23\1\24\1\32\1\2\1\22\1\16\3\24\1\13\1\3\1\15\2\24\1\5\2\24\1\6\1\7\1\24\1\14\1\1\1\10\1\24\1\12\1\11\3\24\uff85\32",
+            "\1\34\16\uffff\1\35\4\uffff\1\33",
+            "\1\37\12\uffff\1\40",
+            "\1\41",
+            "",
+            "\1\43",
+            "\1\44",
+            "\1\45",
+            "\1\46",
+            "\1\50\1\47",
+            "\1\51",
+            "\1\53\5\uffff\1\52",
+            "\1\55\11\uffff\1\54\5\uffff\1\56",
+            "\1\57\4\uffff\1\60",
+            "\1\61\15\uffff\1\62",
+            "",
+            "",
+            "",
+            "\1\66",
+            "\32\36\4\uffff\1\36\1\uffff\32\36",
+            "",
+            "",
+            "\0\70",
+            "\0\70",
+            "\1\71\4\uffff\1\72",
+            "",
+            "",
+            "\1\74",
+            "\1\76\5\uffff\1\75",
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
             "\1\77",
+            "",
             "\1\100",
             "\1\101",
             "\1\102",
@@ -1599,16 +1780,29 @@ public class InternalGreenhouseLexer extends Lexer {
             "\12\36\7\uffff\32\36\4\uffff\1\36\1\uffff\32\36",
             "\1\105",
             "\12\36\7\uffff\32\36\4\uffff\1\36\1\uffff\17\36\1\106\12\36",
+<<<<<<< HEAD
             "\1\111\7\uffff\1\110",
             "\1\112",
             "\1\113\5\uffff\1\114",
+=======
+            "\1\110",
+            "\1\111",
+            "\1\112\5\uffff\1\113",
+            "\1\114",
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
             "\1\115",
             "\1\116",
             "\1\117",
             "\1\120",
             "\1\121",
+<<<<<<< HEAD
             "\1\122",
             "\12\36\7\uffff\32\36\4\uffff\1\36\1\uffff\32\36",
+=======
+            "\12\36\7\uffff\32\36\4\uffff\1\36\1\uffff\32\36",
+            "\1\123",
+            "\1\124",
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
             "",
             "",
             "",
@@ -1618,7 +1812,10 @@ public class InternalGreenhouseLexer extends Lexer {
             "",
             "",
             "",
+<<<<<<< HEAD
             "\1\125",
+=======
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
             "\1\126",
             "\12\36\7\uffff\32\36\4\uffff\1\36\1\uffff\23\36\1\127\6\36",
             "\1\131",
@@ -1637,6 +1834,7 @@ public class InternalGreenhouseLexer extends Lexer {
             "\1\145",
             "\1\146",
             "\1\147",
+<<<<<<< HEAD
             "\1\150",
             "\12\36\7\uffff\32\36\4\uffff\1\36\1\uffff\32\36",
             "\1\152",
@@ -1644,7 +1842,16 @@ public class InternalGreenhouseLexer extends Lexer {
             "\1\154",
             "",
             "",
+=======
+            "\12\36\7\uffff\32\36\4\uffff\1\36\1\uffff\32\36",
+            "\1\151",
+            "\1\152",
+            "\1\153",
+            "",
+            "\12\36\7\uffff\32\36\4\uffff\1\36\1\uffff\32\36",
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
             "\1\155",
+            "",
             "\1\156",
             "\1\157",
             "",
@@ -1659,6 +1866,7 @@ public class InternalGreenhouseLexer extends Lexer {
             "\1\166",
             "\12\36\7\uffff\32\36\4\uffff\1\36\1\uffff\32\36",
             "\12\36\7\uffff\32\36\4\uffff\1\36\1\uffff\32\36",
+<<<<<<< HEAD
             "\12\36\7\uffff\32\36\4\uffff\1\36\1\uffff\32\36",
             "\1\172",
             "\1\173",
@@ -1667,6 +1875,17 @@ public class InternalGreenhouseLexer extends Lexer {
             "",
             "\1\176",
             "\12\36\7\uffff\32\36\4\uffff\1\36\1\uffff\32\36",
+=======
+            "\1\171",
+            "\1\172",
+            "\1\173",
+            "\1\174",
+            "",
+            "\1\175",
+            "\12\36\7\uffff\32\36\4\uffff\1\36\1\uffff\32\36",
+            "\1\177",
+            "",
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
             "\1\u0080",
             "\1\u0081",
             "\1\u0082",
@@ -1676,16 +1895,80 @@ public class InternalGreenhouseLexer extends Lexer {
             "\1\u0086",
             "\1\u0087",
             "\1\u0088",
+<<<<<<< HEAD
             "\1\u0089",
+=======
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
             "\12\36\7\uffff\32\36\4\uffff\1\36\1\uffff\32\36",
             "",
             "",
+            "\12\36\7\uffff\32\36\4\uffff\1\36\1\uffff\22\36\1\u008a\7\36",
+            "\1\u008c",
+            "\1\u008d",
+            "\1\u008e",
+            "\1\u008f",
             "",
+            "\1\u0090",
+            "\1\u0091",
+            "\12\36\7\uffff\32\36\4\uffff\1\36\1\uffff\32\36",
+            "\1\u0093",
+            "\12\36\7\uffff\32\36\4\uffff\1\36\1\uffff\32\36",
+            "\12\36\7\uffff\32\36\4\uffff\1\36\1\uffff\32\36",
+            "\1\u0096",
+            "\12\36\7\uffff\32\36\4\uffff\1\36\1\uffff\32\36",
+            "\1\u0098",
+            "\1\u0099",
+            "",
+            "\12\36\7\uffff\32\36\4\uffff\1\36\1\uffff\32\36",
+            "",
+            "\1\u009b",
+            "\1\u009c",
+            "\12\36\7\uffff\32\36\4\uffff\1\36\1\uffff\32\36",
+            "\1\u009e",
+            "\1\u009f",
+            "\1\u00a0",
+            "",
+            "\12\36\7\uffff\32\36\4\uffff\1\36\1\uffff\32\36",
+            "",
+            "",
+            "\1\u00a2",
+            "",
+            "\12\36\7\uffff\32\36\4\uffff\1\36\1\uffff\32\36",
+            "\1\u00a4",
+            "",
+            "\1\u00a5",
+            "\1\u00a6",
+            "",
+            "\1\u00a7",
+            "\1\u00a8",
+            "\1\u00a9",
+            "",
+            "\12\36\7\uffff\32\36\4\uffff\1\36\1\uffff\32\36",
+            "",
+            "\1\u00ab",
+            "\12\36\7\uffff\32\36\4\uffff\1\36\1\uffff\32\36",
+            "\1\u00ad",
+            "\1\u00ae",
+            "\12\36\7\uffff\32\36\4\uffff\1\36\1\uffff\32\36",
+            "\1\u00b0",
+            "",
+            "\12\36\7\uffff\32\36\4\uffff\1\36\1\uffff\32\36",
+            "",
+            "\1\u00b2",
+            "\12\36\7\uffff\32\36\4\uffff\1\36\1\uffff\32\36",
+            "",
+            "\12\36\7\uffff\32\36\4\uffff\1\36\1\uffff\32\36",
+            "",
+            "\12\36\7\uffff\32\36\4\uffff\1\36\1\uffff\32\36",
+            "",
+<<<<<<< HEAD
             "\12\36\7\uffff\32\36\4\uffff\1\36\1\uffff\22\36\1\u008b\7\36",
             "\1\u008d",
             "\1\u008e",
             "\1\u008f",
             "\1\u0090",
+=======
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
             "",
             "\1\u0091",
             "\12\36\7\uffff\32\36\4\uffff\1\36\1\uffff\32\36",
@@ -1787,18 +2070,36 @@ public class InternalGreenhouseLexer extends Lexer {
                         int LA12_23 = input.LA(1);
 
                         s = -1;
+<<<<<<< HEAD
                         if ( ((LA12_23>='\u0000' && LA12_23<='\uFFFF')) ) {s = 55;}
+=======
+                        if ( ((LA12_23>='\u0000' && LA12_23<='\uFFFF')) ) {s = 56;}
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 
                         else s = 26;
 
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
+<<<<<<< HEAD
+=======
+                        int LA12_22 = input.LA(1);
+
+                        s = -1;
+                        if ( ((LA12_22>='\u0000' && LA12_22<='\uFFFF')) ) {s = 56;}
+
+                        else s = 26;
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 2 : 
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
                         int LA12_0 = input.LA(1);
 
                         s = -1;
                         if ( (LA12_0=='s') ) {s = 1;}
 
+<<<<<<< HEAD
                         else if ( (LA12_0=='c') ) {s = 2;}
 
                         else if ( (LA12_0=='a') ) {s = 3;}
@@ -1816,14 +2117,41 @@ public class InternalGreenhouseLexer extends Lexer {
                         else if ( (LA12_0=='t') ) {s = 9;}
 
                         else if ( (LA12_0=='w') ) {s = 10;}
+=======
+                        else if ( (LA12_0=='a') ) {s = 2;}
 
-                        else if ( (LA12_0=='v') ) {s = 11;}
+                        else if ( (LA12_0=='h') ) {s = 3;}
 
+                        else if ( (LA12_0==',') ) {s = 4;}
+
+                        else if ( (LA12_0=='l') ) {s = 5;}
+
+                        else if ( (LA12_0=='o') ) {s = 6;}
+
+                        else if ( (LA12_0=='p') ) {s = 7;}
+
+                        else if ( (LA12_0=='t') ) {s = 8;}
+
+                        else if ( (LA12_0=='w') ) {s = 9;}
+
+                        else if ( (LA12_0=='v') ) {s = 10;}
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
+
+                        else if ( (LA12_0=='g') ) {s = 11;}
+
+<<<<<<< HEAD
                         else if ( (LA12_0=='g') ) {s = 12;}
 
                         else if ( (LA12_0=='r') ) {s = 13;}
 
                         else if ( (LA12_0=='i') ) {s = 14;}
+=======
+                        else if ( (LA12_0=='r') ) {s = 12;}
+
+                        else if ( (LA12_0=='i') ) {s = 13;}
+
+                        else if ( (LA12_0=='c') ) {s = 14;}
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 
                         else if ( (LA12_0=='<') ) {s = 15;}
 
@@ -1848,6 +2176,7 @@ public class InternalGreenhouseLexer extends Lexer {
                         else if ( ((LA12_0>='\t' && LA12_0<='\n')||LA12_0=='\r'||LA12_0==' ') ) {s = 25;}
 
                         else if ( ((LA12_0>='\u0000' && LA12_0<='\b')||(LA12_0>='\u000B' && LA12_0<='\f')||(LA12_0>='\u000E' && LA12_0<='\u001F')||LA12_0=='!'||(LA12_0>='#' && LA12_0<='&')||(LA12_0>='(' && LA12_0<='+')||(LA12_0>='-' && LA12_0<='.')||(LA12_0>=':' && LA12_0<=';')||(LA12_0>='?' && LA12_0<='@')||(LA12_0>='[' && LA12_0<=']')||LA12_0=='`'||(LA12_0>='{' && LA12_0<='\uFFFF')) ) {s = 26;}
+<<<<<<< HEAD
 
                         if ( s>=0 ) return s;
                         break;
@@ -1858,6 +2187,8 @@ public class InternalGreenhouseLexer extends Lexer {
                         if ( ((LA12_22>='\u0000' && LA12_22<='\uFFFF')) ) {s = 55;}
 
                         else s = 26;
+=======
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 
                         if ( s>=0 ) return s;
                         break;

@@ -8,6 +8,7 @@
       fileExtensions="green" ecorePackage="Greenhouse.ecore#/">
     <genClasses ecoreClass="Greenhouse.ecore#//Model">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Greenhouse.ecore#//Model/name"/>
+<<<<<<< HEAD
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//Model/hardwareSetup"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//Model/greenhouses"/>
     </genClasses>
@@ -20,6 +21,25 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//SettingActuator/settingAction"/>
     </genClasses>
     <genClasses ecoreClass="Greenhouse.ecore#//SettingSensor"/>
+=======
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//Model/settings"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//Model/greenhouses"/>
+    </genClasses>
+    <genClasses ecoreClass="Greenhouse.ecore#//Setting">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Greenhouse.ecore#//Setting/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//Setting/settingActuator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//Setting/settingSensor"/>
+    </genClasses>
+    <genClasses ecoreClass="Greenhouse.ecore#//SettingActuator">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Greenhouse.ecore#//SettingActuator/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//SettingActuator/settingAction"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//SettingActuator/topic"/>
+    </genClasses>
+    <genClasses ecoreClass="Greenhouse.ecore#//SettingSensor">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Greenhouse.ecore#//SettingSensor/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//SettingSensor/topic"/>
+    </genClasses>
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
     <genClasses ecoreClass="Greenhouse.ecore#//Topic">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Greenhouse.ecore#//Topic/name"/>
     </genClasses>
@@ -46,7 +66,10 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//GreenhouseActuator/action"/>
     </genClasses>
     <genClasses ecoreClass="Greenhouse.ecore#//RowActuator">
+<<<<<<< HEAD
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//RowActuator/type"/>
+=======
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Greenhouse.ecore#//RowActuator/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//RowActuator/action"/>
     </genClasses>
@@ -95,9 +118,12 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//GreenhouseRuleSet/action"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//GreenhouseRuleSet/sensor"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//GreenhouseRuleSet/state"/>
+<<<<<<< HEAD
     </genClasses>
     <genClasses ecoreClass="Greenhouse.ecore#//Setting">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//Setting/hardware"/>
+=======
+>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
