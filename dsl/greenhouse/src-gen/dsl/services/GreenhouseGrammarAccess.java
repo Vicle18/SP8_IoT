@@ -72,27 +72,27 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "dsl.Greenhouse.HardwareSetup");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cSettingAction_0 = (Action)cGroup.eContents().get(0);
-		private final Keyword cHardwareKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cConfigurationKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cHardwareAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cHardwareHardwareParserRuleCall_2_0 = (RuleCall)cHardwareAssignment_2.eContents().get(0);
 		
 		//HardwareSetup:
 		//    {Setting}
-		//    'hardware'
+		//    'configuration'
 		//    hardware+=Hardware*
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//{Setting}
-		//'hardware'
+		//'configuration'
 		//hardware+=Hardware*
 		public Group getGroup() { return cGroup; }
 		
 		//{Setting}
 		public Action getSettingAction_0() { return cSettingAction_0; }
 		
-		//'hardware'
-		public Keyword getHardwareKeyword_1() { return cHardwareKeyword_1; }
+		//'configuration'
+		public Keyword getConfigurationKeyword_1() { return cConfigurationKeyword_1; }
 		
 		//hardware+=Hardware*
 		public Assignment getHardwareAssignment_2() { return cHardwareAssignment_2; }
@@ -466,21 +466,21 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cNameIDTerminalRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Keyword cCanKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Keyword cWillKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
 		private final Assignment cActionAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
 		private final RuleCall cActionActionParserRuleCall_3_1_0 = (RuleCall)cActionAssignment_3_1.eContents().get(0);
 		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
 		private final Keyword cCommaKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
-		private final Keyword cCanKeyword_4_1 = (Keyword)cGroup_4.eContents().get(1);
+		private final Keyword cWillKeyword_4_1 = (Keyword)cGroup_4.eContents().get(1);
 		private final Assignment cActionAssignment_4_2 = (Assignment)cGroup_4.eContents().get(2);
 		private final RuleCall cActionActionParserRuleCall_4_2_0 = (RuleCall)cActionAssignment_4_2.eContents().get(0);
 		
 		//GreenhouseActuator:
-		//      'global' 'actuator' name=ID ('can' action+=Action)? (',' 'can' action+=Action)*
+		//      'global' 'actuator' name=ID ('will' action+=Action)? (',' 'will' action+=Action)*
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'global' 'actuator' name=ID ('can' action+=Action)? (',' 'can' action+=Action)*
+		//'global' 'actuator' name=ID ('will' action+=Action)? (',' 'will' action+=Action)*
 		public Group getGroup() { return cGroup; }
 		
 		//'global'
@@ -495,11 +495,11 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_2_0() { return cNameIDTerminalRuleCall_2_0; }
 		
-		//('can' action+=Action)?
+		//('will' action+=Action)?
 		public Group getGroup_3() { return cGroup_3; }
 		
-		//'can'
-		public Keyword getCanKeyword_3_0() { return cCanKeyword_3_0; }
+		//'will'
+		public Keyword getWillKeyword_3_0() { return cWillKeyword_3_0; }
 		
 		//action+=Action
 		public Assignment getActionAssignment_3_1() { return cActionAssignment_3_1; }
@@ -507,14 +507,14 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		//Action
 		public RuleCall getActionActionParserRuleCall_3_1_0() { return cActionActionParserRuleCall_3_1_0; }
 		
-		//(',' 'can' action+=Action)*
+		//(',' 'will' action+=Action)*
 		public Group getGroup_4() { return cGroup_4; }
 		
 		//','
 		public Keyword getCommaKeyword_4_0() { return cCommaKeyword_4_0; }
 		
-		//'can'
-		public Keyword getCanKeyword_4_1() { return cCanKeyword_4_1; }
+		//'will'
+		public Keyword getWillKeyword_4_1() { return cWillKeyword_4_1; }
 		
 		//action+=Action
 		public Assignment getActionAssignment_4_2() { return cActionAssignment_4_2; }
@@ -525,29 +525,37 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 	public class RowActuatorElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "dsl.Greenhouse.RowActuator");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cActuatorKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cTypeAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final CrossReference cTypeSettingActuatorCrossReference_0_0 = (CrossReference)cTypeAssignment_0.eContents().get(0);
+		private final RuleCall cTypeSettingActuatorIDTerminalRuleCall_0_0_1 = (RuleCall)cTypeSettingActuatorCrossReference_0_0.eContents().get(1);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Keyword cCanKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Keyword cWillKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
 		private final Assignment cActionAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
 		private final RuleCall cActionActionParserRuleCall_2_1_0 = (RuleCall)cActionAssignment_2_1.eContents().get(0);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
 		private final Keyword cCommaKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
-		private final Keyword cCanKeyword_3_1 = (Keyword)cGroup_3.eContents().get(1);
+		private final Keyword cWillKeyword_3_1 = (Keyword)cGroup_3.eContents().get(1);
 		private final Assignment cActionAssignment_3_2 = (Assignment)cGroup_3.eContents().get(2);
 		private final RuleCall cActionActionParserRuleCall_3_2_0 = (RuleCall)cActionAssignment_3_2.eContents().get(0);
 		
 		//RowActuator:
-		//     'actuator' name=ID ('can' action+=Action)? (',' 'can' action+=Action)*
+		//     type=[SettingActuator] name=ID ('will' action+=Action)? (',' 'will' action+=Action)*
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'actuator' name=ID ('can' action+=Action)? (',' 'can' action+=Action)*
+		//type=[SettingActuator] name=ID ('will' action+=Action)? (',' 'will' action+=Action)*
 		public Group getGroup() { return cGroup; }
 		
-		//'actuator'
-		public Keyword getActuatorKeyword_0() { return cActuatorKeyword_0; }
+		//type=[SettingActuator]
+		public Assignment getTypeAssignment_0() { return cTypeAssignment_0; }
+		
+		//[SettingActuator]
+		public CrossReference getTypeSettingActuatorCrossReference_0_0() { return cTypeSettingActuatorCrossReference_0_0; }
+		
+		//ID
+		public RuleCall getTypeSettingActuatorIDTerminalRuleCall_0_0_1() { return cTypeSettingActuatorIDTerminalRuleCall_0_0_1; }
 		
 		//name=ID
 		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
@@ -555,11 +563,11 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 		
-		//('can' action+=Action)?
+		//('will' action+=Action)?
 		public Group getGroup_2() { return cGroup_2; }
 		
-		//'can'
-		public Keyword getCanKeyword_2_0() { return cCanKeyword_2_0; }
+		//'will'
+		public Keyword getWillKeyword_2_0() { return cWillKeyword_2_0; }
 		
 		//action+=Action
 		public Assignment getActionAssignment_2_1() { return cActionAssignment_2_1; }
@@ -567,14 +575,14 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		//Action
 		public RuleCall getActionActionParserRuleCall_2_1_0() { return cActionActionParserRuleCall_2_1_0; }
 		
-		//(',' 'can' action+=Action)*
+		//(',' 'will' action+=Action)*
 		public Group getGroup_3() { return cGroup_3; }
 		
 		//','
 		public Keyword getCommaKeyword_3_0() { return cCommaKeyword_3_0; }
 		
-		//'can'
-		public Keyword getCanKeyword_3_1() { return cCanKeyword_3_1; }
+		//'will'
+		public Keyword getWillKeyword_3_1() { return cWillKeyword_3_1; }
 		
 		//action+=Action
 		public Assignment getActionAssignment_3_2() { return cActionAssignment_3_2; }
@@ -820,7 +828,7 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		private final Assignment cTriggerAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cTriggerTriggerParserRuleCall_3_0 = (RuleCall)cTriggerAssignment_3.eContents().get(0);
 		private final Keyword cByKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Keyword cConditionKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Keyword cSettingKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		private final Assignment cConditionAssignment_6 = (Assignment)cGroup.eContents().get(6);
 		private final RuleCall cConditionConditionParserRuleCall_6_0 = (RuleCall)cConditionAssignment_6.eContents().get(0);
 		private final Keyword cToKeyword_7 = (Keyword)cGroup.eContents().get(7);
@@ -828,11 +836,11 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		private final RuleCall cValueValueParserRuleCall_8_0 = (RuleCall)cValueAssignment_8.eContents().get(0);
 		
 		//Action:
-		//    name=ID 'when' 'receiving' trigger=Trigger 'by' 'condition' condition=Condition 'to' value=Value
+		//    name=ID 'when' 'receiving' trigger=Trigger 'by' 'setting' condition=Condition 'to' value=Value
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//name=ID 'when' 'receiving' trigger=Trigger 'by' 'condition' condition=Condition 'to' value=Value
+		//name=ID 'when' 'receiving' trigger=Trigger 'by' 'setting' condition=Condition 'to' value=Value
 		public Group getGroup() { return cGroup; }
 		
 		//name=ID
@@ -856,8 +864,8 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		//'by'
 		public Keyword getByKeyword_4() { return cByKeyword_4; }
 		
-		//'condition'
-		public Keyword getConditionKeyword_5() { return cConditionKeyword_5; }
+		//'setting'
+		public Keyword getSettingKeyword_5() { return cSettingKeyword_5; }
 		
 		//condition=Condition
 		public Assignment getConditionAssignment_6() { return cConditionAssignment_6; }
@@ -1210,7 +1218,7 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 	
 	//HardwareSetup:
 	//    {Setting}
-	//    'hardware'
+	//    'configuration'
 	//    hardware+=Hardware*
 	//;
 	public HardwareSetupElements getHardwareSetupAccess() {
@@ -1335,7 +1343,7 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 	}
 	
 	//GreenhouseActuator:
-	//      'global' 'actuator' name=ID ('can' action+=Action)? (',' 'can' action+=Action)*
+	//      'global' 'actuator' name=ID ('will' action+=Action)? (',' 'will' action+=Action)*
 	//;
 	public GreenhouseActuatorElements getGreenhouseActuatorAccess() {
 		return pGreenhouseActuator;
@@ -1346,7 +1354,7 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 	}
 	
 	//RowActuator:
-	//     'actuator' name=ID ('can' action+=Action)? (',' 'can' action+=Action)*
+	//     type=[SettingActuator] name=ID ('will' action+=Action)? (',' 'will' action+=Action)*
 	//;
 	public RowActuatorElements getRowActuatorAccess() {
 		return pRowActuator;
@@ -1403,7 +1411,7 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 	}
 	
 	//Action:
-	//    name=ID 'when' 'receiving' trigger=Trigger 'by' 'condition' condition=Condition 'to' value=Value
+	//    name=ID 'when' 'receiving' trigger=Trigger 'by' 'setting' condition=Condition 'to' value=Value
 	//;
 	public ActionElements getActionAccess() {
 		return pAction;

@@ -6,11 +6,9 @@
 'actuator'=16
 'and'=19
 'by'=39
-'can'=33
-'condition'=40
+'configuration'=15
 'global'=32
 'greenhouse'=29
-'hardware'=15
 'has'=17
 'includes'=31
 'is'=43
@@ -22,6 +20,7 @@
 'rule'=41
 'sensor'=23
 'set'=42
+'setting'=40
 'states'=35
 'system'=14
 'to'=25
@@ -30,6 +29,7 @@
 'values'=28
 'variable'=37
 'when'=36
+'will'=33
 'with'=27
 RULE_ANY_OTHER=10
 RULE_ID=4

@@ -50,6 +50,7 @@
         eType="#//Action" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RowActuator" eSuperTypes="#//RowElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//SettingActuator"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="action" upperBound="-1"
         eType="#//Action" containment="true"/>

@@ -162,9 +162,9 @@ ruleHardwareSetup returns [EObject current=null]
 					$current);
 			}
 		)
-		otherlv_1='hardware'
+		otherlv_1='configuration'
 		{
-			newLeafNode(otherlv_1, grammarAccess.getHardwareSetupAccess().getHardwareKeyword_1());
+			newLeafNode(otherlv_1, grammarAccess.getHardwareSetupAccess().getConfigurationKeyword_1());
 		}
 		(
 			(
@@ -857,9 +857,9 @@ ruleGreenhouseActuator returns [EObject current=null]
 			)
 		)
 		(
-			otherlv_3='can'
+			otherlv_3='will'
 			{
-				newLeafNode(otherlv_3, grammarAccess.getGreenhouseActuatorAccess().getCanKeyword_3_0());
+				newLeafNode(otherlv_3, grammarAccess.getGreenhouseActuatorAccess().getWillKeyword_3_0());
 			}
 			(
 				(
@@ -886,9 +886,9 @@ ruleGreenhouseActuator returns [EObject current=null]
 			{
 				newLeafNode(otherlv_5, grammarAccess.getGreenhouseActuatorAccess().getCommaKeyword_4_0());
 			}
-			otherlv_6='can'
+			otherlv_6='will'
 			{
-				newLeafNode(otherlv_6, grammarAccess.getGreenhouseActuatorAccess().getCanKeyword_4_1());
+				newLeafNode(otherlv_6, grammarAccess.getGreenhouseActuatorAccess().getWillKeyword_4_1());
 			}
 			(
 				(
@@ -929,10 +929,19 @@ ruleRowActuator returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='actuator'
-		{
-			newLeafNode(otherlv_0, grammarAccess.getRowActuatorAccess().getActuatorKeyword_0());
-		}
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getRowActuatorRule());
+					}
+				}
+				otherlv_0=RULE_ID
+				{
+					newLeafNode(otherlv_0, grammarAccess.getRowActuatorAccess().getTypeSettingActuatorCrossReference_0_0());
+				}
+			)
+		)
 		(
 			(
 				lv_name_1_0=RULE_ID
@@ -952,9 +961,9 @@ ruleRowActuator returns [EObject current=null]
 			)
 		)
 		(
-			otherlv_2='can'
+			otherlv_2='will'
 			{
-				newLeafNode(otherlv_2, grammarAccess.getRowActuatorAccess().getCanKeyword_2_0());
+				newLeafNode(otherlv_2, grammarAccess.getRowActuatorAccess().getWillKeyword_2_0());
 			}
 			(
 				(
@@ -981,9 +990,9 @@ ruleRowActuator returns [EObject current=null]
 			{
 				newLeafNode(otherlv_4, grammarAccess.getRowActuatorAccess().getCommaKeyword_3_0());
 			}
-			otherlv_5='can'
+			otherlv_5='will'
 			{
-				newLeafNode(otherlv_5, grammarAccess.getRowActuatorAccess().getCanKeyword_3_1());
+				newLeafNode(otherlv_5, grammarAccess.getRowActuatorAccess().getWillKeyword_3_1());
 			}
 			(
 				(
@@ -1456,9 +1465,9 @@ ruleAction returns [EObject current=null]
 		{
 			newLeafNode(otherlv_4, grammarAccess.getActionAccess().getByKeyword_4());
 		}
-		otherlv_5='condition'
+		otherlv_5='setting'
 		{
-			newLeafNode(otherlv_5, grammarAccess.getActionAccess().getConditionKeyword_5());
+			newLeafNode(otherlv_5, grammarAccess.getActionAccess().getSettingKeyword_5());
 		}
 		(
 			(

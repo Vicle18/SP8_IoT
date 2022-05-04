@@ -46,6 +46,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//GreenhouseActuator/action"/>
     </genClasses>
     <genClasses ecoreClass="Greenhouse.ecore#//RowActuator">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//RowActuator/type"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Greenhouse.ecore#//RowActuator/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//RowActuator/action"/>
     </genClasses>

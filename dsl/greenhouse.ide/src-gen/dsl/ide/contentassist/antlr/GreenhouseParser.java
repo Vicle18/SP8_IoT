@@ -86,6 +86,7 @@ public class GreenhouseParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getGreenhouseActuatorAccess().getNameAssignment_2(), "rule__GreenhouseActuator__NameAssignment_2");
 			builder.put(grammarAccess.getGreenhouseActuatorAccess().getActionAssignment_3_1(), "rule__GreenhouseActuator__ActionAssignment_3_1");
 			builder.put(grammarAccess.getGreenhouseActuatorAccess().getActionAssignment_4_2(), "rule__GreenhouseActuator__ActionAssignment_4_2");
+			builder.put(grammarAccess.getRowActuatorAccess().getTypeAssignment_0(), "rule__RowActuator__TypeAssignment_0");
 			builder.put(grammarAccess.getRowActuatorAccess().getNameAssignment_1(), "rule__RowActuator__NameAssignment_1");
 			builder.put(grammarAccess.getRowActuatorAccess().getActionAssignment_2_1(), "rule__RowActuator__ActionAssignment_2_1");
 			builder.put(grammarAccess.getRowActuatorAccess().getActionAssignment_3_2(), "rule__RowActuator__ActionAssignment_3_2");

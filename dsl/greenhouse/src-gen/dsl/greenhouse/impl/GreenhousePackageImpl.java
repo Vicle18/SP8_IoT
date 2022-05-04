@@ -631,9 +631,20 @@ public class GreenhousePackageImpl extends EPackageImpl implements GreenhousePac
    * @generated
    */
   @Override
+  public EReference getRowActuator_Type()
+  {
+    return (EReference)rowActuatorEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EAttribute getRowActuator_Name()
   {
-    return (EAttribute)rowActuatorEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)rowActuatorEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -644,7 +655,7 @@ public class GreenhousePackageImpl extends EPackageImpl implements GreenhousePac
   @Override
   public EReference getRowActuator_Action()
   {
-    return (EReference)rowActuatorEClass.getEStructuralFeatures().get(1);
+    return (EReference)rowActuatorEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -1140,6 +1151,7 @@ public class GreenhousePackageImpl extends EPackageImpl implements GreenhousePac
     createEReference(greenhouseActuatorEClass, GREENHOUSE_ACTUATOR__ACTION);
 
     rowActuatorEClass = createEClass(ROW_ACTUATOR);
+    createEReference(rowActuatorEClass, ROW_ACTUATOR__TYPE);
     createEAttribute(rowActuatorEClass, ROW_ACTUATOR__NAME);
     createEReference(rowActuatorEClass, ROW_ACTUATOR__ACTION);
 
@@ -1277,6 +1289,7 @@ public class GreenhousePackageImpl extends EPackageImpl implements GreenhousePac
     initEReference(getGreenhouseActuator_Action(), this.getAction(), null, "action", null, 0, -1, GreenhouseActuator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(rowActuatorEClass, RowActuator.class, "RowActuator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getRowActuator_Type(), this.getSettingActuator(), null, "type", null, 0, 1, RowActuator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getRowActuator_Name(), ecorePackage.getEString(), "name", null, 0, 1, RowActuator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getRowActuator_Action(), this.getAction(), null, "action", null, 0, -1, RowActuator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

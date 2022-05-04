@@ -504,13 +504,22 @@ public interface GreenhousePackage extends EPackage
   int ROW_ACTUATOR = 13;
 
   /**
+   * The feature id for the '<em><b>Type</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ROW_ACTUATOR__TYPE = ROW_ELEMENT_FEATURE_COUNT + 0;
+
+  /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ROW_ACTUATOR__NAME = ROW_ELEMENT_FEATURE_COUNT + 0;
+  int ROW_ACTUATOR__NAME = ROW_ELEMENT_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Action</b></em>' containment reference list.
@@ -519,7 +528,7 @@ public interface GreenhousePackage extends EPackage
    * @generated
    * @ordered
    */
-  int ROW_ACTUATOR__ACTION = ROW_ELEMENT_FEATURE_COUNT + 1;
+  int ROW_ACTUATOR__ACTION = ROW_ELEMENT_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Row Actuator</em>' class.
@@ -528,7 +537,7 @@ public interface GreenhousePackage extends EPackage
    * @generated
    * @ordered
    */
-  int ROW_ACTUATOR_FEATURE_COUNT = ROW_ELEMENT_FEATURE_COUNT + 2;
+  int ROW_ACTUATOR_FEATURE_COUNT = ROW_ELEMENT_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link dsl.greenhouse.impl.GreenhouseSensorImpl <em>Sensor</em>}' class.
@@ -1311,6 +1320,17 @@ public interface GreenhousePackage extends EPackage
   EClass getRowActuator();
 
   /**
+   * Returns the meta object for the reference '{@link dsl.greenhouse.RowActuator#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Type</em>'.
+   * @see dsl.greenhouse.RowActuator#getType()
+   * @see #getRowActuator()
+   * @generated
+   */
+  EReference getRowActuator_Type();
+
+  /**
    * Returns the meta object for the attribute '{@link dsl.greenhouse.RowActuator#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2037,6 +2057,14 @@ public interface GreenhousePackage extends EPackage
      * @generated
      */
     EClass ROW_ACTUATOR = eINSTANCE.getRowActuator();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ROW_ACTUATOR__TYPE = eINSTANCE.getRowActuator_Type();
 
     /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.

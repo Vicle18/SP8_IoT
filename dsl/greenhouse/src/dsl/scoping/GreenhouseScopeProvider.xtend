@@ -14,6 +14,7 @@ import dsl.greenhouse.RowSensor
 import dsl.greenhouse.RowActuator
 import dsl.greenhouse.RowRuleSet
 import dsl.greenhouse.SettingSensor
+import dsl.greenhouse.SettingActuator
 
 /**
  * This class contains custom scoping description.
@@ -33,7 +34,14 @@ class GreenhouseScopeProvider extends AbstractGreenhouseScopeProvider {
 	}
 	
 	def dispatch scopeForEObject(RowActuator context, EReference reference) {
-		Scopes.scopeFor(context.action)
+		
+		
+		val root = EcoreUtil2.getRootContainer(context);
+		
+		val allActuators = EcoreUtil2.getAllContentsOfType(root, SettingActuator)
+		
+		System.out.println(allActuators)
+		Scopes.scopeFor(#[context], Scopes.scopeFor(allActuators))
 	}
 	
 //	def dispatch scopeForEObject(RowSensor sensor, EReference reference) {
@@ -58,15 +66,20 @@ class GreenhouseScopeProvider extends AbstractGreenhouseScopeProvider {
 		val allActuators = EcoreUtil2.getAllContentsOfType(row, RowActuator)
 		
 		System.out.println(allActions)
-		Scopes.scopeFor(allSensor, 
-			Scopes.scopeFor(allActuators,
-				Scopes.scopeFor(allActions, 
-					Scopes.scopeFor(allStates
+		Scopes.scopeFor(
+			allSensor, 
+			Scopes.scopeFor(
+				allActuators,
+				Scopes.scopeFor(
+					allActions, 
+					Scopes.scopeFor(
+						allStates
 					)
 				)
 			)
 		)
 	}
+	
 		
 	
 

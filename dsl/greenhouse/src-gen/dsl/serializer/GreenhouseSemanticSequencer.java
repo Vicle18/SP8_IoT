@@ -260,7 +260,7 @@ public class GreenhouseSemanticSequencer extends AbstractDelegatingSemanticSeque
 	 *     RowActuator returns RowActuator
 	 *
 	 * Constraint:
-	 *     (name=ID action+=Action? action+=Action*)
+	 *     (type=[SettingActuator|ID] name=ID action+=Action? action+=Action*)
 	 */
 	protected void sequence_RowActuator(ISerializationContext context, RowActuator semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

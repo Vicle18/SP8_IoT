@@ -6,6 +6,7 @@ package dsl.greenhouse.impl;
 import dsl.greenhouse.Action;
 import dsl.greenhouse.GreenhousePackage;
 import dsl.greenhouse.RowActuator;
+import dsl.greenhouse.SettingActuator;
 
 import java.util.Collection;
 
@@ -30,6 +31,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link dsl.greenhouse.impl.RowActuatorImpl#getType <em>Type</em>}</li>
  *   <li>{@link dsl.greenhouse.impl.RowActuatorImpl#getName <em>Name</em>}</li>
  *   <li>{@link dsl.greenhouse.impl.RowActuatorImpl#getAction <em>Action</em>}</li>
  * </ul>
@@ -38,6 +40,16 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class RowActuatorImpl extends RowElementImpl implements RowActuator
 {
+  /**
+   * The cached value of the '{@link #getType() <em>Type</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getType()
+   * @generated
+   * @ordered
+   */
+  protected SettingActuator type;
+
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -87,6 +99,51 @@ public class RowActuatorImpl extends RowElementImpl implements RowActuator
   protected EClass eStaticClass()
   {
     return GreenhousePackage.Literals.ROW_ACTUATOR;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public SettingActuator getType()
+  {
+    if (type != null && type.eIsProxy())
+    {
+      InternalEObject oldType = (InternalEObject)type;
+      type = (SettingActuator)eResolveProxy(oldType);
+      if (type != oldType)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, GreenhousePackage.ROW_ACTUATOR__TYPE, oldType, type));
+      }
+    }
+    return type;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public SettingActuator basicGetType()
+  {
+    return type;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setType(SettingActuator newType)
+  {
+    SettingActuator oldType = type;
+    type = newType;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GreenhousePackage.ROW_ACTUATOR__TYPE, oldType, type));
   }
 
   /**
@@ -155,6 +212,9 @@ public class RowActuatorImpl extends RowElementImpl implements RowActuator
   {
     switch (featureID)
     {
+      case GreenhousePackage.ROW_ACTUATOR__TYPE:
+        if (resolve) return getType();
+        return basicGetType();
       case GreenhousePackage.ROW_ACTUATOR__NAME:
         return getName();
       case GreenhousePackage.ROW_ACTUATOR__ACTION:
@@ -174,6 +234,9 @@ public class RowActuatorImpl extends RowElementImpl implements RowActuator
   {
     switch (featureID)
     {
+      case GreenhousePackage.ROW_ACTUATOR__TYPE:
+        setType((SettingActuator)newValue);
+        return;
       case GreenhousePackage.ROW_ACTUATOR__NAME:
         setName((String)newValue);
         return;
@@ -195,6 +258,9 @@ public class RowActuatorImpl extends RowElementImpl implements RowActuator
   {
     switch (featureID)
     {
+      case GreenhousePackage.ROW_ACTUATOR__TYPE:
+        setType((SettingActuator)null);
+        return;
       case GreenhousePackage.ROW_ACTUATOR__NAME:
         setName(NAME_EDEFAULT);
         return;
@@ -215,6 +281,8 @@ public class RowActuatorImpl extends RowElementImpl implements RowActuator
   {
     switch (featureID)
     {
+      case GreenhousePackage.ROW_ACTUATOR__TYPE:
+        return type != null;
       case GreenhousePackage.ROW_ACTUATOR__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case GreenhousePackage.ROW_ACTUATOR__ACTION:

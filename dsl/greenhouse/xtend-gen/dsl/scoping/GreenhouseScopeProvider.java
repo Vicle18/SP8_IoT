@@ -7,14 +7,17 @@ import dsl.greenhouse.Action;
 import dsl.greenhouse.RowActuator;
 import dsl.greenhouse.RowRuleSet;
 import dsl.greenhouse.RowSensor;
+import dsl.greenhouse.SettingActuator;
 import dsl.greenhouse.State;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.Scopes;
+import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 
 /**
  * This class contains custom scoping description.
@@ -34,7 +37,14 @@ public class GreenhouseScopeProvider extends AbstractGreenhouseScopeProvider {
   }
   
   protected IScope _scopeForEObject(final RowActuator context, final EReference reference) {
-    return Scopes.scopeFor(context.getAction());
+    IScope _xblockexpression = null;
+    {
+      final EObject root = EcoreUtil2.getRootContainer(context);
+      final List<SettingActuator> allActuators = EcoreUtil2.<SettingActuator>getAllContentsOfType(root, SettingActuator.class);
+      System.out.println(allActuators);
+      _xblockexpression = Scopes.scopeFor(Collections.<EObject>unmodifiableList(CollectionLiterals.<EObject>newArrayList(context)), Scopes.scopeFor(allActuators));
+    }
+    return _xblockexpression;
   }
   
   protected IScope _scopeForEObject(final RowRuleSet rule, final EReference reference) {

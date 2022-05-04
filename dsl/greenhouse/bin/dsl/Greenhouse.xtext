@@ -2,6 +2,8 @@ grammar dsl.Greenhouse with org.eclipse.xtext.common.Terminals
 
 generate greenhouse "http://www.Greenhouse.dsl"
 
+
+
 Model:
     "system" name=ID
     hardwareSetup+=HardwareSetup?
@@ -10,7 +12,7 @@ Model:
 
 HardwareSetup:
 	{Setting}
-	'hardware'
+	'configuration'
 	hardware+=Hardware*
 ;
 
@@ -60,11 +62,11 @@ RowElement:
 
 
 GreenhouseActuator:
-      'global' 'actuator' name=ID ('can' action+=Action)? (',' 'can' action+=Action)* 
+      'global' 'actuator' name=ID ('will' action+=Action)? (',' 'will' action+=Action)* 
 ;
 
 RowActuator:
-     'actuator' name=ID ('can' action+=Action)? (',' 'can' action+=Action)* 
+     type=[SettingActuator] name=ID ('will' action+=Action)? (',' 'will' action+=Action)* 
 ;
 
 GreenhouseSensor:
@@ -86,7 +88,7 @@ Variable:
 ;
 
 Action:
-    name=ID 'when' 'receiving' trigger=Trigger 'by' 'condition' condition=Condition 'to' value=Value
+    name=ID 'when' 'receiving' trigger=Trigger 'by' 'setting' condition=Condition 'to' value=Value
 ;
 
 Trigger:
