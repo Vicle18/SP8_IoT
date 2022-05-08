@@ -30,33 +30,20 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		private final Keyword cSystemKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-<<<<<<< HEAD
 		private final Assignment cHardwareSetupAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cHardwareSetupHardwareSetupParserRuleCall_2_0 = (RuleCall)cHardwareSetupAssignment_2.eContents().get(0);
-=======
-		private final Assignment cSettingsAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cSettingsSettingParserRuleCall_2_0 = (RuleCall)cSettingsAssignment_2.eContents().get(0);
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 		private final Assignment cGreenhousesAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cGreenhousesGreenhouseParserRuleCall_3_0 = (RuleCall)cGreenhousesAssignment_3.eContents().get(0);
 		
 		//Model:
 		//    "system" name=ID
-<<<<<<< HEAD
 		//    hardwareSetup+=HardwareSetup?
-=======
-		//    settings+=Setting*
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 		//    greenhouses+=Greenhouse*
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//"system" name=ID
-<<<<<<< HEAD
 		//hardwareSetup+=HardwareSetup?
-=======
-		//settings+=Setting*
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 		//greenhouses+=Greenhouse*
 		public Group getGroup() { return cGroup; }
 		
@@ -69,19 +56,11 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 		
-<<<<<<< HEAD
 		//hardwareSetup+=HardwareSetup?
 		public Assignment getHardwareSetupAssignment_2() { return cHardwareSetupAssignment_2; }
 		
 		//HardwareSetup
 		public RuleCall getHardwareSetupHardwareSetupParserRuleCall_2_0() { return cHardwareSetupHardwareSetupParserRuleCall_2_0; }
-=======
-		//settings+=Setting*
-		public Assignment getSettingsAssignment_2() { return cSettingsAssignment_2; }
-		
-		//Setting
-		public RuleCall getSettingsSettingParserRuleCall_2_0() { return cSettingsSettingParserRuleCall_2_0; }
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 		
 		//greenhouses+=Greenhouse*
 		public Assignment getGreenhousesAssignment_3() { return cGreenhousesAssignment_3; }
@@ -89,7 +68,6 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		//Greenhouse
 		public RuleCall getGreenhousesGreenhouseParserRuleCall_3_0() { return cGreenhousesGreenhouseParserRuleCall_3_0; }
 	}
-<<<<<<< HEAD
 	public class HardwareSetupElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "dsl.Greenhouse.HardwareSetup");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -141,51 +119,6 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		
 		//SettingSensor
 		public RuleCall getSettingSensorParserRuleCall_1() { return cSettingSensorParserRuleCall_1; }
-=======
-	public class SettingElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "dsl.Greenhouse.Setting");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cSettingKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Assignment cSettingActuatorAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cSettingActuatorSettingActuatorParserRuleCall_2_0 = (RuleCall)cSettingActuatorAssignment_2.eContents().get(0);
-		private final Assignment cSettingSensorAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cSettingSensorSettingSensorParserRuleCall_3_0 = (RuleCall)cSettingSensorAssignment_3.eContents().get(0);
-		
-		//Setting:
-		//    'setting' name=ID
-		//    settingActuator += SettingActuator
-		//    settingSensor += SettingSensor
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//'setting' name=ID
-		//settingActuator += SettingActuator
-		//settingSensor += SettingSensor
-		public Group getGroup() { return cGroup; }
-		
-		//'setting'
-		public Keyword getSettingKeyword_0() { return cSettingKeyword_0; }
-		
-		//name=ID
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
-		
-		//ID
-		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
-		
-		//settingActuator += SettingActuator
-		public Assignment getSettingActuatorAssignment_2() { return cSettingActuatorAssignment_2; }
-		
-		//SettingActuator
-		public RuleCall getSettingActuatorSettingActuatorParserRuleCall_2_0() { return cSettingActuatorSettingActuatorParserRuleCall_2_0; }
-		
-		//settingSensor += SettingSensor
-		public Assignment getSettingSensorAssignment_3() { return cSettingSensorAssignment_3; }
-		
-		//SettingSensor
-		public RuleCall getSettingSensorSettingSensorParserRuleCall_3_0() { return cSettingSensorSettingSensorParserRuleCall_3_0; }
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 	}
 	public class SettingActuatorElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "dsl.Greenhouse.SettingActuator");
@@ -384,18 +317,18 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 	public class SettingValueElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "dsl.Greenhouse.SettingValue");
 		private final Assignment cNameAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cNameINTTerminalRuleCall_0 = (RuleCall)cNameAssignment.eContents().get(0);
+		private final RuleCall cNameIDTerminalRuleCall_0 = (RuleCall)cNameAssignment.eContents().get(0);
 		
 		//SettingValue:
-		//    name=INT
+		//    name=ID
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//name=INT
+		//name=ID
 		public Assignment getNameAssignment() { return cNameAssignment; }
 		
-		//INT
-		public RuleCall getNameINTTerminalRuleCall_0() { return cNameINTTerminalRuleCall_0; }
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_0() { return cNameIDTerminalRuleCall_0; }
 	}
 	public class GreenhouseElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "dsl.Greenhouse.Greenhouse");
@@ -608,11 +541,7 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		private final RuleCall cActionActionParserRuleCall_3_2_0 = (RuleCall)cActionAssignment_3_2.eContents().get(0);
 		
 		//RowActuator:
-<<<<<<< HEAD
 		//     type=[SettingActuator] name=ID ('will' action+=Action)? (',' 'will' action+=Action)*
-=======
-		//     'actuator' name=ID ('can' action+=Action)? (',' 'can' action+=Action)*
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -894,36 +823,20 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cNameIDTerminalRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
-		private final Keyword cWhenKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Keyword cReceivingKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cTriggerAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cTriggerTriggerParserRuleCall_3_0 = (RuleCall)cTriggerAssignment_3.eContents().get(0);
-		private final Keyword cByKeyword_4 = (Keyword)cGroup.eContents().get(4);
-<<<<<<< HEAD
-		private final Keyword cSettingKeyword_5 = (Keyword)cGroup.eContents().get(5);
-=======
-		private final Keyword cConditionKeyword_5 = (Keyword)cGroup.eContents().get(5);
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
-		private final Assignment cConditionAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final RuleCall cConditionConditionParserRuleCall_6_0 = (RuleCall)cConditionAssignment_6.eContents().get(0);
-		private final Keyword cToKeyword_7 = (Keyword)cGroup.eContents().get(7);
-		private final Assignment cValueAssignment_8 = (Assignment)cGroup.eContents().get(8);
-		private final RuleCall cValueValueParserRuleCall_8_0 = (RuleCall)cValueAssignment_8.eContents().get(0);
+		private final Assignment cValueAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final CrossReference cValueSettingValueCrossReference_1_0 = (CrossReference)cValueAssignment_1.eContents().get(0);
+		private final RuleCall cValueSettingValueIDTerminalRuleCall_1_0_1 = (RuleCall)cValueSettingValueCrossReference_1_0.eContents().get(1);
+		private final Keyword cWhenKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Keyword cReceivingKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cTriggerAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cTriggerTriggerParserRuleCall_4_0 = (RuleCall)cTriggerAssignment_4.eContents().get(0);
 		
 		//Action:
-<<<<<<< HEAD
-		//    name=ID 'when' 'receiving' trigger=Trigger 'by' 'setting' condition=Condition 'to' value=Value
+		//    name=ID value=[SettingValue] 'when' 'receiving' trigger=Trigger
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//name=ID 'when' 'receiving' trigger=Trigger 'by' 'setting' condition=Condition 'to' value=Value
-=======
-		//    name=ID 'when' 'receiving' trigger=Trigger 'by' 'condition' condition=Condition 'to' value=Value
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//name=ID 'when' 'receiving' trigger=Trigger 'by' 'condition' condition=Condition 'to' value=Value
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
+		//name=ID value=[SettingValue] 'when' 'receiving' trigger=Trigger
 		public Group getGroup() { return cGroup; }
 		
 		//name=ID
@@ -932,38 +845,26 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_0_0() { return cNameIDTerminalRuleCall_0_0; }
 		
+		//value=[SettingValue]
+		public Assignment getValueAssignment_1() { return cValueAssignment_1; }
+		
+		//[SettingValue]
+		public CrossReference getValueSettingValueCrossReference_1_0() { return cValueSettingValueCrossReference_1_0; }
+		
+		//ID
+		public RuleCall getValueSettingValueIDTerminalRuleCall_1_0_1() { return cValueSettingValueIDTerminalRuleCall_1_0_1; }
+		
 		//'when'
-		public Keyword getWhenKeyword_1() { return cWhenKeyword_1; }
+		public Keyword getWhenKeyword_2() { return cWhenKeyword_2; }
 		
 		//'receiving'
-		public Keyword getReceivingKeyword_2() { return cReceivingKeyword_2; }
+		public Keyword getReceivingKeyword_3() { return cReceivingKeyword_3; }
 		
 		//trigger=Trigger
-		public Assignment getTriggerAssignment_3() { return cTriggerAssignment_3; }
+		public Assignment getTriggerAssignment_4() { return cTriggerAssignment_4; }
 		
 		//Trigger
-		public RuleCall getTriggerTriggerParserRuleCall_3_0() { return cTriggerTriggerParserRuleCall_3_0; }
-		
-		//'by'
-		public Keyword getByKeyword_4() { return cByKeyword_4; }
-		
-		//'condition'
-		public Keyword getConditionKeyword_5() { return cConditionKeyword_5; }
-		
-		//condition=Condition
-		public Assignment getConditionAssignment_6() { return cConditionAssignment_6; }
-		
-		//Condition
-		public RuleCall getConditionConditionParserRuleCall_6_0() { return cConditionConditionParserRuleCall_6_0; }
-		
-		//'to'
-		public Keyword getToKeyword_7() { return cToKeyword_7; }
-		
-		//value=Value
-		public Assignment getValueAssignment_8() { return cValueAssignment_8; }
-		
-		//Value
-		public RuleCall getValueValueParserRuleCall_8_0() { return cValueValueParserRuleCall_8_0; }
+		public RuleCall getTriggerTriggerParserRuleCall_4_0() { return cTriggerTriggerParserRuleCall_4_0; }
 	}
 	public class TriggerElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "dsl.Greenhouse.Trigger");
@@ -1045,77 +946,81 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "dsl.Greenhouse.RowRuleSet");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cRuleKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cActuatorAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final CrossReference cActuatorRowActuatorCrossReference_1_0 = (CrossReference)cActuatorAssignment_1.eContents().get(0);
-		private final RuleCall cActuatorRowActuatorIDTerminalRuleCall_1_0_1 = (RuleCall)cActuatorRowActuatorCrossReference_1_0.eContents().get(1);
-		private final Keyword cSetKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cActionAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final CrossReference cActionActionCrossReference_3_0 = (CrossReference)cActionAssignment_3.eContents().get(0);
-		private final RuleCall cActionActionIDTerminalRuleCall_3_0_1 = (RuleCall)cActionActionCrossReference_3_0.eContents().get(1);
-		private final Keyword cWhenKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Assignment cSensorAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final CrossReference cSensorRowSensorCrossReference_5_0 = (CrossReference)cSensorAssignment_5.eContents().get(0);
-		private final RuleCall cSensorRowSensorIDTerminalRuleCall_5_0_1 = (RuleCall)cSensorRowSensorCrossReference_5_0.eContents().get(1);
-		private final Keyword cIsKeyword_6 = (Keyword)cGroup.eContents().get(6);
-		private final Assignment cStateAssignment_7 = (Assignment)cGroup.eContents().get(7);
-		private final CrossReference cStateStateCrossReference_7_0 = (CrossReference)cStateAssignment_7.eContents().get(0);
-		private final RuleCall cStateStateIDTerminalRuleCall_7_0_1 = (RuleCall)cStateStateCrossReference_7_0.eContents().get(1);
+		private final Keyword cTriggerKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cTriggerAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final CrossReference cTriggerTriggerCrossReference_2_0 = (CrossReference)cTriggerAssignment_2.eContents().get(0);
+		private final RuleCall cTriggerTriggerIDTerminalRuleCall_2_0_1 = (RuleCall)cTriggerTriggerCrossReference_2_0.eContents().get(1);
+		private final Keyword cOnKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cActuatorAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final CrossReference cActuatorRowActuatorCrossReference_4_0 = (CrossReference)cActuatorAssignment_4.eContents().get(0);
+		private final RuleCall cActuatorRowActuatorIDTerminalRuleCall_4_0_1 = (RuleCall)cActuatorRowActuatorCrossReference_4_0.eContents().get(1);
+		private final Keyword cWhenKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cSensorAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final CrossReference cSensorRowSensorCrossReference_6_0 = (CrossReference)cSensorAssignment_6.eContents().get(0);
+		private final RuleCall cSensorRowSensorIDTerminalRuleCall_6_0_1 = (RuleCall)cSensorRowSensorCrossReference_6_0.eContents().get(1);
+		private final Keyword cIsKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Assignment cStateAssignment_8 = (Assignment)cGroup.eContents().get(8);
+		private final CrossReference cStateStateCrossReference_8_0 = (CrossReference)cStateAssignment_8.eContents().get(0);
+		private final RuleCall cStateStateIDTerminalRuleCall_8_0_1 = (RuleCall)cStateStateCrossReference_8_0.eContents().get(1);
 		
 		//RowRuleSet:
-		//    'rule' Actuator=[RowActuator] 'set' action=[Action] 'when' sensor=[RowSensor] 'is' state=[State]
+		//    'rule' 'trigger' trigger=[Trigger] 'on' Actuator=[RowActuator] 'when' sensor=[RowSensor] 'is' state=[State]
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'rule' Actuator=[RowActuator] 'set' action=[Action] 'when' sensor=[RowSensor] 'is' state=[State]
+		//'rule' 'trigger' trigger=[Trigger] 'on' Actuator=[RowActuator] 'when' sensor=[RowSensor] 'is' state=[State]
 		public Group getGroup() { return cGroup; }
 		
 		//'rule'
 		public Keyword getRuleKeyword_0() { return cRuleKeyword_0; }
 		
+		//'trigger'
+		public Keyword getTriggerKeyword_1() { return cTriggerKeyword_1; }
+		
+		//trigger=[Trigger]
+		public Assignment getTriggerAssignment_2() { return cTriggerAssignment_2; }
+		
+		//[Trigger]
+		public CrossReference getTriggerTriggerCrossReference_2_0() { return cTriggerTriggerCrossReference_2_0; }
+		
+		//ID
+		public RuleCall getTriggerTriggerIDTerminalRuleCall_2_0_1() { return cTriggerTriggerIDTerminalRuleCall_2_0_1; }
+		
+		//'on'
+		public Keyword getOnKeyword_3() { return cOnKeyword_3; }
+		
 		//Actuator=[RowActuator]
-		public Assignment getActuatorAssignment_1() { return cActuatorAssignment_1; }
+		public Assignment getActuatorAssignment_4() { return cActuatorAssignment_4; }
 		
 		//[RowActuator]
-		public CrossReference getActuatorRowActuatorCrossReference_1_0() { return cActuatorRowActuatorCrossReference_1_0; }
+		public CrossReference getActuatorRowActuatorCrossReference_4_0() { return cActuatorRowActuatorCrossReference_4_0; }
 		
 		//ID
-		public RuleCall getActuatorRowActuatorIDTerminalRuleCall_1_0_1() { return cActuatorRowActuatorIDTerminalRuleCall_1_0_1; }
-		
-		//'set'
-		public Keyword getSetKeyword_2() { return cSetKeyword_2; }
-		
-		//action=[Action]
-		public Assignment getActionAssignment_3() { return cActionAssignment_3; }
-		
-		//[Action]
-		public CrossReference getActionActionCrossReference_3_0() { return cActionActionCrossReference_3_0; }
-		
-		//ID
-		public RuleCall getActionActionIDTerminalRuleCall_3_0_1() { return cActionActionIDTerminalRuleCall_3_0_1; }
+		public RuleCall getActuatorRowActuatorIDTerminalRuleCall_4_0_1() { return cActuatorRowActuatorIDTerminalRuleCall_4_0_1; }
 		
 		//'when'
-		public Keyword getWhenKeyword_4() { return cWhenKeyword_4; }
+		public Keyword getWhenKeyword_5() { return cWhenKeyword_5; }
 		
 		//sensor=[RowSensor]
-		public Assignment getSensorAssignment_5() { return cSensorAssignment_5; }
+		public Assignment getSensorAssignment_6() { return cSensorAssignment_6; }
 		
 		//[RowSensor]
-		public CrossReference getSensorRowSensorCrossReference_5_0() { return cSensorRowSensorCrossReference_5_0; }
+		public CrossReference getSensorRowSensorCrossReference_6_0() { return cSensorRowSensorCrossReference_6_0; }
 		
 		//ID
-		public RuleCall getSensorRowSensorIDTerminalRuleCall_5_0_1() { return cSensorRowSensorIDTerminalRuleCall_5_0_1; }
+		public RuleCall getSensorRowSensorIDTerminalRuleCall_6_0_1() { return cSensorRowSensorIDTerminalRuleCall_6_0_1; }
 		
 		//'is'
-		public Keyword getIsKeyword_6() { return cIsKeyword_6; }
+		public Keyword getIsKeyword_7() { return cIsKeyword_7; }
 		
 		//state=[State]
-		public Assignment getStateAssignment_7() { return cStateAssignment_7; }
+		public Assignment getStateAssignment_8() { return cStateAssignment_8; }
 		
 		//[State]
-		public CrossReference getStateStateCrossReference_7_0() { return cStateStateCrossReference_7_0; }
+		public CrossReference getStateStateCrossReference_8_0() { return cStateStateCrossReference_8_0; }
 		
 		//ID
-		public RuleCall getStateStateIDTerminalRuleCall_7_0_1() { return cStateStateIDTerminalRuleCall_7_0_1; }
+		public RuleCall getStateStateIDTerminalRuleCall_8_0_1() { return cStateStateIDTerminalRuleCall_8_0_1; }
 	}
 	public class GreenhouseRuleSetElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "dsl.Greenhouse.GreenhouseRuleSet");
@@ -1200,12 +1105,8 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 	
 	
 	private final ModelElements pModel;
-<<<<<<< HEAD
 	private final HardwareSetupElements pHardwareSetup;
 	private final HardwareElements pHardware;
-=======
-	private final SettingElements pSetting;
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 	private final SettingActuatorElements pSettingActuator;
 	private final SettingSensorElements pSettingSensor;
 	private final TopicElements pTopic;
@@ -1238,12 +1139,8 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		this.grammar = internalFindGrammar(grammarProvider);
 		this.gaTerminals = gaTerminals;
 		this.pModel = new ModelElements();
-<<<<<<< HEAD
 		this.pHardwareSetup = new HardwareSetupElements();
 		this.pHardware = new HardwareElements();
-=======
-		this.pSetting = new SettingElements();
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 		this.pSettingActuator = new SettingActuatorElements();
 		this.pSettingSensor = new SettingSensorElements();
 		this.pTopic = new TopicElements();
@@ -1296,11 +1193,7 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 	
 	//Model:
 	//    "system" name=ID
-<<<<<<< HEAD
 	//    hardwareSetup+=HardwareSetup?
-=======
-	//    settings+=Setting*
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 	//    greenhouses+=Greenhouse*
 	//;
 	public ModelElements getModelAccess() {
@@ -1311,7 +1204,6 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		return getModelAccess().getRule();
 	}
 	
-<<<<<<< HEAD
 	//HardwareSetup:
 	//    {Setting}
 	//    'configuration'
@@ -1334,19 +1226,6 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 	
 	public ParserRule getHardwareRule() {
 		return getHardwareAccess().getRule();
-=======
-	//Setting:
-	//    'setting' name=ID
-	//    settingActuator += SettingActuator
-	//    settingSensor += SettingSensor
-	//;
-	public SettingElements getSettingAccess() {
-		return pSetting;
-	}
-	
-	public ParserRule getSettingRule() {
-		return getSettingAccess().getRule();
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 	}
 	
 	//SettingActuator:
@@ -1395,7 +1274,7 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 	}
 	
 	//SettingValue:
-	//    name=INT
+	//    name=ID
 	//;
 	public SettingValueElements getSettingValueAccess() {
 		return pSettingValue;
@@ -1463,11 +1342,7 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 	}
 	
 	//RowActuator:
-<<<<<<< HEAD
 	//     type=[SettingActuator] name=ID ('will' action+=Action)? (',' 'will' action+=Action)*
-=======
-	//     'actuator' name=ID ('can' action+=Action)? (',' 'can' action+=Action)*
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 	//;
 	public RowActuatorElements getRowActuatorAccess() {
 		return pRowActuator;
@@ -1524,11 +1399,7 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 	}
 	
 	//Action:
-<<<<<<< HEAD
-	//    name=ID 'when' 'receiving' trigger=Trigger 'by' 'setting' condition=Condition 'to' value=Value
-=======
-	//    name=ID 'when' 'receiving' trigger=Trigger 'by' 'condition' condition=Condition 'to' value=Value
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
+	//    name=ID value=[SettingValue] 'when' 'receiving' trigger=Trigger
 	//;
 	public ActionElements getActionAccess() {
 		return pAction;
@@ -1574,7 +1445,7 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 	}
 	
 	//RowRuleSet:
-	//    'rule' Actuator=[RowActuator] 'set' action=[Action] 'when' sensor=[RowSensor] 'is' state=[State]
+	//    'rule' 'trigger' trigger=[Trigger] 'on' Actuator=[RowActuator] 'when' sensor=[RowSensor] 'is' state=[State]
 	//;
 	public RowRuleSetElements getRowRuleSetAccess() {
 		return pRowRuleSet;

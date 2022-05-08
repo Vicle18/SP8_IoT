@@ -3,22 +3,10 @@
  */
 package dsl.greenhouse.impl;
 
-<<<<<<< HEAD
 import dsl.greenhouse.Action;
 import dsl.greenhouse.GreenhousePackage;
 import dsl.greenhouse.RowActuator;
 import dsl.greenhouse.SettingActuator;
-=======
-<<<<<<<< HEAD:dsl/greenhouse/src-gen/dsl/greenhouse/impl/SettingActuatorImpl.java
-import dsl.greenhouse.GreenhousePackage;
-import dsl.greenhouse.SettingAction;
-import dsl.greenhouse.SettingActuator;
-========
-import dsl.greenhouse.Action;
-import dsl.greenhouse.GreenhousePackage;
-import dsl.greenhouse.RowActuator;
->>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4:dsl/greenhouse/src-gen/dsl/greenhouse/impl/RowActuatorImpl.java
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 
 import java.util.Collection;
 
@@ -37,37 +25,19 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
-<<<<<<< HEAD
  * An implementation of the model object '<em><b>Row Actuator</b></em>'.
-=======
-<<<<<<<< HEAD:dsl/greenhouse/src-gen/dsl/greenhouse/impl/SettingActuatorImpl.java
- * An implementation of the model object '<em><b>Setting Actuator</b></em>'.
-========
- * An implementation of the model object '<em><b>Row Actuator</b></em>'.
->>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4:dsl/greenhouse/src-gen/dsl/greenhouse/impl/RowActuatorImpl.java
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
-<<<<<<< HEAD
  *   <li>{@link dsl.greenhouse.impl.RowActuatorImpl#getType <em>Type</em>}</li>
  *   <li>{@link dsl.greenhouse.impl.RowActuatorImpl#getName <em>Name</em>}</li>
  *   <li>{@link dsl.greenhouse.impl.RowActuatorImpl#getAction <em>Action</em>}</li>
-=======
-<<<<<<<< HEAD:dsl/greenhouse/src-gen/dsl/greenhouse/impl/SettingActuatorImpl.java
- *   <li>{@link dsl.greenhouse.impl.SettingActuatorImpl#getSettingAction <em>Setting Action</em>}</li>
-========
- *   <li>{@link dsl.greenhouse.impl.RowActuatorImpl#getName <em>Name</em>}</li>
- *   <li>{@link dsl.greenhouse.impl.RowActuatorImpl#getAction <em>Action</em>}</li>
->>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4:dsl/greenhouse/src-gen/dsl/greenhouse/impl/RowActuatorImpl.java
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
  * </ul>
  *
  * @generated
  */
-<<<<<<< HEAD
 public class RowActuatorImpl extends RowElementImpl implements RowActuator
 {
   /**
@@ -80,16 +50,6 @@ public class RowActuatorImpl extends RowElementImpl implements RowActuator
    */
   protected SettingActuator type;
 
-=======
-<<<<<<<< HEAD:dsl/greenhouse/src-gen/dsl/greenhouse/impl/SettingActuatorImpl.java
-public class SettingActuatorImpl extends HardwareImpl implements SettingActuator
-{
-  /**
-   * The cached value of the '{@link #getSettingAction() <em>Setting Action</em>}' containment reference list.
-========
-public class RowActuatorImpl extends RowElementImpl implements RowActuator
-{
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -112,7 +72,6 @@ public class RowActuatorImpl extends RowElementImpl implements RowActuator
 
   /**
    * The cached value of the '{@link #getAction() <em>Action</em>}' containment reference list.
-<<<<<<< HEAD
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getAction()
@@ -120,31 +79,13 @@ public class RowActuatorImpl extends RowElementImpl implements RowActuator
    * @ordered
    */
   protected EList<Action> action;
-=======
->>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4:dsl/greenhouse/src-gen/dsl/greenhouse/impl/RowActuatorImpl.java
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getSettingAction()
-   * @generated
-   * @ordered
-   */
-  protected EList<SettingAction> settingAction;
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-<<<<<<< HEAD
   protected RowActuatorImpl()
-=======
-<<<<<<<< HEAD:dsl/greenhouse/src-gen/dsl/greenhouse/impl/SettingActuatorImpl.java
-  protected SettingActuatorImpl()
-========
-  protected RowActuatorImpl()
->>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4:dsl/greenhouse/src-gen/dsl/greenhouse/impl/RowActuatorImpl.java
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
   {
     super();
   }
@@ -157,12 +98,6 @@ public class RowActuatorImpl extends RowElementImpl implements RowActuator
   @Override
   protected EClass eStaticClass()
   {
-<<<<<<< HEAD
-=======
-<<<<<<<< HEAD:dsl/greenhouse/src-gen/dsl/greenhouse/impl/SettingActuatorImpl.java
-    return GreenhousePackage.Literals.SETTING_ACTUATOR;
-========
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
     return GreenhousePackage.Literals.ROW_ACTUATOR;
   }
 
@@ -172,7 +107,6 @@ public class RowActuatorImpl extends RowElementImpl implements RowActuator
    * @generated
    */
   @Override
-<<<<<<< HEAD
   public SettingActuator getType()
   {
     if (type != null && type.eIsProxy())
@@ -218,8 +152,6 @@ public class RowActuatorImpl extends RowElementImpl implements RowActuator
    * @generated
    */
   @Override
-=======
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
   public String getName()
   {
     return name;
@@ -237,10 +169,6 @@ public class RowActuatorImpl extends RowElementImpl implements RowActuator
     name = newName;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, GreenhousePackage.ROW_ACTUATOR__NAME, oldName, name));
-<<<<<<< HEAD
-=======
->>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4:dsl/greenhouse/src-gen/dsl/greenhouse/impl/RowActuatorImpl.java
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
   }
 
   /**
@@ -249,7 +177,6 @@ public class RowActuatorImpl extends RowElementImpl implements RowActuator
    * @generated
    */
   @Override
-<<<<<<< HEAD
   public EList<Action> getAction()
   {
     if (action == null)
@@ -257,19 +184,6 @@ public class RowActuatorImpl extends RowElementImpl implements RowActuator
       action = new EObjectContainmentEList<Action>(Action.class, this, GreenhousePackage.ROW_ACTUATOR__ACTION);
     }
     return action;
-=======
-  public EList<SettingAction> getSettingAction()
-  {
-    if (settingAction == null)
-    {
-<<<<<<<< HEAD:dsl/greenhouse/src-gen/dsl/greenhouse/impl/SettingActuatorImpl.java
-      settingAction = new EObjectContainmentEList<SettingAction>(SettingAction.class, this, GreenhousePackage.SETTING_ACTUATOR__SETTING_ACTION);
-========
-      action = new EObjectContainmentEList<Action>(Action.class, this, GreenhousePackage.ROW_ACTUATOR__ACTION);
->>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4:dsl/greenhouse/src-gen/dsl/greenhouse/impl/RowActuatorImpl.java
-    }
-    return settingAction;
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
   }
 
   /**
@@ -282,18 +196,8 @@ public class RowActuatorImpl extends RowElementImpl implements RowActuator
   {
     switch (featureID)
     {
-<<<<<<< HEAD
       case GreenhousePackage.ROW_ACTUATOR__ACTION:
         return ((InternalEList<?>)getAction()).basicRemove(otherEnd, msgs);
-=======
-<<<<<<<< HEAD:dsl/greenhouse/src-gen/dsl/greenhouse/impl/SettingActuatorImpl.java
-      case GreenhousePackage.SETTING_ACTUATOR__SETTING_ACTION:
-        return ((InternalEList<?>)getSettingAction()).basicRemove(otherEnd, msgs);
-========
-      case GreenhousePackage.ROW_ACTUATOR__ACTION:
-        return ((InternalEList<?>)getAction()).basicRemove(otherEnd, msgs);
->>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4:dsl/greenhouse/src-gen/dsl/greenhouse/impl/RowActuatorImpl.java
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -308,24 +212,13 @@ public class RowActuatorImpl extends RowElementImpl implements RowActuator
   {
     switch (featureID)
     {
-<<<<<<< HEAD
       case GreenhousePackage.ROW_ACTUATOR__TYPE:
         if (resolve) return getType();
         return basicGetType();
-=======
-<<<<<<<< HEAD:dsl/greenhouse/src-gen/dsl/greenhouse/impl/SettingActuatorImpl.java
-      case GreenhousePackage.SETTING_ACTUATOR__SETTING_ACTION:
-        return getSettingAction();
-========
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
       case GreenhousePackage.ROW_ACTUATOR__NAME:
         return getName();
       case GreenhousePackage.ROW_ACTUATOR__ACTION:
         return getAction();
-<<<<<<< HEAD
-=======
->>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4:dsl/greenhouse/src-gen/dsl/greenhouse/impl/RowActuatorImpl.java
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -341,27 +234,15 @@ public class RowActuatorImpl extends RowElementImpl implements RowActuator
   {
     switch (featureID)
     {
-<<<<<<< HEAD
       case GreenhousePackage.ROW_ACTUATOR__TYPE:
         setType((SettingActuator)newValue);
         return;
-=======
-<<<<<<<< HEAD:dsl/greenhouse/src-gen/dsl/greenhouse/impl/SettingActuatorImpl.java
-      case GreenhousePackage.SETTING_ACTUATOR__SETTING_ACTION:
-        getSettingAction().clear();
-        getSettingAction().addAll((Collection<? extends SettingAction>)newValue);
-========
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
       case GreenhousePackage.ROW_ACTUATOR__NAME:
         setName((String)newValue);
         return;
       case GreenhousePackage.ROW_ACTUATOR__ACTION:
         getAction().clear();
         getAction().addAll((Collection<? extends Action>)newValue);
-<<<<<<< HEAD
-=======
->>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4:dsl/greenhouse/src-gen/dsl/greenhouse/impl/RowActuatorImpl.java
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
         return;
     }
     super.eSet(featureID, newValue);
@@ -377,25 +258,14 @@ public class RowActuatorImpl extends RowElementImpl implements RowActuator
   {
     switch (featureID)
     {
-<<<<<<< HEAD
       case GreenhousePackage.ROW_ACTUATOR__TYPE:
         setType((SettingActuator)null);
         return;
-=======
-<<<<<<<< HEAD:dsl/greenhouse/src-gen/dsl/greenhouse/impl/SettingActuatorImpl.java
-      case GreenhousePackage.SETTING_ACTUATOR__SETTING_ACTION:
-        getSettingAction().clear();
-========
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
       case GreenhousePackage.ROW_ACTUATOR__NAME:
         setName(NAME_EDEFAULT);
         return;
       case GreenhousePackage.ROW_ACTUATOR__ACTION:
         getAction().clear();
-<<<<<<< HEAD
-=======
->>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4:dsl/greenhouse/src-gen/dsl/greenhouse/impl/RowActuatorImpl.java
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
         return;
     }
     super.eUnset(featureID);
@@ -411,33 +281,16 @@ public class RowActuatorImpl extends RowElementImpl implements RowActuator
   {
     switch (featureID)
     {
-<<<<<<< HEAD
       case GreenhousePackage.ROW_ACTUATOR__TYPE:
         return type != null;
-=======
-<<<<<<<< HEAD:dsl/greenhouse/src-gen/dsl/greenhouse/impl/SettingActuatorImpl.java
-      case GreenhousePackage.SETTING_ACTUATOR__SETTING_ACTION:
-        return settingAction != null && !settingAction.isEmpty();
-========
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
       case GreenhousePackage.ROW_ACTUATOR__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case GreenhousePackage.ROW_ACTUATOR__ACTION:
         return action != null && !action.isEmpty();
-<<<<<<< HEAD
-=======
->>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4:dsl/greenhouse/src-gen/dsl/greenhouse/impl/RowActuatorImpl.java
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
     }
     return super.eIsSet(featureID);
   }
 
-<<<<<<< HEAD
-=======
-<<<<<<<< HEAD:dsl/greenhouse/src-gen/dsl/greenhouse/impl/SettingActuatorImpl.java
-} //SettingActuatorImpl
-========
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -456,7 +309,3 @@ public class RowActuatorImpl extends RowElementImpl implements RowActuator
   }
 
 } //RowActuatorImpl
-<<<<<<< HEAD
-=======
->>>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4:dsl/greenhouse/src-gen/dsl/greenhouse/impl/RowActuatorImpl.java
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4

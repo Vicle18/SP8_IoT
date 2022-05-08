@@ -15,9 +15,8 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link dsl.greenhouse.Action#getName <em>Name</em>}</li>
- *   <li>{@link dsl.greenhouse.Action#getTrigger <em>Trigger</em>}</li>
- *   <li>{@link dsl.greenhouse.Action#getCondition <em>Condition</em>}</li>
  *   <li>{@link dsl.greenhouse.Action#getValue <em>Value</em>}</li>
+ *   <li>{@link dsl.greenhouse.Action#getTrigger <em>Trigger</em>}</li>
  * </ul>
  *
  * @see dsl.greenhouse.GreenhousePackage#getAction()
@@ -49,6 +48,28 @@ public interface Action extends EObject
   void setName(String value);
 
   /**
+   * Returns the value of the '<em><b>Value</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Value</em>' reference.
+   * @see #setValue(SettingValue)
+   * @see dsl.greenhouse.GreenhousePackage#getAction_Value()
+   * @model
+   * @generated
+   */
+  SettingValue getValue();
+
+  /**
+   * Sets the value of the '{@link dsl.greenhouse.Action#getValue <em>Value</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Value</em>' reference.
+   * @see #getValue()
+   * @generated
+   */
+  void setValue(SettingValue value);
+
+  /**
    * Returns the value of the '<em><b>Trigger</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -69,49 +90,5 @@ public interface Action extends EObject
    * @generated
    */
   void setTrigger(Trigger value);
-
-  /**
-   * Returns the value of the '<em><b>Condition</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Condition</em>' containment reference.
-   * @see #setCondition(Condition)
-   * @see dsl.greenhouse.GreenhousePackage#getAction_Condition()
-   * @model containment="true"
-   * @generated
-   */
-  Condition getCondition();
-
-  /**
-   * Sets the value of the '{@link dsl.greenhouse.Action#getCondition <em>Condition</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Condition</em>' containment reference.
-   * @see #getCondition()
-   * @generated
-   */
-  void setCondition(Condition value);
-
-  /**
-   * Returns the value of the '<em><b>Value</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Value</em>' containment reference.
-   * @see #setValue(Value)
-   * @see dsl.greenhouse.GreenhousePackage#getAction_Value()
-   * @model containment="true"
-   * @generated
-   */
-  Value getValue();
-
-  /**
-   * Sets the value of the '{@link dsl.greenhouse.Action#getValue <em>Value</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Value</em>' containment reference.
-   * @see #getValue()
-   * @generated
-   */
-  void setValue(Value value);
 
 } // Action

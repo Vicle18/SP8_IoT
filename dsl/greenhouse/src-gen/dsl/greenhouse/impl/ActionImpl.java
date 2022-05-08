@@ -4,10 +4,9 @@
 package dsl.greenhouse.impl;
 
 import dsl.greenhouse.Action;
-import dsl.greenhouse.Condition;
 import dsl.greenhouse.GreenhousePackage;
+import dsl.greenhouse.SettingValue;
 import dsl.greenhouse.Trigger;
-import dsl.greenhouse.Value;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -27,9 +26,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * </p>
  * <ul>
  *   <li>{@link dsl.greenhouse.impl.ActionImpl#getName <em>Name</em>}</li>
- *   <li>{@link dsl.greenhouse.impl.ActionImpl#getTrigger <em>Trigger</em>}</li>
- *   <li>{@link dsl.greenhouse.impl.ActionImpl#getCondition <em>Condition</em>}</li>
  *   <li>{@link dsl.greenhouse.impl.ActionImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link dsl.greenhouse.impl.ActionImpl#getTrigger <em>Trigger</em>}</li>
  * </ul>
  *
  * @generated
@@ -57,6 +55,16 @@ public class ActionImpl extends MinimalEObjectImpl.Container implements Action
   protected String name = NAME_EDEFAULT;
 
   /**
+   * The cached value of the '{@link #getValue() <em>Value</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getValue()
+   * @generated
+   * @ordered
+   */
+  protected SettingValue value;
+
+  /**
    * The cached value of the '{@link #getTrigger() <em>Trigger</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -65,26 +73,6 @@ public class ActionImpl extends MinimalEObjectImpl.Container implements Action
    * @ordered
    */
   protected Trigger trigger;
-
-  /**
-   * The cached value of the '{@link #getCondition() <em>Condition</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getCondition()
-   * @generated
-   * @ordered
-   */
-  protected Condition condition;
-
-  /**
-   * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getValue()
-   * @generated
-   * @ordered
-   */
-  protected Value value;
 
   /**
    * <!-- begin-user-doc -->
@@ -130,6 +118,51 @@ public class ActionImpl extends MinimalEObjectImpl.Container implements Action
     name = newName;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, GreenhousePackage.ACTION__NAME, oldName, name));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public SettingValue getValue()
+  {
+    if (value != null && value.eIsProxy())
+    {
+      InternalEObject oldValue = (InternalEObject)value;
+      value = (SettingValue)eResolveProxy(oldValue);
+      if (value != oldValue)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, GreenhousePackage.ACTION__VALUE, oldValue, value));
+      }
+    }
+    return value;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public SettingValue basicGetValue()
+  {
+    return value;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setValue(SettingValue newValue)
+  {
+    SettingValue oldValue = value;
+    value = newValue;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GreenhousePackage.ACTION__VALUE, oldValue, value));
   }
 
   /**
@@ -188,116 +221,12 @@ public class ActionImpl extends MinimalEObjectImpl.Container implements Action
    * @generated
    */
   @Override
-  public Condition getCondition()
-  {
-    return condition;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetCondition(Condition newCondition, NotificationChain msgs)
-  {
-    Condition oldCondition = condition;
-    condition = newCondition;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GreenhousePackage.ACTION__CONDITION, oldCondition, newCondition);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setCondition(Condition newCondition)
-  {
-    if (newCondition != condition)
-    {
-      NotificationChain msgs = null;
-      if (condition != null)
-        msgs = ((InternalEObject)condition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GreenhousePackage.ACTION__CONDITION, null, msgs);
-      if (newCondition != null)
-        msgs = ((InternalEObject)newCondition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GreenhousePackage.ACTION__CONDITION, null, msgs);
-      msgs = basicSetCondition(newCondition, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GreenhousePackage.ACTION__CONDITION, newCondition, newCondition));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Value getValue()
-  {
-    return value;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetValue(Value newValue, NotificationChain msgs)
-  {
-    Value oldValue = value;
-    value = newValue;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GreenhousePackage.ACTION__VALUE, oldValue, newValue);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setValue(Value newValue)
-  {
-    if (newValue != value)
-    {
-      NotificationChain msgs = null;
-      if (value != null)
-        msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GreenhousePackage.ACTION__VALUE, null, msgs);
-      if (newValue != null)
-        msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GreenhousePackage.ACTION__VALUE, null, msgs);
-      msgs = basicSetValue(newValue, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GreenhousePackage.ACTION__VALUE, newValue, newValue));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
     switch (featureID)
     {
       case GreenhousePackage.ACTION__TRIGGER:
         return basicSetTrigger(null, msgs);
-      case GreenhousePackage.ACTION__CONDITION:
-        return basicSetCondition(null, msgs);
-      case GreenhousePackage.ACTION__VALUE:
-        return basicSetValue(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -314,12 +243,11 @@ public class ActionImpl extends MinimalEObjectImpl.Container implements Action
     {
       case GreenhousePackage.ACTION__NAME:
         return getName();
+      case GreenhousePackage.ACTION__VALUE:
+        if (resolve) return getValue();
+        return basicGetValue();
       case GreenhousePackage.ACTION__TRIGGER:
         return getTrigger();
-      case GreenhousePackage.ACTION__CONDITION:
-        return getCondition();
-      case GreenhousePackage.ACTION__VALUE:
-        return getValue();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -337,14 +265,11 @@ public class ActionImpl extends MinimalEObjectImpl.Container implements Action
       case GreenhousePackage.ACTION__NAME:
         setName((String)newValue);
         return;
+      case GreenhousePackage.ACTION__VALUE:
+        setValue((SettingValue)newValue);
+        return;
       case GreenhousePackage.ACTION__TRIGGER:
         setTrigger((Trigger)newValue);
-        return;
-      case GreenhousePackage.ACTION__CONDITION:
-        setCondition((Condition)newValue);
-        return;
-      case GreenhousePackage.ACTION__VALUE:
-        setValue((Value)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -363,14 +288,11 @@ public class ActionImpl extends MinimalEObjectImpl.Container implements Action
       case GreenhousePackage.ACTION__NAME:
         setName(NAME_EDEFAULT);
         return;
+      case GreenhousePackage.ACTION__VALUE:
+        setValue((SettingValue)null);
+        return;
       case GreenhousePackage.ACTION__TRIGGER:
         setTrigger((Trigger)null);
-        return;
-      case GreenhousePackage.ACTION__CONDITION:
-        setCondition((Condition)null);
-        return;
-      case GreenhousePackage.ACTION__VALUE:
-        setValue((Value)null);
         return;
     }
     super.eUnset(featureID);
@@ -388,12 +310,10 @@ public class ActionImpl extends MinimalEObjectImpl.Container implements Action
     {
       case GreenhousePackage.ACTION__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case GreenhousePackage.ACTION__TRIGGER:
-        return trigger != null;
-      case GreenhousePackage.ACTION__CONDITION:
-        return condition != null;
       case GreenhousePackage.ACTION__VALUE:
         return value != null;
+      case GreenhousePackage.ACTION__TRIGGER:
+        return trigger != null;
     }
     return super.eIsSet(featureID);
   }

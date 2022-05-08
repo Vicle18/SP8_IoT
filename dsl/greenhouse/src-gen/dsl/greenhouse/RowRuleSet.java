@@ -13,8 +13,8 @@ package dsl.greenhouse;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link dsl.greenhouse.RowRuleSet#getTrigger <em>Trigger</em>}</li>
  *   <li>{@link dsl.greenhouse.RowRuleSet#getActuator <em>Actuator</em>}</li>
- *   <li>{@link dsl.greenhouse.RowRuleSet#getAction <em>Action</em>}</li>
  *   <li>{@link dsl.greenhouse.RowRuleSet#getSensor <em>Sensor</em>}</li>
  *   <li>{@link dsl.greenhouse.RowRuleSet#getState <em>State</em>}</li>
  * </ul>
@@ -25,6 +25,28 @@ package dsl.greenhouse;
  */
 public interface RowRuleSet extends RowElement
 {
+  /**
+   * Returns the value of the '<em><b>Trigger</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Trigger</em>' reference.
+   * @see #setTrigger(Trigger)
+   * @see dsl.greenhouse.GreenhousePackage#getRowRuleSet_Trigger()
+   * @model
+   * @generated
+   */
+  Trigger getTrigger();
+
+  /**
+   * Sets the value of the '{@link dsl.greenhouse.RowRuleSet#getTrigger <em>Trigger</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Trigger</em>' reference.
+   * @see #getTrigger()
+   * @generated
+   */
+  void setTrigger(Trigger value);
+
   /**
    * Returns the value of the '<em><b>Actuator</b></em>' reference.
    * <!-- begin-user-doc -->
@@ -46,28 +68,6 @@ public interface RowRuleSet extends RowElement
    * @generated
    */
   void setActuator(RowActuator value);
-
-  /**
-   * Returns the value of the '<em><b>Action</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Action</em>' reference.
-   * @see #setAction(Action)
-   * @see dsl.greenhouse.GreenhousePackage#getRowRuleSet_Action()
-   * @model
-   * @generated
-   */
-  Action getAction();
-
-  /**
-   * Sets the value of the '{@link dsl.greenhouse.RowRuleSet#getAction <em>Action</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Action</em>' reference.
-   * @see #getAction()
-   * @generated
-   */
-  void setAction(Action value);
 
   /**
    * Returns the value of the '<em><b>Sensor</b></em>' reference.

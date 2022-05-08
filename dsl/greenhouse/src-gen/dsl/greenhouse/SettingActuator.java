@@ -5,11 +5,6 @@ package dsl.greenhouse;
 
 import org.eclipse.emf.common.util.EList;
 
-<<<<<<< HEAD
-=======
-import org.eclipse.emf.ecore.EObject;
-
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Setting Actuator</b></em>'.
@@ -19,50 +14,16 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
-<<<<<<< HEAD
  *   <li>{@link dsl.greenhouse.SettingActuator#getSettingAction <em>Setting Action</em>}</li>
-=======
- *   <li>{@link dsl.greenhouse.SettingActuator#getName <em>Name</em>}</li>
- *   <li>{@link dsl.greenhouse.SettingActuator#getSettingAction <em>Setting Action</em>}</li>
- *   <li>{@link dsl.greenhouse.SettingActuator#getTopic <em>Topic</em>}</li>
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
  * </ul>
  *
  * @see dsl.greenhouse.GreenhousePackage#getSettingActuator()
  * @model
  * @generated
  */
-<<<<<<< HEAD
 public interface SettingActuator extends Hardware
 {
   /**
-=======
-public interface SettingActuator extends EObject
-{
-  /**
-   * Returns the value of the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Name</em>' attribute.
-   * @see #setName(String)
-   * @see dsl.greenhouse.GreenhousePackage#getSettingActuator_Name()
-   * @model
-   * @generated
-   */
-  String getName();
-
-  /**
-   * Sets the value of the '{@link dsl.greenhouse.SettingActuator#getName <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Name</em>' attribute.
-   * @see #getName()
-   * @generated
-   */
-  void setName(String value);
-
-  /**
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
    * Returns the value of the '<em><b>Setting Action</b></em>' containment reference list.
    * The list contents are of type {@link dsl.greenhouse.SettingAction}.
    * <!-- begin-user-doc -->
@@ -74,29 +35,4 @@ public interface SettingActuator extends EObject
    */
   EList<SettingAction> getSettingAction();
 
-<<<<<<< HEAD
-=======
-  /**
-   * Returns the value of the '<em><b>Topic</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Topic</em>' containment reference.
-   * @see #setTopic(Topic)
-   * @see dsl.greenhouse.GreenhousePackage#getSettingActuator_Topic()
-   * @model containment="true"
-   * @generated
-   */
-  Topic getTopic();
-
-  /**
-   * Sets the value of the '{@link dsl.greenhouse.SettingActuator#getTopic <em>Topic</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Topic</em>' containment reference.
-   * @see #getTopic()
-   * @generated
-   */
-  void setTopic(Topic value);
-
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 } // SettingActuator

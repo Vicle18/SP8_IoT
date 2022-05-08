@@ -7,7 +7,6 @@ import dsl.greenhouse.Greenhouse;
 import dsl.greenhouse.GreenhousePackage;
 import dsl.greenhouse.HardwareSetup;
 import dsl.greenhouse.Model;
-import dsl.greenhouse.Setting;
 
 import java.util.Collection;
 
@@ -34,11 +33,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link dsl.greenhouse.impl.ModelImpl#getName <em>Name</em>}</li>
-<<<<<<< HEAD
  *   <li>{@link dsl.greenhouse.impl.ModelImpl#getHardwareSetup <em>Hardware Setup</em>}</li>
-=======
- *   <li>{@link dsl.greenhouse.impl.ModelImpl#getSettings <em>Settings</em>}</li>
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
  *   <li>{@link dsl.greenhouse.impl.ModelImpl#getGreenhouses <em>Greenhouses</em>}</li>
  * </ul>
  *
@@ -67,7 +62,6 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   protected String name = NAME_EDEFAULT;
 
   /**
-<<<<<<< HEAD
    * The cached value of the '{@link #getHardwareSetup() <em>Hardware Setup</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -76,16 +70,6 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * @ordered
    */
   protected EList<HardwareSetup> hardwareSetup;
-=======
-   * The cached value of the '{@link #getSettings() <em>Settings</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getSettings()
-   * @generated
-   * @ordered
-   */
-  protected EList<Setting> settings;
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 
   /**
    * The cached value of the '{@link #getGreenhouses() <em>Greenhouses</em>}' containment reference list.
@@ -149,7 +133,6 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * @generated
    */
   @Override
-<<<<<<< HEAD
   public EList<HardwareSetup> getHardwareSetup()
   {
     if (hardwareSetup == null)
@@ -157,15 +140,6 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
       hardwareSetup = new EObjectContainmentEList<HardwareSetup>(HardwareSetup.class, this, GreenhousePackage.MODEL__HARDWARE_SETUP);
     }
     return hardwareSetup;
-=======
-  public EList<Setting> getSettings()
-  {
-    if (settings == null)
-    {
-      settings = new EObjectContainmentEList<Setting>(Setting.class, this, GreenhousePackage.MODEL__SETTINGS);
-    }
-    return settings;
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
   }
 
   /**
@@ -193,13 +167,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-<<<<<<< HEAD
       case GreenhousePackage.MODEL__HARDWARE_SETUP:
         return ((InternalEList<?>)getHardwareSetup()).basicRemove(otherEnd, msgs);
-=======
-      case GreenhousePackage.MODEL__SETTINGS:
-        return ((InternalEList<?>)getSettings()).basicRemove(otherEnd, msgs);
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
       case GreenhousePackage.MODEL__GREENHOUSES:
         return ((InternalEList<?>)getGreenhouses()).basicRemove(otherEnd, msgs);
     }
@@ -218,13 +187,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
     {
       case GreenhousePackage.MODEL__NAME:
         return getName();
-<<<<<<< HEAD
       case GreenhousePackage.MODEL__HARDWARE_SETUP:
         return getHardwareSetup();
-=======
-      case GreenhousePackage.MODEL__SETTINGS:
-        return getSettings();
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
       case GreenhousePackage.MODEL__GREENHOUSES:
         return getGreenhouses();
     }
@@ -245,15 +209,9 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
       case GreenhousePackage.MODEL__NAME:
         setName((String)newValue);
         return;
-<<<<<<< HEAD
       case GreenhousePackage.MODEL__HARDWARE_SETUP:
         getHardwareSetup().clear();
         getHardwareSetup().addAll((Collection<? extends HardwareSetup>)newValue);
-=======
-      case GreenhousePackage.MODEL__SETTINGS:
-        getSettings().clear();
-        getSettings().addAll((Collection<? extends Setting>)newValue);
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
         return;
       case GreenhousePackage.MODEL__GREENHOUSES:
         getGreenhouses().clear();
@@ -276,13 +234,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
       case GreenhousePackage.MODEL__NAME:
         setName(NAME_EDEFAULT);
         return;
-<<<<<<< HEAD
       case GreenhousePackage.MODEL__HARDWARE_SETUP:
         getHardwareSetup().clear();
-=======
-      case GreenhousePackage.MODEL__SETTINGS:
-        getSettings().clear();
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
         return;
       case GreenhousePackage.MODEL__GREENHOUSES:
         getGreenhouses().clear();
@@ -303,13 +256,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
     {
       case GreenhousePackage.MODEL__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-<<<<<<< HEAD
       case GreenhousePackage.MODEL__HARDWARE_SETUP:
         return hardwareSetup != null && !hardwareSetup.isEmpty();
-=======
-      case GreenhousePackage.MODEL__SETTINGS:
-        return settings != null && !settings.isEmpty();
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
       case GreenhousePackage.MODEL__GREENHOUSES:
         return greenhouses != null && !greenhouses.isEmpty();
     }

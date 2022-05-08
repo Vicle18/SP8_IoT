@@ -5,43 +5,30 @@
 'action'=15
 'actuator'=13
 'and'=17
-'by'=39
-<<<<<<< HEAD
 'configuration'=12
-=======
-'can'=30
-'condition'=40
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 'global'=29
 'greenhouse'=26
 'has'=14
 'includes'=28
-'is'=43
+'is'=41
 'listens'=18
 'on'=19
 'publishes'=21
 'receiving'=38
 'row'=27
-'rule'=41
+'rule'=39
 'sensor'=20
 'set'=42
-<<<<<<< HEAD
-'setting'=40
-=======
-'setting'=12
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 'states'=32
 'system'=11
 'to'=22
 'topic'=23
+'trigger'=40
 'value'=31
 'values'=25
 'variable'=37
 'when'=33
-<<<<<<< HEAD
 'will'=30
-=======
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 'with'=24
 RULE_ANY_OTHER=10
 RULE_ID=4
@@ -82,4 +69,3 @@ T__39=39
 T__40=40
 T__41=41
 T__42=42
-T__43=43

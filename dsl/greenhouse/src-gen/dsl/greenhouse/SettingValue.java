@@ -28,12 +28,12 @@ public interface SettingValue extends EObject
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Name</em>' attribute.
-   * @see #setName(int)
+   * @see #setName(String)
    * @see dsl.greenhouse.GreenhousePackage#getSettingValue_Name()
    * @model
    * @generated
    */
-  int getName();
+  String getName();
 
   /**
    * Sets the value of the '{@link dsl.greenhouse.SettingValue#getName <em>Name</em>}' attribute.
@@ -43,6 +43,6 @@ public interface SettingValue extends EObject
    * @see #getName()
    * @generated
    */
-  void setName(int value);
+  void setName(String value);
 
 } // SettingValue

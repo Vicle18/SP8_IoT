@@ -3,12 +3,12 @@
  */
 package dsl.greenhouse.impl;
 
-import dsl.greenhouse.Action;
 import dsl.greenhouse.GreenhousePackage;
 import dsl.greenhouse.RowActuator;
 import dsl.greenhouse.RowRuleSet;
 import dsl.greenhouse.RowSensor;
 import dsl.greenhouse.State;
+import dsl.greenhouse.Trigger;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -25,8 +25,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link dsl.greenhouse.impl.RowRuleSetImpl#getTrigger <em>Trigger</em>}</li>
  *   <li>{@link dsl.greenhouse.impl.RowRuleSetImpl#getActuator <em>Actuator</em>}</li>
- *   <li>{@link dsl.greenhouse.impl.RowRuleSetImpl#getAction <em>Action</em>}</li>
  *   <li>{@link dsl.greenhouse.impl.RowRuleSetImpl#getSensor <em>Sensor</em>}</li>
  *   <li>{@link dsl.greenhouse.impl.RowRuleSetImpl#getState <em>State</em>}</li>
  * </ul>
@@ -36,6 +36,16 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 public class RowRuleSetImpl extends RowElementImpl implements RowRuleSet
 {
   /**
+   * The cached value of the '{@link #getTrigger() <em>Trigger</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getTrigger()
+   * @generated
+   * @ordered
+   */
+  protected Trigger trigger;
+
+  /**
    * The cached value of the '{@link #getActuator() <em>Actuator</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -44,16 +54,6 @@ public class RowRuleSetImpl extends RowElementImpl implements RowRuleSet
    * @ordered
    */
   protected RowActuator actuator;
-
-  /**
-   * The cached value of the '{@link #getAction() <em>Action</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getAction()
-   * @generated
-   * @ordered
-   */
-  protected Action action;
 
   /**
    * The cached value of the '{@link #getSensor() <em>Sensor</em>}' reference.
@@ -102,6 +102,51 @@ public class RowRuleSetImpl extends RowElementImpl implements RowRuleSet
    * @generated
    */
   @Override
+  public Trigger getTrigger()
+  {
+    if (trigger != null && trigger.eIsProxy())
+    {
+      InternalEObject oldTrigger = (InternalEObject)trigger;
+      trigger = (Trigger)eResolveProxy(oldTrigger);
+      if (trigger != oldTrigger)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, GreenhousePackage.ROW_RULE_SET__TRIGGER, oldTrigger, trigger));
+      }
+    }
+    return trigger;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Trigger basicGetTrigger()
+  {
+    return trigger;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setTrigger(Trigger newTrigger)
+  {
+    Trigger oldTrigger = trigger;
+    trigger = newTrigger;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GreenhousePackage.ROW_RULE_SET__TRIGGER, oldTrigger, trigger));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public RowActuator getActuator()
   {
     if (actuator != null && actuator.eIsProxy())
@@ -139,51 +184,6 @@ public class RowRuleSetImpl extends RowElementImpl implements RowRuleSet
     actuator = newActuator;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, GreenhousePackage.ROW_RULE_SET__ACTUATOR, oldActuator, actuator));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Action getAction()
-  {
-    if (action != null && action.eIsProxy())
-    {
-      InternalEObject oldAction = (InternalEObject)action;
-      action = (Action)eResolveProxy(oldAction);
-      if (action != oldAction)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, GreenhousePackage.ROW_RULE_SET__ACTION, oldAction, action));
-      }
-    }
-    return action;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Action basicGetAction()
-  {
-    return action;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setAction(Action newAction)
-  {
-    Action oldAction = action;
-    action = newAction;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GreenhousePackage.ROW_RULE_SET__ACTION, oldAction, action));
   }
 
   /**
@@ -286,12 +286,12 @@ public class RowRuleSetImpl extends RowElementImpl implements RowRuleSet
   {
     switch (featureID)
     {
+      case GreenhousePackage.ROW_RULE_SET__TRIGGER:
+        if (resolve) return getTrigger();
+        return basicGetTrigger();
       case GreenhousePackage.ROW_RULE_SET__ACTUATOR:
         if (resolve) return getActuator();
         return basicGetActuator();
-      case GreenhousePackage.ROW_RULE_SET__ACTION:
-        if (resolve) return getAction();
-        return basicGetAction();
       case GreenhousePackage.ROW_RULE_SET__SENSOR:
         if (resolve) return getSensor();
         return basicGetSensor();
@@ -312,11 +312,11 @@ public class RowRuleSetImpl extends RowElementImpl implements RowRuleSet
   {
     switch (featureID)
     {
+      case GreenhousePackage.ROW_RULE_SET__TRIGGER:
+        setTrigger((Trigger)newValue);
+        return;
       case GreenhousePackage.ROW_RULE_SET__ACTUATOR:
         setActuator((RowActuator)newValue);
-        return;
-      case GreenhousePackage.ROW_RULE_SET__ACTION:
-        setAction((Action)newValue);
         return;
       case GreenhousePackage.ROW_RULE_SET__SENSOR:
         setSensor((RowSensor)newValue);
@@ -338,11 +338,11 @@ public class RowRuleSetImpl extends RowElementImpl implements RowRuleSet
   {
     switch (featureID)
     {
+      case GreenhousePackage.ROW_RULE_SET__TRIGGER:
+        setTrigger((Trigger)null);
+        return;
       case GreenhousePackage.ROW_RULE_SET__ACTUATOR:
         setActuator((RowActuator)null);
-        return;
-      case GreenhousePackage.ROW_RULE_SET__ACTION:
-        setAction((Action)null);
         return;
       case GreenhousePackage.ROW_RULE_SET__SENSOR:
         setSensor((RowSensor)null);
@@ -364,10 +364,10 @@ public class RowRuleSetImpl extends RowElementImpl implements RowRuleSet
   {
     switch (featureID)
     {
+      case GreenhousePackage.ROW_RULE_SET__TRIGGER:
+        return trigger != null;
       case GreenhousePackage.ROW_RULE_SET__ACTUATOR:
         return actuator != null;
-      case GreenhousePackage.ROW_RULE_SET__ACTION:
-        return action != null;
       case GreenhousePackage.ROW_RULE_SET__SENSOR:
         return sensor != null;
       case GreenhousePackage.ROW_RULE_SET__STATE:

@@ -6,26 +6,15 @@ package dsl.greenhouse.impl;
 import dsl.greenhouse.GreenhousePackage;
 import dsl.greenhouse.Hardware;
 import dsl.greenhouse.Setting;
-import dsl.greenhouse.SettingActuator;
-import dsl.greenhouse.SettingSensor;
 
 import java.util.Collection;
 
-<<<<<<< HEAD
-import java.util.Collection;
-
-=======
-import org.eclipse.emf.common.notify.Notification;
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -38,13 +27,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
-<<<<<<< HEAD
  *   <li>{@link dsl.greenhouse.impl.SettingImpl#getHardware <em>Hardware</em>}</li>
-=======
- *   <li>{@link dsl.greenhouse.impl.SettingImpl#getName <em>Name</em>}</li>
- *   <li>{@link dsl.greenhouse.impl.SettingImpl#getSettingActuator <em>Setting Actuator</em>}</li>
- *   <li>{@link dsl.greenhouse.impl.SettingImpl#getSettingSensor <em>Setting Sensor</em>}</li>
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
  * </ul>
  *
  * @generated
@@ -60,26 +43,6 @@ public class SettingImpl extends HardwareSetupImpl implements Setting
    * @ordered
    */
   protected EList<Hardware> hardware;
-
-  /**
-   * The cached value of the '{@link #getSettingActuator() <em>Setting Actuator</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getSettingActuator()
-   * @generated
-   * @ordered
-   */
-  protected EList<SettingActuator> settingActuator;
-
-  /**
-   * The cached value of the '{@link #getSettingSensor() <em>Setting Sensor</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getSettingSensor()
-   * @generated
-   * @ordered
-   */
-  protected EList<SettingSensor> settingSensor;
 
   /**
    * <!-- begin-user-doc -->
@@ -139,69 +102,12 @@ public class SettingImpl extends HardwareSetupImpl implements Setting
    * @generated
    */
   @Override
-  public EList<SettingActuator> getSettingActuator()
-  {
-    if (settingActuator == null)
-    {
-      settingActuator = new EObjectContainmentEList<SettingActuator>(SettingActuator.class, this, GreenhousePackage.SETTING__SETTING_ACTUATOR);
-    }
-    return settingActuator;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EList<SettingSensor> getSettingSensor()
-  {
-    if (settingSensor == null)
-    {
-      settingSensor = new EObjectContainmentEList<SettingSensor>(SettingSensor.class, this, GreenhousePackage.SETTING__SETTING_SENSOR);
-    }
-    return settingSensor;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case GreenhousePackage.SETTING__SETTING_ACTUATOR:
-        return ((InternalEList<?>)getSettingActuator()).basicRemove(otherEnd, msgs);
-      case GreenhousePackage.SETTING__SETTING_SENSOR:
-        return ((InternalEList<?>)getSettingSensor()).basicRemove(otherEnd, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
     {
-<<<<<<< HEAD
       case GreenhousePackage.SETTING__HARDWARE:
         return getHardware();
-=======
-      case GreenhousePackage.SETTING__NAME:
-        return getName();
-      case GreenhousePackage.SETTING__SETTING_ACTUATOR:
-        return getSettingActuator();
-      case GreenhousePackage.SETTING__SETTING_SENSOR:
-        return getSettingSensor();
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -221,14 +127,6 @@ public class SettingImpl extends HardwareSetupImpl implements Setting
         getHardware().clear();
         getHardware().addAll((Collection<? extends Hardware>)newValue);
         return;
-      case GreenhousePackage.SETTING__SETTING_ACTUATOR:
-        getSettingActuator().clear();
-        getSettingActuator().addAll((Collection<? extends SettingActuator>)newValue);
-        return;
-      case GreenhousePackage.SETTING__SETTING_SENSOR:
-        getSettingSensor().clear();
-        getSettingSensor().addAll((Collection<? extends SettingSensor>)newValue);
-        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -246,12 +144,6 @@ public class SettingImpl extends HardwareSetupImpl implements Setting
       case GreenhousePackage.SETTING__HARDWARE:
         getHardware().clear();
         return;
-      case GreenhousePackage.SETTING__SETTING_ACTUATOR:
-        getSettingActuator().clear();
-        return;
-      case GreenhousePackage.SETTING__SETTING_SENSOR:
-        getSettingSensor().clear();
-        return;
     }
     super.eUnset(featureID);
   }
@@ -266,17 +158,8 @@ public class SettingImpl extends HardwareSetupImpl implements Setting
   {
     switch (featureID)
     {
-<<<<<<< HEAD
       case GreenhousePackage.SETTING__HARDWARE:
         return hardware != null && !hardware.isEmpty();
-=======
-      case GreenhousePackage.SETTING__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case GreenhousePackage.SETTING__SETTING_ACTUATOR:
-        return settingActuator != null && !settingActuator.isEmpty();
-      case GreenhousePackage.SETTING__SETTING_SENSOR:
-        return settingSensor != null && !settingSensor.isEmpty();
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
     }
     return super.eIsSet(featureID);
   }

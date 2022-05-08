@@ -33,7 +33,6 @@ public interface GreenhouseFactory extends EFactory
   Model createModel();
 
   /**
-<<<<<<< HEAD
    * Returns a new object of class '<em>Hardware Setup</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -50,15 +49,6 @@ public interface GreenhouseFactory extends EFactory
    * @generated
    */
   Hardware createHardware();
-=======
-   * Returns a new object of class '<em>Setting</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Setting</em>'.
-   * @generated
-   */
-  Setting createSetting();
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 
   /**
    * Returns a new object of class '<em>Setting Actuator</em>'.
@@ -248,7 +238,6 @@ public interface GreenhouseFactory extends EFactory
    * @generated
    */
   GreenhouseRuleSet createGreenhouseRuleSet();
-<<<<<<< HEAD
 
   /**
    * Returns a new object of class '<em>Setting</em>'.
@@ -258,8 +247,6 @@ public interface GreenhouseFactory extends EFactory
    * @generated
    */
   Setting createSetting();
-=======
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 
   /**
    * Returns the package supported by this factory.

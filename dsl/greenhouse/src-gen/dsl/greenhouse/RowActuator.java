@@ -14,10 +14,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
-<<<<<<< HEAD
  *   <li>{@link dsl.greenhouse.RowActuator#getType <em>Type</em>}</li>
-=======
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
  *   <li>{@link dsl.greenhouse.RowActuator#getName <em>Name</em>}</li>
  *   <li>{@link dsl.greenhouse.RowActuator#getAction <em>Action</em>}</li>
  * </ul>
@@ -29,7 +26,6 @@ import org.eclipse.emf.common.util.EList;
 public interface RowActuator extends RowElement
 {
   /**
-<<<<<<< HEAD
    * Returns the value of the '<em><b>Type</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -52,8 +48,6 @@ public interface RowActuator extends RowElement
   void setType(SettingActuator value);
 
   /**
-=======
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
    * Returns the value of the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

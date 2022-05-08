@@ -36,7 +36,7 @@ public class SettingValueImpl extends MinimalEObjectImpl.Container implements Se
    * @generated
    * @ordered
    */
-  protected static final int NAME_EDEFAULT = 0;
+  protected static final String NAME_EDEFAULT = null;
 
   /**
    * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -46,7 +46,7 @@ public class SettingValueImpl extends MinimalEObjectImpl.Container implements Se
    * @generated
    * @ordered
    */
-  protected int name = NAME_EDEFAULT;
+  protected String name = NAME_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -75,7 +75,7 @@ public class SettingValueImpl extends MinimalEObjectImpl.Container implements Se
    * @generated
    */
   @Override
-  public int getName()
+  public String getName()
   {
     return name;
   }
@@ -86,9 +86,9 @@ public class SettingValueImpl extends MinimalEObjectImpl.Container implements Se
    * @generated
    */
   @Override
-  public void setName(int newName)
+  public void setName(String newName)
   {
-    int oldName = name;
+    String oldName = name;
     name = newName;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, GreenhousePackage.SETTING_VALUE__NAME, oldName, name));
@@ -121,7 +121,7 @@ public class SettingValueImpl extends MinimalEObjectImpl.Container implements Se
     switch (featureID)
     {
       case GreenhousePackage.SETTING_VALUE__NAME:
-        setName((Integer)newValue);
+        setName((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -155,7 +155,7 @@ public class SettingValueImpl extends MinimalEObjectImpl.Container implements Se
     switch (featureID)
     {
       case GreenhousePackage.SETTING_VALUE__NAME:
-        return name != NAME_EDEFAULT;
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
     }
     return super.eIsSet(featureID);
   }

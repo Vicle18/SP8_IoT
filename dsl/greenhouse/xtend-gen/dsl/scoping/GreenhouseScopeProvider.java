@@ -3,13 +3,16 @@
  */
 package dsl.scoping;
 
-<<<<<<< HEAD
+import com.google.common.base.Objects;
 import dsl.greenhouse.Action;
 import dsl.greenhouse.RowActuator;
 import dsl.greenhouse.RowRuleSet;
 import dsl.greenhouse.RowSensor;
+import dsl.greenhouse.SettingAction;
 import dsl.greenhouse.SettingActuator;
+import dsl.greenhouse.SettingValue;
 import dsl.greenhouse.State;
+import dsl.greenhouse.Trigger;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -19,9 +22,9 @@ import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.Scopes;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
-=======
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 /**
  * This class contains custom scoping description.
  * 
@@ -30,7 +33,6 @@ import org.eclipse.xtext.xbase.lib.CollectionLiterals;
  */
 @SuppressWarnings("all")
 public class GreenhouseScopeProvider extends AbstractGreenhouseScopeProvider {
-<<<<<<< HEAD
   @Override
   public IScope getScope(final EObject context, final EReference reference) {
     return this.scopeForEObject(context, reference);
@@ -51,19 +53,42 @@ public class GreenhouseScopeProvider extends AbstractGreenhouseScopeProvider {
     return _xblockexpression;
   }
   
+  protected IScope _scopeForEObject(final Action context, final EReference reference) {
+    IScope _xblockexpression = null;
+    {
+      final EObject root = EcoreUtil2.getRootContainer(context);
+      final List<SettingValue> allValues = EcoreUtil2.<SettingValue>getAllContentsOfType(root, SettingValue.class);
+      final Function1<SettingValue, Boolean> _function = (SettingValue it) -> {
+        String _name = context.getName();
+        EObject _eContainer = it.eContainer();
+        String _name_1 = ((SettingAction) _eContainer).getName();
+        return Boolean.valueOf(Objects.equal(_name, _name_1));
+      };
+      System.out.println(IterableExtensions.<SettingValue>filter(allValues, _function));
+      final Function1<SettingValue, Boolean> _function_1 = (SettingValue it) -> {
+        String _name = context.getName();
+        EObject _eContainer = it.eContainer();
+        String _name_1 = ((SettingAction) _eContainer).getName();
+        return Boolean.valueOf(Objects.equal(_name, _name_1));
+      };
+      _xblockexpression = Scopes.scopeFor(Collections.<EObject>unmodifiableList(CollectionLiterals.<EObject>newArrayList(context)), Scopes.scopeFor(IterableExtensions.<SettingValue>filter(allValues, _function_1)));
+    }
+    return _xblockexpression;
+  }
+  
   protected IScope _scopeForEObject(final RowRuleSet rule, final EReference reference) {
     IScope _xblockexpression = null;
     {
       System.out.println(rule.eContainer().eContents());
       final EObject row = rule.eContainer();
-      final List<Action> allActions = EcoreUtil2.<Action>getAllContentsOfType(row, Action.class);
+      final List<Trigger> allTrigger = EcoreUtil2.<Trigger>getAllContentsOfType(row, Trigger.class);
       final List<RowSensor> allSensor = EcoreUtil2.<RowSensor>getAllContentsOfType(row, RowSensor.class);
       final List<State> allStates = EcoreUtil2.<State>getAllContentsOfType(row, State.class);
       final List<RowActuator> allActuators = EcoreUtil2.<RowActuator>getAllContentsOfType(row, RowActuator.class);
-      System.out.println(allActions);
+      System.out.println(allTrigger);
       _xblockexpression = Scopes.scopeFor(allSensor, 
         Scopes.scopeFor(allActuators, 
-          Scopes.scopeFor(allActions, 
+          Scopes.scopeFor(allTrigger, 
             Scopes.scopeFor(allStates))));
     }
     return _xblockexpression;
@@ -74,6 +99,8 @@ public class GreenhouseScopeProvider extends AbstractGreenhouseScopeProvider {
       return _scopeForEObject((RowActuator)context, reference);
     } else if (context instanceof RowRuleSet) {
       return _scopeForEObject((RowRuleSet)context, reference);
+    } else if (context instanceof Action) {
+      return _scopeForEObject((Action)context, reference);
     } else if (context != null) {
       return _scopeForEObject(context, reference);
     } else {
@@ -81,6 +108,4 @@ public class GreenhouseScopeProvider extends AbstractGreenhouseScopeProvider {
         Arrays.<Object>asList(context, reference).toString());
     }
   }
-=======
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 }

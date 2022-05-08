@@ -81,7 +81,6 @@ public class GreenhouseAdapterFactory extends AdapterFactoryImpl
         return createModelAdapter();
       }
       @Override
-<<<<<<< HEAD
       public Adapter caseHardwareSetup(HardwareSetup object)
       {
         return createHardwareSetupAdapter();
@@ -90,11 +89,6 @@ public class GreenhouseAdapterFactory extends AdapterFactoryImpl
       public Adapter caseHardware(Hardware object)
       {
         return createHardwareAdapter();
-=======
-      public Adapter caseSetting(Setting object)
-      {
-        return createSettingAdapter();
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
       }
       @Override
       public Adapter caseSettingActuator(SettingActuator object)
@@ -200,14 +194,11 @@ public class GreenhouseAdapterFactory extends AdapterFactoryImpl
       public Adapter caseGreenhouseRuleSet(GreenhouseRuleSet object)
       {
         return createGreenhouseRuleSetAdapter();
-<<<<<<< HEAD
       }
       @Override
       public Adapter caseSetting(Setting object)
       {
         return createSettingAdapter();
-=======
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -247,17 +238,12 @@ public class GreenhouseAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-<<<<<<< HEAD
    * Creates a new adapter for an object of class '{@link dsl.greenhouse.HardwareSetup <em>Hardware Setup</em>}'.
-=======
-   * Creates a new adapter for an object of class '{@link dsl.greenhouse.Setting <em>Setting</em>}'.
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-<<<<<<< HEAD
    * @see dsl.greenhouse.HardwareSetup
    * @generated
    */
@@ -277,12 +263,6 @@ public class GreenhouseAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createHardwareAdapter()
-=======
-   * @see dsl.greenhouse.Setting
-   * @generated
-   */
-  public Adapter createSettingAdapter()
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
   {
     return null;
   }
@@ -598,7 +578,6 @@ public class GreenhouseAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createGreenhouseRuleSetAdapter()
-<<<<<<< HEAD
   {
     return null;
   }
@@ -614,8 +593,6 @@ public class GreenhouseAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createSettingAdapter()
-=======
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
   {
     return null;
   }

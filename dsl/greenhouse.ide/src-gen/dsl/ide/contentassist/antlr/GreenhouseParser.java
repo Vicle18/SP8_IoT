@@ -36,11 +36,7 @@ public class GreenhouseParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getRowElementAccess().getAlternatives(), "rule__RowElement__Alternatives");
 			builder.put(grammarAccess.getStateAccess().getOpAlternatives_3_0(), "rule__State__OpAlternatives_3_0");
 			builder.put(grammarAccess.getModelAccess().getGroup(), "rule__Model__Group__0");
-<<<<<<< HEAD
 			builder.put(grammarAccess.getHardwareSetupAccess().getGroup(), "rule__HardwareSetup__Group__0");
-=======
-			builder.put(grammarAccess.getSettingAccess().getGroup(), "rule__Setting__Group__0");
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 			builder.put(grammarAccess.getSettingActuatorAccess().getGroup(), "rule__SettingActuator__Group__0");
 			builder.put(grammarAccess.getSettingActuatorAccess().getGroup_5(), "rule__SettingActuator__Group_5__0");
 			builder.put(grammarAccess.getSettingSensorAccess().getGroup(), "rule__SettingSensor__Group__0");
@@ -68,17 +64,9 @@ public class GreenhouseParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getRowRuleSetAccess().getGroup(), "rule__RowRuleSet__Group__0");
 			builder.put(grammarAccess.getGreenhouseRuleSetAccess().getGroup(), "rule__GreenhouseRuleSet__Group__0");
 			builder.put(grammarAccess.getModelAccess().getNameAssignment_1(), "rule__Model__NameAssignment_1");
-<<<<<<< HEAD
 			builder.put(grammarAccess.getModelAccess().getHardwareSetupAssignment_2(), "rule__Model__HardwareSetupAssignment_2");
 			builder.put(grammarAccess.getModelAccess().getGreenhousesAssignment_3(), "rule__Model__GreenhousesAssignment_3");
 			builder.put(grammarAccess.getHardwareSetupAccess().getHardwareAssignment_2(), "rule__HardwareSetup__HardwareAssignment_2");
-=======
-			builder.put(grammarAccess.getModelAccess().getSettingsAssignment_2(), "rule__Model__SettingsAssignment_2");
-			builder.put(grammarAccess.getModelAccess().getGreenhousesAssignment_3(), "rule__Model__GreenhousesAssignment_3");
-			builder.put(grammarAccess.getSettingAccess().getNameAssignment_1(), "rule__Setting__NameAssignment_1");
-			builder.put(grammarAccess.getSettingAccess().getSettingActuatorAssignment_2(), "rule__Setting__SettingActuatorAssignment_2");
-			builder.put(grammarAccess.getSettingAccess().getSettingSensorAssignment_3(), "rule__Setting__SettingSensorAssignment_3");
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 			builder.put(grammarAccess.getSettingActuatorAccess().getNameAssignment_1(), "rule__SettingActuator__NameAssignment_1");
 			builder.put(grammarAccess.getSettingActuatorAccess().getSettingActionAssignment_4(), "rule__SettingActuator__SettingActionAssignment_4");
 			builder.put(grammarAccess.getSettingActuatorAccess().getSettingActionAssignment_5_1(), "rule__SettingActuator__SettingActionAssignment_5_1");
@@ -98,10 +86,7 @@ public class GreenhouseParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getGreenhouseActuatorAccess().getNameAssignment_2(), "rule__GreenhouseActuator__NameAssignment_2");
 			builder.put(grammarAccess.getGreenhouseActuatorAccess().getActionAssignment_3_1(), "rule__GreenhouseActuator__ActionAssignment_3_1");
 			builder.put(grammarAccess.getGreenhouseActuatorAccess().getActionAssignment_4_2(), "rule__GreenhouseActuator__ActionAssignment_4_2");
-<<<<<<< HEAD
 			builder.put(grammarAccess.getRowActuatorAccess().getTypeAssignment_0(), "rule__RowActuator__TypeAssignment_0");
-=======
->>>>>>> 6bcf240872a089181259f4cf236ae39a3f597bc4
 			builder.put(grammarAccess.getRowActuatorAccess().getNameAssignment_1(), "rule__RowActuator__NameAssignment_1");
 			builder.put(grammarAccess.getRowActuatorAccess().getActionAssignment_2_1(), "rule__RowActuator__ActionAssignment_2_1");
 			builder.put(grammarAccess.getRowActuatorAccess().getActionAssignment_3_2(), "rule__RowActuator__ActionAssignment_3_2");
@@ -119,16 +104,15 @@ public class GreenhouseParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getStateAccess().getThresholdAssignment_4(), "rule__State__ThresholdAssignment_4");
 			builder.put(grammarAccess.getVariableAccess().getNameAssignment_1(), "rule__Variable__NameAssignment_1");
 			builder.put(grammarAccess.getActionAccess().getNameAssignment_0(), "rule__Action__NameAssignment_0");
-			builder.put(grammarAccess.getActionAccess().getTriggerAssignment_3(), "rule__Action__TriggerAssignment_3");
-			builder.put(grammarAccess.getActionAccess().getConditionAssignment_6(), "rule__Action__ConditionAssignment_6");
-			builder.put(grammarAccess.getActionAccess().getValueAssignment_8(), "rule__Action__ValueAssignment_8");
+			builder.put(grammarAccess.getActionAccess().getValueAssignment_1(), "rule__Action__ValueAssignment_1");
+			builder.put(grammarAccess.getActionAccess().getTriggerAssignment_4(), "rule__Action__TriggerAssignment_4");
 			builder.put(grammarAccess.getTriggerAccess().getNameAssignment_1(), "rule__Trigger__NameAssignment_1");
 			builder.put(grammarAccess.getConditionAccess().getNameAssignment_1(), "rule__Condition__NameAssignment_1");
 			builder.put(grammarAccess.getValueAccess().getNameAssignment_1(), "rule__Value__NameAssignment_1");
-			builder.put(grammarAccess.getRowRuleSetAccess().getActuatorAssignment_1(), "rule__RowRuleSet__ActuatorAssignment_1");
-			builder.put(grammarAccess.getRowRuleSetAccess().getActionAssignment_3(), "rule__RowRuleSet__ActionAssignment_3");
-			builder.put(grammarAccess.getRowRuleSetAccess().getSensorAssignment_5(), "rule__RowRuleSet__SensorAssignment_5");
-			builder.put(grammarAccess.getRowRuleSetAccess().getStateAssignment_7(), "rule__RowRuleSet__StateAssignment_7");
+			builder.put(grammarAccess.getRowRuleSetAccess().getTriggerAssignment_2(), "rule__RowRuleSet__TriggerAssignment_2");
+			builder.put(grammarAccess.getRowRuleSetAccess().getActuatorAssignment_4(), "rule__RowRuleSet__ActuatorAssignment_4");
+			builder.put(grammarAccess.getRowRuleSetAccess().getSensorAssignment_6(), "rule__RowRuleSet__SensorAssignment_6");
+			builder.put(grammarAccess.getRowRuleSetAccess().getStateAssignment_8(), "rule__RowRuleSet__StateAssignment_8");
 			builder.put(grammarAccess.getGreenhouseRuleSetAccess().getActuatorAssignment_2(), "rule__GreenhouseRuleSet__ActuatorAssignment_2");
 			builder.put(grammarAccess.getGreenhouseRuleSetAccess().getActionAssignment_4(), "rule__GreenhouseRuleSet__ActionAssignment_4");
 			builder.put(grammarAccess.getGreenhouseRuleSetAccess().getSensorAssignment_6(), "rule__GreenhouseRuleSet__SensorAssignment_6");
