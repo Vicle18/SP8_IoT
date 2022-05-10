@@ -93,25 +93,25 @@ public interface State extends EObject
   void setOp(String value);
 
   /**
-   * Returns the value of the '<em><b>Threshold</b></em>' attribute.
+   * Returns the value of the '<em><b>Threshold</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Threshold</em>' attribute.
-   * @see #setThreshold(int)
+   * @return the value of the '<em>Threshold</em>' containment reference.
+   * @see #setThreshold(Expression)
    * @see dsl.greenhouse.GreenhousePackage#getState_Threshold()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  int getThreshold();
+  Expression getThreshold();
 
   /**
-   * Sets the value of the '{@link dsl.greenhouse.State#getThreshold <em>Threshold</em>}' attribute.
+   * Sets the value of the '{@link dsl.greenhouse.State#getThreshold <em>Threshold</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Threshold</em>' attribute.
+   * @param value the new value of the '<em>Threshold</em>' containment reference.
    * @see #getThreshold()
    * @generated
    */
-  void setThreshold(int value);
+  void setThreshold(Expression value);
 
 } // State

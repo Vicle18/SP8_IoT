@@ -5,11 +5,14 @@ package dsl.scoping;
 
 import com.google.common.base.Objects;
 import dsl.greenhouse.Action;
+import dsl.greenhouse.GreenhouseActuator;
+import dsl.greenhouse.GreenhouseSensor;
 import dsl.greenhouse.RowActuator;
 import dsl.greenhouse.RowRuleSet;
 import dsl.greenhouse.RowSensor;
 import dsl.greenhouse.SettingAction;
 import dsl.greenhouse.SettingActuator;
+import dsl.greenhouse.SettingSensor;
 import dsl.greenhouse.SettingValue;
 import dsl.greenhouse.State;
 import dsl.greenhouse.Trigger;
@@ -47,8 +50,46 @@ public class GreenhouseScopeProvider extends AbstractGreenhouseScopeProvider {
     {
       final EObject root = EcoreUtil2.getRootContainer(context);
       final List<SettingActuator> allActuators = EcoreUtil2.<SettingActuator>getAllContentsOfType(root, SettingActuator.class);
+      final Function1<SettingActuator, Boolean> _function = (SettingActuator it) -> {
+        String _name = context.getType().getName();
+        String _name_1 = it.getName();
+        return Boolean.valueOf(Objects.equal(_name, _name_1));
+      };
+      final Iterable<SettingActuator> filtered = IterableExtensions.<SettingActuator>filter(allActuators, _function);
+      _xblockexpression = Scopes.scopeFor(Collections.<EObject>unmodifiableList(CollectionLiterals.<EObject>newArrayList(context)), Scopes.scopeFor(allActuators));
+    }
+    return _xblockexpression;
+  }
+  
+  protected IScope _scopeForEObject(final GreenhouseActuator context, final EReference reference) {
+    IScope _xblockexpression = null;
+    {
+      final EObject root = EcoreUtil2.getRootContainer(context);
+      final List<SettingActuator> allActuators = EcoreUtil2.<SettingActuator>getAllContentsOfType(root, SettingActuator.class);
       System.out.println(allActuators);
       _xblockexpression = Scopes.scopeFor(Collections.<EObject>unmodifiableList(CollectionLiterals.<EObject>newArrayList(context)), Scopes.scopeFor(allActuators));
+    }
+    return _xblockexpression;
+  }
+  
+  protected IScope _scopeForEObject(final RowSensor context, final EReference reference) {
+    IScope _xblockexpression = null;
+    {
+      final EObject root = EcoreUtil2.getRootContainer(context);
+      final List<SettingSensor> allSensors = EcoreUtil2.<SettingSensor>getAllContentsOfType(root, SettingSensor.class);
+      System.out.println(allSensors);
+      _xblockexpression = Scopes.scopeFor(Collections.<EObject>unmodifiableList(CollectionLiterals.<EObject>newArrayList(context)), Scopes.scopeFor(allSensors));
+    }
+    return _xblockexpression;
+  }
+  
+  protected IScope _scopeForEObject(final GreenhouseSensor context, final EReference reference) {
+    IScope _xblockexpression = null;
+    {
+      final EObject root = EcoreUtil2.getRootContainer(context);
+      final List<SettingSensor> allSensors = EcoreUtil2.<SettingSensor>getAllContentsOfType(root, SettingSensor.class);
+      System.out.println(allSensors);
+      _xblockexpression = Scopes.scopeFor(Collections.<EObject>unmodifiableList(CollectionLiterals.<EObject>newArrayList(context)), Scopes.scopeFor(allSensors));
     }
     return _xblockexpression;
   }
@@ -66,12 +107,28 @@ public class GreenhouseScopeProvider extends AbstractGreenhouseScopeProvider {
       };
       System.out.println(IterableExtensions.<SettingValue>filter(allValues, _function));
       final Function1<SettingValue, Boolean> _function_1 = (SettingValue it) -> {
-        String _name = context.getName();
-        EObject _eContainer = it.eContainer();
-        String _name_1 = ((SettingAction) _eContainer).getName();
-        return Boolean.valueOf(Objects.equal(_name, _name_1));
+        boolean _switchResult = false;
+        EObject _eContainer = context.eContainer();
+        boolean _matched = false;
+        if (_eContainer instanceof RowActuator) {
+          _matched=true;
+          _switchResult = (Objects.equal(((RowActuator) context.eContainer()).getType(), ((SettingActuator) it.eContainer().eContainer())) && 
+            Objects.equal(context.getName(), ((SettingAction) it.eContainer()).getName()));
+        }
+        if (!_matched) {
+          if (_eContainer instanceof GreenhouseActuator) {
+            _matched=true;
+            _switchResult = (Objects.equal(((GreenhouseActuator) context.eContainer()).getType(), ((SettingActuator) it.eContainer().eContainer())) && 
+              Objects.equal(context.getName(), ((SettingAction) it.eContainer()).getName()));
+          }
+        }
+        if (!_matched) {
+          _switchResult = false;
+        }
+        return Boolean.valueOf(_switchResult);
       };
-      _xblockexpression = Scopes.scopeFor(Collections.<EObject>unmodifiableList(CollectionLiterals.<EObject>newArrayList(context)), Scopes.scopeFor(IterableExtensions.<SettingValue>filter(allValues, _function_1)));
+      final Iterable<SettingValue> filtered = IterableExtensions.<SettingValue>filter(allValues, _function_1);
+      _xblockexpression = Scopes.scopeFor(Collections.<EObject>unmodifiableList(CollectionLiterals.<EObject>newArrayList(context)), Scopes.scopeFor(filtered));
     }
     return _xblockexpression;
   }
@@ -95,10 +152,16 @@ public class GreenhouseScopeProvider extends AbstractGreenhouseScopeProvider {
   }
   
   public IScope scopeForEObject(final EObject context, final EReference reference) {
-    if (context instanceof RowActuator) {
+    if (context instanceof GreenhouseActuator) {
+      return _scopeForEObject((GreenhouseActuator)context, reference);
+    } else if (context instanceof GreenhouseSensor) {
+      return _scopeForEObject((GreenhouseSensor)context, reference);
+    } else if (context instanceof RowActuator) {
       return _scopeForEObject((RowActuator)context, reference);
     } else if (context instanceof RowRuleSet) {
       return _scopeForEObject((RowRuleSet)context, reference);
+    } else if (context instanceof RowSensor) {
+      return _scopeForEObject((RowSensor)context, reference);
     } else if (context instanceof Action) {
       return _scopeForEObject((Action)context, reference);
     } else if (context != null) {

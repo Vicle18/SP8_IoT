@@ -69,6 +69,24 @@ public interface GreenhouseFactory extends EFactory
   SettingSensor createSettingSensor();
 
   /**
+   * Returns a new object of class '<em>Reducer</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Reducer</em>'.
+   * @generated
+   */
+  Reducer createReducer();
+
+  /**
+   * Returns a new object of class '<em>Frequency</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Frequency</em>'.
+   * @generated
+   */
+  Frequency createFrequency();
+
+  /**
    * Returns a new object of class '<em>Topic</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -204,24 +222,6 @@ public interface GreenhouseFactory extends EFactory
   Trigger createTrigger();
 
   /**
-   * Returns a new object of class '<em>Condition</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Condition</em>'.
-   * @generated
-   */
-  Condition createCondition();
-
-  /**
-   * Returns a new object of class '<em>Value</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Value</em>'.
-   * @generated
-   */
-  Value createValue();
-
-  /**
    * Returns a new object of class '<em>Row Rule Set</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -240,6 +240,15 @@ public interface GreenhouseFactory extends EFactory
   GreenhouseRuleSet createGreenhouseRuleSet();
 
   /**
+   * Returns a new object of class '<em>Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expression</em>'.
+   * @generated
+   */
+  Expression createExpression();
+
+  /**
    * Returns a new object of class '<em>Setting</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -247,6 +256,51 @@ public interface GreenhouseFactory extends EFactory
    * @generated
    */
   Setting createSetting();
+
+  /**
+   * Returns a new object of class '<em>Plus</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Plus</em>'.
+   * @generated
+   */
+  Plus createPlus();
+
+  /**
+   * Returns a new object of class '<em>Minus</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Minus</em>'.
+   * @generated
+   */
+  Minus createMinus();
+
+  /**
+   * Returns a new object of class '<em>Mult</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Mult</em>'.
+   * @generated
+   */
+  Mult createMult();
+
+  /**
+   * Returns a new object of class '<em>Div</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Div</em>'.
+   * @generated
+   */
+  Div createDiv();
+
+  /**
+   * Returns a new object of class '<em>Math Number</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Math Number</em>'.
+   * @generated
+   */
+  MathNumber createMathNumber();
 
   /**
    * Returns the package supported by this factory.

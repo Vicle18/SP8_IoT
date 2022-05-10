@@ -3,11 +3,13 @@
  */
 package dsl.greenhouse.impl;
 
+import dsl.greenhouse.Expression;
 import dsl.greenhouse.GreenhousePackage;
 import dsl.greenhouse.State;
 import dsl.greenhouse.Variable;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -84,24 +86,14 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
   protected String op = OP_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getThreshold() <em>Threshold</em>}' attribute.
+   * The cached value of the '{@link #getThreshold() <em>Threshold</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getThreshold()
    * @generated
    * @ordered
    */
-  protected static final int THRESHOLD_EDEFAULT = 0;
-
-  /**
-   * The cached value of the '{@link #getThreshold() <em>Threshold</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getThreshold()
-   * @generated
-   * @ordered
-   */
-  protected int threshold = THRESHOLD_EDEFAULT;
+  protected Expression threshold;
 
   /**
    * <!-- begin-user-doc -->
@@ -225,7 +217,7 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
    * @generated
    */
   @Override
-  public int getThreshold()
+  public Expression getThreshold()
   {
     return threshold;
   }
@@ -235,13 +227,54 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
-  public void setThreshold(int newThreshold)
+  public NotificationChain basicSetThreshold(Expression newThreshold, NotificationChain msgs)
   {
-    int oldThreshold = threshold;
+    Expression oldThreshold = threshold;
     threshold = newThreshold;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GreenhousePackage.STATE__THRESHOLD, oldThreshold, threshold));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GreenhousePackage.STATE__THRESHOLD, oldThreshold, newThreshold);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setThreshold(Expression newThreshold)
+  {
+    if (newThreshold != threshold)
+    {
+      NotificationChain msgs = null;
+      if (threshold != null)
+        msgs = ((InternalEObject)threshold).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GreenhousePackage.STATE__THRESHOLD, null, msgs);
+      if (newThreshold != null)
+        msgs = ((InternalEObject)newThreshold).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GreenhousePackage.STATE__THRESHOLD, null, msgs);
+      msgs = basicSetThreshold(newThreshold, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GreenhousePackage.STATE__THRESHOLD, newThreshold, newThreshold));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case GreenhousePackage.STATE__THRESHOLD:
+        return basicSetThreshold(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -287,7 +320,7 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
         setOp((String)newValue);
         return;
       case GreenhousePackage.STATE__THRESHOLD:
-        setThreshold((Integer)newValue);
+        setThreshold((Expression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -313,7 +346,7 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
         setOp(OP_EDEFAULT);
         return;
       case GreenhousePackage.STATE__THRESHOLD:
-        setThreshold(THRESHOLD_EDEFAULT);
+        setThreshold((Expression)null);
         return;
     }
     super.eUnset(featureID);
@@ -336,7 +369,7 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
       case GreenhousePackage.STATE__OP:
         return OP_EDEFAULT == null ? op != null : !OP_EDEFAULT.equals(op);
       case GreenhousePackage.STATE__THRESHOLD:
-        return threshold != THRESHOLD_EDEFAULT;
+        return threshold != null;
     }
     return super.eIsSet(featureID);
   }
@@ -356,8 +389,6 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
     result.append(name);
     result.append(", op: ");
     result.append(op);
-    result.append(", threshold: ");
-    result.append(threshold);
     result.append(')');
     return result.toString();
   }

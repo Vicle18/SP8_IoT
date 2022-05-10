@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link dsl.greenhouse.Hardware#getName <em>Name</em>}</li>
- *   <li>{@link dsl.greenhouse.Hardware#getTopic <em>Topic</em>}</li>
  * </ul>
  *
  * @see dsl.greenhouse.GreenhousePackage#getHardware()
@@ -45,27 +44,5 @@ public interface Hardware extends EObject
    * @generated
    */
   void setName(String value);
-
-  /**
-   * Returns the value of the '<em><b>Topic</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Topic</em>' containment reference.
-   * @see #setTopic(Topic)
-   * @see dsl.greenhouse.GreenhousePackage#getHardware_Topic()
-   * @model containment="true"
-   * @generated
-   */
-  Topic getTopic();
-
-  /**
-   * Sets the value of the '{@link dsl.greenhouse.Hardware#getTopic <em>Topic</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Topic</em>' containment reference.
-   * @see #getTopic()
-   * @generated
-   */
-  void setTopic(Topic value);
 
 } // Hardware

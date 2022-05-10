@@ -22,12 +22,19 @@ Hardware:
 
 
 SettingActuator:
-	'actuator' name=ID 'has' 'action' settingAction+=SettingAction (',' settingAction+=SettingAction)* 'and' 'listens' 'on'
-	topic=Topic
+	'actuator' name=ID 'has' 'action' settingAction+=SettingAction ('and' settingAction+=SettingAction)*
 ;
 
 SettingSensor:
-	'sensor' name=ID 'publishes' 'to' topic=Topic
+	'sensor' name=ID 'publishes' reducer=Reducer? frequency=Frequency
+;
+
+Reducer:
+	name=('average' | 'median')
+;
+
+Frequency:
+	freq=Exp 'times' 'per' 'second'
 ;
 
 Topic:
@@ -62,7 +69,7 @@ RowElement:
 
 
 GreenhouseActuator:
-      'global' 'actuator' name=ID ('will' action+=Action)? (',' 'will' action+=Action)* 
+      'global' type=[SettingActuator] name=ID ('will' action+=Action)? (',' 'will' action+=Action)* 
 ;
 
 RowActuator:
@@ -70,17 +77,17 @@ RowActuator:
 ;
 
 GreenhouseSensor:
-     'global' 'sensor' name=ID 'has' 'value' variable=Variable
+     'global' type=[SettingSensor] name=ID 'has' variable=Variable 'and' 'states'
         states+=State(',' states+=State)*
 ;
 
 RowSensor:
-    'sensor' name=ID 'has' variable=Variable 'and' 'states'
+    type=[SettingSensor] name=ID 'has' variable=Variable 'and' 'states'
         states+=State(',' states+=State)*
 ;
 
 State:
-    name=ID 'when' variable=[Variable] op = ('<' | '>' | '=') threshold=INT
+    name=ID 'when' variable=[Variable] op = ('<' | '>' | '=') threshold=Exp
 ;
 
 Variable:
@@ -94,20 +101,25 @@ Action:
 Trigger:
     {Trigger} name=ID 
 ;
-Condition:
-    {Condition}
-    name=ID 
-;
-
-Value:
-    {Value}
-    name=INT 
-;
 
 RowRuleSet:
 	'rule' 'trigger' trigger=[Trigger] 'on' Actuator=[RowActuator] 'when' sensor=[RowSensor] 'is' state=[State]
 ;
 
 GreenhouseRuleSet:
-    'global' 'rule' Actuator=[GreenhouseActuator] 'set' action=[Action] 'when' sensor=[GreenhouseSensor] 'is' state=[State]
+    'global' 'rule' actuator=[Greenhouse] 'set' action=[Action] 'when' sensor=[GreenhouseSensor] 'is' state=[State]
 ;
+
+Exp returns Expression:
+	Factor (( {Plus.left=current} '+' | {Minus.left=current}  '-' ) right=Factor)*
+;
+
+Factor returns Expression:
+	Primary (({Mult.left=current} '*' | {Div.left=current}  '/'  ) right=Primary)*
+;
+
+Primary returns Expression:
+	{MathNumber} value=INT | '(' Exp ')'
+;
+
+

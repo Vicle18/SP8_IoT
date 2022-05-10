@@ -142,22 +142,13 @@ public interface GreenhousePackage extends EPackage
   int HARDWARE__NAME = 0;
 
   /**
-   * The feature id for the '<em><b>Topic</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int HARDWARE__TOPIC = 1;
-
-  /**
    * The number of structural features of the '<em>Hardware</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int HARDWARE_FEATURE_COUNT = 2;
+  int HARDWARE_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link dsl.greenhouse.impl.SettingActuatorImpl <em>Setting Actuator</em>}' class.
@@ -177,15 +168,6 @@ public interface GreenhousePackage extends EPackage
    * @ordered
    */
   int SETTING_ACTUATOR__NAME = HARDWARE__NAME;
-
-  /**
-   * The feature id for the '<em><b>Topic</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SETTING_ACTUATOR__TOPIC = HARDWARE__TOPIC;
 
   /**
    * The feature id for the '<em><b>Setting Action</b></em>' containment reference list.
@@ -225,13 +207,22 @@ public interface GreenhousePackage extends EPackage
   int SETTING_SENSOR__NAME = HARDWARE__NAME;
 
   /**
-   * The feature id for the '<em><b>Topic</b></em>' containment reference.
+   * The feature id for the '<em><b>Reducer</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SETTING_SENSOR__TOPIC = HARDWARE__TOPIC;
+  int SETTING_SENSOR__REDUCER = HARDWARE_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Frequency</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SETTING_SENSOR__FREQUENCY = HARDWARE_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Setting Sensor</em>' class.
@@ -240,7 +231,63 @@ public interface GreenhousePackage extends EPackage
    * @generated
    * @ordered
    */
-  int SETTING_SENSOR_FEATURE_COUNT = HARDWARE_FEATURE_COUNT + 0;
+  int SETTING_SENSOR_FEATURE_COUNT = HARDWARE_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link dsl.greenhouse.impl.ReducerImpl <em>Reducer</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see dsl.greenhouse.impl.ReducerImpl
+   * @see dsl.greenhouse.impl.GreenhousePackageImpl#getReducer()
+   * @generated
+   */
+  int REDUCER = 5;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REDUCER__NAME = 0;
+
+  /**
+   * The number of structural features of the '<em>Reducer</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REDUCER_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link dsl.greenhouse.impl.FrequencyImpl <em>Frequency</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see dsl.greenhouse.impl.FrequencyImpl
+   * @see dsl.greenhouse.impl.GreenhousePackageImpl#getFrequency()
+   * @generated
+   */
+  int FREQUENCY = 6;
+
+  /**
+   * The feature id for the '<em><b>Freq</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FREQUENCY__FREQ = 0;
+
+  /**
+   * The number of structural features of the '<em>Frequency</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FREQUENCY_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link dsl.greenhouse.impl.TopicImpl <em>Topic</em>}' class.
@@ -250,7 +297,7 @@ public interface GreenhousePackage extends EPackage
    * @see dsl.greenhouse.impl.GreenhousePackageImpl#getTopic()
    * @generated
    */
-  int TOPIC = 5;
+  int TOPIC = 7;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -278,7 +325,7 @@ public interface GreenhousePackage extends EPackage
    * @see dsl.greenhouse.impl.GreenhousePackageImpl#getSettingAction()
    * @generated
    */
-  int SETTING_ACTION = 6;
+  int SETTING_ACTION = 8;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -315,7 +362,7 @@ public interface GreenhousePackage extends EPackage
    * @see dsl.greenhouse.impl.GreenhousePackageImpl#getSettingValue()
    * @generated
    */
-  int SETTING_VALUE = 7;
+  int SETTING_VALUE = 9;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -343,7 +390,7 @@ public interface GreenhousePackage extends EPackage
    * @see dsl.greenhouse.impl.GreenhousePackageImpl#getGreenhouse()
    * @generated
    */
-  int GREENHOUSE = 8;
+  int GREENHOUSE = 10;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -389,7 +436,7 @@ public interface GreenhousePackage extends EPackage
    * @see dsl.greenhouse.impl.GreenhousePackageImpl#getRow()
    * @generated
    */
-  int ROW = 9;
+  int ROW = 11;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -426,7 +473,7 @@ public interface GreenhousePackage extends EPackage
    * @see dsl.greenhouse.impl.GreenhousePackageImpl#getGreenhouseElement()
    * @generated
    */
-  int GREENHOUSE_ELEMENT = 10;
+  int GREENHOUSE_ELEMENT = 12;
 
   /**
    * The number of structural features of the '<em>Element</em>' class.
@@ -445,7 +492,7 @@ public interface GreenhousePackage extends EPackage
    * @see dsl.greenhouse.impl.GreenhousePackageImpl#getRowElement()
    * @generated
    */
-  int ROW_ELEMENT = 11;
+  int ROW_ELEMENT = 13;
 
   /**
    * The number of structural features of the '<em>Row Element</em>' class.
@@ -464,7 +511,16 @@ public interface GreenhousePackage extends EPackage
    * @see dsl.greenhouse.impl.GreenhousePackageImpl#getGreenhouseActuator()
    * @generated
    */
-  int GREENHOUSE_ACTUATOR = 12;
+  int GREENHOUSE_ACTUATOR = 14;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int GREENHOUSE_ACTUATOR__TYPE = GREENHOUSE_ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -473,7 +529,7 @@ public interface GreenhousePackage extends EPackage
    * @generated
    * @ordered
    */
-  int GREENHOUSE_ACTUATOR__NAME = GREENHOUSE_ELEMENT_FEATURE_COUNT + 0;
+  int GREENHOUSE_ACTUATOR__NAME = GREENHOUSE_ELEMENT_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Action</b></em>' containment reference list.
@@ -482,7 +538,7 @@ public interface GreenhousePackage extends EPackage
    * @generated
    * @ordered
    */
-  int GREENHOUSE_ACTUATOR__ACTION = GREENHOUSE_ELEMENT_FEATURE_COUNT + 1;
+  int GREENHOUSE_ACTUATOR__ACTION = GREENHOUSE_ELEMENT_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Actuator</em>' class.
@@ -491,7 +547,7 @@ public interface GreenhousePackage extends EPackage
    * @generated
    * @ordered
    */
-  int GREENHOUSE_ACTUATOR_FEATURE_COUNT = GREENHOUSE_ELEMENT_FEATURE_COUNT + 2;
+  int GREENHOUSE_ACTUATOR_FEATURE_COUNT = GREENHOUSE_ELEMENT_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link dsl.greenhouse.impl.RowActuatorImpl <em>Row Actuator</em>}' class.
@@ -501,7 +557,7 @@ public interface GreenhousePackage extends EPackage
    * @see dsl.greenhouse.impl.GreenhousePackageImpl#getRowActuator()
    * @generated
    */
-  int ROW_ACTUATOR = 13;
+  int ROW_ACTUATOR = 15;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -547,7 +603,16 @@ public interface GreenhousePackage extends EPackage
    * @see dsl.greenhouse.impl.GreenhousePackageImpl#getGreenhouseSensor()
    * @generated
    */
-  int GREENHOUSE_SENSOR = 14;
+  int GREENHOUSE_SENSOR = 16;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int GREENHOUSE_SENSOR__TYPE = GREENHOUSE_ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -556,7 +621,7 @@ public interface GreenhousePackage extends EPackage
    * @generated
    * @ordered
    */
-  int GREENHOUSE_SENSOR__NAME = GREENHOUSE_ELEMENT_FEATURE_COUNT + 0;
+  int GREENHOUSE_SENSOR__NAME = GREENHOUSE_ELEMENT_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Variable</b></em>' containment reference.
@@ -565,7 +630,7 @@ public interface GreenhousePackage extends EPackage
    * @generated
    * @ordered
    */
-  int GREENHOUSE_SENSOR__VARIABLE = GREENHOUSE_ELEMENT_FEATURE_COUNT + 1;
+  int GREENHOUSE_SENSOR__VARIABLE = GREENHOUSE_ELEMENT_FEATURE_COUNT + 2;
 
   /**
    * The feature id for the '<em><b>States</b></em>' containment reference list.
@@ -574,7 +639,7 @@ public interface GreenhousePackage extends EPackage
    * @generated
    * @ordered
    */
-  int GREENHOUSE_SENSOR__STATES = GREENHOUSE_ELEMENT_FEATURE_COUNT + 2;
+  int GREENHOUSE_SENSOR__STATES = GREENHOUSE_ELEMENT_FEATURE_COUNT + 3;
 
   /**
    * The number of structural features of the '<em>Sensor</em>' class.
@@ -583,7 +648,7 @@ public interface GreenhousePackage extends EPackage
    * @generated
    * @ordered
    */
-  int GREENHOUSE_SENSOR_FEATURE_COUNT = GREENHOUSE_ELEMENT_FEATURE_COUNT + 3;
+  int GREENHOUSE_SENSOR_FEATURE_COUNT = GREENHOUSE_ELEMENT_FEATURE_COUNT + 4;
 
   /**
    * The meta object id for the '{@link dsl.greenhouse.impl.RowSensorImpl <em>Row Sensor</em>}' class.
@@ -593,7 +658,16 @@ public interface GreenhousePackage extends EPackage
    * @see dsl.greenhouse.impl.GreenhousePackageImpl#getRowSensor()
    * @generated
    */
-  int ROW_SENSOR = 15;
+  int ROW_SENSOR = 17;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ROW_SENSOR__TYPE = ROW_ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -602,7 +676,7 @@ public interface GreenhousePackage extends EPackage
    * @generated
    * @ordered
    */
-  int ROW_SENSOR__NAME = ROW_ELEMENT_FEATURE_COUNT + 0;
+  int ROW_SENSOR__NAME = ROW_ELEMENT_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Variable</b></em>' containment reference.
@@ -611,7 +685,7 @@ public interface GreenhousePackage extends EPackage
    * @generated
    * @ordered
    */
-  int ROW_SENSOR__VARIABLE = ROW_ELEMENT_FEATURE_COUNT + 1;
+  int ROW_SENSOR__VARIABLE = ROW_ELEMENT_FEATURE_COUNT + 2;
 
   /**
    * The feature id for the '<em><b>States</b></em>' containment reference list.
@@ -620,7 +694,7 @@ public interface GreenhousePackage extends EPackage
    * @generated
    * @ordered
    */
-  int ROW_SENSOR__STATES = ROW_ELEMENT_FEATURE_COUNT + 2;
+  int ROW_SENSOR__STATES = ROW_ELEMENT_FEATURE_COUNT + 3;
 
   /**
    * The number of structural features of the '<em>Row Sensor</em>' class.
@@ -629,7 +703,7 @@ public interface GreenhousePackage extends EPackage
    * @generated
    * @ordered
    */
-  int ROW_SENSOR_FEATURE_COUNT = ROW_ELEMENT_FEATURE_COUNT + 3;
+  int ROW_SENSOR_FEATURE_COUNT = ROW_ELEMENT_FEATURE_COUNT + 4;
 
   /**
    * The meta object id for the '{@link dsl.greenhouse.impl.StateImpl <em>State</em>}' class.
@@ -639,7 +713,7 @@ public interface GreenhousePackage extends EPackage
    * @see dsl.greenhouse.impl.GreenhousePackageImpl#getState()
    * @generated
    */
-  int STATE = 16;
+  int STATE = 18;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -669,7 +743,7 @@ public interface GreenhousePackage extends EPackage
   int STATE__OP = 2;
 
   /**
-   * The feature id for the '<em><b>Threshold</b></em>' attribute.
+   * The feature id for the '<em><b>Threshold</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -694,7 +768,7 @@ public interface GreenhousePackage extends EPackage
    * @see dsl.greenhouse.impl.GreenhousePackageImpl#getVariable()
    * @generated
    */
-  int VARIABLE = 17;
+  int VARIABLE = 19;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -722,7 +796,7 @@ public interface GreenhousePackage extends EPackage
    * @see dsl.greenhouse.impl.GreenhousePackageImpl#getAction()
    * @generated
    */
-  int ACTION = 18;
+  int ACTION = 20;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -768,7 +842,7 @@ public interface GreenhousePackage extends EPackage
    * @see dsl.greenhouse.impl.GreenhousePackageImpl#getTrigger()
    * @generated
    */
-  int TRIGGER = 19;
+  int TRIGGER = 21;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -787,62 +861,6 @@ public interface GreenhousePackage extends EPackage
    * @ordered
    */
   int TRIGGER_FEATURE_COUNT = 1;
-
-  /**
-   * The meta object id for the '{@link dsl.greenhouse.impl.ConditionImpl <em>Condition</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see dsl.greenhouse.impl.ConditionImpl
-   * @see dsl.greenhouse.impl.GreenhousePackageImpl#getCondition()
-   * @generated
-   */
-  int CONDITION = 20;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONDITION__NAME = 0;
-
-  /**
-   * The number of structural features of the '<em>Condition</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONDITION_FEATURE_COUNT = 1;
-
-  /**
-   * The meta object id for the '{@link dsl.greenhouse.impl.ValueImpl <em>Value</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see dsl.greenhouse.impl.ValueImpl
-   * @see dsl.greenhouse.impl.GreenhousePackageImpl#getValue()
-   * @generated
-   */
-  int VALUE = 21;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int VALUE__NAME = 0;
-
-  /**
-   * The number of structural features of the '<em>Value</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int VALUE_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link dsl.greenhouse.impl.RowRuleSetImpl <em>Row Rule Set</em>}' class.
@@ -955,6 +973,25 @@ public interface GreenhousePackage extends EPackage
   int GREENHOUSE_RULE_SET_FEATURE_COUNT = GREENHOUSE_ELEMENT_FEATURE_COUNT + 4;
 
   /**
+   * The meta object id for the '{@link dsl.greenhouse.impl.ExpressionImpl <em>Expression</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see dsl.greenhouse.impl.ExpressionImpl
+   * @see dsl.greenhouse.impl.GreenhousePackageImpl#getExpression()
+   * @generated
+   */
+  int EXPRESSION = 24;
+
+  /**
+   * The number of structural features of the '<em>Expression</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPRESSION_FEATURE_COUNT = 0;
+
+  /**
    * The meta object id for the '{@link dsl.greenhouse.impl.SettingImpl <em>Setting</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -962,7 +999,7 @@ public interface GreenhousePackage extends EPackage
    * @see dsl.greenhouse.impl.GreenhousePackageImpl#getSetting()
    * @generated
    */
-  int SETTING = 24;
+  int SETTING = 25;
 
   /**
    * The feature id for the '<em><b>Hardware</b></em>' containment reference list.
@@ -981,6 +1018,182 @@ public interface GreenhousePackage extends EPackage
    * @ordered
    */
   int SETTING_FEATURE_COUNT = HARDWARE_SETUP_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link dsl.greenhouse.impl.PlusImpl <em>Plus</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see dsl.greenhouse.impl.PlusImpl
+   * @see dsl.greenhouse.impl.GreenhousePackageImpl#getPlus()
+   * @generated
+   */
+  int PLUS = 26;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLUS__LEFT = EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLUS__RIGHT = EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Plus</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PLUS_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link dsl.greenhouse.impl.MinusImpl <em>Minus</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see dsl.greenhouse.impl.MinusImpl
+   * @see dsl.greenhouse.impl.GreenhousePackageImpl#getMinus()
+   * @generated
+   */
+  int MINUS = 27;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MINUS__LEFT = EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MINUS__RIGHT = EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Minus</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MINUS_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link dsl.greenhouse.impl.MultImpl <em>Mult</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see dsl.greenhouse.impl.MultImpl
+   * @see dsl.greenhouse.impl.GreenhousePackageImpl#getMult()
+   * @generated
+   */
+  int MULT = 28;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MULT__LEFT = EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MULT__RIGHT = EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Mult</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MULT_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link dsl.greenhouse.impl.DivImpl <em>Div</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see dsl.greenhouse.impl.DivImpl
+   * @see dsl.greenhouse.impl.GreenhousePackageImpl#getDiv()
+   * @generated
+   */
+  int DIV = 29;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DIV__LEFT = EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DIV__RIGHT = EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Div</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DIV_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link dsl.greenhouse.impl.MathNumberImpl <em>Math Number</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see dsl.greenhouse.impl.MathNumberImpl
+   * @see dsl.greenhouse.impl.GreenhousePackageImpl#getMathNumber()
+   * @generated
+   */
+  int MATH_NUMBER = 30;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MATH_NUMBER__VALUE = EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Math Number</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MATH_NUMBER_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
 
 
   /**
@@ -1058,17 +1271,6 @@ public interface GreenhousePackage extends EPackage
   EAttribute getHardware_Name();
 
   /**
-   * Returns the meta object for the containment reference '{@link dsl.greenhouse.Hardware#getTopic <em>Topic</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Topic</em>'.
-   * @see dsl.greenhouse.Hardware#getTopic()
-   * @see #getHardware()
-   * @generated
-   */
-  EReference getHardware_Topic();
-
-  /**
    * Returns the meta object for class '{@link dsl.greenhouse.SettingActuator <em>Setting Actuator</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1098,6 +1300,70 @@ public interface GreenhousePackage extends EPackage
    * @generated
    */
   EClass getSettingSensor();
+
+  /**
+   * Returns the meta object for the containment reference '{@link dsl.greenhouse.SettingSensor#getReducer <em>Reducer</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Reducer</em>'.
+   * @see dsl.greenhouse.SettingSensor#getReducer()
+   * @see #getSettingSensor()
+   * @generated
+   */
+  EReference getSettingSensor_Reducer();
+
+  /**
+   * Returns the meta object for the containment reference '{@link dsl.greenhouse.SettingSensor#getFrequency <em>Frequency</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Frequency</em>'.
+   * @see dsl.greenhouse.SettingSensor#getFrequency()
+   * @see #getSettingSensor()
+   * @generated
+   */
+  EReference getSettingSensor_Frequency();
+
+  /**
+   * Returns the meta object for class '{@link dsl.greenhouse.Reducer <em>Reducer</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Reducer</em>'.
+   * @see dsl.greenhouse.Reducer
+   * @generated
+   */
+  EClass getReducer();
+
+  /**
+   * Returns the meta object for the attribute '{@link dsl.greenhouse.Reducer#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see dsl.greenhouse.Reducer#getName()
+   * @see #getReducer()
+   * @generated
+   */
+  EAttribute getReducer_Name();
+
+  /**
+   * Returns the meta object for class '{@link dsl.greenhouse.Frequency <em>Frequency</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Frequency</em>'.
+   * @see dsl.greenhouse.Frequency
+   * @generated
+   */
+  EClass getFrequency();
+
+  /**
+   * Returns the meta object for the containment reference '{@link dsl.greenhouse.Frequency#getFreq <em>Freq</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Freq</em>'.
+   * @see dsl.greenhouse.Frequency#getFreq()
+   * @see #getFrequency()
+   * @generated
+   */
+  EReference getFrequency_Freq();
 
   /**
    * Returns the meta object for class '{@link dsl.greenhouse.Topic <em>Topic</em>}'.
@@ -1279,6 +1545,17 @@ public interface GreenhousePackage extends EPackage
   EClass getGreenhouseActuator();
 
   /**
+   * Returns the meta object for the reference '{@link dsl.greenhouse.GreenhouseActuator#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Type</em>'.
+   * @see dsl.greenhouse.GreenhouseActuator#getType()
+   * @see #getGreenhouseActuator()
+   * @generated
+   */
+  EReference getGreenhouseActuator_Type();
+
+  /**
    * Returns the meta object for the attribute '{@link dsl.greenhouse.GreenhouseActuator#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1354,6 +1631,17 @@ public interface GreenhousePackage extends EPackage
   EClass getGreenhouseSensor();
 
   /**
+   * Returns the meta object for the reference '{@link dsl.greenhouse.GreenhouseSensor#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Type</em>'.
+   * @see dsl.greenhouse.GreenhouseSensor#getType()
+   * @see #getGreenhouseSensor()
+   * @generated
+   */
+  EReference getGreenhouseSensor_Type();
+
+  /**
    * Returns the meta object for the attribute '{@link dsl.greenhouse.GreenhouseSensor#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1395,6 +1683,17 @@ public interface GreenhousePackage extends EPackage
    * @generated
    */
   EClass getRowSensor();
+
+  /**
+   * Returns the meta object for the reference '{@link dsl.greenhouse.RowSensor#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Type</em>'.
+   * @see dsl.greenhouse.RowSensor#getType()
+   * @see #getRowSensor()
+   * @generated
+   */
+  EReference getRowSensor_Type();
 
   /**
    * Returns the meta object for the attribute '{@link dsl.greenhouse.RowSensor#getName <em>Name</em>}'.
@@ -1473,15 +1772,15 @@ public interface GreenhousePackage extends EPackage
   EAttribute getState_Op();
 
   /**
-   * Returns the meta object for the attribute '{@link dsl.greenhouse.State#getThreshold <em>Threshold</em>}'.
+   * Returns the meta object for the containment reference '{@link dsl.greenhouse.State#getThreshold <em>Threshold</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Threshold</em>'.
+   * @return the meta object for the containment reference '<em>Threshold</em>'.
    * @see dsl.greenhouse.State#getThreshold()
    * @see #getState()
    * @generated
    */
-  EAttribute getState_Threshold();
+  EReference getState_Threshold();
 
   /**
    * Returns the meta object for class '{@link dsl.greenhouse.Variable <em>Variable</em>}'.
@@ -1567,48 +1866,6 @@ public interface GreenhousePackage extends EPackage
    * @generated
    */
   EAttribute getTrigger_Name();
-
-  /**
-   * Returns the meta object for class '{@link dsl.greenhouse.Condition <em>Condition</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Condition</em>'.
-   * @see dsl.greenhouse.Condition
-   * @generated
-   */
-  EClass getCondition();
-
-  /**
-   * Returns the meta object for the attribute '{@link dsl.greenhouse.Condition#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see dsl.greenhouse.Condition#getName()
-   * @see #getCondition()
-   * @generated
-   */
-  EAttribute getCondition_Name();
-
-  /**
-   * Returns the meta object for class '{@link dsl.greenhouse.Value <em>Value</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Value</em>'.
-   * @see dsl.greenhouse.Value
-   * @generated
-   */
-  EClass getValue();
-
-  /**
-   * Returns the meta object for the attribute '{@link dsl.greenhouse.Value#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see dsl.greenhouse.Value#getName()
-   * @see #getValue()
-   * @generated
-   */
-  EAttribute getValue_Name();
 
   /**
    * Returns the meta object for class '{@link dsl.greenhouse.RowRuleSet <em>Row Rule Set</em>}'.
@@ -1719,6 +1976,16 @@ public interface GreenhousePackage extends EPackage
   EReference getGreenhouseRuleSet_State();
 
   /**
+   * Returns the meta object for class '{@link dsl.greenhouse.Expression <em>Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Expression</em>'.
+   * @see dsl.greenhouse.Expression
+   * @generated
+   */
+  EClass getExpression();
+
+  /**
    * Returns the meta object for class '{@link dsl.greenhouse.Setting <em>Setting</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1738,6 +2005,155 @@ public interface GreenhousePackage extends EPackage
    * @generated
    */
   EReference getSetting_Hardware();
+
+  /**
+   * Returns the meta object for class '{@link dsl.greenhouse.Plus <em>Plus</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Plus</em>'.
+   * @see dsl.greenhouse.Plus
+   * @generated
+   */
+  EClass getPlus();
+
+  /**
+   * Returns the meta object for the containment reference '{@link dsl.greenhouse.Plus#getLeft <em>Left</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Left</em>'.
+   * @see dsl.greenhouse.Plus#getLeft()
+   * @see #getPlus()
+   * @generated
+   */
+  EReference getPlus_Left();
+
+  /**
+   * Returns the meta object for the containment reference '{@link dsl.greenhouse.Plus#getRight <em>Right</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Right</em>'.
+   * @see dsl.greenhouse.Plus#getRight()
+   * @see #getPlus()
+   * @generated
+   */
+  EReference getPlus_Right();
+
+  /**
+   * Returns the meta object for class '{@link dsl.greenhouse.Minus <em>Minus</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Minus</em>'.
+   * @see dsl.greenhouse.Minus
+   * @generated
+   */
+  EClass getMinus();
+
+  /**
+   * Returns the meta object for the containment reference '{@link dsl.greenhouse.Minus#getLeft <em>Left</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Left</em>'.
+   * @see dsl.greenhouse.Minus#getLeft()
+   * @see #getMinus()
+   * @generated
+   */
+  EReference getMinus_Left();
+
+  /**
+   * Returns the meta object for the containment reference '{@link dsl.greenhouse.Minus#getRight <em>Right</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Right</em>'.
+   * @see dsl.greenhouse.Minus#getRight()
+   * @see #getMinus()
+   * @generated
+   */
+  EReference getMinus_Right();
+
+  /**
+   * Returns the meta object for class '{@link dsl.greenhouse.Mult <em>Mult</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Mult</em>'.
+   * @see dsl.greenhouse.Mult
+   * @generated
+   */
+  EClass getMult();
+
+  /**
+   * Returns the meta object for the containment reference '{@link dsl.greenhouse.Mult#getLeft <em>Left</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Left</em>'.
+   * @see dsl.greenhouse.Mult#getLeft()
+   * @see #getMult()
+   * @generated
+   */
+  EReference getMult_Left();
+
+  /**
+   * Returns the meta object for the containment reference '{@link dsl.greenhouse.Mult#getRight <em>Right</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Right</em>'.
+   * @see dsl.greenhouse.Mult#getRight()
+   * @see #getMult()
+   * @generated
+   */
+  EReference getMult_Right();
+
+  /**
+   * Returns the meta object for class '{@link dsl.greenhouse.Div <em>Div</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Div</em>'.
+   * @see dsl.greenhouse.Div
+   * @generated
+   */
+  EClass getDiv();
+
+  /**
+   * Returns the meta object for the containment reference '{@link dsl.greenhouse.Div#getLeft <em>Left</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Left</em>'.
+   * @see dsl.greenhouse.Div#getLeft()
+   * @see #getDiv()
+   * @generated
+   */
+  EReference getDiv_Left();
+
+  /**
+   * Returns the meta object for the containment reference '{@link dsl.greenhouse.Div#getRight <em>Right</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Right</em>'.
+   * @see dsl.greenhouse.Div#getRight()
+   * @see #getDiv()
+   * @generated
+   */
+  EReference getDiv_Right();
+
+  /**
+   * Returns the meta object for class '{@link dsl.greenhouse.MathNumber <em>Math Number</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Math Number</em>'.
+   * @see dsl.greenhouse.MathNumber
+   * @generated
+   */
+  EClass getMathNumber();
+
+  /**
+   * Returns the meta object for the attribute '{@link dsl.greenhouse.MathNumber#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see dsl.greenhouse.MathNumber#getValue()
+   * @see #getMathNumber()
+   * @generated
+   */
+  EAttribute getMathNumber_Value();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -1825,14 +2241,6 @@ public interface GreenhousePackage extends EPackage
     EAttribute HARDWARE__NAME = eINSTANCE.getHardware_Name();
 
     /**
-     * The meta object literal for the '<em><b>Topic</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference HARDWARE__TOPIC = eINSTANCE.getHardware_Topic();
-
-    /**
      * The meta object literal for the '{@link dsl.greenhouse.impl.SettingActuatorImpl <em>Setting Actuator</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1859,6 +2267,58 @@ public interface GreenhousePackage extends EPackage
      * @generated
      */
     EClass SETTING_SENSOR = eINSTANCE.getSettingSensor();
+
+    /**
+     * The meta object literal for the '<em><b>Reducer</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference SETTING_SENSOR__REDUCER = eINSTANCE.getSettingSensor_Reducer();
+
+    /**
+     * The meta object literal for the '<em><b>Frequency</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference SETTING_SENSOR__FREQUENCY = eINSTANCE.getSettingSensor_Frequency();
+
+    /**
+     * The meta object literal for the '{@link dsl.greenhouse.impl.ReducerImpl <em>Reducer</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see dsl.greenhouse.impl.ReducerImpl
+     * @see dsl.greenhouse.impl.GreenhousePackageImpl#getReducer()
+     * @generated
+     */
+    EClass REDUCER = eINSTANCE.getReducer();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute REDUCER__NAME = eINSTANCE.getReducer_Name();
+
+    /**
+     * The meta object literal for the '{@link dsl.greenhouse.impl.FrequencyImpl <em>Frequency</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see dsl.greenhouse.impl.FrequencyImpl
+     * @see dsl.greenhouse.impl.GreenhousePackageImpl#getFrequency()
+     * @generated
+     */
+    EClass FREQUENCY = eINSTANCE.getFrequency();
+
+    /**
+     * The meta object literal for the '<em><b>Freq</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FREQUENCY__FREQ = eINSTANCE.getFrequency_Freq();
 
     /**
      * The meta object literal for the '{@link dsl.greenhouse.impl.TopicImpl <em>Topic</em>}' class.
@@ -2013,6 +2473,14 @@ public interface GreenhousePackage extends EPackage
     EClass GREENHOUSE_ACTUATOR = eINSTANCE.getGreenhouseActuator();
 
     /**
+     * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference GREENHOUSE_ACTUATOR__TYPE = eINSTANCE.getGreenhouseActuator_Type();
+
+    /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2073,6 +2541,14 @@ public interface GreenhousePackage extends EPackage
     EClass GREENHOUSE_SENSOR = eINSTANCE.getGreenhouseSensor();
 
     /**
+     * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference GREENHOUSE_SENSOR__TYPE = eINSTANCE.getGreenhouseSensor_Type();
+
+    /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2105,6 +2581,14 @@ public interface GreenhousePackage extends EPackage
      * @generated
      */
     EClass ROW_SENSOR = eINSTANCE.getRowSensor();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ROW_SENSOR__TYPE = eINSTANCE.getRowSensor_Type();
 
     /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -2165,12 +2649,12 @@ public interface GreenhousePackage extends EPackage
     EAttribute STATE__OP = eINSTANCE.getState_Op();
 
     /**
-     * The meta object literal for the '<em><b>Threshold</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Threshold</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute STATE__THRESHOLD = eINSTANCE.getState_Threshold();
+    EReference STATE__THRESHOLD = eINSTANCE.getState_Threshold();
 
     /**
      * The meta object literal for the '{@link dsl.greenhouse.impl.VariableImpl <em>Variable</em>}' class.
@@ -2241,42 +2725,6 @@ public interface GreenhousePackage extends EPackage
      * @generated
      */
     EAttribute TRIGGER__NAME = eINSTANCE.getTrigger_Name();
-
-    /**
-     * The meta object literal for the '{@link dsl.greenhouse.impl.ConditionImpl <em>Condition</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see dsl.greenhouse.impl.ConditionImpl
-     * @see dsl.greenhouse.impl.GreenhousePackageImpl#getCondition()
-     * @generated
-     */
-    EClass CONDITION = eINSTANCE.getCondition();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute CONDITION__NAME = eINSTANCE.getCondition_Name();
-
-    /**
-     * The meta object literal for the '{@link dsl.greenhouse.impl.ValueImpl <em>Value</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see dsl.greenhouse.impl.ValueImpl
-     * @see dsl.greenhouse.impl.GreenhousePackageImpl#getValue()
-     * @generated
-     */
-    EClass VALUE = eINSTANCE.getValue();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute VALUE__NAME = eINSTANCE.getValue_Name();
 
     /**
      * The meta object literal for the '{@link dsl.greenhouse.impl.RowRuleSetImpl <em>Row Rule Set</em>}' class.
@@ -2363,6 +2811,16 @@ public interface GreenhousePackage extends EPackage
     EReference GREENHOUSE_RULE_SET__STATE = eINSTANCE.getGreenhouseRuleSet_State();
 
     /**
+     * The meta object literal for the '{@link dsl.greenhouse.impl.ExpressionImpl <em>Expression</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see dsl.greenhouse.impl.ExpressionImpl
+     * @see dsl.greenhouse.impl.GreenhousePackageImpl#getExpression()
+     * @generated
+     */
+    EClass EXPRESSION = eINSTANCE.getExpression();
+
+    /**
      * The meta object literal for the '{@link dsl.greenhouse.impl.SettingImpl <em>Setting</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2379,6 +2837,128 @@ public interface GreenhousePackage extends EPackage
      * @generated
      */
     EReference SETTING__HARDWARE = eINSTANCE.getSetting_Hardware();
+
+    /**
+     * The meta object literal for the '{@link dsl.greenhouse.impl.PlusImpl <em>Plus</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see dsl.greenhouse.impl.PlusImpl
+     * @see dsl.greenhouse.impl.GreenhousePackageImpl#getPlus()
+     * @generated
+     */
+    EClass PLUS = eINSTANCE.getPlus();
+
+    /**
+     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PLUS__LEFT = eINSTANCE.getPlus_Left();
+
+    /**
+     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PLUS__RIGHT = eINSTANCE.getPlus_Right();
+
+    /**
+     * The meta object literal for the '{@link dsl.greenhouse.impl.MinusImpl <em>Minus</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see dsl.greenhouse.impl.MinusImpl
+     * @see dsl.greenhouse.impl.GreenhousePackageImpl#getMinus()
+     * @generated
+     */
+    EClass MINUS = eINSTANCE.getMinus();
+
+    /**
+     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MINUS__LEFT = eINSTANCE.getMinus_Left();
+
+    /**
+     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MINUS__RIGHT = eINSTANCE.getMinus_Right();
+
+    /**
+     * The meta object literal for the '{@link dsl.greenhouse.impl.MultImpl <em>Mult</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see dsl.greenhouse.impl.MultImpl
+     * @see dsl.greenhouse.impl.GreenhousePackageImpl#getMult()
+     * @generated
+     */
+    EClass MULT = eINSTANCE.getMult();
+
+    /**
+     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MULT__LEFT = eINSTANCE.getMult_Left();
+
+    /**
+     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MULT__RIGHT = eINSTANCE.getMult_Right();
+
+    /**
+     * The meta object literal for the '{@link dsl.greenhouse.impl.DivImpl <em>Div</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see dsl.greenhouse.impl.DivImpl
+     * @see dsl.greenhouse.impl.GreenhousePackageImpl#getDiv()
+     * @generated
+     */
+    EClass DIV = eINSTANCE.getDiv();
+
+    /**
+     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference DIV__LEFT = eINSTANCE.getDiv_Left();
+
+    /**
+     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference DIV__RIGHT = eINSTANCE.getDiv_Right();
+
+    /**
+     * The meta object literal for the '{@link dsl.greenhouse.impl.MathNumberImpl <em>Math Number</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see dsl.greenhouse.impl.MathNumberImpl
+     * @see dsl.greenhouse.impl.GreenhousePackageImpl#getMathNumber()
+     * @generated
+     */
+    EClass MATH_NUMBER = eINSTANCE.getMathNumber();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute MATH_NUMBER__VALUE = eINSTANCE.getMathNumber_Value();
 
   }
 

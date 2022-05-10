@@ -30,12 +30,12 @@ public interface GreenhouseRuleSet extends GreenhouseElement
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Actuator</em>' reference.
-   * @see #setActuator(GreenhouseActuator)
+   * @see #setActuator(Greenhouse)
    * @see dsl.greenhouse.GreenhousePackage#getGreenhouseRuleSet_Actuator()
    * @model
    * @generated
    */
-  GreenhouseActuator getActuator();
+  Greenhouse getActuator();
 
   /**
    * Sets the value of the '{@link dsl.greenhouse.GreenhouseRuleSet#getActuator <em>Actuator</em>}' reference.
@@ -45,7 +45,7 @@ public interface GreenhouseRuleSet extends GreenhouseElement
    * @see #getActuator()
    * @generated
    */
-  void setActuator(GreenhouseActuator value);
+  void setActuator(Greenhouse value);
 
   /**
    * Returns the value of the '<em><b>Action</b></em>' reference.

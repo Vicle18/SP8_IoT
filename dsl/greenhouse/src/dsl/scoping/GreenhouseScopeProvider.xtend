@@ -18,6 +18,9 @@ import dsl.greenhouse.SettingActuator
 import dsl.greenhouse.Trigger
 import dsl.greenhouse.SettingValue
 import dsl.greenhouse.SettingAction
+import dsl.greenhouse.GreenhouseActuator
+import dsl.greenhouse.GreenhouseSensor
+import dsl.greenhouse.Actuator
 
 /**
  * This class contains custom scoping description.
@@ -42,9 +45,41 @@ class GreenhouseScopeProvider extends AbstractGreenhouseScopeProvider {
 		val root = EcoreUtil2.getRootContainer(context);
 		
 		val allActuators = EcoreUtil2.getAllContentsOfType(root, SettingActuator)
+		val filtered = allActuators.filter[context.type.name == it.name]
+		Scopes.scopeFor(#[context], Scopes.scopeFor(allActuators))
+	}
+	
+	def dispatch scopeForEObject(GreenhouseActuator context, EReference reference) {
+		
+		
+		val root = EcoreUtil2.getRootContainer(context);
+		
+		val allActuators = EcoreUtil2.getAllContentsOfType(root, SettingActuator)
 		
 		System.out.println(allActuators)
 		Scopes.scopeFor(#[context], Scopes.scopeFor(allActuators))
+	}
+	
+	def dispatch scopeForEObject(RowSensor context, EReference reference) {
+		
+		
+		val root = EcoreUtil2.getRootContainer(context);
+		
+		val allSensors = EcoreUtil2.getAllContentsOfType(root, SettingSensor)
+		
+		System.out.println(allSensors)
+		Scopes.scopeFor(#[context], Scopes.scopeFor(allSensors))
+	}
+	
+	def dispatch scopeForEObject(GreenhouseSensor context, EReference reference) {
+		
+		
+		val root = EcoreUtil2.getRootContainer(context);
+		
+		val allSensors = EcoreUtil2.getAllContentsOfType(root, SettingSensor)
+		
+		System.out.println(allSensors)
+		Scopes.scopeFor(#[context], Scopes.scopeFor(allSensors))
 	}
 	
 	def dispatch scopeForEObject(Action context, EReference reference) {
@@ -55,7 +90,16 @@ class GreenhouseScopeProvider extends AbstractGreenhouseScopeProvider {
 		val allValues = EcoreUtil2.getAllContentsOfType(root, SettingValue)
 		
 		System.out.println(allValues.filter[context.name == (it.eContainer as SettingAction).name])
-		Scopes.scopeFor(#[context], Scopes.scopeFor(allValues.filter[context.name == (it.eContainer as SettingAction).name]))
+		//val filtered = allValues.filter[(context.eContainer as Actuator).type == (it.eContainer.eContainer as SettingActuator)]
+		
+		val filtered = allValues.filter[switch(context.eContainer){
+			RowActuator: (context.eContainer as RowActuator).type == (it.eContainer.eContainer as SettingActuator) && 
+				context.name == (it.eContainer as SettingAction).name
+			GreenhouseActuator: (context.eContainer as GreenhouseActuator).type == (it.eContainer.eContainer as SettingActuator) && 
+				context.name == (it.eContainer as SettingAction).name
+			default: false
+		}]
+		Scopes.scopeFor(#[context], Scopes.scopeFor(filtered))
 	}
 	
 //	def dispatch scopeForEObject(RowSensor sensor, EReference reference) {

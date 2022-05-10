@@ -70,6 +70,8 @@ public class GreenhouseFactoryImpl extends EFactoryImpl implements GreenhouseFac
       case GreenhousePackage.HARDWARE: return createHardware();
       case GreenhousePackage.SETTING_ACTUATOR: return createSettingActuator();
       case GreenhousePackage.SETTING_SENSOR: return createSettingSensor();
+      case GreenhousePackage.REDUCER: return createReducer();
+      case GreenhousePackage.FREQUENCY: return createFrequency();
       case GreenhousePackage.TOPIC: return createTopic();
       case GreenhousePackage.SETTING_ACTION: return createSettingAction();
       case GreenhousePackage.SETTING_VALUE: return createSettingValue();
@@ -85,11 +87,15 @@ public class GreenhouseFactoryImpl extends EFactoryImpl implements GreenhouseFac
       case GreenhousePackage.VARIABLE: return createVariable();
       case GreenhousePackage.ACTION: return createAction();
       case GreenhousePackage.TRIGGER: return createTrigger();
-      case GreenhousePackage.CONDITION: return createCondition();
-      case GreenhousePackage.VALUE: return createValue();
       case GreenhousePackage.ROW_RULE_SET: return createRowRuleSet();
       case GreenhousePackage.GREENHOUSE_RULE_SET: return createGreenhouseRuleSet();
+      case GreenhousePackage.EXPRESSION: return createExpression();
       case GreenhousePackage.SETTING: return createSetting();
+      case GreenhousePackage.PLUS: return createPlus();
+      case GreenhousePackage.MINUS: return createMinus();
+      case GreenhousePackage.MULT: return createMult();
+      case GreenhousePackage.DIV: return createDiv();
+      case GreenhousePackage.MATH_NUMBER: return createMathNumber();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -153,6 +159,30 @@ public class GreenhouseFactoryImpl extends EFactoryImpl implements GreenhouseFac
   {
     SettingSensorImpl settingSensor = new SettingSensorImpl();
     return settingSensor;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Reducer createReducer()
+  {
+    ReducerImpl reducer = new ReducerImpl();
+    return reducer;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Frequency createFrequency()
+  {
+    FrequencyImpl frequency = new FrequencyImpl();
+    return frequency;
   }
 
   /**
@@ -341,30 +371,6 @@ public class GreenhouseFactoryImpl extends EFactoryImpl implements GreenhouseFac
    * @generated
    */
   @Override
-  public Condition createCondition()
-  {
-    ConditionImpl condition = new ConditionImpl();
-    return condition;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Value createValue()
-  {
-    ValueImpl value = new ValueImpl();
-    return value;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public RowRuleSet createRowRuleSet()
   {
     RowRuleSetImpl rowRuleSet = new RowRuleSetImpl();
@@ -389,10 +395,82 @@ public class GreenhouseFactoryImpl extends EFactoryImpl implements GreenhouseFac
    * @generated
    */
   @Override
+  public Expression createExpression()
+  {
+    ExpressionImpl expression = new ExpressionImpl();
+    return expression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Setting createSetting()
   {
     SettingImpl setting = new SettingImpl();
     return setting;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Plus createPlus()
+  {
+    PlusImpl plus = new PlusImpl();
+    return plus;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Minus createMinus()
+  {
+    MinusImpl minus = new MinusImpl();
+    return minus;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Mult createMult()
+  {
+    MultImpl mult = new MultImpl();
+    return mult;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Div createDiv()
+  {
+    DivImpl div = new DivImpl();
+    return div;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public MathNumber createMathNumber()
+  {
+    MathNumberImpl mathNumber = new MathNumberImpl();
+    return mathNumber;
   }
 
   /**

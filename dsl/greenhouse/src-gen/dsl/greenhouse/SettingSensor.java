@@ -9,6 +9,13 @@ package dsl.greenhouse;
  * A representation of the model object '<em><b>Setting Sensor</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <p>
+ * The following features are supported:
+ * </p>
+ * <ul>
+ *   <li>{@link dsl.greenhouse.SettingSensor#getReducer <em>Reducer</em>}</li>
+ *   <li>{@link dsl.greenhouse.SettingSensor#getFrequency <em>Frequency</em>}</li>
+ * </ul>
  *
  * @see dsl.greenhouse.GreenhousePackage#getSettingSensor()
  * @model
@@ -16,4 +23,48 @@ package dsl.greenhouse;
  */
 public interface SettingSensor extends Hardware
 {
+  /**
+   * Returns the value of the '<em><b>Reducer</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Reducer</em>' containment reference.
+   * @see #setReducer(Reducer)
+   * @see dsl.greenhouse.GreenhousePackage#getSettingSensor_Reducer()
+   * @model containment="true"
+   * @generated
+   */
+  Reducer getReducer();
+
+  /**
+   * Sets the value of the '{@link dsl.greenhouse.SettingSensor#getReducer <em>Reducer</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Reducer</em>' containment reference.
+   * @see #getReducer()
+   * @generated
+   */
+  void setReducer(Reducer value);
+
+  /**
+   * Returns the value of the '<em><b>Frequency</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Frequency</em>' containment reference.
+   * @see #setFrequency(Frequency)
+   * @see dsl.greenhouse.GreenhousePackage#getSettingSensor_Frequency()
+   * @model containment="true"
+   * @generated
+   */
+  Frequency getFrequency();
+
+  /**
+   * Sets the value of the '{@link dsl.greenhouse.SettingSensor#getFrequency <em>Frequency</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Frequency</em>' containment reference.
+   * @see #getFrequency()
+   * @generated
+   */
+  void setFrequency(Frequency value);
+
 } // SettingSensor

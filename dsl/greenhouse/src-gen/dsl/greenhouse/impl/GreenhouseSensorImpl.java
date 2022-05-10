@@ -5,6 +5,7 @@ package dsl.greenhouse.impl;
 
 import dsl.greenhouse.GreenhousePackage;
 import dsl.greenhouse.GreenhouseSensor;
+import dsl.greenhouse.SettingSensor;
 import dsl.greenhouse.State;
 import dsl.greenhouse.Variable;
 
@@ -31,6 +32,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link dsl.greenhouse.impl.GreenhouseSensorImpl#getType <em>Type</em>}</li>
  *   <li>{@link dsl.greenhouse.impl.GreenhouseSensorImpl#getName <em>Name</em>}</li>
  *   <li>{@link dsl.greenhouse.impl.GreenhouseSensorImpl#getVariable <em>Variable</em>}</li>
  *   <li>{@link dsl.greenhouse.impl.GreenhouseSensorImpl#getStates <em>States</em>}</li>
@@ -40,6 +42,16 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class GreenhouseSensorImpl extends GreenhouseElementImpl implements GreenhouseSensor
 {
+  /**
+   * The cached value of the '{@link #getType() <em>Type</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getType()
+   * @generated
+   * @ordered
+   */
+  protected SettingSensor type;
+
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -99,6 +111,51 @@ public class GreenhouseSensorImpl extends GreenhouseElementImpl implements Green
   protected EClass eStaticClass()
   {
     return GreenhousePackage.Literals.GREENHOUSE_SENSOR;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public SettingSensor getType()
+  {
+    if (type != null && type.eIsProxy())
+    {
+      InternalEObject oldType = (InternalEObject)type;
+      type = (SettingSensor)eResolveProxy(oldType);
+      if (type != oldType)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, GreenhousePackage.GREENHOUSE_SENSOR__TYPE, oldType, type));
+      }
+    }
+    return type;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public SettingSensor basicGetType()
+  {
+    return type;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setType(SettingSensor newType)
+  {
+    SettingSensor oldType = type;
+    type = newType;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GreenhousePackage.GREENHOUSE_SENSOR__TYPE, oldType, type));
   }
 
   /**
@@ -219,6 +276,9 @@ public class GreenhouseSensorImpl extends GreenhouseElementImpl implements Green
   {
     switch (featureID)
     {
+      case GreenhousePackage.GREENHOUSE_SENSOR__TYPE:
+        if (resolve) return getType();
+        return basicGetType();
       case GreenhousePackage.GREENHOUSE_SENSOR__NAME:
         return getName();
       case GreenhousePackage.GREENHOUSE_SENSOR__VARIABLE:
@@ -240,6 +300,9 @@ public class GreenhouseSensorImpl extends GreenhouseElementImpl implements Green
   {
     switch (featureID)
     {
+      case GreenhousePackage.GREENHOUSE_SENSOR__TYPE:
+        setType((SettingSensor)newValue);
+        return;
       case GreenhousePackage.GREENHOUSE_SENSOR__NAME:
         setName((String)newValue);
         return;
@@ -264,6 +327,9 @@ public class GreenhouseSensorImpl extends GreenhouseElementImpl implements Green
   {
     switch (featureID)
     {
+      case GreenhousePackage.GREENHOUSE_SENSOR__TYPE:
+        setType((SettingSensor)null);
+        return;
       case GreenhousePackage.GREENHOUSE_SENSOR__NAME:
         setName(NAME_EDEFAULT);
         return;
@@ -287,6 +353,8 @@ public class GreenhouseSensorImpl extends GreenhouseElementImpl implements Green
   {
     switch (featureID)
     {
+      case GreenhousePackage.GREENHOUSE_SENSOR__TYPE:
+        return type != null;
       case GreenhousePackage.GREENHOUSE_SENSOR__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case GreenhousePackage.GREENHOUSE_SENSOR__VARIABLE:

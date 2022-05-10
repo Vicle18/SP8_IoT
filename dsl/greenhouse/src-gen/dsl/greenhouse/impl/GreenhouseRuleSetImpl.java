@@ -4,7 +4,7 @@
 package dsl.greenhouse.impl;
 
 import dsl.greenhouse.Action;
-import dsl.greenhouse.GreenhouseActuator;
+import dsl.greenhouse.Greenhouse;
 import dsl.greenhouse.GreenhousePackage;
 import dsl.greenhouse.GreenhouseRuleSet;
 import dsl.greenhouse.GreenhouseSensor;
@@ -43,7 +43,7 @@ public class GreenhouseRuleSetImpl extends GreenhouseElementImpl implements Gree
    * @generated
    * @ordered
    */
-  protected GreenhouseActuator actuator;
+  protected Greenhouse actuator;
 
   /**
    * The cached value of the '{@link #getAction() <em>Action</em>}' reference.
@@ -102,12 +102,12 @@ public class GreenhouseRuleSetImpl extends GreenhouseElementImpl implements Gree
    * @generated
    */
   @Override
-  public GreenhouseActuator getActuator()
+  public Greenhouse getActuator()
   {
     if (actuator != null && actuator.eIsProxy())
     {
       InternalEObject oldActuator = (InternalEObject)actuator;
-      actuator = (GreenhouseActuator)eResolveProxy(oldActuator);
+      actuator = (Greenhouse)eResolveProxy(oldActuator);
       if (actuator != oldActuator)
       {
         if (eNotificationRequired())
@@ -122,7 +122,7 @@ public class GreenhouseRuleSetImpl extends GreenhouseElementImpl implements Gree
    * <!-- end-user-doc -->
    * @generated
    */
-  public GreenhouseActuator basicGetActuator()
+  public Greenhouse basicGetActuator()
   {
     return actuator;
   }
@@ -133,9 +133,9 @@ public class GreenhouseRuleSetImpl extends GreenhouseElementImpl implements Gree
    * @generated
    */
   @Override
-  public void setActuator(GreenhouseActuator newActuator)
+  public void setActuator(Greenhouse newActuator)
   {
-    GreenhouseActuator oldActuator = actuator;
+    Greenhouse oldActuator = actuator;
     actuator = newActuator;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, GreenhousePackage.GREENHOUSE_RULE_SET__ACTUATOR, oldActuator, actuator));
@@ -313,7 +313,7 @@ public class GreenhouseRuleSetImpl extends GreenhouseElementImpl implements Gree
     switch (featureID)
     {
       case GreenhousePackage.GREENHOUSE_RULE_SET__ACTUATOR:
-        setActuator((GreenhouseActuator)newValue);
+        setActuator((Greenhouse)newValue);
         return;
       case GreenhousePackage.GREENHOUSE_RULE_SET__ACTION:
         setAction((Action)newValue);
@@ -339,7 +339,7 @@ public class GreenhouseRuleSetImpl extends GreenhouseElementImpl implements Gree
     switch (featureID)
     {
       case GreenhousePackage.GREENHOUSE_RULE_SET__ACTUATOR:
-        setActuator((GreenhouseActuator)null);
+        setActuator((Greenhouse)null);
         return;
       case GreenhousePackage.GREENHOUSE_RULE_SET__ACTION:
         setAction((Action)null);

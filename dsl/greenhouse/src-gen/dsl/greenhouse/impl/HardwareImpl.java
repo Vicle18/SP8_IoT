@@ -5,13 +5,10 @@ package dsl.greenhouse.impl;
 
 import dsl.greenhouse.GreenhousePackage;
 import dsl.greenhouse.Hardware;
-import dsl.greenhouse.Topic;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
@@ -25,7 +22,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * </p>
  * <ul>
  *   <li>{@link dsl.greenhouse.impl.HardwareImpl#getName <em>Name</em>}</li>
- *   <li>{@link dsl.greenhouse.impl.HardwareImpl#getTopic <em>Topic</em>}</li>
  * </ul>
  *
  * @generated
@@ -51,16 +47,6 @@ public class HardwareImpl extends MinimalEObjectImpl.Container implements Hardwa
    * @ordered
    */
   protected String name = NAME_EDEFAULT;
-
-  /**
-   * The cached value of the '{@link #getTopic() <em>Topic</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getTopic()
-   * @generated
-   * @ordered
-   */
-  protected Topic topic;
 
   /**
    * <!-- begin-user-doc -->
@@ -114,80 +100,12 @@ public class HardwareImpl extends MinimalEObjectImpl.Container implements Hardwa
    * @generated
    */
   @Override
-  public Topic getTopic()
-  {
-    return topic;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetTopic(Topic newTopic, NotificationChain msgs)
-  {
-    Topic oldTopic = topic;
-    topic = newTopic;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GreenhousePackage.HARDWARE__TOPIC, oldTopic, newTopic);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setTopic(Topic newTopic)
-  {
-    if (newTopic != topic)
-    {
-      NotificationChain msgs = null;
-      if (topic != null)
-        msgs = ((InternalEObject)topic).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GreenhousePackage.HARDWARE__TOPIC, null, msgs);
-      if (newTopic != null)
-        msgs = ((InternalEObject)newTopic).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GreenhousePackage.HARDWARE__TOPIC, null, msgs);
-      msgs = basicSetTopic(newTopic, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GreenhousePackage.HARDWARE__TOPIC, newTopic, newTopic));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case GreenhousePackage.HARDWARE__TOPIC:
-        return basicSetTopic(null, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
     {
       case GreenhousePackage.HARDWARE__NAME:
         return getName();
-      case GreenhousePackage.HARDWARE__TOPIC:
-        return getTopic();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -204,9 +122,6 @@ public class HardwareImpl extends MinimalEObjectImpl.Container implements Hardwa
     {
       case GreenhousePackage.HARDWARE__NAME:
         setName((String)newValue);
-        return;
-      case GreenhousePackage.HARDWARE__TOPIC:
-        setTopic((Topic)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -225,9 +140,6 @@ public class HardwareImpl extends MinimalEObjectImpl.Container implements Hardwa
       case GreenhousePackage.HARDWARE__NAME:
         setName(NAME_EDEFAULT);
         return;
-      case GreenhousePackage.HARDWARE__TOPIC:
-        setTopic((Topic)null);
-        return;
     }
     super.eUnset(featureID);
   }
@@ -244,8 +156,6 @@ public class HardwareImpl extends MinimalEObjectImpl.Container implements Hardwa
     {
       case GreenhousePackage.HARDWARE__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case GreenhousePackage.HARDWARE__TOPIC:
-        return topic != null;
     }
     return super.eIsSet(featureID);
   }
