@@ -1,4 +1,18 @@
 from paho.mqtt import client as mqtt_client
+class Sensor:
+    currentState = ""
+    def __init__(self, name, states, variable, actuator):
+        self.name = name
+        self.states = states
+        self.variable = variable
+        self.actuator = actuator
+    def updateSensor(self, variable, client):
+        self.variable = variable
+        ruleCheck(variable, self, client, self.states)
+    def updateSensorState(self, state, client):
+        theKey = next(iter(state))
+        self.currentState = theKey
+        publish(client, self.actuator, state.get(self.currentState))
 
 broker = 'localhost'
 port = 1883
@@ -10,6 +24,7 @@ client_id = 'python-mqtt-rulechecker'
 username = 'my_user'
 password = 'bendevictor'
 manual = 0
+sensors = []
 def connect_mqtt() -> mqtt_client:
     def on_connect(client, userdata, flags, rc):
         if rc == 0:
@@ -24,12 +39,14 @@ def connect_mqtt() -> mqtt_client:
     return client
 
 
-def subscribe(client: mqtt_client, topic):
+def subscribe(client: mqtt_client, sensor):
     def on_message(client, userdata, msg):
         print(f"Received `{msg.payload.decode()}` from `{msg.topic}` topic")
-        ruleCheck(msg.payload.decode(), msg.topic, client)
-
-    client.subscribe(topic)
+        for s in sensors:
+            if s.name == msg.topic:
+                s.updateSensor(msg.payload.decode(), client)
+        #ruleCheck(msg.payload.decode(), msg.topic, client)
+    client.subscribe(sensor.name)
     client.on_message = on_message
 
 def publish(client,topic, message):
@@ -44,49 +61,38 @@ def publish(client,topic, message):
             print(f"Failed to send message to topic {topic}")
     
 
-def ruleCheck(value, topic, client):
-    if topic == "manual":
+def ruleCheck(value, sensor, client,states):
+    if sensor.name == "manual":
         global manual 
         manual = int(value)
-    if topic == "temp":
-        if (float(value) > 25) and (float(value) <= 30):
-            publish(client, "tempActuator", 175)
-        elif ((float(value) > 30) and (float(value) <= 35)):
-            publish(client, "tempActuator", 200)
-        elif float(value) > 35:
-            publish(client, "tempActuator", 255)
-        else:
-            publish(client, "tempActuator", 0)
-        
-    elif topic == "humidity":
-        if float(value) > 30:
-            publish(client, "dehumidifierActuator", "open")
-        else:
-            publish(client, "dehumidifierActuator", "close")
-
-    elif topic == "co2":
-        if float(value) > 1000:
-            publish(client, "windowActuator", "open")
-        else:
-            publish(client, "windowActuator", "close")
-
-    elif topic == "moisture":
-        if float(value) < 850:
-            publish(client, "pumpActuator", 255)
-        elif float(value) > 850:
-            publish(client, "pumpActuator", 0)
+    if sensor.name == "greenify/tomatoes/moistSensor":
+        if float(value)  > 1000:
+            sensor.updateSensorState(states[0],client)
+        elif float(value) > 500 and float(value) < 1000:
+            sensor.updateSensorState(states[1],client)
+        elif float(value)  < 500:
+            sensor.updateSensorState(states[2],client)
+    if sensor.name == "greenify/tempSensor":
+        if float(value)  > 40:
+            sensor.updateSensorState(states[0],client)
+        elif float(value) > 25 and float(value) < 40:
+            sensor.updateSensorState(states[1],client)
+        elif float(value)  < 25:
+            sensor.updateSensorState(states[2],client)
     return
 
 def run():
     client = connect_mqtt()
-    subscribe(client, topic1)
-    subscribe(client, topic2)
-    subscribe(client, topic3)
-    subscribe(client, topic4)
-    subscribe(client, "manual")
+    manualState = Sensor("manual", None, 0, None)
+    t1 = Sensor("greenify/tomatoes/moistSensor", [{"moist":"stop"}, {"optimal":"stop"}, {"dry":"start"}], 0, "greenify/tomatoes/pump")
+    t2 = Sensor("greenify/tempSensor", [{"hot":"max"}, {"optimal":"min"}, {"cold":"stop"}], 0, "greenify/fan")
+    sensors.append(manualState)
+    sensors.append(t1)
+    sensors.append(t2)
+    subscribe(client, t1)
+    subscribe(client, t2)
+    subscribe(client, manualState)
     client.loop_forever()
-    
-
 
 if __name__ == '__main__':
     run()
