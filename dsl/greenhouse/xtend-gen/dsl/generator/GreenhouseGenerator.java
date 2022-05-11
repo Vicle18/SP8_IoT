@@ -3,13 +3,27 @@
  */
 package dsl.generator;
 
+import com.google.common.base.Objects;
 import com.google.common.collect.Iterators;
+import dsl.greenhouse.Greenhouse;
+import dsl.greenhouse.GreenhouseRuleSet;
+import dsl.greenhouse.GreenhouseSensor;
 import dsl.greenhouse.Model;
+import dsl.greenhouse.Row;
+import dsl.greenhouse.RowActuator;
+import dsl.greenhouse.RowRuleSet;
+import dsl.greenhouse.RowSensor;
+import java.util.List;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
+import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
+import org.eclipse.xtext.xbase.lib.Conversions;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
 /**
  * Generates code from your model files on save.
@@ -35,6 +49,132 @@ public class GreenhouseGenerator extends AbstractGenerator {
     fsa.generateFile(_plus_5, this.compileVerification(model));
   }
   
+  public String getAllSensorTopics(final Model model) {
+    final EObject root = EcoreUtil2.getRootContainer(model);
+    final Function1<RowSensor, Boolean> _function = (RowSensor it) -> {
+      String _name = it.getController().getName();
+      String _name_1 = it.getController().getName();
+      return Boolean.valueOf(Objects.equal(_name, _name_1));
+    };
+    final Iterable<RowSensor> allSensors = IterableExtensions.<RowSensor>filter(EcoreUtil2.<RowSensor>getAllContentsOfType(root, RowSensor.class), _function);
+    final Function1<GreenhouseSensor, Boolean> _function_1 = (GreenhouseSensor it) -> {
+      String _name = it.getController().getName();
+      String _name_1 = it.getController().getName();
+      return Boolean.valueOf(Objects.equal(_name, _name_1));
+    };
+    final Iterable<GreenhouseSensor> allGlobalSensors = IterableExtensions.<GreenhouseSensor>filter(EcoreUtil2.<GreenhouseSensor>getAllContentsOfType(root, GreenhouseSensor.class), _function_1);
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      int _length = ((Object[])Conversions.unwrapArray(allSensors, Object.class)).length;
+      boolean _greaterThan = (_length > 0);
+      if (_greaterThan) {
+        _builder.append("// topics for row sensors");
+        _builder.newLine();
+        {
+          for(final RowSensor sensor : allSensors) {
+            String _name = sensor.getName();
+            _builder.append(_name);
+            _builder.append("Topic = \"");
+            EObject _eContainer = sensor.eContainer().eContainer();
+            String _name_1 = ((Greenhouse) _eContainer).getName();
+            _builder.append(_name_1);
+            _builder.append("/");
+            EObject _eContainer_1 = sensor.eContainer();
+            String _name_2 = ((Row) _eContainer_1).getName();
+            _builder.append(_name_2);
+            _builder.append("/");
+            String _name_3 = sensor.getName();
+            _builder.append(_name_3);
+            _builder.append("\"");
+            _builder.newLineIfNotEmpty();
+            _builder.newLine();
+          }
+        }
+      }
+    }
+    {
+      int _length_1 = ((Object[])Conversions.unwrapArray(allGlobalSensors, Object.class)).length;
+      boolean _greaterThan_1 = (_length_1 > 0);
+      if (_greaterThan_1) {
+        _builder.append("// topics for greenhouse sensors");
+        _builder.newLine();
+        {
+          for(final GreenhouseSensor sensor_1 : allGlobalSensors) {
+            _builder.append("#define ");
+            String _name_4 = sensor_1.getName();
+            _builder.append(_name_4);
+            _builder.append("Topic \"");
+            EObject _eContainer_2 = sensor_1.eContainer();
+            String _name_5 = ((Greenhouse) _eContainer_2).getName();
+            _builder.append(_name_5);
+            _builder.append("/");
+            String _name_6 = sensor_1.getName();
+            _builder.append(_name_6);
+            _builder.append("\"");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      }
+    }
+    return _builder.toString();
+  }
+  
+  public String getAllRules(final Model model) {
+    final EObject root = EcoreUtil2.getRootContainer(model);
+    final List<RowRuleSet> allRowRules = EcoreUtil2.<RowRuleSet>getAllContentsOfType(root, RowRuleSet.class);
+    final List<GreenhouseRuleSet> allGreenhouseRules = EcoreUtil2.<GreenhouseRuleSet>getAllContentsOfType(root, GreenhouseRuleSet.class);
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      boolean _isEmpty = allRowRules.isEmpty();
+      boolean _not = (!_isEmpty);
+      if (_not) {
+        _builder.append("if topic == ");
+        _builder.newLine();
+        {
+          for(final RowRuleSet rowRule : allRowRules) {
+            _builder.append("if (float(value) > 25) and (float(value) <= 30):");
+            _builder.newLine();
+            _builder.append("\t");
+            _builder.append("publish(client, ");
+            RowActuator _actuator = rowRule.getActuator();
+            _builder.append(_actuator, "\t");
+            _builder.append(", 175)");
+            _builder.newLineIfNotEmpty();
+            _builder.append("elif ((float(value) > 30) and (float(value) <= 35)):");
+            _builder.newLine();
+            _builder.append("    ");
+            _builder.append("publish(client, \"tempActuator\", 200)");
+            _builder.newLine();
+            _builder.append("elif float(value) > 35:");
+            _builder.newLine();
+            _builder.append("    ");
+            _builder.append("publish(client, \"tempActuator\", 255)");
+            _builder.newLine();
+            _builder.append("else:");
+            _builder.newLine();
+            _builder.append("    ");
+            _builder.append("publish(client, \"tempActuator\", 0)");
+            _builder.newLine();
+          }
+        }
+      }
+    }
+    _builder.newLine();
+    {
+      boolean _isEmpty_1 = allGreenhouseRules.isEmpty();
+      boolean _not_1 = (!_isEmpty_1);
+      if (_not_1) {
+        {
+          for(final GreenhouseRuleSet greenhouseRule : allGreenhouseRules) {
+            _builder.append(greenhouseRule);
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      }
+    }
+    return _builder.toString();
+  }
+  
   public CharSequence compileController(final Model model) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("from paho.mqtt import client as mqtt_client");
@@ -44,13 +184,10 @@ public class GreenhouseGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("port = 1883");
     _builder.newLine();
-    _builder.append("topic1 = \"temp\"");
     _builder.newLine();
-    _builder.append("topic2 = \"humidity\"");
-    _builder.newLine();
-    _builder.append("topic3 = \"co2\"");
-    _builder.newLine();
-    _builder.append("pubTopic = \"actuators\"");
+    String _allSensorTopics = this.getAllSensorTopics(model);
+    _builder.append(_allSensorTopics);
+    _builder.newLineIfNotEmpty();
     _builder.newLine();
     _builder.append("client_id = \'python-mqtt-rulechecker\'");
     _builder.newLine();
@@ -61,36 +198,37 @@ public class GreenhouseGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("def connect_mqtt() -> mqtt_client:");
     _builder.newLine();
-    _builder.append("    ");
+    _builder.append("\t    ");
     _builder.append("def on_connect(client, userdata, flags, rc):");
     _builder.newLine();
-    _builder.append("        ");
+    _builder.append("\t        ");
     _builder.append("if rc == 0:");
     _builder.newLine();
-    _builder.append("            ");
+    _builder.append("\t            ");
     _builder.append("print(\"Connected to MQTT Broker!\")");
     _builder.newLine();
-    _builder.append("        ");
+    _builder.append("\t        ");
     _builder.append("else:");
     _builder.newLine();
-    _builder.append("            ");
+    _builder.append("\t            ");
     _builder.append("print(\"Failed to connect, return code %d\\n\", rc)");
     _builder.newLine();
+    _builder.append("\t");
     _builder.newLine();
-    _builder.append("    ");
+    _builder.append("\t    ");
     _builder.append("client = mqtt_client.Client(client_id)");
     _builder.newLine();
-    _builder.append("    ");
+    _builder.append("\t    ");
     _builder.append("client.username_pw_set(username, password)");
     _builder.newLine();
-    _builder.append("    ");
+    _builder.append("\t    ");
     _builder.append("client.on_connect = on_connect");
     _builder.newLine();
-    _builder.append("    ");
+    _builder.append("\t    ");
     _builder.append("client.connect(broker, port)");
     _builder.newLine();
-    _builder.append("    ");
-    _builder.append("return client");
+    _builder.append("\t    ");
+    _builder.append("return client\'\'");
     _builder.newLine();
     _builder.newLine();
     _builder.append("def subscribe(client: mqtt_client, topic):");
@@ -112,13 +250,13 @@ public class GreenhouseGenerator extends AbstractGenerator {
     _builder.append("client.on_message = on_message");
     _builder.newLine();
     _builder.newLine();
-    _builder.append("def publish(client, message):");
+    _builder.append("def publish(client,topic, message):");
     _builder.newLine();
     _builder.append("    ");
     _builder.append("msg = message");
     _builder.newLine();
     _builder.append("    ");
-    _builder.append("result = client.publish(pubTopic, msg)");
+    _builder.append("result = client.publish(topic, msg)");
     _builder.newLine();
     _builder.append("    ");
     _builder.append("# result: [0, 1]");
@@ -130,15 +268,21 @@ public class GreenhouseGenerator extends AbstractGenerator {
     _builder.append("if status == 0:");
     _builder.newLine();
     _builder.append("        ");
-    _builder.append("print(f\"Send `{msg}` to topic `{pubTopic}`\")");
+    _builder.append("print(f\"Send `{msg}` to topic `{topic}`\")");
     _builder.newLine();
     _builder.append("    ");
     _builder.append("else:");
     _builder.newLine();
     _builder.append("        ");
-    _builder.append("print(f\"Failed to send message to topic {pubTopic}\")");
+    _builder.append("print(f\"Failed to send message to topic {topic}\")");
     _builder.newLine();
-    _builder.append("        ");
+    _builder.append("    ");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.newLine();
+    String _allRules = this.getAllRules(model);
+    _builder.append(_allRules);
+    _builder.newLineIfNotEmpty();
     _builder.newLine();
     _builder.append("def ruleCheck(value, topic, client):");
     _builder.newLine();
@@ -146,16 +290,28 @@ public class GreenhouseGenerator extends AbstractGenerator {
     _builder.append("if topic == \"temp\":");
     _builder.newLine();
     _builder.append("        ");
-    _builder.append("if value > 25:");
+    _builder.append("if (float(value) > 25) and (float(value) <= 30):");
     _builder.newLine();
     _builder.append("            ");
-    _builder.append("publish(client, [\"fan\", \"open\"])");
+    _builder.append("publish(client, \"tempActuator\", 175)");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("elif ((float(value) > 30) and (float(value) <= 35)):");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("publish(client, \"tempActuator\", 200)");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("elif float(value) > 35:");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("publish(client, \"tempActuator\", 255)");
     _builder.newLine();
     _builder.append("        ");
     _builder.append("else:");
     _builder.newLine();
     _builder.append("            ");
-    _builder.append("publish(client, [\"fan\", \"close\"])");
+    _builder.append("publish(client, \"tempActuator\", 0)");
     _builder.newLine();
     _builder.append("        ");
     _builder.newLine();
@@ -163,35 +319,51 @@ public class GreenhouseGenerator extends AbstractGenerator {
     _builder.append("elif topic == \"humidity\":");
     _builder.newLine();
     _builder.append("        ");
-    _builder.append("if value > 30:");
+    _builder.append("if float(value) > 30:");
     _builder.newLine();
     _builder.append("            ");
-    _builder.append("publish(client, [\"dehumidifyer\", \"open\"])");
+    _builder.append("publish(client, \"dehumidifierActuator\", \"open\")");
     _builder.newLine();
     _builder.append("        ");
     _builder.append("else:");
     _builder.newLine();
     _builder.append("            ");
-    _builder.append("publish(client, [\"dehumidifyer\", \"close\"])");
+    _builder.append("publish(client, \"dehumidifierActuator\", \"close\")");
+    _builder.newLine();
     _builder.newLine();
     _builder.append("    ");
     _builder.append("elif topic == \"co2\":");
     _builder.newLine();
     _builder.append("        ");
-    _builder.append("if value > 1200:");
+    _builder.append("if float(value) > 1000:");
     _builder.newLine();
     _builder.append("            ");
-    _builder.append("publish(client, [\"window\", \"open\"])");
+    _builder.append("publish(client, \"windowActuator\", \"open\")");
     _builder.newLine();
     _builder.append("        ");
     _builder.append("else:");
     _builder.newLine();
     _builder.append("            ");
-    _builder.append("publish(client, [\"window\", \"close\"])");
+    _builder.append("publish(client, \"windowActuator\", \"close\")");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("elif topic == \"moisture\":");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("if float(value) < 850:");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("publish(client, \"pumpActuator\", \"open\")");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("elif float(value) > 850:");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("publish(client, \"pumpActuator\", \"close\")");
     _builder.newLine();
     _builder.append("    ");
     _builder.append("return");
-    _builder.newLine();
     _builder.newLine();
     _builder.append("def run():");
     _builder.newLine();
@@ -206,6 +378,9 @@ public class GreenhouseGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("    ");
     _builder.append("subscribe(client, topic3)");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("subscribe(client, topic4)");
     _builder.newLine();
     _builder.append("    ");
     _builder.append("client.loop_forever()");

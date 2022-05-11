@@ -70,6 +70,8 @@ public class GreenhouseFactoryImpl extends EFactoryImpl implements GreenhouseFac
       case GreenhousePackage.HARDWARE: return createHardware();
       case GreenhousePackage.SETTING_ACTUATOR: return createSettingActuator();
       case GreenhousePackage.SETTING_SENSOR: return createSettingSensor();
+      case GreenhousePackage.CONTROLLER: return createController();
+      case GreenhousePackage.CONTROLLER_TYPE: return createControllerType();
       case GreenhousePackage.REDUCER: return createReducer();
       case GreenhousePackage.FREQUENCY: return createFrequency();
       case GreenhousePackage.TOPIC: return createTopic();
@@ -90,7 +92,6 @@ public class GreenhouseFactoryImpl extends EFactoryImpl implements GreenhouseFac
       case GreenhousePackage.ROW_RULE_SET: return createRowRuleSet();
       case GreenhousePackage.GREENHOUSE_RULE_SET: return createGreenhouseRuleSet();
       case GreenhousePackage.EXPRESSION: return createExpression();
-      case GreenhousePackage.SETTING: return createSetting();
       case GreenhousePackage.PLUS: return createPlus();
       case GreenhousePackage.MINUS: return createMinus();
       case GreenhousePackage.MULT: return createMult();
@@ -159,6 +160,30 @@ public class GreenhouseFactoryImpl extends EFactoryImpl implements GreenhouseFac
   {
     SettingSensorImpl settingSensor = new SettingSensorImpl();
     return settingSensor;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Controller createController()
+  {
+    ControllerImpl controller = new ControllerImpl();
+    return controller;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ControllerType createControllerType()
+  {
+    ControllerTypeImpl controllerType = new ControllerTypeImpl();
+    return controllerType;
   }
 
   /**
@@ -399,18 +424,6 @@ public class GreenhouseFactoryImpl extends EFactoryImpl implements GreenhouseFac
   {
     ExpressionImpl expression = new ExpressionImpl();
     return expression;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Setting createSetting()
-  {
-    SettingImpl setting = new SettingImpl();
-    return setting;
   }
 
   /**

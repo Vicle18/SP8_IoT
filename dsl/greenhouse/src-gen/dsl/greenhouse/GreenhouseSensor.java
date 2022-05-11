@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link dsl.greenhouse.GreenhouseSensor#getType <em>Type</em>}</li>
  *   <li>{@link dsl.greenhouse.GreenhouseSensor#getName <em>Name</em>}</li>
+ *   <li>{@link dsl.greenhouse.GreenhouseSensor#getController <em>Controller</em>}</li>
  *   <li>{@link dsl.greenhouse.GreenhouseSensor#getVariable <em>Variable</em>}</li>
  *   <li>{@link dsl.greenhouse.GreenhouseSensor#getStates <em>States</em>}</li>
  * </ul>
@@ -69,6 +70,28 @@ public interface GreenhouseSensor extends GreenhouseElement
    * @generated
    */
   void setName(String value);
+
+  /**
+   * Returns the value of the '<em><b>Controller</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Controller</em>' reference.
+   * @see #setController(Controller)
+   * @see dsl.greenhouse.GreenhousePackage#getGreenhouseSensor_Controller()
+   * @model
+   * @generated
+   */
+  Controller getController();
+
+  /**
+   * Sets the value of the '{@link dsl.greenhouse.GreenhouseSensor#getController <em>Controller</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Controller</em>' reference.
+   * @see #getController()
+   * @generated
+   */
+  void setController(Controller value);
 
   /**
    * Returns the value of the '<em><b>Variable</b></em>' containment reference.

@@ -8,6 +8,14 @@ import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
 import dsl.greenhouse.Model
+import org.eclipse.xtext.EcoreUtil2
+import dsl.greenhouse.Controller
+import dsl.greenhouse.GreenhouseSensor
+import dsl.greenhouse.RowSensor
+import dsl.greenhouse.Greenhouse
+import dsl.greenhouse.Row
+import dsl.greenhouse.RowRuleSet
+import dsl.greenhouse.GreenhouseRuleSet
 
 /**
  * Generates code from your model files on save.
@@ -25,31 +33,81 @@ class GreenhouseGenerator extends AbstractGenerator {
 		
 	}
 	
+	def getAllSensorTopics(Model model){
+        val root = EcoreUtil2.getRootContainer(model);
+        val allSensors = EcoreUtil2.getAllContentsOfType(root, RowSensor).filter[it.controller.name == controller.name]
+        val allGlobalSensors = EcoreUtil2.getAllContentsOfType(root, GreenhouseSensor).filter[it.controller.name == controller.name]
+        
+        return '''
+        «IF allSensors.length > 0»
+        // topics for row sensors
+        «FOR sensor: allSensors»
+        «sensor.name»Topic = "«(sensor.eContainer.eContainer as Greenhouse).name»/«(sensor.eContainer as Row).name»/«sensor.name»"
+        
+        «ENDFOR»
+        «ENDIF»
+        «IF allGlobalSensors.length > 0»
+        // topics for greenhouse sensors
+        «FOR sensor: allGlobalSensors»
+        #define «sensor.name»Topic "«(sensor.eContainer as Greenhouse).name»/«sensor.name»"
+        «ENDFOR»
+        «ENDIF»
+        '''
+    }
+	
+	def getAllRules(Model model){
+		val root = EcoreUtil2.getRootContainer(model)
+		val allRowRules = EcoreUtil2.getAllContentsOfType(root, RowRuleSet)
+		val allGreenhouseRules = EcoreUtil2.getAllContentsOfType(root, GreenhouseRuleSet)
+		
+		return '''
+		«IF !allRowRules.empty»
+		if topic == «»
+		«FOR rowRule : allRowRules»
+			if (float(value) > 25) and (float(value) <= 30):
+				publish(client, «rowRule.actuator», 175)
+			elif ((float(value) > 30) and (float(value) <= 35)):
+			    publish(client, "tempActuator", 200)
+			elif float(value) > 35:
+			    publish(client, "tempActuator", 255)
+			else:
+			    publish(client, "tempActuator", 0)
+		«ENDFOR»
+		«ENDIF»
+		
+		«IF !allGreenhouseRules.empty»
+		«FOR greenhouseRule : allGreenhouseRules»
+			«greenhouseRule»
+		«ENDFOR»
+		«ENDIF»
+		'''
+	}
+	
+	
 	def compileController(Model model)'''
 	from paho.mqtt import client as mqtt_client
 	
 	broker = 'localhost'
 	port = 1883
-	topic1 = "temp"
-	topic2 = "humidity"
-	topic3 = "co2"
-	pubTopic = "actuators"
+	
+	«model.getAllSensorTopics»
+	
 	client_id = 'python-mqtt-rulechecker'
 	username = 'my_user'
 	password = 'bendevictor'
 	
 	def connect_mqtt() -> mqtt_client:
-	    def on_connect(client, userdata, flags, rc):
-	        if rc == 0:
-	            print("Connected to MQTT Broker!")
-	        else:
-	            print("Failed to connect, return code %d\n", rc)
-	
-	    client = mqtt_client.Client(client_id)
-	    client.username_pw_set(username, password)
-	    client.on_connect = on_connect
-	    client.connect(broker, port)
-	    return client
+		    def on_connect(client, userdata, flags, rc):
+		        if rc == 0:
+		            print("Connected to MQTT Broker!")
+		        else:
+		            print("Failed to connect, return code %d\n", rc)
+		
+		    client = mqtt_client.Client(client_id)
+		    client.username_pw_set(username, password)
+		    client.on_connect = on_connect
+		    client.connect(broker, port)
+		    return client''
 	
 	def subscribe(client: mqtt_client, topic):
 	    def on_message(client, userdata, msg):
@@ -59,40 +117,55 @@ class GreenhouseGenerator extends AbstractGenerator {
 	    client.subscribe(topic)
 	    client.on_message = on_message
 	
-	def publish(client, message):
+	def publish(client,topic, message):
 	    msg = message
-	    result = client.publish(pubTopic, msg)
+	    result = client.publish(topic, msg)
 	    # result: [0, 1]
 	    status = result[0]
 	    if status == 0:
-	        print(f"Send `{msg}` to topic `{pubTopic}`")
+	        print(f"Send `{msg}` to topic `{topic}`")
 	    else:
-	        print(f"Failed to send message to topic {pubTopic}")
-	        
+	        print(f"Failed to send message to topic {topic}")
+	    
+	
+	
+	«model.getAllRules()»
+	
 	def ruleCheck(value, topic, client):
 	    if topic == "temp":
-	        if value > 25:
-	            publish(client, ["fan", "open"])
+	        if (float(value) > 25) and (float(value) <= 30):
+	            publish(client, "tempActuator", 175)
+	        elif ((float(value) > 30) and (float(value) <= 35)):
+	            publish(client, "tempActuator", 200)
+	        elif float(value) > 35:
+	            publish(client, "tempActuator", 255)
 	        else:
-	            publish(client, ["fan", "close"])
+	            publish(client, "tempActuator", 0)
 	        
 	    elif topic == "humidity":
-	        if value > 30:
-	            publish(client, ["dehumidifyer", "open"])
+	        if float(value) > 30:
+	            publish(client, "dehumidifierActuator", "open")
 	        else:
-	            publish(client, ["dehumidifyer", "close"])
-	    elif topic == "co2":
-	        if value > 1200:
-	            publish(client, ["window", "open"])
-	        else:
-	            publish(client, ["window", "close"])
-	    return
+	            publish(client, "dehumidifierActuator", "close")
 	
+	    elif topic == "co2":
+	        if float(value) > 1000:
+	            publish(client, "windowActuator", "open")
+	        else:
+	            publish(client, "windowActuator", "close")
+	
+	    elif topic == "moisture":
+	        if float(value) < 850:
+	            publish(client, "pumpActuator", "open")
+	        elif float(value) > 850:
+	            publish(client, "pumpActuator", "close")
+	    return
 	def run():
 	    client = connect_mqtt()
 	    subscribe(client, topic1)
 	    subscribe(client, topic2)
 	    subscribe(client, topic3)
+	    subscribe(client, topic4)
 	    client.loop_forever()
 	    
 	
@@ -100,7 +173,6 @@ class GreenhouseGenerator extends AbstractGenerator {
 	if __name__ == '__main__':
 	    run()
 	'''
-	
 	
 	
 	def compilePeripheral(Model model)'''

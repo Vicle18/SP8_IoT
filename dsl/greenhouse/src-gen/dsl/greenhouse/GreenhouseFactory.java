@@ -69,6 +69,24 @@ public interface GreenhouseFactory extends EFactory
   SettingSensor createSettingSensor();
 
   /**
+   * Returns a new object of class '<em>Controller</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Controller</em>'.
+   * @generated
+   */
+  Controller createController();
+
+  /**
+   * Returns a new object of class '<em>Controller Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Controller Type</em>'.
+   * @generated
+   */
+  ControllerType createControllerType();
+
+  /**
    * Returns a new object of class '<em>Reducer</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -247,15 +265,6 @@ public interface GreenhouseFactory extends EFactory
    * @generated
    */
   Expression createExpression();
-
-  /**
-   * Returns a new object of class '<em>Setting</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Setting</em>'.
-   * @generated
-   */
-  Setting createSetting();
 
   /**
    * Returns a new object of class '<em>Plus</em>'.
