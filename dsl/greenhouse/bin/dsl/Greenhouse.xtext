@@ -11,9 +11,10 @@ Model:
 ;
 
 HardwareSetup:
-	{Setting}
-	'configuration'
+	{HardwareSetup} 'hardware' 'types'
 	hardware+=Hardware*
+	'micro-controllers'
+	controllers+=Controller+
 ;
 
 Hardware:
@@ -27,6 +28,15 @@ SettingActuator:
 
 SettingSensor:
 	'sensor' name=ID 'publishes' reducer=Reducer? frequency=Frequency
+;
+
+Controller:
+	'controller' name=ID 'of' 'type' type=ControllerType
+	
+;
+
+ControllerType:
+	name=('ESP32' | 'ESP8266')	
 ;
 
 Reducer:
@@ -69,20 +79,20 @@ RowElement:
 
 
 GreenhouseActuator:
-      'global' type=[SettingActuator] name=ID ('will' action+=Action)? (',' 'will' action+=Action)* 
+      'global' type=[SettingActuator] name=ID 'on' 'controller' controller=[Controller] ('will' action+=Action)? (',' 'will' action+=Action)* 
 ;
 
 RowActuator:
-     type=[SettingActuator] name=ID ('will' action+=Action)? (',' 'will' action+=Action)* 
+     type=[SettingActuator] name=ID 'on' 'controller' controller=[Controller] ('will' action+=Action)? (',' 'will' action+=Action)* 
 ;
 
 GreenhouseSensor:
-     'global' type=[SettingSensor] name=ID 'has' variable=Variable 'and' 'states'
+     'global' type=[SettingSensor] name=ID 'on' 'controller' controller=[Controller] 'has' variable=Variable 'and' 'states'
         states+=State(',' states+=State)*
 ;
 
 RowSensor:
-    type=[SettingSensor] name=ID 'has' variable=Variable 'and' 'states'
+    type=[SettingSensor] name=ID 'on' 'controller' controller=[Controller] 'has' variable=Variable 'and' 'states'
         states+=State(',' states+=State)*
 ;
 
@@ -121,5 +131,3 @@ Factor returns Expression:
 Primary returns Expression:
 	{MathNumber} value=INT | '(' Exp ')'
 ;
-
-

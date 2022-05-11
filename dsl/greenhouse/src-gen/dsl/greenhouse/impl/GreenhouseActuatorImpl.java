@@ -4,6 +4,7 @@
 package dsl.greenhouse.impl;
 
 import dsl.greenhouse.Action;
+import dsl.greenhouse.Controller;
 import dsl.greenhouse.GreenhouseActuator;
 import dsl.greenhouse.GreenhousePackage;
 import dsl.greenhouse.SettingActuator;
@@ -33,6 +34,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link dsl.greenhouse.impl.GreenhouseActuatorImpl#getType <em>Type</em>}</li>
  *   <li>{@link dsl.greenhouse.impl.GreenhouseActuatorImpl#getName <em>Name</em>}</li>
+ *   <li>{@link dsl.greenhouse.impl.GreenhouseActuatorImpl#getController <em>Controller</em>}</li>
  *   <li>{@link dsl.greenhouse.impl.GreenhouseActuatorImpl#getAction <em>Action</em>}</li>
  * </ul>
  *
@@ -69,6 +71,16 @@ public class GreenhouseActuatorImpl extends GreenhouseElementImpl implements Gre
    * @ordered
    */
   protected String name = NAME_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getController() <em>Controller</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getController()
+   * @generated
+   * @ordered
+   */
+  protected Controller controller;
 
   /**
    * The cached value of the '{@link #getAction() <em>Action</em>}' containment reference list.
@@ -177,6 +189,51 @@ public class GreenhouseActuatorImpl extends GreenhouseElementImpl implements Gre
    * @generated
    */
   @Override
+  public Controller getController()
+  {
+    if (controller != null && controller.eIsProxy())
+    {
+      InternalEObject oldController = (InternalEObject)controller;
+      controller = (Controller)eResolveProxy(oldController);
+      if (controller != oldController)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, GreenhousePackage.GREENHOUSE_ACTUATOR__CONTROLLER, oldController, controller));
+      }
+    }
+    return controller;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Controller basicGetController()
+  {
+    return controller;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setController(Controller newController)
+  {
+    Controller oldController = controller;
+    controller = newController;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GreenhousePackage.GREENHOUSE_ACTUATOR__CONTROLLER, oldController, controller));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EList<Action> getAction()
   {
     if (action == null)
@@ -217,6 +274,9 @@ public class GreenhouseActuatorImpl extends GreenhouseElementImpl implements Gre
         return basicGetType();
       case GreenhousePackage.GREENHOUSE_ACTUATOR__NAME:
         return getName();
+      case GreenhousePackage.GREENHOUSE_ACTUATOR__CONTROLLER:
+        if (resolve) return getController();
+        return basicGetController();
       case GreenhousePackage.GREENHOUSE_ACTUATOR__ACTION:
         return getAction();
     }
@@ -239,6 +299,9 @@ public class GreenhouseActuatorImpl extends GreenhouseElementImpl implements Gre
         return;
       case GreenhousePackage.GREENHOUSE_ACTUATOR__NAME:
         setName((String)newValue);
+        return;
+      case GreenhousePackage.GREENHOUSE_ACTUATOR__CONTROLLER:
+        setController((Controller)newValue);
         return;
       case GreenhousePackage.GREENHOUSE_ACTUATOR__ACTION:
         getAction().clear();
@@ -264,6 +327,9 @@ public class GreenhouseActuatorImpl extends GreenhouseElementImpl implements Gre
       case GreenhousePackage.GREENHOUSE_ACTUATOR__NAME:
         setName(NAME_EDEFAULT);
         return;
+      case GreenhousePackage.GREENHOUSE_ACTUATOR__CONTROLLER:
+        setController((Controller)null);
+        return;
       case GreenhousePackage.GREENHOUSE_ACTUATOR__ACTION:
         getAction().clear();
         return;
@@ -285,6 +351,8 @@ public class GreenhouseActuatorImpl extends GreenhouseElementImpl implements Gre
         return type != null;
       case GreenhousePackage.GREENHOUSE_ACTUATOR__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case GreenhousePackage.GREENHOUSE_ACTUATOR__CONTROLLER:
+        return controller != null;
       case GreenhousePackage.GREENHOUSE_ACTUATOR__ACTION:
         return action != null && !action.isEmpty();
     }

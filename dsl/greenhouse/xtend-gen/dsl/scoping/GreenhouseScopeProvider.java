@@ -5,7 +5,9 @@ package dsl.scoping;
 
 import com.google.common.base.Objects;
 import dsl.greenhouse.Action;
+import dsl.greenhouse.Controller;
 import dsl.greenhouse.GreenhouseActuator;
+import dsl.greenhouse.GreenhouseRuleSet;
 import dsl.greenhouse.GreenhouseSensor;
 import dsl.greenhouse.RowActuator;
 import dsl.greenhouse.RowRuleSet;
@@ -49,14 +51,9 @@ public class GreenhouseScopeProvider extends AbstractGreenhouseScopeProvider {
     IScope _xblockexpression = null;
     {
       final EObject root = EcoreUtil2.getRootContainer(context);
+      final List<Controller> allControllers = EcoreUtil2.<Controller>getAllContentsOfType(root, Controller.class);
       final List<SettingActuator> allActuators = EcoreUtil2.<SettingActuator>getAllContentsOfType(root, SettingActuator.class);
-      final Function1<SettingActuator, Boolean> _function = (SettingActuator it) -> {
-        String _name = context.getType().getName();
-        String _name_1 = it.getName();
-        return Boolean.valueOf(Objects.equal(_name, _name_1));
-      };
-      final Iterable<SettingActuator> filtered = IterableExtensions.<SettingActuator>filter(allActuators, _function);
-      _xblockexpression = Scopes.scopeFor(Collections.<EObject>unmodifiableList(CollectionLiterals.<EObject>newArrayList(context)), Scopes.scopeFor(allActuators));
+      _xblockexpression = Scopes.scopeFor(Collections.<EObject>unmodifiableList(CollectionLiterals.<EObject>newArrayList(context)), Scopes.scopeFor(allActuators, Scopes.scopeFor(allControllers)));
     }
     return _xblockexpression;
   }
@@ -66,8 +63,9 @@ public class GreenhouseScopeProvider extends AbstractGreenhouseScopeProvider {
     {
       final EObject root = EcoreUtil2.getRootContainer(context);
       final List<SettingActuator> allActuators = EcoreUtil2.<SettingActuator>getAllContentsOfType(root, SettingActuator.class);
+      final List<Controller> allControllers = EcoreUtil2.<Controller>getAllContentsOfType(root, Controller.class);
       System.out.println(allActuators);
-      _xblockexpression = Scopes.scopeFor(Collections.<EObject>unmodifiableList(CollectionLiterals.<EObject>newArrayList(context)), Scopes.scopeFor(allActuators));
+      _xblockexpression = Scopes.scopeFor(Collections.<EObject>unmodifiableList(CollectionLiterals.<EObject>newArrayList(context)), Scopes.scopeFor(allActuators, Scopes.scopeFor(allControllers)));
     }
     return _xblockexpression;
   }
@@ -77,8 +75,9 @@ public class GreenhouseScopeProvider extends AbstractGreenhouseScopeProvider {
     {
       final EObject root = EcoreUtil2.getRootContainer(context);
       final List<SettingSensor> allSensors = EcoreUtil2.<SettingSensor>getAllContentsOfType(root, SettingSensor.class);
+      final List<Controller> allControllers = EcoreUtil2.<Controller>getAllContentsOfType(root, Controller.class);
       System.out.println(allSensors);
-      _xblockexpression = Scopes.scopeFor(Collections.<EObject>unmodifiableList(CollectionLiterals.<EObject>newArrayList(context)), Scopes.scopeFor(allSensors));
+      _xblockexpression = Scopes.scopeFor(Collections.<EObject>unmodifiableList(CollectionLiterals.<EObject>newArrayList(context)), Scopes.scopeFor(allSensors, Scopes.scopeFor(allControllers)));
     }
     return _xblockexpression;
   }
@@ -88,8 +87,9 @@ public class GreenhouseScopeProvider extends AbstractGreenhouseScopeProvider {
     {
       final EObject root = EcoreUtil2.getRootContainer(context);
       final List<SettingSensor> allSensors = EcoreUtil2.<SettingSensor>getAllContentsOfType(root, SettingSensor.class);
+      final List<Controller> allControllers = EcoreUtil2.<Controller>getAllContentsOfType(root, Controller.class);
       System.out.println(allSensors);
-      _xblockexpression = Scopes.scopeFor(Collections.<EObject>unmodifiableList(CollectionLiterals.<EObject>newArrayList(context)), Scopes.scopeFor(allSensors));
+      _xblockexpression = Scopes.scopeFor(Collections.<EObject>unmodifiableList(CollectionLiterals.<EObject>newArrayList(context)), Scopes.scopeFor(allSensors, Scopes.scopeFor(allControllers)));
     }
     return _xblockexpression;
   }
@@ -151,9 +151,29 @@ public class GreenhouseScopeProvider extends AbstractGreenhouseScopeProvider {
     return _xblockexpression;
   }
   
+  protected IScope _scopeForEObject(final GreenhouseRuleSet rule, final EReference reference) {
+    IScope _xblockexpression = null;
+    {
+      System.out.println(rule.eContainer().eContents());
+      final EObject greenhouse = rule.eContainer();
+      final List<Trigger> allTrigger = EcoreUtil2.<Trigger>getAllContentsOfType(greenhouse, Trigger.class);
+      final List<RowSensor> allSensor = EcoreUtil2.<RowSensor>getAllContentsOfType(greenhouse, RowSensor.class);
+      final List<State> allStates = EcoreUtil2.<State>getAllContentsOfType(greenhouse, State.class);
+      final List<RowActuator> allActuators = EcoreUtil2.<RowActuator>getAllContentsOfType(greenhouse, RowActuator.class);
+      System.out.println(allTrigger);
+      _xblockexpression = Scopes.scopeFor(allSensor, 
+        Scopes.scopeFor(allActuators, 
+          Scopes.scopeFor(allTrigger, 
+            Scopes.scopeFor(allStates))));
+    }
+    return _xblockexpression;
+  }
+  
   public IScope scopeForEObject(final EObject context, final EReference reference) {
     if (context instanceof GreenhouseActuator) {
       return _scopeForEObject((GreenhouseActuator)context, reference);
+    } else if (context instanceof GreenhouseRuleSet) {
+      return _scopeForEObject((GreenhouseRuleSet)context, reference);
     } else if (context instanceof GreenhouseSensor) {
       return _scopeForEObject((GreenhouseSensor)context, reference);
     } else if (context instanceof RowActuator) {

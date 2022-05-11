@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link dsl.greenhouse.RowSensor#getType <em>Type</em>}</li>
  *   <li>{@link dsl.greenhouse.RowSensor#getName <em>Name</em>}</li>
+ *   <li>{@link dsl.greenhouse.RowSensor#getController <em>Controller</em>}</li>
  *   <li>{@link dsl.greenhouse.RowSensor#getVariable <em>Variable</em>}</li>
  *   <li>{@link dsl.greenhouse.RowSensor#getStates <em>States</em>}</li>
  * </ul>
@@ -69,6 +70,28 @@ public interface RowSensor extends RowElement
    * @generated
    */
   void setName(String value);
+
+  /**
+   * Returns the value of the '<em><b>Controller</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Controller</em>' reference.
+   * @see #setController(Controller)
+   * @see dsl.greenhouse.GreenhousePackage#getRowSensor_Controller()
+   * @model
+   * @generated
+   */
+  Controller getController();
+
+  /**
+   * Sets the value of the '{@link dsl.greenhouse.RowSensor#getController <em>Controller</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Controller</em>' reference.
+   * @see #getController()
+   * @generated
+   */
+  void setController(Controller value);
 
   /**
    * Returns the value of the '<em><b>Variable</b></em>' containment reference.

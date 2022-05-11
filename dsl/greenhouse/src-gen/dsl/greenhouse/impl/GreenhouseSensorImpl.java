@@ -3,6 +3,7 @@
  */
 package dsl.greenhouse.impl;
 
+import dsl.greenhouse.Controller;
 import dsl.greenhouse.GreenhousePackage;
 import dsl.greenhouse.GreenhouseSensor;
 import dsl.greenhouse.SettingSensor;
@@ -34,6 +35,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link dsl.greenhouse.impl.GreenhouseSensorImpl#getType <em>Type</em>}</li>
  *   <li>{@link dsl.greenhouse.impl.GreenhouseSensorImpl#getName <em>Name</em>}</li>
+ *   <li>{@link dsl.greenhouse.impl.GreenhouseSensorImpl#getController <em>Controller</em>}</li>
  *   <li>{@link dsl.greenhouse.impl.GreenhouseSensorImpl#getVariable <em>Variable</em>}</li>
  *   <li>{@link dsl.greenhouse.impl.GreenhouseSensorImpl#getStates <em>States</em>}</li>
  * </ul>
@@ -71,6 +73,16 @@ public class GreenhouseSensorImpl extends GreenhouseElementImpl implements Green
    * @ordered
    */
   protected String name = NAME_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getController() <em>Controller</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getController()
+   * @generated
+   * @ordered
+   */
+  protected Controller controller;
 
   /**
    * The cached value of the '{@link #getVariable() <em>Variable</em>}' containment reference.
@@ -189,6 +201,51 @@ public class GreenhouseSensorImpl extends GreenhouseElementImpl implements Green
    * @generated
    */
   @Override
+  public Controller getController()
+  {
+    if (controller != null && controller.eIsProxy())
+    {
+      InternalEObject oldController = (InternalEObject)controller;
+      controller = (Controller)eResolveProxy(oldController);
+      if (controller != oldController)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, GreenhousePackage.GREENHOUSE_SENSOR__CONTROLLER, oldController, controller));
+      }
+    }
+    return controller;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Controller basicGetController()
+  {
+    return controller;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setController(Controller newController)
+  {
+    Controller oldController = controller;
+    controller = newController;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GreenhousePackage.GREENHOUSE_SENSOR__CONTROLLER, oldController, controller));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Variable getVariable()
   {
     return variable;
@@ -281,6 +338,9 @@ public class GreenhouseSensorImpl extends GreenhouseElementImpl implements Green
         return basicGetType();
       case GreenhousePackage.GREENHOUSE_SENSOR__NAME:
         return getName();
+      case GreenhousePackage.GREENHOUSE_SENSOR__CONTROLLER:
+        if (resolve) return getController();
+        return basicGetController();
       case GreenhousePackage.GREENHOUSE_SENSOR__VARIABLE:
         return getVariable();
       case GreenhousePackage.GREENHOUSE_SENSOR__STATES:
@@ -305,6 +365,9 @@ public class GreenhouseSensorImpl extends GreenhouseElementImpl implements Green
         return;
       case GreenhousePackage.GREENHOUSE_SENSOR__NAME:
         setName((String)newValue);
+        return;
+      case GreenhousePackage.GREENHOUSE_SENSOR__CONTROLLER:
+        setController((Controller)newValue);
         return;
       case GreenhousePackage.GREENHOUSE_SENSOR__VARIABLE:
         setVariable((Variable)newValue);
@@ -333,6 +396,9 @@ public class GreenhouseSensorImpl extends GreenhouseElementImpl implements Green
       case GreenhousePackage.GREENHOUSE_SENSOR__NAME:
         setName(NAME_EDEFAULT);
         return;
+      case GreenhousePackage.GREENHOUSE_SENSOR__CONTROLLER:
+        setController((Controller)null);
+        return;
       case GreenhousePackage.GREENHOUSE_SENSOR__VARIABLE:
         setVariable((Variable)null);
         return;
@@ -357,6 +423,8 @@ public class GreenhouseSensorImpl extends GreenhouseElementImpl implements Green
         return type != null;
       case GreenhousePackage.GREENHOUSE_SENSOR__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case GreenhousePackage.GREENHOUSE_SENSOR__CONTROLLER:
+        return controller != null;
       case GreenhousePackage.GREENHOUSE_SENSOR__VARIABLE:
         return variable != null;
       case GreenhousePackage.GREENHOUSE_SENSOR__STATES:

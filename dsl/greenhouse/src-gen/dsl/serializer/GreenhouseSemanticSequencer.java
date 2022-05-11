@@ -4,6 +4,8 @@
 package dsl.serializer;
 
 import com.google.inject.Inject;
+import dsl.greenhouse.Controller;
+import dsl.greenhouse.ControllerType;
 import dsl.greenhouse.Div;
 import dsl.greenhouse.Frequency;
 import dsl.greenhouse.Greenhouse;
@@ -11,6 +13,7 @@ import dsl.greenhouse.GreenhouseActuator;
 import dsl.greenhouse.GreenhousePackage;
 import dsl.greenhouse.GreenhouseRuleSet;
 import dsl.greenhouse.GreenhouseSensor;
+import dsl.greenhouse.HardwareSetup;
 import dsl.greenhouse.MathNumber;
 import dsl.greenhouse.Minus;
 import dsl.greenhouse.Model;
@@ -21,7 +24,6 @@ import dsl.greenhouse.Row;
 import dsl.greenhouse.RowActuator;
 import dsl.greenhouse.RowRuleSet;
 import dsl.greenhouse.RowSensor;
-import dsl.greenhouse.Setting;
 import dsl.greenhouse.SettingAction;
 import dsl.greenhouse.SettingActuator;
 import dsl.greenhouse.SettingSensor;
@@ -59,6 +61,12 @@ public class GreenhouseSemanticSequencer extends AbstractDelegatingSemanticSeque
 			case GreenhousePackage.ACTION:
 				sequence_Action(context, (dsl.greenhouse.Action) semanticObject); 
 				return; 
+			case GreenhousePackage.CONTROLLER:
+				sequence_Controller(context, (Controller) semanticObject); 
+				return; 
+			case GreenhousePackage.CONTROLLER_TYPE:
+				sequence_ControllerType(context, (ControllerType) semanticObject); 
+				return; 
 			case GreenhousePackage.DIV:
 				sequence_Factor(context, (Div) semanticObject); 
 				return; 
@@ -76,6 +84,9 @@ public class GreenhouseSemanticSequencer extends AbstractDelegatingSemanticSeque
 				return; 
 			case GreenhousePackage.GREENHOUSE_SENSOR:
 				sequence_GreenhouseSensor(context, (GreenhouseSensor) semanticObject); 
+				return; 
+			case GreenhousePackage.HARDWARE_SETUP:
+				sequence_HardwareSetup(context, (HardwareSetup) semanticObject); 
 				return; 
 			case GreenhousePackage.MATH_NUMBER:
 				sequence_Primary(context, (MathNumber) semanticObject); 
@@ -106,9 +117,6 @@ public class GreenhouseSemanticSequencer extends AbstractDelegatingSemanticSeque
 				return; 
 			case GreenhousePackage.ROW_SENSOR:
 				sequence_RowSensor(context, (RowSensor) semanticObject); 
-				return; 
-			case GreenhousePackage.SETTING:
-				sequence_HardwareSetup(context, (Setting) semanticObject); 
 				return; 
 			case GreenhousePackage.SETTING_ACTION:
 				sequence_SettingAction(context, (SettingAction) semanticObject); 
@@ -165,9 +173,46 @@ public class GreenhouseSemanticSequencer extends AbstractDelegatingSemanticSeque
 	
 	/**
 	 * Contexts:
+	 *     ControllerType returns ControllerType
+	 *
+	 * Constraint:
+	 *     (name='ESP32' | name='ESP8266')
+	 */
+	protected void sequence_ControllerType(ISerializationContext context, ControllerType semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Controller returns Controller
+	 *
+	 * Constraint:
+	 *     (name=ID type=ControllerType)
+	 */
+	protected void sequence_Controller(ISerializationContext context, Controller semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, GreenhousePackage.Literals.CONTROLLER__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, GreenhousePackage.Literals.CONTROLLER__NAME));
+			if (transientValues.isValueTransient(semanticObject, GreenhousePackage.Literals.CONTROLLER__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, GreenhousePackage.Literals.CONTROLLER__TYPE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getControllerAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getControllerAccess().getTypeControllerTypeParserRuleCall_4_0(), semanticObject.getType());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Exp returns Minus
 	 *     Exp.Plus_1_0_0_0 returns Minus
 	 *     Exp.Minus_1_0_1_0 returns Minus
+	 *     Factor returns Minus
+	 *     Factor.Mult_1_0_0_0 returns Minus
+	 *     Factor.Div_1_0_1_0 returns Minus
+	 *     Primary returns Minus
 	 *
 	 * Constraint:
 	 *     (left=Exp_Minus_1_0_1_0 right=Factor)
@@ -191,6 +236,10 @@ public class GreenhouseSemanticSequencer extends AbstractDelegatingSemanticSeque
 	 *     Exp returns Plus
 	 *     Exp.Plus_1_0_0_0 returns Plus
 	 *     Exp.Minus_1_0_1_0 returns Plus
+	 *     Factor returns Plus
+	 *     Factor.Mult_1_0_0_0 returns Plus
+	 *     Factor.Div_1_0_1_0 returns Plus
+	 *     Primary returns Plus
 	 *
 	 * Constraint:
 	 *     (left=Exp_Plus_1_0_0_0 right=Factor)
@@ -217,6 +266,7 @@ public class GreenhouseSemanticSequencer extends AbstractDelegatingSemanticSeque
 	 *     Factor returns Div
 	 *     Factor.Mult_1_0_0_0 returns Div
 	 *     Factor.Div_1_0_1_0 returns Div
+	 *     Primary returns Div
 	 *
 	 * Constraint:
 	 *     (left=Factor_Div_1_0_1_0 right=Primary)
@@ -243,6 +293,7 @@ public class GreenhouseSemanticSequencer extends AbstractDelegatingSemanticSeque
 	 *     Factor returns Mult
 	 *     Factor.Mult_1_0_0_0 returns Mult
 	 *     Factor.Div_1_0_1_0 returns Mult
+	 *     Primary returns Mult
 	 *
 	 * Constraint:
 	 *     (left=Factor_Mult_1_0_0_0 right=Primary)
@@ -285,7 +336,7 @@ public class GreenhouseSemanticSequencer extends AbstractDelegatingSemanticSeque
 	 *     GreenhouseActuator returns GreenhouseActuator
 	 *
 	 * Constraint:
-	 *     (type=[SettingActuator|ID] name=ID action+=Action? action+=Action*)
+	 *     (type=[SettingActuator|ID] name=ID controller=[Controller|ID] action+=Action? action+=Action*)
 	 */
 	protected void sequence_GreenhouseActuator(ISerializationContext context, GreenhouseActuator semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -326,7 +377,14 @@ public class GreenhouseSemanticSequencer extends AbstractDelegatingSemanticSeque
 	 *     GreenhouseSensor returns GreenhouseSensor
 	 *
 	 * Constraint:
-	 *     (type=[SettingSensor|ID] name=ID variable=Variable states+=State states+=State*)
+	 *     (
+	 *         type=[SettingSensor|ID] 
+	 *         name=ID 
+	 *         controller=[Controller|ID] 
+	 *         variable=Variable 
+	 *         states+=State 
+	 *         states+=State*
+	 *     )
 	 */
 	protected void sequence_GreenhouseSensor(ISerializationContext context, GreenhouseSensor semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -347,12 +405,12 @@ public class GreenhouseSemanticSequencer extends AbstractDelegatingSemanticSeque
 	
 	/**
 	 * Contexts:
-	 *     HardwareSetup returns Setting
+	 *     HardwareSetup returns HardwareSetup
 	 *
 	 * Constraint:
-	 *     hardware+=Hardware*
+	 *     (hardware+=Hardware* controllers+=Controller+)
 	 */
-	protected void sequence_HardwareSetup(ISerializationContext context, Setting semanticObject) {
+	protected void sequence_HardwareSetup(ISerializationContext context, HardwareSetup semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -388,7 +446,7 @@ public class GreenhouseSemanticSequencer extends AbstractDelegatingSemanticSeque
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, GreenhousePackage.Literals.MATH_NUMBER__VALUE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getPrimaryAccess().getValueINTTerminalRuleCall_1_0(), semanticObject.getValue());
+		feeder.accept(grammarAccess.getPrimaryAccess().getValueINTTerminalRuleCall_0_1_0(), semanticObject.getValue());
 		feeder.finish();
 	}
 	
@@ -411,7 +469,7 @@ public class GreenhouseSemanticSequencer extends AbstractDelegatingSemanticSeque
 	 *     RowActuator returns RowActuator
 	 *
 	 * Constraint:
-	 *     (type=[SettingActuator|ID] name=ID action+=Action? action+=Action*)
+	 *     (type=[SettingActuator|ID] name=ID controller=[Controller|ID] action+=Action? action+=Action*)
 	 */
 	protected void sequence_RowActuator(ISerializationContext context, RowActuator semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -452,7 +510,14 @@ public class GreenhouseSemanticSequencer extends AbstractDelegatingSemanticSeque
 	 *     RowSensor returns RowSensor
 	 *
 	 * Constraint:
-	 *     (type=[SettingSensor|ID] name=ID variable=Variable states+=State states+=State*)
+	 *     (
+	 *         type=[SettingSensor|ID] 
+	 *         name=ID 
+	 *         controller=[Controller|ID] 
+	 *         variable=Variable 
+	 *         states+=State 
+	 *         states+=State*
+	 *     )
 	 */
 	protected void sequence_RowSensor(ISerializationContext context, RowSensor semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

@@ -3,6 +3,7 @@
  */
 package dsl.greenhouse.impl;
 
+import dsl.greenhouse.Controller;
 import dsl.greenhouse.GreenhousePackage;
 import dsl.greenhouse.RowSensor;
 import dsl.greenhouse.SettingSensor;
@@ -34,6 +35,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link dsl.greenhouse.impl.RowSensorImpl#getType <em>Type</em>}</li>
  *   <li>{@link dsl.greenhouse.impl.RowSensorImpl#getName <em>Name</em>}</li>
+ *   <li>{@link dsl.greenhouse.impl.RowSensorImpl#getController <em>Controller</em>}</li>
  *   <li>{@link dsl.greenhouse.impl.RowSensorImpl#getVariable <em>Variable</em>}</li>
  *   <li>{@link dsl.greenhouse.impl.RowSensorImpl#getStates <em>States</em>}</li>
  * </ul>
@@ -71,6 +73,16 @@ public class RowSensorImpl extends RowElementImpl implements RowSensor
    * @ordered
    */
   protected String name = NAME_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getController() <em>Controller</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getController()
+   * @generated
+   * @ordered
+   */
+  protected Controller controller;
 
   /**
    * The cached value of the '{@link #getVariable() <em>Variable</em>}' containment reference.
@@ -189,6 +201,51 @@ public class RowSensorImpl extends RowElementImpl implements RowSensor
    * @generated
    */
   @Override
+  public Controller getController()
+  {
+    if (controller != null && controller.eIsProxy())
+    {
+      InternalEObject oldController = (InternalEObject)controller;
+      controller = (Controller)eResolveProxy(oldController);
+      if (controller != oldController)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, GreenhousePackage.ROW_SENSOR__CONTROLLER, oldController, controller));
+      }
+    }
+    return controller;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Controller basicGetController()
+  {
+    return controller;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setController(Controller newController)
+  {
+    Controller oldController = controller;
+    controller = newController;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GreenhousePackage.ROW_SENSOR__CONTROLLER, oldController, controller));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Variable getVariable()
   {
     return variable;
@@ -281,6 +338,9 @@ public class RowSensorImpl extends RowElementImpl implements RowSensor
         return basicGetType();
       case GreenhousePackage.ROW_SENSOR__NAME:
         return getName();
+      case GreenhousePackage.ROW_SENSOR__CONTROLLER:
+        if (resolve) return getController();
+        return basicGetController();
       case GreenhousePackage.ROW_SENSOR__VARIABLE:
         return getVariable();
       case GreenhousePackage.ROW_SENSOR__STATES:
@@ -305,6 +365,9 @@ public class RowSensorImpl extends RowElementImpl implements RowSensor
         return;
       case GreenhousePackage.ROW_SENSOR__NAME:
         setName((String)newValue);
+        return;
+      case GreenhousePackage.ROW_SENSOR__CONTROLLER:
+        setController((Controller)newValue);
         return;
       case GreenhousePackage.ROW_SENSOR__VARIABLE:
         setVariable((Variable)newValue);
@@ -333,6 +396,9 @@ public class RowSensorImpl extends RowElementImpl implements RowSensor
       case GreenhousePackage.ROW_SENSOR__NAME:
         setName(NAME_EDEFAULT);
         return;
+      case GreenhousePackage.ROW_SENSOR__CONTROLLER:
+        setController((Controller)null);
+        return;
       case GreenhousePackage.ROW_SENSOR__VARIABLE:
         setVariable((Variable)null);
         return;
@@ -357,6 +423,8 @@ public class RowSensorImpl extends RowElementImpl implements RowSensor
         return type != null;
       case GreenhousePackage.ROW_SENSOR__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case GreenhousePackage.ROW_SENSOR__CONTROLLER:
+        return controller != null;
       case GreenhousePackage.ROW_SENSOR__VARIABLE:
         return variable != null;
       case GreenhousePackage.ROW_SENSOR__STATES:

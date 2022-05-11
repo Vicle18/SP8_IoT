@@ -3,13 +3,28 @@
  */
 package dsl.generator;
 
+import com.google.common.base.Objects;
 import com.google.common.collect.Iterators;
+import dsl.greenhouse.Action;
+import dsl.greenhouse.Greenhouse;
+import dsl.greenhouse.GreenhouseActuator;
+import dsl.greenhouse.GreenhouseSensor;
 import dsl.greenhouse.Model;
+import dsl.greenhouse.Row;
+import dsl.greenhouse.RowActuator;
+import dsl.greenhouse.RowSensor;
+import dsl.greenhouse.State;
+import java.util.List;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
+import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
 /**
  * Generates code from your model files on save.
@@ -409,190 +424,591 @@ public class GreenhouseGenerator extends AbstractGenerator {
     return _builder;
   }
   
+  public String getTopics(final Model model) {
+    final EObject root = EcoreUtil2.getRootContainer(model);
+    final Function1<RowSensor, Boolean> _function = (RowSensor it) -> {
+      String _name = it.getController().getName();
+      String _name_1 = it.getController().getName();
+      return Boolean.valueOf(Objects.equal(_name, _name_1));
+    };
+    final Iterable<RowSensor> allSensors = IterableExtensions.<RowSensor>filter(EcoreUtil2.<RowSensor>getAllContentsOfType(root, RowSensor.class), _function);
+    final Function1<GreenhouseSensor, Boolean> _function_1 = (GreenhouseSensor it) -> {
+      String _name = it.getController().getName();
+      String _name_1 = it.getController().getName();
+      return Boolean.valueOf(Objects.equal(_name, _name_1));
+    };
+    final Iterable<GreenhouseSensor> allGlobalSensors = IterableExtensions.<GreenhouseSensor>filter(EcoreUtil2.<GreenhouseSensor>getAllContentsOfType(root, GreenhouseSensor.class), _function_1);
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.newLine();
+    {
+      boolean _isEmpty = IterableExtensions.isEmpty(allSensors);
+      boolean _not = (!_isEmpty);
+      if (_not) {
+        {
+          for(final RowSensor sensor : allSensors) {
+            _builder.append("chan ");
+            EObject _eContainer = sensor.eContainer().eContainer();
+            String _name = ((Greenhouse) _eContainer).getName();
+            _builder.append(_name);
+            _builder.append("_");
+            EObject _eContainer_1 = sensor.eContainer();
+            String _name_1 = ((Row) _eContainer_1).getName();
+            _builder.append(_name_1);
+            _builder.append("_");
+            String _name_2 = sensor.getName();
+            _builder.append(_name_2);
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      }
+    }
+    {
+      boolean _isEmpty_1 = IterableExtensions.isEmpty(allGlobalSensors);
+      boolean _not_1 = (!_isEmpty_1);
+      if (_not_1) {
+        {
+          for(final GreenhouseSensor sensor_1 : allGlobalSensors) {
+            _builder.append("chan ");
+            EObject _eContainer_2 = sensor_1.eContainer();
+            String _name_3 = ((Greenhouse) _eContainer_2).getName();
+            _builder.append(_name_3);
+            _builder.append("_");
+            String _name_4 = sensor_1.getName();
+            _builder.append(_name_4);
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      }
+    }
+    return _builder.toString();
+  }
+  
+  public String getAllActuators(final Model model) {
+    final EObject root = EcoreUtil2.getRootContainer(model);
+    final List<RowActuator> allRowActuators = EcoreUtil2.<RowActuator>getAllContentsOfType(root, RowActuator.class);
+    final List<GreenhouseActuator> allGreenhouseActuators = EcoreUtil2.<GreenhouseActuator>getAllContentsOfType(root, GreenhouseActuator.class);
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.newLine();
+    {
+      boolean _isEmpty = allRowActuators.isEmpty();
+      boolean _not = (!_isEmpty);
+      if (_not) {
+        {
+          boolean _hasElements = false;
+          for(final RowActuator rowActuator : allRowActuators) {
+            if (!_hasElements) {
+              _hasElements = true;
+            } else {
+              _builder.appendImmediate("\n", "");
+            }
+            _builder.append("process ");
+            String _upperCase = rowActuator.getName().toUpperCase();
+            _builder.append(_upperCase);
+            _builder.append("(){");
+            _builder.newLineIfNotEmpty();
+            _builder.append("state");
+            _builder.newLine();
+            _builder.append("\t");
+            {
+              EList<Action> _action = rowActuator.getAction();
+              boolean _hasElements_1 = false;
+              for(final Action action : _action) {
+                if (!_hasElements_1) {
+                  _hasElements_1 = true;
+                } else {
+                  _builder.appendImmediate(",\n", "\t");
+                }
+                String _name = action.getName();
+                _builder.append(_name, "\t");
+              }
+            }
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+            _builder.append("init");
+            _builder.newLine();
+            _builder.append("\t");
+            String _name_1 = rowActuator.getAction().get(0).getName();
+            _builder.append(_name_1, "\t");
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+            _builder.append("trans");
+            _builder.newLine();
+            _builder.append("\t");
+            {
+              EList<Action> _action_1 = rowActuator.getAction();
+              boolean _hasElements_2 = false;
+              for(final Action action1 : _action_1) {
+                if (!_hasElements_2) {
+                  _hasElements_2 = true;
+                } else {
+                  _builder.appendImmediate(",\n", "\t");
+                }
+                {
+                  EList<Action> _action_2 = rowActuator.getAction();
+                  boolean _hasElements_3 = false;
+                  for(final Action action2 : _action_2) {
+                    if (!_hasElements_3) {
+                      _hasElements_3 = true;
+                    } else {
+                      _builder.appendImmediate(",\n", "\t");
+                    }
+                    String _name_2 = action1.getName();
+                    _builder.append(_name_2, "\t");
+                    _builder.append(" -> ");
+                    String _name_3 = action2.getName();
+                    _builder.append(_name_3, "\t");
+                    _builder.append("{}");
+                  }
+                }
+              }
+            }
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+            _builder.append("}");
+            _builder.newLine();
+          }
+        }
+      }
+    }
+    _builder.newLine();
+    {
+      boolean _isEmpty_1 = allGreenhouseActuators.isEmpty();
+      boolean _not_1 = (!_isEmpty_1);
+      if (_not_1) {
+        {
+          boolean _hasElements_4 = false;
+          for(final GreenhouseActuator greenhouseActuator : allGreenhouseActuators) {
+            if (!_hasElements_4) {
+              _hasElements_4 = true;
+            } else {
+              _builder.appendImmediate("\n", "");
+            }
+            _builder.append("process ");
+            String _upperCase_1 = greenhouseActuator.getName().toUpperCase();
+            _builder.append(_upperCase_1);
+            _builder.append("(){");
+            _builder.newLineIfNotEmpty();
+            _builder.append("state");
+            _builder.newLine();
+            _builder.append("    ");
+            {
+              EList<Action> _action_3 = greenhouseActuator.getAction();
+              boolean _hasElements_5 = false;
+              for(final Action action_1 : _action_3) {
+                if (!_hasElements_5) {
+                  _hasElements_5 = true;
+                } else {
+                  _builder.appendImmediate(",\n", "    ");
+                }
+                String _name_4 = action_1.getName();
+                _builder.append(_name_4, "    ");
+              }
+            }
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+            _builder.append("init");
+            _builder.newLine();
+            _builder.append("    ");
+            String _name_5 = greenhouseActuator.getAction().get(0).getName();
+            _builder.append(_name_5, "    ");
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+            _builder.append("trans");
+            _builder.newLine();
+            _builder.append("\t");
+            {
+              EList<Action> _action_4 = greenhouseActuator.getAction();
+              boolean _hasElements_6 = false;
+              for(final Action action1_1 : _action_4) {
+                if (!_hasElements_6) {
+                  _hasElements_6 = true;
+                } else {
+                  _builder.appendImmediate(",\n", "\t");
+                }
+                {
+                  EList<Action> _action_5 = greenhouseActuator.getAction();
+                  boolean _hasElements_7 = false;
+                  for(final Action action2_1 : _action_5) {
+                    if (!_hasElements_7) {
+                      _hasElements_7 = true;
+                    } else {
+                      _builder.appendImmediate(",\n", "\t");
+                    }
+                    String _name_6 = action1_1.getName();
+                    _builder.append(_name_6, "\t");
+                    _builder.append(" -> ");
+                    String _name_7 = action2_1.getName();
+                    _builder.append(_name_7, "\t");
+                    _builder.append("{}");
+                  }
+                }
+              }
+            }
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+            _builder.append("}");
+            _builder.newLine();
+          }
+        }
+      }
+    }
+    _builder.newLine();
+    return _builder.toString();
+  }
+  
+  public String getAllSensors(final Model model) {
+    final EObject root = EcoreUtil2.getRootContainer(model);
+    final List<RowSensor> allRowSensors = EcoreUtil2.<RowSensor>getAllContentsOfType(root, RowSensor.class);
+    final List<GreenhouseSensor> allGreenhouseSensors = EcoreUtil2.<GreenhouseSensor>getAllContentsOfType(root, GreenhouseSensor.class);
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.newLine();
+    {
+      boolean _isEmpty = allRowSensors.isEmpty();
+      boolean _not = (!_isEmpty);
+      if (_not) {
+        {
+          boolean _hasElements = false;
+          for(final RowSensor rowSensor : allRowSensors) {
+            if (!_hasElements) {
+              _hasElements = true;
+            } else {
+              _builder.appendImmediate("\n", "");
+            }
+            _builder.append("process ");
+            String _upperCase = rowSensor.getName().toUpperCase();
+            _builder.append(_upperCase);
+            _builder.append("(){");
+            _builder.newLineIfNotEmpty();
+            _builder.append("state");
+            _builder.newLine();
+            _builder.append("\t");
+            {
+              EList<State> _states = rowSensor.getStates();
+              boolean _hasElements_1 = false;
+              for(final State state : _states) {
+                if (!_hasElements_1) {
+                  _hasElements_1 = true;
+                } else {
+                  _builder.appendImmediate(",\n", "\t");
+                }
+                String _name = state.getName();
+                _builder.append(_name, "\t");
+              }
+            }
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+            _builder.append("init");
+            _builder.newLine();
+            _builder.append("\t");
+            String _name_1 = rowSensor.getStates().get(0).getName();
+            _builder.append(_name_1, "\t");
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+            _builder.append("trans");
+            _builder.newLine();
+            _builder.append("\t");
+            {
+              EList<State> _states_1 = rowSensor.getStates();
+              boolean _hasElements_2 = false;
+              for(final State state1 : _states_1) {
+                if (!_hasElements_2) {
+                  _hasElements_2 = true;
+                } else {
+                  _builder.appendImmediate(",\n", "\t");
+                }
+                {
+                  EList<State> _states_2 = rowSensor.getStates();
+                  boolean _hasElements_3 = false;
+                  for(final State state2 : _states_2) {
+                    if (!_hasElements_3) {
+                      _hasElements_3 = true;
+                    } else {
+                      _builder.appendImmediate(",\n", "\t");
+                    }
+                    String _name_2 = state1.getName();
+                    _builder.append(_name_2, "\t");
+                    _builder.append(" -> ");
+                    String _name_3 = state2.getName();
+                    _builder.append(_name_3, "\t");
+                    _builder.append("{}");
+                  }
+                }
+              }
+            }
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+            _builder.append("}");
+            _builder.newLine();
+          }
+        }
+      }
+    }
+    _builder.newLine();
+    {
+      boolean _isEmpty_1 = allGreenhouseSensors.isEmpty();
+      boolean _not_1 = (!_isEmpty_1);
+      if (_not_1) {
+        {
+          boolean _hasElements_4 = false;
+          for(final GreenhouseSensor greenhouseSensor : allGreenhouseSensors) {
+            if (!_hasElements_4) {
+              _hasElements_4 = true;
+            } else {
+              _builder.appendImmediate("\n", "");
+            }
+            _builder.append("process ");
+            String _upperCase_1 = greenhouseSensor.getName().toUpperCase();
+            _builder.append(_upperCase_1);
+            _builder.append("(){");
+            _builder.newLineIfNotEmpty();
+            _builder.append("state");
+            _builder.newLine();
+            _builder.append("    ");
+            {
+              EList<State> _states_3 = greenhouseSensor.getStates();
+              boolean _hasElements_5 = false;
+              for(final State state_1 : _states_3) {
+                if (!_hasElements_5) {
+                  _hasElements_5 = true;
+                } else {
+                  _builder.appendImmediate(",\n", "    ");
+                }
+                String _name_4 = state_1.getName();
+                _builder.append(_name_4, "    ");
+              }
+            }
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+            _builder.append("init");
+            _builder.newLine();
+            _builder.append("    ");
+            String _name_5 = greenhouseSensor.getStates().get(0).getName();
+            _builder.append(_name_5, "    ");
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+            _builder.append("trans");
+            _builder.newLine();
+            _builder.append("\t");
+            {
+              EList<State> _states_4 = greenhouseSensor.getStates();
+              boolean _hasElements_6 = false;
+              for(final State state1_1 : _states_4) {
+                if (!_hasElements_6) {
+                  _hasElements_6 = true;
+                } else {
+                  _builder.appendImmediate(",\n", "\t");
+                }
+                {
+                  EList<State> _states_5 = greenhouseSensor.getStates();
+                  boolean _hasElements_7 = false;
+                  for(final State state2_1 : _states_5) {
+                    if (!_hasElements_7) {
+                      _hasElements_7 = true;
+                    } else {
+                      _builder.appendImmediate(",\n", "\t");
+                    }
+                    String _name_6 = state1_1.getName();
+                    _builder.append(_name_6, "\t");
+                    _builder.append(" -> ");
+                    String _name_7 = state2_1.getName();
+                    _builder.append(_name_7, "\t");
+                    _builder.append("{}");
+                  }
+                }
+              }
+            }
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+            _builder.append("}");
+            _builder.newLine();
+          }
+        }
+      }
+    }
+    _builder.newLine();
+    return _builder.toString();
+  }
+  
+  public CharSequence instantiateVerificationModels(final Model model) {
+    CharSequence _xblockexpression = null;
+    {
+      final EObject root = EcoreUtil2.getRootContainer(model);
+      final List<RowSensor> allRowSensors = EcoreUtil2.<RowSensor>getAllContentsOfType(root, RowSensor.class);
+      final List<GreenhouseSensor> allGreenhouseSensors = EcoreUtil2.<GreenhouseSensor>getAllContentsOfType(root, GreenhouseSensor.class);
+      final List<RowActuator> allRowActuators = EcoreUtil2.<RowActuator>getAllContentsOfType(root, RowActuator.class);
+      final List<GreenhouseActuator> allGreenhouseActuators = EcoreUtil2.<GreenhouseActuator>getAllContentsOfType(root, GreenhouseActuator.class);
+      StringConcatenation _builder = new StringConcatenation();
+      {
+        boolean _isEmpty = allRowSensors.isEmpty();
+        boolean _not = (!_isEmpty);
+        if (_not) {
+          {
+            for(final RowSensor rowSensor : allRowSensors) {
+              String _lowerCase = rowSensor.getName().toLowerCase();
+              _builder.append(_lowerCase);
+              _builder.append(" := ");
+              String _upperCase = rowSensor.getName().toUpperCase();
+              _builder.append(_upperCase);
+              _builder.append("();");
+              _builder.newLineIfNotEmpty();
+            }
+          }
+        }
+      }
+      _builder.newLine();
+      {
+        boolean _isEmpty_1 = allGreenhouseSensors.isEmpty();
+        boolean _not_1 = (!_isEmpty_1);
+        if (_not_1) {
+          {
+            for(final GreenhouseSensor greenhouseSensor : allGreenhouseSensors) {
+              String _lowerCase_1 = greenhouseSensor.getName().toLowerCase();
+              _builder.append(_lowerCase_1);
+              _builder.append(" := ");
+              String _upperCase_1 = greenhouseSensor.getName().toUpperCase();
+              _builder.append(_upperCase_1);
+              _builder.append("();");
+              _builder.newLineIfNotEmpty();
+            }
+          }
+        }
+      }
+      _builder.newLine();
+      {
+        boolean _isEmpty_2 = allRowActuators.isEmpty();
+        boolean _not_2 = (!_isEmpty_2);
+        if (_not_2) {
+          {
+            for(final RowActuator rowActuators : allRowActuators) {
+              String _lowerCase_2 = rowActuators.getName().toLowerCase();
+              _builder.append(_lowerCase_2);
+              _builder.append(" := ");
+              String _upperCase_2 = rowActuators.getName().toUpperCase();
+              _builder.append(_upperCase_2);
+              _builder.append("();");
+              _builder.newLineIfNotEmpty();
+            }
+          }
+        }
+      }
+      _builder.newLine();
+      {
+        boolean _isEmpty_3 = allGreenhouseActuators.isEmpty();
+        boolean _not_3 = (!_isEmpty_3);
+        if (_not_3) {
+          {
+            for(final GreenhouseActuator greenhouseActuators : allGreenhouseActuators) {
+              String _lowerCase_3 = greenhouseActuators.getName().toLowerCase();
+              _builder.append(_lowerCase_3);
+              _builder.append(" := ");
+              String _upperCase_3 = greenhouseActuators.getName().toUpperCase();
+              _builder.append(_upperCase_3);
+              _builder.append("();");
+              _builder.newLineIfNotEmpty();
+            }
+          }
+        }
+      }
+      _builder.newLine();
+      _builder.append("system ");
+      {
+        boolean _isEmpty_4 = allRowSensors.isEmpty();
+        boolean _not_4 = (!_isEmpty_4);
+        if (_not_4) {
+          {
+            boolean _hasElements = false;
+            for(final RowSensor rowSensor_1 : allRowSensors) {
+              if (!_hasElements) {
+                _hasElements = true;
+              } else {
+                _builder.appendImmediate(", ", "");
+              }
+              String _lowerCase_4 = rowSensor_1.getName().toLowerCase();
+              _builder.append(_lowerCase_4);
+            }
+          }
+        }
+      }
+      _builder.append(", ");
+      {
+        boolean _isEmpty_5 = allGreenhouseSensors.isEmpty();
+        boolean _not_5 = (!_isEmpty_5);
+        if (_not_5) {
+          {
+            boolean _hasElements_1 = false;
+            for(final GreenhouseSensor greenhouseSensor_1 : allGreenhouseSensors) {
+              if (!_hasElements_1) {
+                _hasElements_1 = true;
+              } else {
+                _builder.appendImmediate(", ", "");
+              }
+              String _lowerCase_5 = greenhouseSensor_1.getName().toLowerCase();
+              _builder.append(_lowerCase_5);
+            }
+          }
+        }
+      }
+      _builder.append(", ");
+      {
+        boolean _isEmpty_6 = allRowActuators.isEmpty();
+        boolean _not_6 = (!_isEmpty_6);
+        if (_not_6) {
+          {
+            boolean _hasElements_2 = false;
+            for(final RowActuator rowActuators_1 : allRowActuators) {
+              if (!_hasElements_2) {
+                _hasElements_2 = true;
+              } else {
+                _builder.appendImmediate(", ", "");
+              }
+              String _lowerCase_6 = rowActuators_1.getName().toLowerCase();
+              _builder.append(_lowerCase_6);
+            }
+          }
+        }
+      }
+      _builder.append(", ");
+      {
+        boolean _isEmpty_7 = allGreenhouseActuators.isEmpty();
+        boolean _not_7 = (!_isEmpty_7);
+        if (_not_7) {
+          {
+            boolean _hasElements_3 = false;
+            for(final GreenhouseActuator greenhouseActuators_1 : allGreenhouseActuators) {
+              if (!_hasElements_3) {
+                _hasElements_3 = true;
+              } else {
+                _builder.appendImmediate(", ", "");
+              }
+              String _lowerCase_7 = greenhouseActuators_1.getName().toLowerCase();
+              _builder.append(_lowerCase_7);
+            }
+          }
+        }
+      }
+      _builder.append(";");
+      _builder.newLineIfNotEmpty();
+      _xblockexpression = _builder;
+    }
+    return _xblockexpression;
+  }
+  
   public CharSequence compileVerification(final Model model) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("from paho.mqtt import client as mqtt_client");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("broker = \'localhost\'");
-    _builder.newLine();
-    _builder.append("port = 1883");
-    _builder.newLine();
-    _builder.append("topic1 = \"temp\"");
-    _builder.newLine();
-    _builder.append("topic2 = \"humidity\"");
-    _builder.newLine();
-    _builder.append("topic3 = \"co2\"");
-    _builder.newLine();
-    _builder.append("pubTopic = \"actuators\"");
-    _builder.newLine();
-    _builder.append("client_id = \'python-mqtt-rulechecker\'");
-    _builder.newLine();
-    _builder.append("username = \'my_user\'");
-    _builder.newLine();
-    _builder.append("password = \'bendevictor\'");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("def connect_mqtt() -> mqtt_client:");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("def on_connect(client, userdata, flags, rc):");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("if rc == 0:");
-    _builder.newLine();
-    _builder.append("            ");
-    _builder.append("print(\"Connected to MQTT Broker!\")");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("else:");
-    _builder.newLine();
-    _builder.append("            ");
-    _builder.append("print(\"Failed to connect, return code %d\\n\", rc)");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("client = mqtt_client.Client(client_id)");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("client.username_pw_set(username, password)");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("client.on_connect = on_connect");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("client.connect(broker, port)");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("return client");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("def subscribe(client: mqtt_client, topic):");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("def on_message(client, userdata, msg):");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("print(f\"Received `{msg.payload.decode()}` from `{msg.topic}` topic\")");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("ruleCheck(msg.payload.decode(), msg.topic, client)");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("client.subscribe(topic)");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("client.on_message = on_message");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("def publish(client, message):");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("msg = message");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("result = client.publish(pubTopic, msg)");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("# result: [0, 1]");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("status = result[0]");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("if status == 0:");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("print(f\"Send `{msg}` to topic `{pubTopic}`\")");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("else:");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("print(f\"Failed to send message to topic {pubTopic}\")");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.newLine();
-    _builder.append("def ruleCheck(value, topic, client):");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("if topic == \"temp\":");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("if value > 25:");
-    _builder.newLine();
-    _builder.append("            ");
-    _builder.append("publish(client, [\"fan\", \"open\"])");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("else:");
-    _builder.newLine();
-    _builder.append("            ");
-    _builder.append("publish(client, [\"fan\", \"close\"])");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("elif topic == \"humidity\":");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("if value > 30:");
-    _builder.newLine();
-    _builder.append("            ");
-    _builder.append("publish(client, [\"dehumidifyer\", \"open\"])");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("else:");
-    _builder.newLine();
-    _builder.append("            ");
-    _builder.append("publish(client, [\"dehumidifyer\", \"close\"])");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("elif topic == \"co2\":");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("if value > 1200:");
-    _builder.newLine();
-    _builder.append("            ");
-    _builder.append("publish(client, [\"window\", \"open\"])");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("else:");
-    _builder.newLine();
-    _builder.append("            ");
-    _builder.append("publish(client, [\"window\", \"close\"])");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("return");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("def run():");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("client = connect_mqtt()");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("subscribe(client, topic1)");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("subscribe(client, topic2)");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("subscribe(client, topic3)");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("client.loop_forever()");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("if __name__ == \'__main__\':");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("run()");
-    _builder.newLine();
+    String _topics = this.getTopics(model);
+    _builder.append(_topics);
+    _builder.newLineIfNotEmpty();
+    String _allActuators = this.getAllActuators(model);
+    _builder.append(_allActuators);
+    _builder.newLineIfNotEmpty();
+    String _allSensors = this.getAllSensors(model);
+    _builder.append(_allSensors);
+    _builder.newLineIfNotEmpty();
+    CharSequence _instantiateVerificationModels = this.instantiateVerificationModels(model);
+    _builder.append(_instantiateVerificationModels);
+    _builder.newLineIfNotEmpty();
     return _builder;
   }
 }

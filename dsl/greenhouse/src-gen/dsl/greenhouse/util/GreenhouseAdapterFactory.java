@@ -101,6 +101,16 @@ public class GreenhouseAdapterFactory extends AdapterFactoryImpl
         return createSettingSensorAdapter();
       }
       @Override
+      public Adapter caseController(Controller object)
+      {
+        return createControllerAdapter();
+      }
+      @Override
+      public Adapter caseControllerType(ControllerType object)
+      {
+        return createControllerTypeAdapter();
+      }
+      @Override
       public Adapter caseReducer(Reducer object)
       {
         return createReducerAdapter();
@@ -199,11 +209,6 @@ public class GreenhouseAdapterFactory extends AdapterFactoryImpl
       public Adapter caseExpression(Expression object)
       {
         return createExpressionAdapter();
-      }
-      @Override
-      public Adapter caseSetting(Setting object)
-      {
-        return createSettingAdapter();
       }
       @Override
       public Adapter casePlus(Plus object)
@@ -323,6 +328,36 @@ public class GreenhouseAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createSettingSensorAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link dsl.greenhouse.Controller <em>Controller</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see dsl.greenhouse.Controller
+   * @generated
+   */
+  public Adapter createControllerAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link dsl.greenhouse.ControllerType <em>Controller Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see dsl.greenhouse.ControllerType
+   * @generated
+   */
+  public Adapter createControllerTypeAdapter()
   {
     return null;
   }
@@ -623,21 +658,6 @@ public class GreenhouseAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createExpressionAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link dsl.greenhouse.Setting <em>Setting</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see dsl.greenhouse.Setting
-   * @generated
-   */
-  public Adapter createSettingAdapter()
   {
     return null;
   }

@@ -11,7 +11,10 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//Model/hardwareSetup"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//Model/greenhouses"/>
     </genClasses>
-    <genClasses ecoreClass="Greenhouse.ecore#//HardwareSetup"/>
+    <genClasses ecoreClass="Greenhouse.ecore#//HardwareSetup">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//HardwareSetup/hardware"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//HardwareSetup/controllers"/>
+    </genClasses>
     <genClasses ecoreClass="Greenhouse.ecore#//Hardware">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Greenhouse.ecore#//Hardware/name"/>
     </genClasses>
@@ -21,6 +24,13 @@
     <genClasses ecoreClass="Greenhouse.ecore#//SettingSensor">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//SettingSensor/reducer"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//SettingSensor/frequency"/>
+    </genClasses>
+    <genClasses ecoreClass="Greenhouse.ecore#//Controller">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Greenhouse.ecore#//Controller/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//Controller/type"/>
+    </genClasses>
+    <genClasses ecoreClass="Greenhouse.ecore#//ControllerType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Greenhouse.ecore#//ControllerType/name"/>
     </genClasses>
     <genClasses ecoreClass="Greenhouse.ecore#//Reducer">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Greenhouse.ecore#//Reducer/name"/>
@@ -52,22 +62,26 @@
     <genClasses ecoreClass="Greenhouse.ecore#//GreenhouseActuator">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//GreenhouseActuator/type"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Greenhouse.ecore#//GreenhouseActuator/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//GreenhouseActuator/controller"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//GreenhouseActuator/action"/>
     </genClasses>
     <genClasses ecoreClass="Greenhouse.ecore#//RowActuator">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//RowActuator/type"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Greenhouse.ecore#//RowActuator/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//RowActuator/controller"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//RowActuator/action"/>
     </genClasses>
     <genClasses ecoreClass="Greenhouse.ecore#//GreenhouseSensor">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//GreenhouseSensor/type"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Greenhouse.ecore#//GreenhouseSensor/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//GreenhouseSensor/controller"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//GreenhouseSensor/variable"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//GreenhouseSensor/states"/>
     </genClasses>
     <genClasses ecoreClass="Greenhouse.ecore#//RowSensor">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//RowSensor/type"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Greenhouse.ecore#//RowSensor/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//RowSensor/controller"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//RowSensor/variable"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//RowSensor/states"/>
     </genClasses>
@@ -101,9 +115,6 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//GreenhouseRuleSet/state"/>
     </genClasses>
     <genClasses ecoreClass="Greenhouse.ecore#//Expression"/>
-    <genClasses ecoreClass="Greenhouse.ecore#//Setting">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//Setting/hardware"/>
-    </genClasses>
     <genClasses ecoreClass="Greenhouse.ecore#//Plus">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//Plus/left"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//Plus/right"/>

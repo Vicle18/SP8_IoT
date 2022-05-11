@@ -3,6 +3,8 @@
  */
 package dsl.greenhouse;
 
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -10,6 +12,13 @@ import org.eclipse.emf.ecore.EObject;
  * A representation of the model object '<em><b>Hardware Setup</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <p>
+ * The following features are supported:
+ * </p>
+ * <ul>
+ *   <li>{@link dsl.greenhouse.HardwareSetup#getHardware <em>Hardware</em>}</li>
+ *   <li>{@link dsl.greenhouse.HardwareSetup#getControllers <em>Controllers</em>}</li>
+ * </ul>
  *
  * @see dsl.greenhouse.GreenhousePackage#getHardwareSetup()
  * @model
@@ -17,4 +26,28 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface HardwareSetup extends EObject
 {
+  /**
+   * Returns the value of the '<em><b>Hardware</b></em>' containment reference list.
+   * The list contents are of type {@link dsl.greenhouse.Hardware}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Hardware</em>' containment reference list.
+   * @see dsl.greenhouse.GreenhousePackage#getHardwareSetup_Hardware()
+   * @model containment="true"
+   * @generated
+   */
+  EList<Hardware> getHardware();
+
+  /**
+   * Returns the value of the '<em><b>Controllers</b></em>' containment reference list.
+   * The list contents are of type {@link dsl.greenhouse.Controller}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Controllers</em>' containment reference list.
+   * @see dsl.greenhouse.GreenhousePackage#getHardwareSetup_Controllers()
+   * @model containment="true"
+   * @generated
+   */
+  EList<Controller> getControllers();
+
 } // HardwareSetup

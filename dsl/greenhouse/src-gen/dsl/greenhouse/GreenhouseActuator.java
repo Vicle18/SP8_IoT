@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link dsl.greenhouse.GreenhouseActuator#getType <em>Type</em>}</li>
  *   <li>{@link dsl.greenhouse.GreenhouseActuator#getName <em>Name</em>}</li>
+ *   <li>{@link dsl.greenhouse.GreenhouseActuator#getController <em>Controller</em>}</li>
  *   <li>{@link dsl.greenhouse.GreenhouseActuator#getAction <em>Action</em>}</li>
  * </ul>
  *
@@ -68,6 +69,28 @@ public interface GreenhouseActuator extends GreenhouseElement
    * @generated
    */
   void setName(String value);
+
+  /**
+   * Returns the value of the '<em><b>Controller</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Controller</em>' reference.
+   * @see #setController(Controller)
+   * @see dsl.greenhouse.GreenhousePackage#getGreenhouseActuator_Controller()
+   * @model
+   * @generated
+   */
+  Controller getController();
+
+  /**
+   * Sets the value of the '{@link dsl.greenhouse.GreenhouseActuator#getController <em>Controller</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Controller</em>' reference.
+   * @see #getController()
+   * @generated
+   */
+  void setController(Controller value);
 
   /**
    * Returns the value of the '<em><b>Action</b></em>' containment reference list.

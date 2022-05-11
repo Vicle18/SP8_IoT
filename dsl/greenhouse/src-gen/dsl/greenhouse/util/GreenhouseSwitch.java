@@ -110,6 +110,20 @@ public class GreenhouseSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case GreenhousePackage.CONTROLLER:
+      {
+        Controller controller = (Controller)theEObject;
+        T result = caseController(controller);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case GreenhousePackage.CONTROLLER_TYPE:
+      {
+        ControllerType controllerType = (ControllerType)theEObject;
+        T result = caseControllerType(controllerType);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case GreenhousePackage.REDUCER:
       {
         Reducer reducer = (Reducer)theEObject;
@@ -256,14 +270,6 @@ public class GreenhouseSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case GreenhousePackage.SETTING:
-      {
-        Setting setting = (Setting)theEObject;
-        T result = caseSetting(setting);
-        if (result == null) result = caseHardwareSetup(setting);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case GreenhousePackage.PLUS:
       {
         Plus plus = (Plus)theEObject;
@@ -384,6 +390,38 @@ public class GreenhouseSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseSettingSensor(SettingSensor object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Controller</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Controller</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseController(Controller object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Controller Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Controller Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseControllerType(ControllerType object)
   {
     return null;
   }
@@ -704,22 +742,6 @@ public class GreenhouseSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseExpression(Expression object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Setting</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Setting</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseSetting(Setting object)
   {
     return null;
   }

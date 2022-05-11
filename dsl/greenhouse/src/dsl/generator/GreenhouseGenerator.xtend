@@ -8,6 +8,15 @@ import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
 import dsl.greenhouse.Model
+import org.eclipse.xtext.EcoreUtil2
+import dsl.greenhouse.RowSensor
+import dsl.greenhouse.RowActuator
+import dsl.greenhouse.GreenhouseActuator
+import dsl.greenhouse.State
+import dsl.greenhouse.Action
+import dsl.greenhouse.GreenhouseSensor
+import dsl.greenhouse.Greenhouse
+import dsl.greenhouse.Row
 
 /**
  * Generates code from your model files on save.
@@ -179,80 +188,142 @@ class GreenhouseGenerator extends AbstractGenerator {
 	    run()
 	'''
 	
+	def getTopics(Model model){
+		val root = EcoreUtil2.getRootContainer(model);
+        val allSensors = EcoreUtil2.getAllContentsOfType(root, RowSensor).filter[it.controller.name == controller.name]
+        val allGlobalSensors = EcoreUtil2.getAllContentsOfType(root, GreenhouseSensor).filter[it.controller.name == controller.name]
+        return '''
+
+        «IF !allSensors.empty»
+        «FOR sensor: allSensors»
+        chan «(sensor.eContainer.eContainer as Greenhouse).name»_«(sensor.eContainer as Row).name»_«sensor.name»;
+        «ENDFOR»
+        «ENDIF»
+        «IF !allGlobalSensors.empty»
+        «FOR sensor: allGlobalSensors»
+        chan «(sensor.eContainer as Greenhouse).name»_«sensor.name»;
+        «ENDFOR»
+        «ENDIF»
+        '''
+		
+	}
 	
-	def compileVerification(Model model)'''
-	from paho.mqtt import client as mqtt_client
+	def getAllActuators(Model model){
+        val root = EcoreUtil2.getRootContainer(model);
+        val allRowActuators = EcoreUtil2.getAllContentsOfType(root, RowActuator);
+        val allGreenhouseActuators = EcoreUtil2.getAllContentsOfType(root, GreenhouseActuator)
+       
+        
+        return '''
+
+        «IF !allRowActuators.isEmpty»
+        	«FOR rowActuator : allRowActuators SEPARATOR '\n'»
+        		process «rowActuator.name.toUpperCase»(){
+        		state
+        			«FOR action : rowActuator.action SEPARATOR ',\n'»«action.name»«ENDFOR»;
+        		init
+        			«rowActuator.action.get(0).name»;
+        		trans
+        			«FOR action1 : rowActuator.action SEPARATOR ',\n'»«FOR action2 : rowActuator.action SEPARATOR ',\n'»«action1.name» -> «action2.name»{}«ENDFOR»«ENDFOR»;
+        		}
+        	«ENDFOR»
+        «ENDIF»
+        
+        «IF !allGreenhouseActuators.isEmpty»
+           «FOR greenhouseActuator : allGreenhouseActuators SEPARATOR '\n'»
+                process «greenhouseActuator.name.toUpperCase»(){
+                state
+                    «FOR action : greenhouseActuator.action SEPARATOR ',\n'»«action.name»«ENDFOR»;
+                init
+                    «greenhouseActuator.action.get(0).name»;
+                trans
+                	«FOR action1 : greenhouseActuator.action SEPARATOR ',\n'»«FOR action2 : greenhouseActuator.action SEPARATOR ',\n'»«action1.name» -> «action2.name»{}«ENDFOR»«ENDFOR»;
+                }
+           «ENDFOR»
+        «ENDIF»
+        
+        '''
+    }
+    
+    def getAllSensors(Model model){
+    	val root = EcoreUtil2.getRootContainer(model);
+        val allRowSensors = EcoreUtil2.getAllContentsOfType(root, RowSensor);
+        val allGreenhouseSensors = EcoreUtil2.getAllContentsOfType(root, GreenhouseSensor)
+        
+        return '''
+
+        «IF !allRowSensors.isEmpty»
+        	«FOR rowSensor : allRowSensors SEPARATOR '\n'»
+        		process «rowSensor.name.toUpperCase»(){
+        		state
+        			«FOR state : rowSensor.states SEPARATOR ',\n'»«state.name»«ENDFOR»;
+        		init
+        			«rowSensor.states.get(0).name»;
+        		trans
+        			«FOR state1 : rowSensor.states SEPARATOR ',\n'»«FOR state2 : rowSensor.states SEPARATOR ',\n'»«state1.name» -> «state2.name»{}«ENDFOR»«ENDFOR»;
+        		}
+        	«ENDFOR»
+        «ENDIF»
+        
+        «IF !allGreenhouseSensors.isEmpty»
+           «FOR greenhouseSensor : allGreenhouseSensors SEPARATOR '\n'»
+                process «greenhouseSensor.name.toUpperCase»(){
+                state
+                    «FOR state : greenhouseSensor.states SEPARATOR ',\n'»«state.name»«ENDFOR»;
+                init
+                    «greenhouseSensor.states.get(0).name»;
+                trans
+                	«FOR state1 : greenhouseSensor.states SEPARATOR ',\n'»«FOR state2 : greenhouseSensor.states SEPARATOR ',\n'»«state1.name» -> «state2.name»{}«ENDFOR»«ENDFOR»;
+                }
+           «ENDFOR»
+        «ENDIF»
+        
+        '''
+    }
+    
+    def instantiateVerificationModels(Model model){
+    	val root = EcoreUtil2.getRootContainer(model);
+        val allRowSensors = EcoreUtil2.getAllContentsOfType(root, RowSensor);
+        val allGreenhouseSensors = EcoreUtil2.getAllContentsOfType(root, GreenhouseSensor)
+        val allRowActuators = EcoreUtil2.getAllContentsOfType(root, RowActuator);
+        val allGreenhouseActuators = EcoreUtil2.getAllContentsOfType(root, GreenhouseActuator)
+    	
+    	'''
+    	«IF !allRowSensors.isEmpty»
+    	    «FOR rowSensor : allRowSensors»
+    	    «rowSensor.name.toLowerCase» := «rowSensor.name.toUpperCase»();
+    	    «ENDFOR»
+    	«ENDIF»
+    	
+    	«IF !allGreenhouseSensors.isEmpty»
+    	    «FOR greenhouseSensor : allGreenhouseSensors»
+    	    «greenhouseSensor.name.toLowerCase» := «greenhouseSensor.name.toUpperCase»();
+    	    «ENDFOR»
+    	«ENDIF»
+    	
+    	«IF !allRowActuators.isEmpty»
+    	    «FOR rowActuators : allRowActuators»
+    	    «rowActuators.name.toLowerCase» := «rowActuators.name.toUpperCase»();
+    	    «ENDFOR»
+    	«ENDIF»
+    	
+    	«IF !allGreenhouseActuators.isEmpty»
+    	    «FOR greenhouseActuators : allGreenhouseActuators»
+    	    «greenhouseActuators.name.toLowerCase» := «greenhouseActuators.name.toUpperCase»();
+    	    «ENDFOR»
+    	«ENDIF»
+    	
+    	system «IF !allRowSensors.isEmpty»«FOR rowSensor : allRowSensors SEPARATOR ', '»«rowSensor.name.toLowerCase»«ENDFOR»«ENDIF», «IF !allGreenhouseSensors.isEmpty»«FOR greenhouseSensor : allGreenhouseSensors SEPARATOR ', '»«greenhouseSensor.name.toLowerCase»«ENDFOR»«ENDIF», «IF !allRowActuators.isEmpty»«FOR rowActuators : allRowActuators SEPARATOR ', '»«rowActuators.name.toLowerCase»«ENDFOR»«ENDIF», «IF !allGreenhouseActuators.isEmpty»«FOR greenhouseActuators : allGreenhouseActuators SEPARATOR ', '»«greenhouseActuators.name.toLowerCase»«ENDFOR»«ENDIF»;
+    	'''
+    }
 	
-	broker = 'localhost'
-	port = 1883
-	topic1 = "temp"
-	topic2 = "humidity"
-	topic3 = "co2"
-	pubTopic = "actuators"
-	client_id = 'python-mqtt-rulechecker'
-	username = 'my_user'
-	password = 'bendevictor'
-	
-	def connect_mqtt() -> mqtt_client:
-	    def on_connect(client, userdata, flags, rc):
-	        if rc == 0:
-	            print("Connected to MQTT Broker!")
-	        else:
-	            print("Failed to connect, return code %d\n", rc)
-	
-	    client = mqtt_client.Client(client_id)
-	    client.username_pw_set(username, password)
-	    client.on_connect = on_connect
-	    client.connect(broker, port)
-	    return client
-	
-	def subscribe(client: mqtt_client, topic):
-	    def on_message(client, userdata, msg):
-	        print(f"Received `{msg.payload.decode()}` from `{msg.topic}` topic")
-	        ruleCheck(msg.payload.decode(), msg.topic, client)
-	
-	    client.subscribe(topic)
-	    client.on_message = on_message
-	
-	def publish(client, message):
-	    msg = message
-	    result = client.publish(pubTopic, msg)
-	    # result: [0, 1]
-	    status = result[0]
-	    if status == 0:
-	        print(f"Send `{msg}` to topic `{pubTopic}`")
-	    else:
-	        print(f"Failed to send message to topic {pubTopic}")
-	        
-	def ruleCheck(value, topic, client):
-	    if topic == "temp":
-	        if value > 25:
-	            publish(client, ["fan", "open"])
-	        else:
-	            publish(client, ["fan", "close"])
-	        
-	    elif topic == "humidity":
-	        if value > 30:
-	            publish(client, ["dehumidifyer", "open"])
-	        else:
-	            publish(client, ["dehumidifyer", "close"])
-	    elif topic == "co2":
-	        if value > 1200:
-	            publish(client, ["window", "open"])
-	        else:
-	            publish(client, ["window", "close"])
-	    return
-	
-	def run():
-	    client = connect_mqtt()
-	    subscribe(client, topic1)
-	    subscribe(client, topic2)
-	    subscribe(client, topic3)
-	    client.loop_forever()
-	    
 	
 	
-	if __name__ == '__main__':
-	    run()
+	def compileVerification(Model model)
+	'''
+	«model.getTopics»
+	«model.getAllActuators»
+	«model.getAllSensors»
+	«model.instantiateVerificationModels»
 	'''
 }
