@@ -17,6 +17,8 @@ import dsl.greenhouse.Action
 import dsl.greenhouse.GreenhouseSensor
 import dsl.greenhouse.Greenhouse
 import dsl.greenhouse.Row
+import dsl.greenhouse.GreenhouseRuleSet
+import dsl.greenhouse.RowRuleSet
 
 /**
  * Generates code from your model files on save.
@@ -40,6 +42,8 @@ class GreenhouseGenerator extends AbstractGenerator {
     val allGreenhouseSensors = EcoreUtil2.getAllContentsOfType(root, GreenhouseSensor)
     val allRowActuators = EcoreUtil2.getAllContentsOfType(root, RowActuator);
     val allGreenhouseActuators = EcoreUtil2.getAllContentsOfType(root, GreenhouseActuator)
+    val allRowRuleset = EcoreUtil2.getAllContentsOfType(root, RowRuleSet)
+    val allGreenhouseRuleset = EcoreUtil2.getAllContentsOfType(root, GreenhouseRuleSet)
     '''
 	from paho.mqtt import client as mqtt_client
 	class Sensor:
@@ -123,17 +127,17 @@ class GreenhouseGenerator extends AbstractGenerator {
 	def run():
 	    client = connect_mqtt()
 	    manualState = Sensor("manual", None, 0, None)
-	    «FOR sensor : allRowSensors»
-	    s«allRowSensors.indexOf(sensor)» = Sensor("«(sensor.eContainer.eContainer as Greenhouse).name»/«(sensor.eContainer as Row).name»/«sensor.name»",)
-	    «ENDFOR»
-	    t1 = Sensor("greenify/tomatoes/moistSensor", [{"moist":"stop"}, {"optimal":"stop"}, {"dry":"start"}], 0, "greenify/tomatoes/pump")
-	    t2 = Sensor("greenify/tempSensor", [{"hot":"max"}, {"optimal":"min"}, {"cold":"stop"}], 0, "greenify/fan")
 	    sensors.append(manualState)
-	    sensors.append(t1)
-	    sensors.append(t2)
-	    subscribe(client, t1)
-	    subscribe(client, t2)
-	    subscribe(client, manualState)
+	    «FOR sensor : allRowSensors»
+	    sr«allRowSensors.indexOf(sensor)» = Sensor("«(sensor.eContainer.eContainer as Greenhouse).name»/«(sensor.eContainer as Row).name»/«sensor.name»",[«FOR state : sensor.states»{"«state»":«FOR rule : allRowRuleset»«IF rule.sensor.name == sensor.name && rule.state.name == state.name»«rule.trigger»«ENDIF»«ENDFOR»},«ENDFOR»],0,«FOR rule : allRowRuleset»«IF rule.sensor.name == sensor.name»"«(sensor.eContainer.eContainer as Greenhouse).name»/«(sensor.eContainer as Row).name»/«rule.actuator.name»"«ENDIF»«ENDFOR»)
+	    sensors.append(sr«allRowSensors.indexOf(sensor)»)
+	    subscribe(client, sr«allRowSensors.indexOf(sensor)»)
+	    «ENDFOR»
+	    «FOR sensor : allGreenhouseSensors»
+	    sg«allGreenhouseSensors.indexOf(sensor)» = Sensor("«(sensor.eContainer.eContainer as Greenhouse).name»/«sensor.name»",[«FOR state : sensor.states»{"«state»":«FOR rule : allGreenhouseRuleset»«IF rule.sensor.name == sensor.name && rule.state.name == state.name»«rule.action»«ENDIF»«ENDFOR»},«ENDFOR»],0,«FOR rule : allGreenhouseRuleset»«IF rule.sensor.name == sensor.name»"«(sensor.eContainer.eContainer as Greenhouse).name»/«rule.actuator.name»"«ENDIF»«ENDFOR»)
+	    sensors.append(sg«allGreenhouseSensors.indexOf(sensor)»)
+	    subscribe(client, sg«allGreenhouseSensors.indexOf(sensor)»)
+	    «ENDFOR»
 	    client.loop_forever()
 	
 	if __name__ == '__main__':

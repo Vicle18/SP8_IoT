@@ -3,14 +3,21 @@
  */
 package dsl.generator;
 
+import com.google.common.base.Objects;
 import com.google.common.collect.Iterators;
 import dsl.greenhouse.Action;
+import dsl.greenhouse.Expression;
+import dsl.greenhouse.Greenhouse;
 import dsl.greenhouse.GreenhouseActuator;
+import dsl.greenhouse.GreenhouseRuleSet;
 import dsl.greenhouse.GreenhouseSensor;
 import dsl.greenhouse.Model;
+import dsl.greenhouse.Row;
 import dsl.greenhouse.RowActuator;
+import dsl.greenhouse.RowRuleSet;
 import dsl.greenhouse.RowSensor;
 import dsl.greenhouse.State;
+import dsl.greenhouse.Trigger;
 import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -20,6 +27,8 @@ import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
 /**
  * Generates code from your model files on save.
@@ -33,7 +42,7 @@ public class GreenhouseGenerator extends AbstractGenerator {
     final Model model = Iterators.<Model>filter(resource.getAllContents(), Model.class).next();
     String _name = model.getName();
     String _plus = ("controller/" + _name);
-    String _plus_1 = (_plus + ".java");
+    String _plus_1 = (_plus + ".py");
     fsa.generateFile(_plus_1, this.compileController(model));
     String _name_1 = model.getName();
     String _plus_2 = ("peripheral/" + _name_1);
@@ -46,196 +55,475 @@ public class GreenhouseGenerator extends AbstractGenerator {
   }
   
   public CharSequence compileController(final Model model) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("from paho.mqtt import client as mqtt_client");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("broker = \'localhost\'");
-    _builder.newLine();
-    _builder.append("port = 1883");
-    _builder.newLine();
-    _builder.append("topic1 = \"temp\"");
-    _builder.newLine();
-    _builder.append("topic2 = \"humidity\"");
-    _builder.newLine();
-    _builder.append("topic3 = \"co2\"");
-    _builder.newLine();
-    _builder.append("pubTopic = \"actuators\"");
-    _builder.newLine();
-    _builder.append("client_id = \'python-mqtt-rulechecker\'");
-    _builder.newLine();
-    _builder.append("username = \'my_user\'");
-    _builder.newLine();
-    _builder.append("password = \'bendevictor\'");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("def connect_mqtt() -> mqtt_client:");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("def on_connect(client, userdata, flags, rc):");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("if rc == 0:");
-    _builder.newLine();
-    _builder.append("            ");
-    _builder.append("print(\"Connected to MQTT Broker!\")");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("else:");
-    _builder.newLine();
-    _builder.append("            ");
-    _builder.append("print(\"Failed to connect, return code %d\\n\", rc)");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("client = mqtt_client.Client(client_id)");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("client.username_pw_set(username, password)");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("client.on_connect = on_connect");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("client.connect(broker, port)");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("return client");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("def subscribe(client: mqtt_client, topic):");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("def on_message(client, userdata, msg):");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("print(f\"Received `{msg.payload.decode()}` from `{msg.topic}` topic\")");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("ruleCheck(msg.payload.decode(), msg.topic, client)");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("client.subscribe(topic)");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("client.on_message = on_message");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("def publish(client, message):");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("msg = message");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("result = client.publish(pubTopic, msg)");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("# result: [0, 1]");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("status = result[0]");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("if status == 0:");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("print(f\"Send `{msg}` to topic `{pubTopic}`\")");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("else:");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("print(f\"Failed to send message to topic {pubTopic}\")");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.newLine();
-    _builder.append("def ruleCheck(value, topic, client):");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("if topic == \"temp\":");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("if value > 25:");
-    _builder.newLine();
-    _builder.append("            ");
-    _builder.append("publish(client, [\"fan\", \"open\"])");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("else:");
-    _builder.newLine();
-    _builder.append("            ");
-    _builder.append("publish(client, [\"fan\", \"close\"])");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("elif topic == \"humidity\":");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("if value > 30:");
-    _builder.newLine();
-    _builder.append("            ");
-    _builder.append("publish(client, [\"dehumidifyer\", \"open\"])");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("else:");
-    _builder.newLine();
-    _builder.append("            ");
-    _builder.append("publish(client, [\"dehumidifyer\", \"close\"])");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("elif topic == \"co2\":");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("if value > 1200:");
-    _builder.newLine();
-    _builder.append("            ");
-    _builder.append("publish(client, [\"window\", \"open\"])");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("else:");
-    _builder.newLine();
-    _builder.append("            ");
-    _builder.append("publish(client, [\"window\", \"close\"])");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("return");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("def run():");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("client = connect_mqtt()");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("subscribe(client, topic1)");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("subscribe(client, topic2)");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("subscribe(client, topic3)");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("client.loop_forever()");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("if __name__ == \'__main__\':");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("run()");
-    _builder.newLine();
-    return _builder;
+    CharSequence _xblockexpression = null;
+    {
+      final EObject root = EcoreUtil2.getRootContainer(model);
+      final List<RowSensor> allRowSensors = EcoreUtil2.<RowSensor>getAllContentsOfType(root, RowSensor.class);
+      final List<GreenhouseSensor> allGreenhouseSensors = EcoreUtil2.<GreenhouseSensor>getAllContentsOfType(root, GreenhouseSensor.class);
+      final List<RowActuator> allRowActuators = EcoreUtil2.<RowActuator>getAllContentsOfType(root, RowActuator.class);
+      final List<GreenhouseActuator> allGreenhouseActuators = EcoreUtil2.<GreenhouseActuator>getAllContentsOfType(root, GreenhouseActuator.class);
+      final List<RowRuleSet> allRowRuleset = EcoreUtil2.<RowRuleSet>getAllContentsOfType(root, RowRuleSet.class);
+      final List<GreenhouseRuleSet> allGreenhouseRuleset = EcoreUtil2.<GreenhouseRuleSet>getAllContentsOfType(root, GreenhouseRuleSet.class);
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("from paho.mqtt import client as mqtt_client");
+      _builder.newLine();
+      _builder.append("class Sensor:");
+      _builder.newLine();
+      _builder.append("    ");
+      _builder.append("currentState = \"\"");
+      _builder.newLine();
+      _builder.append("    ");
+      _builder.append("def __init__(self, name, states, variable, actuator):");
+      _builder.newLine();
+      _builder.append("        ");
+      _builder.append("self.name = name");
+      _builder.newLine();
+      _builder.append("        ");
+      _builder.append("self.states = states");
+      _builder.newLine();
+      _builder.append("        ");
+      _builder.append("self.variable = variable");
+      _builder.newLine();
+      _builder.append("        ");
+      _builder.append("self.actuator = actuator");
+      _builder.newLine();
+      _builder.append("    ");
+      _builder.append("def updateSensor(self, variable, client):");
+      _builder.newLine();
+      _builder.append("        ");
+      _builder.append("self.variable = variable");
+      _builder.newLine();
+      _builder.append("        ");
+      _builder.append("ruleCheck(variable, self, client, self.states)");
+      _builder.newLine();
+      _builder.append("    ");
+      _builder.append("def updateSensorState(self, state, client):");
+      _builder.newLine();
+      _builder.append("        ");
+      _builder.append("theKey = next(iter(state))");
+      _builder.newLine();
+      _builder.append("        ");
+      _builder.append("self.currentState = theKey");
+      _builder.newLine();
+      _builder.append("        ");
+      _builder.append("publish(client, self.actuator, state.get(self.currentState))");
+      _builder.newLine();
+      _builder.newLine();
+      _builder.append("broker = \'localhost\'");
+      _builder.newLine();
+      _builder.append("port = 1883");
+      _builder.newLine();
+      _builder.append("client_id = \'python-mqtt-controller\'");
+      _builder.newLine();
+      _builder.append("username = \'my_user\'");
+      _builder.newLine();
+      _builder.append("password = \'bendevictor\'");
+      _builder.newLine();
+      _builder.append("manual = 0");
+      _builder.newLine();
+      _builder.append("sensors = []");
+      _builder.newLine();
+      _builder.append("def connect_mqtt() -> mqtt_client:");
+      _builder.newLine();
+      _builder.append("    ");
+      _builder.append("def on_connect(client, userdata, flags, rc):");
+      _builder.newLine();
+      _builder.append("        ");
+      _builder.append("if rc == 0:");
+      _builder.newLine();
+      _builder.append("            ");
+      _builder.append("print(\"Connected to MQTT Broker!\")");
+      _builder.newLine();
+      _builder.append("        ");
+      _builder.append("else:");
+      _builder.newLine();
+      _builder.append("            ");
+      _builder.append("print(\"Failed to connect, return code %d\\n\", rc)");
+      _builder.newLine();
+      _builder.newLine();
+      _builder.append("    ");
+      _builder.append("client = mqtt_client.Client(client_id)");
+      _builder.newLine();
+      _builder.append("    ");
+      _builder.append("client.username_pw_set(username, password)");
+      _builder.newLine();
+      _builder.append("    ");
+      _builder.append("client.on_connect = on_connect");
+      _builder.newLine();
+      _builder.append("    ");
+      _builder.append("client.connect(broker, port)");
+      _builder.newLine();
+      _builder.append("    ");
+      _builder.append("return client");
+      _builder.newLine();
+      _builder.newLine();
+      _builder.newLine();
+      _builder.append("def subscribe(client: mqtt_client, sensor):");
+      _builder.newLine();
+      _builder.append("    ");
+      _builder.append("def on_message(client, userdata, msg):");
+      _builder.newLine();
+      _builder.append("        ");
+      _builder.append("print(f\"Received `{msg.payload.decode()}` from `{msg.topic}` topic\")");
+      _builder.newLine();
+      _builder.append("        ");
+      _builder.append("for s in sensors:");
+      _builder.newLine();
+      _builder.append("            ");
+      _builder.append("if s.name == msg.topic:");
+      _builder.newLine();
+      _builder.append("                ");
+      _builder.append("s.updateSensor(msg.payload.decode(), client)");
+      _builder.newLine();
+      _builder.append("        ");
+      _builder.append("#ruleCheck(msg.payload.decode(), msg.topic, client)");
+      _builder.newLine();
+      _builder.append("    ");
+      _builder.append("client.subscribe(sensor.name)");
+      _builder.newLine();
+      _builder.append("    ");
+      _builder.append("client.on_message = on_message");
+      _builder.newLine();
+      _builder.newLine();
+      _builder.append("def publish(client,topic, message):");
+      _builder.newLine();
+      _builder.append("    ");
+      _builder.append("msg = message");
+      _builder.newLine();
+      _builder.append("    ");
+      _builder.append("if manual == 0:");
+      _builder.newLine();
+      _builder.append("        ");
+      _builder.append("result = client.publish(topic, msg)");
+      _builder.newLine();
+      _builder.append("        ");
+      _builder.append("# result: [0, 1]");
+      _builder.newLine();
+      _builder.append("        ");
+      _builder.append("status = result[0]");
+      _builder.newLine();
+      _builder.append("        ");
+      _builder.append("if status == 0:");
+      _builder.newLine();
+      _builder.append("            ");
+      _builder.append("print(f\"Send `{msg}` to topic `{topic}`\")");
+      _builder.newLine();
+      _builder.append("        ");
+      _builder.append("else:");
+      _builder.newLine();
+      _builder.append("            ");
+      _builder.append("print(f\"Failed to send message to topic {topic}\")");
+      _builder.newLine();
+      _builder.append("    ");
+      _builder.newLine();
+      _builder.newLine();
+      _builder.append("def ruleCheck(value, sensor, client,states):");
+      _builder.newLine();
+      _builder.append("    ");
+      _builder.append("if sensor.name == \"manual\":");
+      _builder.newLine();
+      _builder.append("        ");
+      _builder.append("global manual ");
+      _builder.newLine();
+      _builder.append("        ");
+      _builder.append("manual = int(value)");
+      _builder.newLine();
+      {
+        for(final RowSensor sensor : allRowSensors) {
+          _builder.append("   ");
+          _builder.append("if sensor.name == ");
+          EObject _eContainer = sensor.eContainer().eContainer();
+          String _name = ((Greenhouse) _eContainer).getName();
+          _builder.append(_name, "   ");
+          _builder.append("/");
+          EObject _eContainer_1 = sensor.eContainer();
+          String _name_1 = ((Row) _eContainer_1).getName();
+          _builder.append(_name_1, "   ");
+          _builder.append("/");
+          String _name_2 = sensor.getName();
+          _builder.append(_name_2, "   ");
+          _builder.append(":");
+          _builder.newLineIfNotEmpty();
+          {
+            EList<State> _states = sensor.getStates();
+            for(final State state : _states) {
+              _builder.append("   ");
+              _builder.append("\t");
+              _builder.append("if float(value) ");
+              String _op = state.getOp();
+              _builder.append(_op, "   \t");
+              _builder.append(" ");
+              Expression _threshold = state.getThreshold();
+              _builder.append(_threshold, "   \t");
+              _builder.append(":");
+              _builder.newLineIfNotEmpty();
+              _builder.append("\t    \t\t");
+              _builder.append("sensor.updateSensorState(states[");
+              int _indexOf = sensor.getStates().indexOf(state);
+              _builder.append(_indexOf, "\t    \t\t");
+              _builder.append("],client) \\n");
+              _builder.newLineIfNotEmpty();
+            }
+          }
+        }
+      }
+      {
+        for(final GreenhouseSensor sensor_1 : allGreenhouseSensors) {
+          _builder.append("   ");
+          _builder.append("if sensor.name == ");
+          EObject _eContainer_2 = sensor_1.eContainer().eContainer();
+          String _name_3 = ((Greenhouse) _eContainer_2).getName();
+          _builder.append(_name_3, "   ");
+          _builder.append("/");
+          String _name_4 = sensor_1.getName();
+          _builder.append(_name_4, "   ");
+          _builder.append(":");
+          _builder.newLineIfNotEmpty();
+          {
+            EList<State> _states_1 = sensor_1.getStates();
+            for(final State state_1 : _states_1) {
+              _builder.append("   ");
+              _builder.append("\t");
+              _builder.append("if float(value) ");
+              String _op_1 = state_1.getOp();
+              _builder.append(_op_1, "   \t");
+              _builder.append(" ");
+              Expression _threshold_1 = state_1.getThreshold();
+              _builder.append(_threshold_1, "   \t");
+              _builder.append(":");
+              _builder.newLineIfNotEmpty();
+              _builder.append("   ");
+              _builder.append("\t");
+              _builder.append("\t");
+              _builder.append("sensor.updateSensorState(states[");
+              int _indexOf_1 = sensor_1.getStates().indexOf(state_1);
+              _builder.append(_indexOf_1, "   \t\t");
+              _builder.append("],client) \\n");
+              _builder.newLineIfNotEmpty();
+            }
+          }
+        }
+      }
+      _builder.append("    ");
+      _builder.append("return");
+      _builder.newLine();
+      _builder.newLine();
+      _builder.append("def run():");
+      _builder.newLine();
+      _builder.append("    ");
+      _builder.append("client = connect_mqtt()");
+      _builder.newLine();
+      _builder.append("    ");
+      _builder.append("manualState = Sensor(\"manual\", None, 0, None)");
+      _builder.newLine();
+      _builder.append("    ");
+      _builder.append("sensors.append(manualState)");
+      _builder.newLine();
+      {
+        for(final RowSensor sensor_2 : allRowSensors) {
+          _builder.append("    ");
+          _builder.append("sr");
+          int _indexOf_2 = allRowSensors.indexOf(sensor_2);
+          _builder.append(_indexOf_2, "    ");
+          _builder.append(" = Sensor(\"");
+          EObject _eContainer_3 = sensor_2.eContainer().eContainer();
+          String _name_5 = ((Greenhouse) _eContainer_3).getName();
+          _builder.append(_name_5, "    ");
+          _builder.append("/");
+          EObject _eContainer_4 = sensor_2.eContainer();
+          String _name_6 = ((Row) _eContainer_4).getName();
+          _builder.append(_name_6, "    ");
+          _builder.append("/");
+          String _name_7 = sensor_2.getName();
+          _builder.append(_name_7, "    ");
+          _builder.append("\",[");
+          {
+            EList<State> _states_2 = sensor_2.getStates();
+            for(final State state_2 : _states_2) {
+              _builder.append("{\"");
+              _builder.append(state_2, "    ");
+              _builder.append("\":");
+              {
+                for(final RowRuleSet rule : allRowRuleset) {
+                  {
+                    if ((Objects.equal(rule.getSensor().getName(), sensor_2.getName()) && Objects.equal(rule.getState().getName(), state_2.getName()))) {
+                      Trigger _trigger = rule.getTrigger();
+                      _builder.append(_trigger, "    ");
+                    }
+                  }
+                }
+              }
+              _builder.append("},");
+            }
+          }
+          _builder.append("],0,");
+          {
+            for(final RowRuleSet rule_1 : allRowRuleset) {
+              {
+                String _name_8 = rule_1.getSensor().getName();
+                String _name_9 = sensor_2.getName();
+                boolean _equals = Objects.equal(_name_8, _name_9);
+                if (_equals) {
+                  _builder.append("\"");
+                  EObject _eContainer_5 = sensor_2.eContainer().eContainer();
+                  String _name_10 = ((Greenhouse) _eContainer_5).getName();
+                  _builder.append(_name_10, "    ");
+                  _builder.append("/");
+                  EObject _eContainer_6 = sensor_2.eContainer();
+                  String _name_11 = ((Row) _eContainer_6).getName();
+                  _builder.append(_name_11, "    ");
+                  _builder.append("/");
+                  String _name_12 = rule_1.getActuator().getName();
+                  _builder.append(_name_12, "    ");
+                  _builder.append("\"");
+                }
+              }
+            }
+          }
+          _builder.append(")");
+          _builder.newLineIfNotEmpty();
+          _builder.append("    ");
+          _builder.append("sensors.append(sr");
+          int _indexOf_3 = allRowSensors.indexOf(sensor_2);
+          _builder.append(_indexOf_3, "    ");
+          _builder.append(")");
+          _builder.newLineIfNotEmpty();
+          _builder.append("    ");
+          _builder.append("subscribe(client, sr");
+          int _indexOf_4 = allRowSensors.indexOf(sensor_2);
+          _builder.append(_indexOf_4, "    ");
+          _builder.append(")");
+          _builder.newLineIfNotEmpty();
+        }
+      }
+      {
+        for(final GreenhouseSensor sensor_3 : allGreenhouseSensors) {
+          _builder.append("    ");
+          _builder.append("sg");
+          int _indexOf_5 = allGreenhouseSensors.indexOf(sensor_3);
+          _builder.append(_indexOf_5, "    ");
+          _builder.append(" = Sensor(\"");
+          EObject _eContainer_7 = sensor_3.eContainer().eContainer();
+          String _name_13 = ((Greenhouse) _eContainer_7).getName();
+          _builder.append(_name_13, "    ");
+          _builder.append("/");
+          String _name_14 = sensor_3.getName();
+          _builder.append(_name_14, "    ");
+          _builder.append("\",[");
+          {
+            EList<State> _states_3 = sensor_3.getStates();
+            for(final State state_3 : _states_3) {
+              _builder.append("{\"");
+              _builder.append(state_3, "    ");
+              _builder.append("\":");
+              {
+                for(final GreenhouseRuleSet rule_2 : allGreenhouseRuleset) {
+                  {
+                    if ((Objects.equal(rule_2.getSensor().getName(), sensor_3.getName()) && Objects.equal(rule_2.getState().getName(), state_3.getName()))) {
+                      Action _action = rule_2.getAction();
+                      _builder.append(_action, "    ");
+                    }
+                  }
+                }
+              }
+              _builder.append("},");
+            }
+          }
+          _builder.append("],0,");
+          {
+            for(final GreenhouseRuleSet rule_3 : allGreenhouseRuleset) {
+              {
+                String _name_15 = rule_3.getSensor().getName();
+                String _name_16 = sensor_3.getName();
+                boolean _equals_1 = Objects.equal(_name_15, _name_16);
+                if (_equals_1) {
+                  _builder.append("\"");
+                  EObject _eContainer_8 = sensor_3.eContainer().eContainer();
+                  String _name_17 = ((Greenhouse) _eContainer_8).getName();
+                  _builder.append(_name_17, "    ");
+                  _builder.append("/");
+                  String _name_18 = rule_3.getActuator().getName();
+                  _builder.append(_name_18, "    ");
+                  _builder.append("\"");
+                }
+              }
+            }
+          }
+          _builder.append(")");
+          _builder.newLineIfNotEmpty();
+          _builder.append("    ");
+          _builder.append("sensors.append(sg");
+          int _indexOf_6 = allGreenhouseSensors.indexOf(sensor_3);
+          _builder.append(_indexOf_6, "    ");
+          _builder.append(")");
+          _builder.newLineIfNotEmpty();
+          _builder.append("    ");
+          _builder.append("subscribe(client, sg");
+          int _indexOf_7 = allGreenhouseSensors.indexOf(sensor_3);
+          _builder.append(_indexOf_7, "    ");
+          _builder.append(")");
+          _builder.newLineIfNotEmpty();
+        }
+      }
+      _builder.append("    ");
+      _builder.append("client.loop_forever()");
+      _builder.newLine();
+      _builder.newLine();
+      _builder.append("if __name__ == \'__main__\':");
+      _builder.newLine();
+      _builder.append("    ");
+      _builder.append("run()");
+      _builder.newLine();
+      _xblockexpression = _builder;
+    }
+    return _xblockexpression;
   }
   
   public CharSequence compilePeripheral(final Model model) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("from paho.mqtt import client as mqtt_client");
     _builder.newLine();
+    _builder.append("class Sensor:");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("currentState = \"\"");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("def __init__(self, name, states, variable, actuator):");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("self.name = name");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("self.states = states");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("self.variable = variable");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("self.actuator = actuator");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("def updateSensor(self, variable, client):");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("self.variable = variable");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("ruleCheck(variable, self, client, self.states)");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("def updateSensorState(self, state, client):");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("theKey = next(iter(state))");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("self.currentState = theKey");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("publish(client, self.actuator, state.get(self.currentState))");
+    _builder.newLine();
     _builder.newLine();
     _builder.append("broker = \'localhost\'");
     _builder.newLine();
@@ -247,7 +535,7 @@ public class GreenhouseGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("topic3 = \"co2\"");
     _builder.newLine();
-    _builder.append("pubTopic = \"actuators\"");
+    _builder.append("topic4 = \"moisture\"");
     _builder.newLine();
     _builder.append("client_id = \'python-mqtt-rulechecker\'");
     _builder.newLine();
@@ -255,6 +543,9 @@ public class GreenhouseGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("password = \'bendevictor\'");
     _builder.newLine();
+    _builder.append("manual = 0");
+    _builder.newLine();
+    _builder.append("sensors = []");
     _builder.newLine();
     _builder.append("def connect_mqtt() -> mqtt_client:");
     _builder.newLine();
@@ -290,7 +581,8 @@ public class GreenhouseGenerator extends AbstractGenerator {
     _builder.append("return client");
     _builder.newLine();
     _builder.newLine();
-    _builder.append("def subscribe(client: mqtt_client, topic):");
+    _builder.newLine();
+    _builder.append("def subscribe(client: mqtt_client, sensor):");
     _builder.newLine();
     _builder.append("    ");
     _builder.append("def on_message(client, userdata, msg):");
@@ -299,92 +591,108 @@ public class GreenhouseGenerator extends AbstractGenerator {
     _builder.append("print(f\"Received `{msg.payload.decode()}` from `{msg.topic}` topic\")");
     _builder.newLine();
     _builder.append("        ");
-    _builder.append("ruleCheck(msg.payload.decode(), msg.topic, client)");
+    _builder.append("for s in sensors:");
     _builder.newLine();
+    _builder.append("            ");
+    _builder.append("if s.name == msg.topic:");
+    _builder.newLine();
+    _builder.append("                ");
+    _builder.append("s.updateSensor(msg.payload.decode(), client)");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("#ruleCheck(msg.payload.decode(), msg.topic, client)");
     _builder.newLine();
     _builder.append("    ");
-    _builder.append("client.subscribe(topic)");
+    _builder.append("client.subscribe(sensor.name)");
     _builder.newLine();
     _builder.append("    ");
     _builder.append("client.on_message = on_message");
     _builder.newLine();
     _builder.newLine();
-    _builder.append("def publish(client, message):");
+    _builder.append("def publish(client,topic, message):");
     _builder.newLine();
     _builder.append("    ");
     _builder.append("msg = message");
     _builder.newLine();
     _builder.append("    ");
-    _builder.append("result = client.publish(pubTopic, msg)");
+    _builder.append("if manual == 0:");
     _builder.newLine();
-    _builder.append("    ");
+    _builder.append("        ");
+    _builder.append("result = client.publish(topic, msg)");
+    _builder.newLine();
+    _builder.append("        ");
     _builder.append("# result: [0, 1]");
     _builder.newLine();
-    _builder.append("    ");
+    _builder.append("        ");
     _builder.append("status = result[0]");
     _builder.newLine();
-    _builder.append("    ");
+    _builder.append("        ");
     _builder.append("if status == 0:");
     _builder.newLine();
-    _builder.append("        ");
-    _builder.append("print(f\"Send `{msg}` to topic `{pubTopic}`\")");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("else:");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("print(f\"Failed to send message to topic {pubTopic}\")");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.newLine();
-    _builder.append("def ruleCheck(value, topic, client):");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("if topic == \"temp\":");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("if value > 25:");
-    _builder.newLine();
     _builder.append("            ");
-    _builder.append("publish(client, [\"fan\", \"open\"])");
+    _builder.append("print(f\"Send `{msg}` to topic `{topic}`\")");
     _builder.newLine();
     _builder.append("        ");
     _builder.append("else:");
     _builder.newLine();
     _builder.append("            ");
-    _builder.append("publish(client, [\"fan\", \"close\"])");
-    _builder.newLine();
-    _builder.append("        ");
+    _builder.append("print(f\"Failed to send message to topic {topic}\")");
     _builder.newLine();
     _builder.append("    ");
-    _builder.append("elif topic == \"humidity\":");
     _builder.newLine();
-    _builder.append("        ");
-    _builder.append("if value > 30:");
     _builder.newLine();
-    _builder.append("            ");
-    _builder.append("publish(client, [\"dehumidifyer\", \"open\"])");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("else:");
-    _builder.newLine();
-    _builder.append("            ");
-    _builder.append("publish(client, [\"dehumidifyer\", \"close\"])");
+    _builder.append("def ruleCheck(value, sensor, client,states):");
     _builder.newLine();
     _builder.append("    ");
-    _builder.append("elif topic == \"co2\":");
+    _builder.append("if sensor.name == \"manual\":");
     _builder.newLine();
     _builder.append("        ");
-    _builder.append("if value > 1200:");
-    _builder.newLine();
-    _builder.append("            ");
-    _builder.append("publish(client, [\"window\", \"open\"])");
+    _builder.append("global manual ");
     _builder.newLine();
     _builder.append("        ");
-    _builder.append("else:");
+    _builder.append("manual = int(value)");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("if sensor.name == \"greenify/tomatoes/moistSensor\":");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("if float(value)  > 1000:");
     _builder.newLine();
     _builder.append("            ");
-    _builder.append("publish(client, [\"window\", \"close\"])");
+    _builder.append("sensor.updateSensorState(states[0],client)");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("elif float(value) > 500 and float(value) < 1000:");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("sensor.updateSensorState(states[1],client)");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("elif float(value)  < 500:");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("sensor.updateSensorState(states[2],client)");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("if sensor.name == \"greenify/tempSensor\":");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("if float(value)  > 40:");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("sensor.updateSensorState(states[0],client)");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("elif float(value) > 25 and float(value) < 40:");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("sensor.updateSensorState(states[1],client)");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("elif float(value)  < 25:");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("sensor.updateSensorState(states[2],client)");
     _builder.newLine();
     _builder.append("    ");
     _builder.append("return");
@@ -396,19 +704,34 @@ public class GreenhouseGenerator extends AbstractGenerator {
     _builder.append("client = connect_mqtt()");
     _builder.newLine();
     _builder.append("    ");
-    _builder.append("subscribe(client, topic1)");
+    _builder.append("manualState = Sensor(\"manual\", None, 0, None)");
     _builder.newLine();
     _builder.append("    ");
-    _builder.append("subscribe(client, topic2)");
+    _builder.append("t1 = Sensor(\"greenify/tomatoes/moistSensor\", [{\"moist\":\"stop\"}, {\"optimal\":\"stop\"}, {\"dry\":\"start\"}], 0, \"greenify/tomatoes/pump\")");
     _builder.newLine();
     _builder.append("    ");
-    _builder.append("subscribe(client, topic3)");
+    _builder.append("t2 = Sensor(\"greenify/tempSensor\", [{\"hot\":\"max\"}, {\"optimal\":\"min\"}, {\"cold\":\"stop\"}], 0, \"greenify/fan\")");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("sensors.append(manualState)");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("sensors.append(t1)");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("sensors.append(t2)");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("subscribe(client, t1)");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("subscribe(client, t2)");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("subscribe(client, manualState)");
     _builder.newLine();
     _builder.append("    ");
     _builder.append("client.loop_forever()");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.newLine();
     _builder.newLine();
     _builder.newLine();
     _builder.append("if __name__ == \'__main__\':");
@@ -420,17 +743,64 @@ public class GreenhouseGenerator extends AbstractGenerator {
   }
   
   public String getTopics(final Model model) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field controller is undefined for the type RowSensor"
-      + "\nThe method or field controller is undefined"
-      + "\nThe method or field controller is undefined for the type GreenhouseSensor"
-      + "\nThe method or field controller is undefined"
-      + "\nname cannot be resolved"
-      + "\n== cannot be resolved"
-      + "\nname cannot be resolved"
-      + "\nname cannot be resolved"
-      + "\n== cannot be resolved"
-      + "\nname cannot be resolved");
+    final EObject root = EcoreUtil2.getRootContainer(model);
+    final Function1<RowSensor, Boolean> _function = (RowSensor it) -> {
+      String _name = it.getController().getName();
+      String _name_1 = it.getController().getName();
+      return Boolean.valueOf(Objects.equal(_name, _name_1));
+    };
+    final Iterable<RowSensor> allSensors = IterableExtensions.<RowSensor>filter(EcoreUtil2.<RowSensor>getAllContentsOfType(root, RowSensor.class), _function);
+    final Function1<GreenhouseSensor, Boolean> _function_1 = (GreenhouseSensor it) -> {
+      String _name = it.getController().getName();
+      String _name_1 = it.getController().getName();
+      return Boolean.valueOf(Objects.equal(_name, _name_1));
+    };
+    final Iterable<GreenhouseSensor> allGlobalSensors = IterableExtensions.<GreenhouseSensor>filter(EcoreUtil2.<GreenhouseSensor>getAllContentsOfType(root, GreenhouseSensor.class), _function_1);
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.newLine();
+    {
+      boolean _isEmpty = IterableExtensions.isEmpty(allSensors);
+      boolean _not = (!_isEmpty);
+      if (_not) {
+        {
+          for(final RowSensor sensor : allSensors) {
+            _builder.append("chan ");
+            EObject _eContainer = sensor.eContainer().eContainer();
+            String _name = ((Greenhouse) _eContainer).getName();
+            _builder.append(_name);
+            _builder.append("_");
+            EObject _eContainer_1 = sensor.eContainer();
+            String _name_1 = ((Row) _eContainer_1).getName();
+            _builder.append(_name_1);
+            _builder.append("_");
+            String _name_2 = sensor.getName();
+            _builder.append(_name_2);
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      }
+    }
+    {
+      boolean _isEmpty_1 = IterableExtensions.isEmpty(allGlobalSensors);
+      boolean _not_1 = (!_isEmpty_1);
+      if (_not_1) {
+        {
+          for(final GreenhouseSensor sensor_1 : allGlobalSensors) {
+            _builder.append("chan ");
+            EObject _eContainer_2 = sensor_1.eContainer();
+            String _name_3 = ((Greenhouse) _eContainer_2).getName();
+            _builder.append(_name_3);
+            _builder.append("_");
+            String _name_4 = sensor_1.getName();
+            _builder.append(_name_4);
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      }
+    }
+    return _builder.toString();
   }
   
   public String getAllActuators(final Model model) {

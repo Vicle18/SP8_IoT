@@ -5,6 +5,7 @@ package dsl.scoping;
 
 import com.google.common.base.Objects;
 import dsl.greenhouse.Action;
+import dsl.greenhouse.Controller;
 import dsl.greenhouse.GreenhouseActuator;
 import dsl.greenhouse.GreenhouseRuleSet;
 import dsl.greenhouse.GreenhouseSensor;
@@ -13,6 +14,7 @@ import dsl.greenhouse.RowRuleSet;
 import dsl.greenhouse.RowSensor;
 import dsl.greenhouse.SettingAction;
 import dsl.greenhouse.SettingActuator;
+import dsl.greenhouse.SettingSensor;
 import dsl.greenhouse.SettingValue;
 import dsl.greenhouse.State;
 import dsl.greenhouse.Trigger;
@@ -46,23 +48,50 @@ public class GreenhouseScopeProvider extends AbstractGreenhouseScopeProvider {
   }
   
   protected IScope _scopeForEObject(final RowActuator context, final EReference reference) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field Controller is undefined");
+    IScope _xblockexpression = null;
+    {
+      final EObject root = EcoreUtil2.getRootContainer(context);
+      final List<Controller> allControllers = EcoreUtil2.<Controller>getAllContentsOfType(root, Controller.class);
+      final List<SettingActuator> allActuators = EcoreUtil2.<SettingActuator>getAllContentsOfType(root, SettingActuator.class);
+      _xblockexpression = Scopes.scopeFor(Collections.<EObject>unmodifiableList(CollectionLiterals.<EObject>newArrayList(context)), Scopes.scopeFor(allActuators, Scopes.scopeFor(allControllers)));
+    }
+    return _xblockexpression;
   }
   
   protected IScope _scopeForEObject(final GreenhouseActuator context, final EReference reference) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field Controller is undefined");
+    IScope _xblockexpression = null;
+    {
+      final EObject root = EcoreUtil2.getRootContainer(context);
+      final List<SettingActuator> allActuators = EcoreUtil2.<SettingActuator>getAllContentsOfType(root, SettingActuator.class);
+      final List<Controller> allControllers = EcoreUtil2.<Controller>getAllContentsOfType(root, Controller.class);
+      System.out.println(allActuators);
+      _xblockexpression = Scopes.scopeFor(Collections.<EObject>unmodifiableList(CollectionLiterals.<EObject>newArrayList(context)), Scopes.scopeFor(allActuators, Scopes.scopeFor(allControllers)));
+    }
+    return _xblockexpression;
   }
   
   protected IScope _scopeForEObject(final RowSensor context, final EReference reference) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field Controller is undefined");
+    IScope _xblockexpression = null;
+    {
+      final EObject root = EcoreUtil2.getRootContainer(context);
+      final List<SettingSensor> allSensors = EcoreUtil2.<SettingSensor>getAllContentsOfType(root, SettingSensor.class);
+      final List<Controller> allControllers = EcoreUtil2.<Controller>getAllContentsOfType(root, Controller.class);
+      System.out.println(allSensors);
+      _xblockexpression = Scopes.scopeFor(Collections.<EObject>unmodifiableList(CollectionLiterals.<EObject>newArrayList(context)), Scopes.scopeFor(allSensors, Scopes.scopeFor(allControllers)));
+    }
+    return _xblockexpression;
   }
   
   protected IScope _scopeForEObject(final GreenhouseSensor context, final EReference reference) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field Controller is undefined");
+    IScope _xblockexpression = null;
+    {
+      final EObject root = EcoreUtil2.getRootContainer(context);
+      final List<SettingSensor> allSensors = EcoreUtil2.<SettingSensor>getAllContentsOfType(root, SettingSensor.class);
+      final List<Controller> allControllers = EcoreUtil2.<Controller>getAllContentsOfType(root, Controller.class);
+      System.out.println(allSensors);
+      _xblockexpression = Scopes.scopeFor(Collections.<EObject>unmodifiableList(CollectionLiterals.<EObject>newArrayList(context)), Scopes.scopeFor(allSensors, Scopes.scopeFor(allControllers)));
+    }
+    return _xblockexpression;
   }
   
   protected IScope _scopeForEObject(final Action context, final EReference reference) {
