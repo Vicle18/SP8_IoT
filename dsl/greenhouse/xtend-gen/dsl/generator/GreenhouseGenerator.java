@@ -3,14 +3,11 @@
  */
 package dsl.generator;
 
-import com.google.common.base.Objects;
 import com.google.common.collect.Iterators;
 import dsl.greenhouse.Action;
-import dsl.greenhouse.Greenhouse;
 import dsl.greenhouse.GreenhouseActuator;
 import dsl.greenhouse.GreenhouseSensor;
 import dsl.greenhouse.Model;
-import dsl.greenhouse.Row;
 import dsl.greenhouse.RowActuator;
 import dsl.greenhouse.RowSensor;
 import dsl.greenhouse.State;
@@ -23,8 +20,6 @@ import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
-import org.eclipse.xtext.xbase.lib.Functions.Function1;
-import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
 /**
  * Generates code from your model files on save.
@@ -425,64 +420,17 @@ public class GreenhouseGenerator extends AbstractGenerator {
   }
   
   public String getTopics(final Model model) {
-    final EObject root = EcoreUtil2.getRootContainer(model);
-    final Function1<RowSensor, Boolean> _function = (RowSensor it) -> {
-      String _name = it.getController().getName();
-      String _name_1 = it.getController().getName();
-      return Boolean.valueOf(Objects.equal(_name, _name_1));
-    };
-    final Iterable<RowSensor> allSensors = IterableExtensions.<RowSensor>filter(EcoreUtil2.<RowSensor>getAllContentsOfType(root, RowSensor.class), _function);
-    final Function1<GreenhouseSensor, Boolean> _function_1 = (GreenhouseSensor it) -> {
-      String _name = it.getController().getName();
-      String _name_1 = it.getController().getName();
-      return Boolean.valueOf(Objects.equal(_name, _name_1));
-    };
-    final Iterable<GreenhouseSensor> allGlobalSensors = IterableExtensions.<GreenhouseSensor>filter(EcoreUtil2.<GreenhouseSensor>getAllContentsOfType(root, GreenhouseSensor.class), _function_1);
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.newLine();
-    {
-      boolean _isEmpty = IterableExtensions.isEmpty(allSensors);
-      boolean _not = (!_isEmpty);
-      if (_not) {
-        {
-          for(final RowSensor sensor : allSensors) {
-            _builder.append("chan ");
-            EObject _eContainer = sensor.eContainer().eContainer();
-            String _name = ((Greenhouse) _eContainer).getName();
-            _builder.append(_name);
-            _builder.append("_");
-            EObject _eContainer_1 = sensor.eContainer();
-            String _name_1 = ((Row) _eContainer_1).getName();
-            _builder.append(_name_1);
-            _builder.append("_");
-            String _name_2 = sensor.getName();
-            _builder.append(_name_2);
-            _builder.append(";");
-            _builder.newLineIfNotEmpty();
-          }
-        }
-      }
-    }
-    {
-      boolean _isEmpty_1 = IterableExtensions.isEmpty(allGlobalSensors);
-      boolean _not_1 = (!_isEmpty_1);
-      if (_not_1) {
-        {
-          for(final GreenhouseSensor sensor_1 : allGlobalSensors) {
-            _builder.append("chan ");
-            EObject _eContainer_2 = sensor_1.eContainer();
-            String _name_3 = ((Greenhouse) _eContainer_2).getName();
-            _builder.append(_name_3);
-            _builder.append("_");
-            String _name_4 = sensor_1.getName();
-            _builder.append(_name_4);
-            _builder.append(";");
-            _builder.newLineIfNotEmpty();
-          }
-        }
-      }
-    }
-    return _builder.toString();
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field controller is undefined for the type RowSensor"
+      + "\nThe method or field controller is undefined"
+      + "\nThe method or field controller is undefined for the type GreenhouseSensor"
+      + "\nThe method or field controller is undefined"
+      + "\nname cannot be resolved"
+      + "\n== cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\n== cannot be resolved"
+      + "\nname cannot be resolved");
   }
   
   public String getAllActuators(final Model model) {

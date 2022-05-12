@@ -28,25 +28,42 @@ class GreenhouseGenerator extends AbstractGenerator {
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 
 		val model = resource.allContents.filter(Model).next
-		fsa.generateFile('controller/' + model.name + ".java", model.compileController)
+		fsa.generateFile('controller/' + model.name + ".py", model.compileController)
 		fsa.generateFile('peripheral/' + model.name + ".java", model.compilePeripheral)
 		fsa.generateFile('verification/' + model.name + ".xta", model.compileVerification)
 		
 	}
 	
-	def compileController(Model model)'''
+	def compileController(Model model){
+	val root = EcoreUtil2.getRootContainer(model);
+    val allRowSensors = EcoreUtil2.getAllContentsOfType(root, RowSensor);
+    val allGreenhouseSensors = EcoreUtil2.getAllContentsOfType(root, GreenhouseSensor)
+    val allRowActuators = EcoreUtil2.getAllContentsOfType(root, RowActuator);
+    val allGreenhouseActuators = EcoreUtil2.getAllContentsOfType(root, GreenhouseActuator)
+    '''
 	from paho.mqtt import client as mqtt_client
+	class Sensor:
+	    currentState = ""
+	    def __init__(self, name, states, variable, actuator):
+	        self.name = name
+	        self.states = states
+	        self.variable = variable
+	        self.actuator = actuator
+	    def updateSensor(self, variable, client):
+	        self.variable = variable
+	        ruleCheck(variable, self, client, self.states)
+	    def updateSensorState(self, state, client):
+	        theKey = next(iter(state))
+	        self.currentState = theKey
+	        publish(client, self.actuator, state.get(self.currentState))
 	
 	broker = 'localhost'
 	port = 1883
-	topic1 = "temp"
-	topic2 = "humidity"
-	topic3 = "co2"
-	pubTopic = "actuators"
-	client_id = 'python-mqtt-rulechecker'
+	client_id = 'python-mqtt-controller'
 	username = 'my_user'
 	password = 'bendevictor'
-	
+	manual = 0
+	sensors = []
 	def connect_mqtt() -> mqtt_client:
 	    def on_connect(client, userdata, flags, rc):
 	        if rc == 0:
@@ -60,71 +77,100 @@ class GreenhouseGenerator extends AbstractGenerator {
 	    client.connect(broker, port)
 	    return client
 	
-	def subscribe(client: mqtt_client, topic):
+	
+	def subscribe(client: mqtt_client, sensor):
 	    def on_message(client, userdata, msg):
 	        print(f"Received `{msg.payload.decode()}` from `{msg.topic}` topic")
-	        ruleCheck(msg.payload.decode(), msg.topic, client)
-	
-	    client.subscribe(topic)
+	        for s in sensors:
+	            if s.name == msg.topic:
+	                s.updateSensor(msg.payload.decode(), client)
+	        #ruleCheck(msg.payload.decode(), msg.topic, client)
+	    client.subscribe(sensor.name)
 	    client.on_message = on_message
 	
-	def publish(client, message):
+	def publish(client,topic, message):
 	    msg = message
-	    result = client.publish(pubTopic, msg)
-	    # result: [0, 1]
-	    status = result[0]
-	    if status == 0:
-	        print(f"Send `{msg}` to topic `{pubTopic}`")
-	    else:
-	        print(f"Failed to send message to topic {pubTopic}")
-	        
-	def ruleCheck(value, topic, client):
-	    if topic == "temp":
-	        if value > 25:
-	            publish(client, ["fan", "open"])
+	    if manual == 0:
+	        result = client.publish(topic, msg)
+	        # result: [0, 1]
+	        status = result[0]
+	        if status == 0:
+	            print(f"Send `{msg}` to topic `{topic}`")
 	        else:
-	            publish(client, ["fan", "close"])
-	        
-	    elif topic == "humidity":
-	        if value > 30:
-	            publish(client, ["dehumidifyer", "open"])
-	        else:
-	            publish(client, ["dehumidifyer", "close"])
-	    elif topic == "co2":
-	        if value > 1200:
-	            publish(client, ["window", "open"])
-	        else:
-	            publish(client, ["window", "close"])
+	            print(f"Failed to send message to topic {topic}")
+	    
+	
+	def ruleCheck(value, sensor, client,states):
+	    if sensor.name == "manual":
+	        global manual 
+	        manual = int(value)
+	   «FOR sensor : allRowSensors»
+	   	if sensor.name == «(sensor.eContainer.eContainer as Greenhouse).name»/«(sensor.eContainer as Row).name»/«sensor.name»:
+	   		«FOR state : sensor.states»
+	   		if float(value) «state.op» «state.threshold»:
+	    		sensor.updateSensorState(states[«sensor.states.indexOf(state)»],client) \n
+	    	«ENDFOR»
+	   «ENDFOR»
+	   «FOR sensor : allGreenhouseSensors»
+	    if sensor.name == «(sensor.eContainer.eContainer as Greenhouse).name»/«sensor.name»:
+	    	«FOR state : sensor.states»
+	    	if float(value) «state.op» «state.threshold»:
+	    		sensor.updateSensorState(states[«sensor.states.indexOf(state)»],client) \n
+	    	«ENDFOR»
+	   «ENDFOR»
 	    return
 	
 	def run():
 	    client = connect_mqtt()
-	    subscribe(client, topic1)
-	    subscribe(client, topic2)
-	    subscribe(client, topic3)
+	    manualState = Sensor("manual", None, 0, None)
+	    «FOR sensor : allRowSensors»
+	    s«allRowSensors.indexOf(sensor)» = Sensor("«(sensor.eContainer.eContainer as Greenhouse).name»/«(sensor.eContainer as Row).name»/«sensor.name»",)
+	    «ENDFOR»
+	    t1 = Sensor("greenify/tomatoes/moistSensor", [{"moist":"stop"}, {"optimal":"stop"}, {"dry":"start"}], 0, "greenify/tomatoes/pump")
+	    t2 = Sensor("greenify/tempSensor", [{"hot":"max"}, {"optimal":"min"}, {"cold":"stop"}], 0, "greenify/fan")
+	    sensors.append(manualState)
+	    sensors.append(t1)
+	    sensors.append(t2)
+	    subscribe(client, t1)
+	    subscribe(client, t2)
+	    subscribe(client, manualState)
 	    client.loop_forever()
-	    
-	
 	
 	if __name__ == '__main__':
 	    run()
 	'''
+	}
 	
 	
 	
 	def compilePeripheral(Model model)'''
 	from paho.mqtt import client as mqtt_client
+	class Sensor:
+	    currentState = ""
+	    def __init__(self, name, states, variable, actuator):
+	        self.name = name
+	        self.states = states
+	        self.variable = variable
+	        self.actuator = actuator
+	    def updateSensor(self, variable, client):
+	        self.variable = variable
+	        ruleCheck(variable, self, client, self.states)
+	    def updateSensorState(self, state, client):
+	        theKey = next(iter(state))
+	        self.currentState = theKey
+	        publish(client, self.actuator, state.get(self.currentState))
 	
 	broker = 'localhost'
 	port = 1883
 	topic1 = "temp"
 	topic2 = "humidity"
 	topic3 = "co2"
-	pubTopic = "actuators"
+	topic4 = "moisture"
 	client_id = 'python-mqtt-rulechecker'
 	username = 'my_user'
 	password = 'bendevictor'
-	
+	manual = 0
+	sensors = []
 	def connect_mqtt() -> mqtt_client:
 	    def on_connect(client, userdata, flags, rc):
 	        if rc == 0:
@@ -138,51 +184,61 @@ class GreenhouseGenerator extends AbstractGenerator {
 	    client.connect(broker, port)
 	    return client
 	
-	def subscribe(client: mqtt_client, topic):
+	
+	def subscribe(client: mqtt_client, sensor):
 	    def on_message(client, userdata, msg):
 	        print(f"Received `{msg.payload.decode()}` from `{msg.topic}` topic")
-	        ruleCheck(msg.payload.decode(), msg.topic, client)
-	
-	    client.subscribe(topic)
+	        for s in sensors:
+	            if s.name == msg.topic:
+	                s.updateSensor(msg.payload.decode(), client)
+	        #ruleCheck(msg.payload.decode(), msg.topic, client)
+	    client.subscribe(sensor.name)
 	    client.on_message = on_message
 	
-	def publish(client, message):
+	def publish(client,topic, message):
 	    msg = message
-	    result = client.publish(pubTopic, msg)
-	    # result: [0, 1]
-	    status = result[0]
-	    if status == 0:
-	        print(f"Send `{msg}` to topic `{pubTopic}`")
-	    else:
-	        print(f"Failed to send message to topic {pubTopic}")
-	        
-	def ruleCheck(value, topic, client):
-	    if topic == "temp":
-	        if value > 25:
-	            publish(client, ["fan", "open"])
+	    if manual == 0:
+	        result = client.publish(topic, msg)
+	        # result: [0, 1]
+	        status = result[0]
+	        if status == 0:
+	            print(f"Send `{msg}` to topic `{topic}`")
 	        else:
-	            publish(client, ["fan", "close"])
-	        
-	    elif topic == "humidity":
-	        if value > 30:
-	            publish(client, ["dehumidifyer", "open"])
-	        else:
-	            publish(client, ["dehumidifyer", "close"])
-	    elif topic == "co2":
-	        if value > 1200:
-	            publish(client, ["window", "open"])
-	        else:
-	            publish(client, ["window", "close"])
+	            print(f"Failed to send message to topic {topic}")
+	    
+	
+	def ruleCheck(value, sensor, client,states):
+	    if sensor.name == "manual":
+	        global manual 
+	        manual = int(value)
+	    if sensor.name == "greenify/tomatoes/moistSensor":
+	        if float(value)  > 1000:
+	            sensor.updateSensorState(states[0],client)
+	        elif float(value) > 500 and float(value) < 1000:
+	            sensor.updateSensorState(states[1],client)
+	        elif float(value)  < 500:
+	            sensor.updateSensorState(states[2],client)
+	    if sensor.name == "greenify/tempSensor":
+	        if float(value)  > 40:
+	            sensor.updateSensorState(states[0],client)
+	        elif float(value) > 25 and float(value) < 40:
+	            sensor.updateSensorState(states[1],client)
+	        elif float(value)  < 25:
+	            sensor.updateSensorState(states[2],client)
 	    return
 	
 	def run():
 	    client = connect_mqtt()
-	    subscribe(client, topic1)
-	    subscribe(client, topic2)
-	    subscribe(client, topic3)
+	    manualState = Sensor("manual", None, 0, None)
+	    t1 = Sensor("greenify/tomatoes/moistSensor", [{"moist":"stop"}, {"optimal":"stop"}, {"dry":"start"}], 0, "greenify/tomatoes/pump")
+	    t2 = Sensor("greenify/tempSensor", [{"hot":"max"}, {"optimal":"min"}, {"cold":"stop"}], 0, "greenify/fan")
+	    sensors.append(manualState)
+	    sensors.append(t1)
+	    sensors.append(t2)
+	    subscribe(client, t1)
+	    subscribe(client, t2)
+	    subscribe(client, manualState)
 	    client.loop_forever()
-	    
-	
 	
 	if __name__ == '__main__':
 	    run()
@@ -319,11 +375,11 @@ class GreenhouseGenerator extends AbstractGenerator {
 	
 	
 	
-	def compileVerification(Model model)
+	def compileVerification(Model model){
 	'''
 	«model.getTopics»
 	«model.getAllActuators»
 	«model.getAllSensors»
 	«model.instantiateVerificationModels»
-	'''
+	'''}
 }
