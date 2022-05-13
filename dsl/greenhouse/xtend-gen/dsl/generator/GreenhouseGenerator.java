@@ -6,18 +6,23 @@ package dsl.generator;
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterators;
 import dsl.greenhouse.Action;
+import dsl.greenhouse.Div;
 import dsl.greenhouse.Expression;
 import dsl.greenhouse.Greenhouse;
 import dsl.greenhouse.GreenhouseActuator;
 import dsl.greenhouse.GreenhouseRuleSet;
 import dsl.greenhouse.GreenhouseSensor;
+import dsl.greenhouse.MathNumber;
+import dsl.greenhouse.Minus;
 import dsl.greenhouse.Model;
+import dsl.greenhouse.Mult;
+import dsl.greenhouse.Plus;
 import dsl.greenhouse.Row;
 import dsl.greenhouse.RowActuator;
 import dsl.greenhouse.RowRuleSet;
 import dsl.greenhouse.RowSensor;
 import dsl.greenhouse.State;
-import dsl.greenhouse.Trigger;
+import java.util.Arrays;
 import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -60,8 +65,6 @@ public class GreenhouseGenerator extends AbstractGenerator {
       final EObject root = EcoreUtil2.getRootContainer(model);
       final List<RowSensor> allRowSensors = EcoreUtil2.<RowSensor>getAllContentsOfType(root, RowSensor.class);
       final List<GreenhouseSensor> allGreenhouseSensors = EcoreUtil2.<GreenhouseSensor>getAllContentsOfType(root, GreenhouseSensor.class);
-      final List<RowActuator> allRowActuators = EcoreUtil2.<RowActuator>getAllContentsOfType(root, RowActuator.class);
-      final List<GreenhouseActuator> allGreenhouseActuators = EcoreUtil2.<GreenhouseActuator>getAllContentsOfType(root, GreenhouseActuator.class);
       final List<RowRuleSet> allRowRuleset = EcoreUtil2.<RowRuleSet>getAllContentsOfType(root, RowRuleSet.class);
       final List<GreenhouseRuleSet> allGreenhouseRuleset = EcoreUtil2.<GreenhouseRuleSet>getAllContentsOfType(root, GreenhouseRuleSet.class);
       StringConcatenation _builder = new StringConcatenation();
@@ -230,38 +233,40 @@ public class GreenhouseGenerator extends AbstractGenerator {
       _builder.newLine();
       {
         for(final RowSensor sensor : allRowSensors) {
-          _builder.append("   ");
-          _builder.append("if sensor.name == ");
+          _builder.append("\t");
+          _builder.append("if sensor.name == \"");
           EObject _eContainer = sensor.eContainer().eContainer();
           String _name = ((Greenhouse) _eContainer).getName();
-          _builder.append(_name, "   ");
+          _builder.append(_name, "\t");
           _builder.append("/");
           EObject _eContainer_1 = sensor.eContainer();
           String _name_1 = ((Row) _eContainer_1).getName();
-          _builder.append(_name_1, "   ");
+          _builder.append(_name_1, "\t");
           _builder.append("/");
           String _name_2 = sensor.getName();
-          _builder.append(_name_2, "   ");
-          _builder.append(":");
+          _builder.append(_name_2, "\t");
+          _builder.append("\":");
           _builder.newLineIfNotEmpty();
           {
             EList<State> _states = sensor.getStates();
             for(final State state : _states) {
-              _builder.append("   ");
+              _builder.append("\t");
               _builder.append("\t");
               _builder.append("if float(value) ");
               String _op = state.getOp();
-              _builder.append(_op, "   \t");
+              _builder.append(_op, "\t\t");
               _builder.append(" ");
-              Expression _threshold = state.getThreshold();
-              _builder.append(_threshold, "   \t");
+              String _computeExpression = GreenhouseGenerator.computeExpression(state.getThreshold());
+              _builder.append(_computeExpression, "\t\t");
               _builder.append(":");
               _builder.newLineIfNotEmpty();
-              _builder.append("\t    \t\t");
+              _builder.append("\t");
+              _builder.append("\t");
+              _builder.append("\t");
               _builder.append("sensor.updateSensorState(states[");
               int _indexOf = sensor.getStates().indexOf(state);
-              _builder.append(_indexOf, "\t    \t\t");
-              _builder.append("],client) \\n");
+              _builder.append(_indexOf, "\t\t\t");
+              _builder.append("],client)");
               _builder.newLineIfNotEmpty();
             }
           }
@@ -269,36 +274,36 @@ public class GreenhouseGenerator extends AbstractGenerator {
       }
       {
         for(final GreenhouseSensor sensor_1 : allGreenhouseSensors) {
-          _builder.append("   ");
-          _builder.append("if sensor.name == ");
-          EObject _eContainer_2 = sensor_1.eContainer().eContainer();
+          _builder.append("\t");
+          _builder.append("if sensor.name == \"");
+          EObject _eContainer_2 = sensor_1.eContainer();
           String _name_3 = ((Greenhouse) _eContainer_2).getName();
-          _builder.append(_name_3, "   ");
+          _builder.append(_name_3, "\t");
           _builder.append("/");
           String _name_4 = sensor_1.getName();
-          _builder.append(_name_4, "   ");
-          _builder.append(":");
+          _builder.append(_name_4, "\t");
+          _builder.append("\":");
           _builder.newLineIfNotEmpty();
           {
             EList<State> _states_1 = sensor_1.getStates();
             for(final State state_1 : _states_1) {
-              _builder.append("   ");
+              _builder.append("\t");
               _builder.append("\t");
               _builder.append("if float(value) ");
               String _op_1 = state_1.getOp();
-              _builder.append(_op_1, "   \t");
+              _builder.append(_op_1, "\t\t");
               _builder.append(" ");
-              Expression _threshold_1 = state_1.getThreshold();
-              _builder.append(_threshold_1, "   \t");
+              String _computeExpression_1 = GreenhouseGenerator.computeExpression(state_1.getThreshold());
+              _builder.append(_computeExpression_1, "\t\t");
               _builder.append(":");
               _builder.newLineIfNotEmpty();
-              _builder.append("   ");
+              _builder.append("\t");
               _builder.append("\t");
               _builder.append("\t");
               _builder.append("sensor.updateSensorState(states[");
               int _indexOf_1 = sensor_1.getStates().indexOf(state_1);
-              _builder.append(_indexOf_1, "   \t\t");
-              _builder.append("],client) \\n");
+              _builder.append(_indexOf_1, "\t\t\t");
+              _builder.append("],client)");
               _builder.newLineIfNotEmpty();
             }
           }
@@ -341,46 +346,34 @@ public class GreenhouseGenerator extends AbstractGenerator {
             EList<State> _states_2 = sensor_2.getStates();
             for(final State state_2 : _states_2) {
               _builder.append("{\"");
-              _builder.append(state_2, "    ");
-              _builder.append("\":");
+              String _name_8 = state_2.getName();
+              _builder.append(_name_8, "    ");
+              _builder.append("\":\"");
               {
                 for(final RowRuleSet rule : allRowRuleset) {
                   {
                     if ((Objects.equal(rule.getSensor().getName(), sensor_2.getName()) && Objects.equal(rule.getState().getName(), state_2.getName()))) {
-                      Trigger _trigger = rule.getTrigger();
-                      _builder.append(_trigger, "    ");
+                      String _name_9 = rule.getTrigger().getName();
+                      _builder.append(_name_9, "    ");
                     }
                   }
                 }
               }
-              _builder.append("},");
+              _builder.append("\"},");
             }
           }
-          _builder.append("],0,");
-          {
-            for(final RowRuleSet rule_1 : allRowRuleset) {
-              {
-                String _name_8 = rule_1.getSensor().getName();
-                String _name_9 = sensor_2.getName();
-                boolean _equals = Objects.equal(_name_8, _name_9);
-                if (_equals) {
-                  _builder.append("\"");
-                  EObject _eContainer_5 = sensor_2.eContainer().eContainer();
-                  String _name_10 = ((Greenhouse) _eContainer_5).getName();
-                  _builder.append(_name_10, "    ");
-                  _builder.append("/");
-                  EObject _eContainer_6 = sensor_2.eContainer();
-                  String _name_11 = ((Row) _eContainer_6).getName();
-                  _builder.append(_name_11, "    ");
-                  _builder.append("/");
-                  String _name_12 = rule_1.getActuator().getName();
-                  _builder.append(_name_12, "    ");
-                  _builder.append("\"");
-                }
-              }
-            }
-          }
-          _builder.append(")");
+          _builder.append("],0,\"");
+          EObject _eContainer_5 = sensor_2.eContainer().eContainer();
+          String _name_10 = ((Greenhouse) _eContainer_5).getName();
+          _builder.append(_name_10, "    ");
+          _builder.append("/");
+          EObject _eContainer_6 = sensor_2.eContainer();
+          String _name_11 = ((Row) _eContainer_6).getName();
+          _builder.append(_name_11, "    ");
+          _builder.append("/");
+          String _rowActuatorName = this.getRowActuatorName(model, sensor_2);
+          _builder.append(_rowActuatorName, "    ");
+          _builder.append("\")");
           _builder.newLineIfNotEmpty();
           _builder.append("    ");
           _builder.append("sensors.append(sr");
@@ -403,53 +396,44 @@ public class GreenhouseGenerator extends AbstractGenerator {
           int _indexOf_5 = allGreenhouseSensors.indexOf(sensor_3);
           _builder.append(_indexOf_5, "    ");
           _builder.append(" = Sensor(\"");
-          EObject _eContainer_7 = sensor_3.eContainer().eContainer();
-          String _name_13 = ((Greenhouse) _eContainer_7).getName();
-          _builder.append(_name_13, "    ");
+          EObject _eContainer_7 = sensor_3.eContainer();
+          String _name_12 = ((Greenhouse) _eContainer_7).getName();
+          _builder.append(_name_12, "    ");
           _builder.append("/");
-          String _name_14 = sensor_3.getName();
-          _builder.append(_name_14, "    ");
+          String _name_13 = sensor_3.getName();
+          _builder.append(_name_13, "    ");
           _builder.append("\",[");
           {
             EList<State> _states_3 = sensor_3.getStates();
             for(final State state_3 : _states_3) {
               _builder.append("{\"");
-              _builder.append(state_3, "    ");
-              _builder.append("\":");
+              String _name_14 = state_3.getName();
+              _builder.append(_name_14, "    ");
+              _builder.append("\":\"");
               {
-                for(final GreenhouseRuleSet rule_2 : allGreenhouseRuleset) {
+                for(final GreenhouseRuleSet rule_1 : allGreenhouseRuleset) {
                   {
-                    if ((Objects.equal(rule_2.getSensor().getName(), sensor_3.getName()) && Objects.equal(rule_2.getState().getName(), state_3.getName()))) {
-                      Action _action = rule_2.getAction();
-                      _builder.append(_action, "    ");
+                    String _name_15 = rule_1.getState().getName();
+                    String _name_16 = state_3.getName();
+                    boolean _equals = Objects.equal(_name_15, _name_16);
+                    if (_equals) {
+                      String _name_17 = rule_1.getAction().getName();
+                      _builder.append(_name_17, "    ");
                     }
                   }
                 }
               }
-              _builder.append("},");
+              _builder.append("\"},");
             }
           }
-          _builder.append("],0,");
-          {
-            for(final GreenhouseRuleSet rule_3 : allGreenhouseRuleset) {
-              {
-                String _name_15 = rule_3.getSensor().getName();
-                String _name_16 = sensor_3.getName();
-                boolean _equals_1 = Objects.equal(_name_15, _name_16);
-                if (_equals_1) {
-                  _builder.append("\"");
-                  EObject _eContainer_8 = sensor_3.eContainer().eContainer();
-                  String _name_17 = ((Greenhouse) _eContainer_8).getName();
-                  _builder.append(_name_17, "    ");
-                  _builder.append("/");
-                  String _name_18 = rule_3.getActuator().getName();
-                  _builder.append(_name_18, "    ");
-                  _builder.append("\"");
-                }
-              }
-            }
-          }
-          _builder.append(")");
+          _builder.append("],0,\"");
+          EObject _eContainer_8 = sensor_3.eContainer();
+          String _name_18 = ((Greenhouse) _eContainer_8).getName();
+          _builder.append(_name_18, "    ");
+          _builder.append("/");
+          String _greenhouseActuatorName = this.getGreenhouseActuatorName(model, sensor_3);
+          _builder.append(_greenhouseActuatorName, "    ");
+          _builder.append("\")");
           _builder.newLineIfNotEmpty();
           _builder.append("    ");
           _builder.append("sensors.append(sg");
@@ -477,6 +461,42 @@ public class GreenhouseGenerator extends AbstractGenerator {
       _xblockexpression = _builder;
     }
     return _xblockexpression;
+  }
+  
+  public String getRowActuatorName(final Model model, final RowSensor sensor) {
+    final EObject root = EcoreUtil2.getRootContainer(model);
+    final List<RowRuleSet> allRowRuleset = EcoreUtil2.<RowRuleSet>getAllContentsOfType(root, RowRuleSet.class);
+    for (final RowRuleSet rule : allRowRuleset) {
+      String _name = rule.getSensor().getName();
+      String _name_1 = sensor.getName();
+      boolean _equals = Objects.equal(_name, _name_1);
+      if (_equals) {
+        StringConcatenation _builder = new StringConcatenation();
+        String _name_2 = rule.getActuator().getName();
+        _builder.append(_name_2);
+        return _builder.toString();
+      }
+    }
+    StringConcatenation _builder_1 = new StringConcatenation();
+    return _builder_1.toString();
+  }
+  
+  public String getGreenhouseActuatorName(final Model model, final GreenhouseSensor sensor) {
+    final EObject root = EcoreUtil2.getRootContainer(model);
+    final List<GreenhouseRuleSet> allGreenhouseRuleset = EcoreUtil2.<GreenhouseRuleSet>getAllContentsOfType(root, GreenhouseRuleSet.class);
+    for (final GreenhouseRuleSet rule : allGreenhouseRuleset) {
+      String _name = rule.getSensor().getName();
+      String _name_1 = sensor.getName();
+      boolean _equals = Objects.equal(_name, _name_1);
+      if (_equals) {
+        StringConcatenation _builder = new StringConcatenation();
+        String _name_2 = rule.getActuator().getName();
+        _builder.append(_name_2);
+        return _builder.toString();
+      }
+    }
+    StringConcatenation _builder_1 = new StringConcatenation();
+    return _builder_1.toString();
   }
   
   public CharSequence compilePeripheral(final Model model) {
@@ -1328,5 +1348,62 @@ public class GreenhouseGenerator extends AbstractGenerator {
     _builder.append(_instantiateVerificationModels);
     _builder.newLineIfNotEmpty();
     return _builder;
+  }
+  
+  protected static String _computeExpression(final MathNumber exp) {
+    return Integer.valueOf(exp.getValue()).toString();
+  }
+  
+  protected static String _computeExpression(final Plus exp) {
+    String _computeExpression = GreenhouseGenerator.computeExpression(exp.getLeft());
+    String _plus = ("(" + _computeExpression);
+    String _plus_1 = (_plus + "+");
+    String _computeExpression_1 = GreenhouseGenerator.computeExpression(exp.getRight());
+    String _plus_2 = (_plus_1 + _computeExpression_1);
+    return (_plus_2 + ")");
+  }
+  
+  protected static String _computeExpression(final Minus exp) {
+    String _computeExpression = GreenhouseGenerator.computeExpression(exp.getLeft());
+    String _plus = ("(" + _computeExpression);
+    String _plus_1 = (_plus + "-");
+    String _computeExpression_1 = GreenhouseGenerator.computeExpression(exp.getRight());
+    String _plus_2 = (_plus_1 + _computeExpression_1);
+    return (_plus_2 + ")");
+  }
+  
+  protected static String _computeExpression(final Mult exp) {
+    String _computeExpression = GreenhouseGenerator.computeExpression(exp.getLeft());
+    String _plus = ("(" + _computeExpression);
+    String _plus_1 = (_plus + "*");
+    String _computeExpression_1 = GreenhouseGenerator.computeExpression(exp.getRight());
+    String _plus_2 = (_plus_1 + _computeExpression_1);
+    return (_plus_2 + ")");
+  }
+  
+  protected static String _computeExpression(final Div exp) {
+    String _computeExpression = GreenhouseGenerator.computeExpression(exp.getLeft());
+    String _plus = ("(" + _computeExpression);
+    String _plus_1 = (_plus + "/");
+    String _computeExpression_1 = GreenhouseGenerator.computeExpression(exp.getRight());
+    String _plus_2 = (_plus_1 + _computeExpression_1);
+    return (_plus_2 + ")");
+  }
+  
+  public static String computeExpression(final Expression exp) {
+    if (exp instanceof Div) {
+      return _computeExpression((Div)exp);
+    } else if (exp instanceof MathNumber) {
+      return _computeExpression((MathNumber)exp);
+    } else if (exp instanceof Minus) {
+      return _computeExpression((Minus)exp);
+    } else if (exp instanceof Mult) {
+      return _computeExpression((Mult)exp);
+    } else if (exp instanceof Plus) {
+      return _computeExpression((Plus)exp);
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        Arrays.<Object>asList(exp).toString());
+    }
   }
 }

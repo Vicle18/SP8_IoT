@@ -19,6 +19,11 @@ import dsl.greenhouse.Greenhouse
 import dsl.greenhouse.Row
 import dsl.greenhouse.GreenhouseRuleSet
 import dsl.greenhouse.RowRuleSet
+import dsl.greenhouse.MathNumber
+import dsl.greenhouse.Plus
+import dsl.greenhouse.Minus
+import dsl.greenhouse.Mult
+import dsl.greenhouse.Div
 
 /**
  * Generates code from your model files on save.
@@ -40,8 +45,6 @@ class GreenhouseGenerator extends AbstractGenerator {
 	val root = EcoreUtil2.getRootContainer(model);
     val allRowSensors = EcoreUtil2.getAllContentsOfType(root, RowSensor);
     val allGreenhouseSensors = EcoreUtil2.getAllContentsOfType(root, GreenhouseSensor)
-    val allRowActuators = EcoreUtil2.getAllContentsOfType(root, RowActuator);
-    val allGreenhouseActuators = EcoreUtil2.getAllContentsOfType(root, GreenhouseActuator)
     val allRowRuleset = EcoreUtil2.getAllContentsOfType(root, RowRuleSet)
     val allGreenhouseRuleset = EcoreUtil2.getAllContentsOfType(root, GreenhouseRuleSet)
     '''
@@ -108,20 +111,20 @@ class GreenhouseGenerator extends AbstractGenerator {
 	    if sensor.name == "manual":
 	        global manual 
 	        manual = int(value)
-	   «FOR sensor : allRowSensors»
-	   	if sensor.name == «(sensor.eContainer.eContainer as Greenhouse).name»/«(sensor.eContainer as Row).name»/«sensor.name»:
-	   		«FOR state : sensor.states»
-	   		if float(value) «state.op» «state.threshold»:
-	    		sensor.updateSensorState(states[«sensor.states.indexOf(state)»],client) \n
-	    	«ENDFOR»
-	   «ENDFOR»
-	   «FOR sensor : allGreenhouseSensors»
-	    if sensor.name == «(sensor.eContainer.eContainer as Greenhouse).name»/«sensor.name»:
-	    	«FOR state : sensor.states»
-	    	if float(value) «state.op» «state.threshold»:
-	    		sensor.updateSensorState(states[«sensor.states.indexOf(state)»],client) \n
-	    	«ENDFOR»
-	   «ENDFOR»
+		«FOR sensor : allRowSensors»
+		if sensor.name == "«(sensor.eContainer.eContainer as Greenhouse).name»/«(sensor.eContainer as Row).name»/«sensor.name»":
+			«FOR state : sensor.states»
+			if float(value) «state.op» «state.threshold.computeExpression()»:
+				sensor.updateSensorState(states[«sensor.states.indexOf(state)»],client)
+			«ENDFOR»
+		«ENDFOR»
+		«FOR sensor : allGreenhouseSensors»
+		if sensor.name == "«(sensor.eContainer as Greenhouse).name»/«sensor.name»":
+			«FOR state : sensor.states»
+			if float(value) «state.op» «state.threshold.computeExpression()»:
+				sensor.updateSensorState(states[«sensor.states.indexOf(state)»],client)
+			«ENDFOR»
+		«ENDFOR»
 	    return
 	
 	def run():
@@ -129,12 +132,12 @@ class GreenhouseGenerator extends AbstractGenerator {
 	    manualState = Sensor("manual", None, 0, None)
 	    sensors.append(manualState)
 	    «FOR sensor : allRowSensors»
-	    sr«allRowSensors.indexOf(sensor)» = Sensor("«(sensor.eContainer.eContainer as Greenhouse).name»/«(sensor.eContainer as Row).name»/«sensor.name»",[«FOR state : sensor.states»{"«state»":«FOR rule : allRowRuleset»«IF rule.sensor.name == sensor.name && rule.state.name == state.name»«rule.trigger»«ENDIF»«ENDFOR»},«ENDFOR»],0,«FOR rule : allRowRuleset»«IF rule.sensor.name == sensor.name»"«(sensor.eContainer.eContainer as Greenhouse).name»/«(sensor.eContainer as Row).name»/«rule.actuator.name»"«ENDIF»«ENDFOR»)
+	    sr«allRowSensors.indexOf(sensor)» = Sensor("«(sensor.eContainer.eContainer as Greenhouse).name»/«(sensor.eContainer as Row).name»/«sensor.name»",[«FOR state : sensor.states»{"«state.name»":"«FOR rule : allRowRuleset»«IF rule.sensor.name == sensor.name && rule.state.name == state.name»«rule.trigger.name»«ENDIF»«ENDFOR»"},«ENDFOR»],0,"«(sensor.eContainer.eContainer as Greenhouse).name»/«(sensor.eContainer as Row).name»/«getRowActuatorName(model, sensor)»")
 	    sensors.append(sr«allRowSensors.indexOf(sensor)»)
 	    subscribe(client, sr«allRowSensors.indexOf(sensor)»)
 	    «ENDFOR»
 	    «FOR sensor : allGreenhouseSensors»
-	    sg«allGreenhouseSensors.indexOf(sensor)» = Sensor("«(sensor.eContainer.eContainer as Greenhouse).name»/«sensor.name»",[«FOR state : sensor.states»{"«state»":«FOR rule : allGreenhouseRuleset»«IF rule.sensor.name == sensor.name && rule.state.name == state.name»«rule.action»«ENDIF»«ENDFOR»},«ENDFOR»],0,«FOR rule : allGreenhouseRuleset»«IF rule.sensor.name == sensor.name»"«(sensor.eContainer.eContainer as Greenhouse).name»/«rule.actuator.name»"«ENDIF»«ENDFOR»)
+	    sg«allGreenhouseSensors.indexOf(sensor)» = Sensor("«(sensor.eContainer as Greenhouse).name»/«sensor.name»",[«FOR state : sensor.states»{"«state.name»":"«FOR rule : allGreenhouseRuleset»«IF rule.sensor.name == sensor.name && rule.state.name == state.name»«rule.action.name»«ENDIF»«ENDFOR»"},«ENDFOR»],0,"«(sensor.eContainer as Greenhouse).name»/«getGreenhouseActuatorName(model, sensor)»")
 	    sensors.append(sg«allGreenhouseSensors.indexOf(sensor)»)
 	    subscribe(client, sg«allGreenhouseSensors.indexOf(sensor)»)
 	    «ENDFOR»
@@ -145,7 +148,26 @@ class GreenhouseGenerator extends AbstractGenerator {
 	'''
 	}
 	
-	
+	def getRowActuatorName(Model model, RowSensor sensor){
+		val root = EcoreUtil2.getRootContainer(model);
+		val allRowRuleset = EcoreUtil2.getAllContentsOfType(root, RowRuleSet);
+    	for (rule : allRowRuleset){
+    		if(rule.sensor.name == sensor.name){
+    			return '''«rule.actuator.name»'''
+    		}
+    	}
+		return ''''''
+	}
+	def getGreenhouseActuatorName(Model model, GreenhouseSensor sensor){
+		val root = EcoreUtil2.getRootContainer(model);
+    	val allGreenhouseRuleset = EcoreUtil2.getAllContentsOfType(root, GreenhouseRuleSet);
+    	for (rule : allGreenhouseRuleset){
+    		if(rule.sensor.name == sensor.name){
+    			return '''«rule.actuator.name»'''
+    		}
+    	}
+		return ''''''
+	}
 	
 	def compilePeripheral(Model model)'''
 	from paho.mqtt import client as mqtt_client
@@ -386,4 +408,24 @@ class GreenhouseGenerator extends AbstractGenerator {
 	«model.getAllSensors»
 	«model.instantiateVerificationModels»
 	'''}
+	
+	def static dispatch String computeExpression(MathNumber exp) {
+        exp.value.toString
+    }
+
+    def static dispatch String computeExpression(Plus exp) {
+        "(" + exp.left.computeExpression + "+" + exp.right.computeExpression + ")"
+    }
+
+    def static dispatch String computeExpression(Minus exp) {
+        "(" + exp.left.computeExpression + "-" + exp.right.computeExpression + ")"
+    }
+
+    def static dispatch String computeExpression(Mult exp) {
+        "(" + exp.left.computeExpression + "*" + exp.right.computeExpression + ")"
+    }
+
+    def static dispatch String computeExpression(Div exp) {
+        "(" + exp.left.computeExpression + "/" + exp.right.computeExpression + ")"
+    }
 }
