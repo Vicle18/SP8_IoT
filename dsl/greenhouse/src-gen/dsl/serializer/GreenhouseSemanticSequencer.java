@@ -349,7 +349,7 @@ public class GreenhouseSemanticSequencer extends AbstractDelegatingSemanticSeque
 	 *     GreenhouseRuleSet returns GreenhouseRuleSet
 	 *
 	 * Constraint:
-	 *     (actuator=[Greenhouse|ID] action=[Action|ID] sensor=[GreenhouseSensor|ID] state=[State|ID])
+	 *     (actuator=[GreenhouseActuator|ID] action=[Action|ID] settingvalue=[SettingValue|ID] sensor=[GreenhouseSensor|ID] state=[State|ID])
 	 */
 	protected void sequence_GreenhouseRuleSet(ISerializationContext context, GreenhouseRuleSet semanticObject) {
 		if (errorAcceptor != null) {
@@ -357,16 +357,19 @@ public class GreenhouseSemanticSequencer extends AbstractDelegatingSemanticSeque
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, GreenhousePackage.Literals.GREENHOUSE_RULE_SET__ACTUATOR));
 			if (transientValues.isValueTransient(semanticObject, GreenhousePackage.Literals.GREENHOUSE_RULE_SET__ACTION) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, GreenhousePackage.Literals.GREENHOUSE_RULE_SET__ACTION));
+			if (transientValues.isValueTransient(semanticObject, GreenhousePackage.Literals.GREENHOUSE_RULE_SET__SETTINGVALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, GreenhousePackage.Literals.GREENHOUSE_RULE_SET__SETTINGVALUE));
 			if (transientValues.isValueTransient(semanticObject, GreenhousePackage.Literals.GREENHOUSE_RULE_SET__SENSOR) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, GreenhousePackage.Literals.GREENHOUSE_RULE_SET__SENSOR));
 			if (transientValues.isValueTransient(semanticObject, GreenhousePackage.Literals.GREENHOUSE_RULE_SET__STATE) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, GreenhousePackage.Literals.GREENHOUSE_RULE_SET__STATE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getGreenhouseRuleSetAccess().getActuatorGreenhouseIDTerminalRuleCall_2_0_1(), semanticObject.eGet(GreenhousePackage.Literals.GREENHOUSE_RULE_SET__ACTUATOR, false));
+		feeder.accept(grammarAccess.getGreenhouseRuleSetAccess().getActuatorGreenhouseActuatorIDTerminalRuleCall_2_0_1(), semanticObject.eGet(GreenhousePackage.Literals.GREENHOUSE_RULE_SET__ACTUATOR, false));
 		feeder.accept(grammarAccess.getGreenhouseRuleSetAccess().getActionActionIDTerminalRuleCall_4_0_1(), semanticObject.eGet(GreenhousePackage.Literals.GREENHOUSE_RULE_SET__ACTION, false));
-		feeder.accept(grammarAccess.getGreenhouseRuleSetAccess().getSensorGreenhouseSensorIDTerminalRuleCall_6_0_1(), semanticObject.eGet(GreenhousePackage.Literals.GREENHOUSE_RULE_SET__SENSOR, false));
-		feeder.accept(grammarAccess.getGreenhouseRuleSetAccess().getStateStateIDTerminalRuleCall_8_0_1(), semanticObject.eGet(GreenhousePackage.Literals.GREENHOUSE_RULE_SET__STATE, false));
+		feeder.accept(grammarAccess.getGreenhouseRuleSetAccess().getSettingvalueSettingValueIDTerminalRuleCall_5_0_1(), semanticObject.eGet(GreenhousePackage.Literals.GREENHOUSE_RULE_SET__SETTINGVALUE, false));
+		feeder.accept(grammarAccess.getGreenhouseRuleSetAccess().getSensorGreenhouseSensorIDTerminalRuleCall_7_0_1(), semanticObject.eGet(GreenhousePackage.Literals.GREENHOUSE_RULE_SET__SENSOR, false));
+		feeder.accept(grammarAccess.getGreenhouseRuleSetAccess().getStateStateIDTerminalRuleCall_9_0_1(), semanticObject.eGet(GreenhousePackage.Literals.GREENHOUSE_RULE_SET__STATE, false));
 		feeder.finish();
 	}
 	

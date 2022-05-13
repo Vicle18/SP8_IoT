@@ -1065,13 +1065,22 @@ public interface GreenhousePackage extends EPackage
   int GREENHOUSE_RULE_SET__ACTION = GREENHOUSE_ELEMENT_FEATURE_COUNT + 1;
 
   /**
+   * The feature id for the '<em><b>Settingvalue</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int GREENHOUSE_RULE_SET__SETTINGVALUE = GREENHOUSE_ELEMENT_FEATURE_COUNT + 2;
+
+  /**
    * The feature id for the '<em><b>Sensor</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int GREENHOUSE_RULE_SET__SENSOR = GREENHOUSE_ELEMENT_FEATURE_COUNT + 2;
+  int GREENHOUSE_RULE_SET__SENSOR = GREENHOUSE_ELEMENT_FEATURE_COUNT + 3;
 
   /**
    * The feature id for the '<em><b>State</b></em>' reference.
@@ -1080,7 +1089,7 @@ public interface GreenhousePackage extends EPackage
    * @generated
    * @ordered
    */
-  int GREENHOUSE_RULE_SET__STATE = GREENHOUSE_ELEMENT_FEATURE_COUNT + 3;
+  int GREENHOUSE_RULE_SET__STATE = GREENHOUSE_ELEMENT_FEATURE_COUNT + 4;
 
   /**
    * The number of structural features of the '<em>Rule Set</em>' class.
@@ -1089,7 +1098,7 @@ public interface GreenhousePackage extends EPackage
    * @generated
    * @ordered
    */
-  int GREENHOUSE_RULE_SET_FEATURE_COUNT = GREENHOUSE_ELEMENT_FEATURE_COUNT + 4;
+  int GREENHOUSE_RULE_SET_FEATURE_COUNT = GREENHOUSE_ELEMENT_FEATURE_COUNT + 5;
 
   /**
    * The meta object id for the '{@link dsl.greenhouse.impl.ExpressionImpl <em>Expression</em>}' class.
@@ -2164,6 +2173,17 @@ public interface GreenhousePackage extends EPackage
   EReference getGreenhouseRuleSet_Action();
 
   /**
+   * Returns the meta object for the reference '{@link dsl.greenhouse.GreenhouseRuleSet#getSettingvalue <em>Settingvalue</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Settingvalue</em>'.
+   * @see dsl.greenhouse.GreenhouseRuleSet#getSettingvalue()
+   * @see #getGreenhouseRuleSet()
+   * @generated
+   */
+  EReference getGreenhouseRuleSet_Settingvalue();
+
+  /**
    * Returns the meta object for the reference '{@link dsl.greenhouse.GreenhouseRuleSet#getSensor <em>Sensor</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3074,6 +3094,14 @@ public interface GreenhousePackage extends EPackage
      * @generated
      */
     EReference GREENHOUSE_RULE_SET__ACTION = eINSTANCE.getGreenhouseRuleSet_Action();
+
+    /**
+     * The meta object literal for the '<em><b>Settingvalue</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference GREENHOUSE_RULE_SET__SETTINGVALUE = eINSTANCE.getGreenhouseRuleSet_Settingvalue();
 
     /**
      * The meta object literal for the '<em><b>Sensor</b></em>' reference feature.
