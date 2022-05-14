@@ -17,6 +17,15 @@ import dsl.greenhouse.Action
 import dsl.greenhouse.GreenhouseSensor
 import dsl.greenhouse.Greenhouse
 import dsl.greenhouse.Row
+import dsl.greenhouse.RowRuleSet
+import dsl.greenhouse.GreenhouseRuleSet
+import dsl.greenhouse.MathNumber
+import dsl.greenhouse.Plus
+import dsl.greenhouse.Minus
+import dsl.greenhouse.Mult
+import dsl.greenhouse.Div
+import dsl.greenhouse.SettingSensor
+import dsl.greenhouse.SettingActuator
 
 /**
  * Generates code from your model files on save.
@@ -188,6 +197,38 @@ class GreenhouseGenerator extends AbstractGenerator {
 	    run()
 	'''
 	
+	def getAllClocks(Model model){
+		val root = EcoreUtil2.getRootContainer(model);
+        val allSettingSensors = EcoreUtil2.getAllContentsOfType(root, SettingSensor)
+    	val allSettingActuators = EcoreUtil2.getAllContentsOfType(root, SettingActuator)
+    	
+    	'''
+    	«FOR settingSensor : allSettingSensors»
+    		clock «settingSensor.name»Clock;
+    	«ENDFOR»
+    	«FOR settingActuator : allSettingActuators»
+    		clock «settingActuator.name»Clock;
+    	«ENDFOR»
+    	'''
+	}
+	
+	def getAllVariables(Model model){
+		val root = EcoreUtil2.getRootContainer(model);
+        val allRowSensors = EcoreUtil2.getAllContentsOfType(root, RowSensor)
+    	val allGreenhouseSensors = EcoreUtil2.getAllContentsOfType(root, GreenhouseSensor)
+    	
+    	'''
+    	«FOR rowRules : allRowSensors»
+    		int «rowRules.variable.name» := 0;
+    	«ENDFOR»
+    	
+    	«FOR greenhouseRules : allGreenhouseSensors»
+    	    int «greenhouseRules.variable.name» := 0;
+    	«ENDFOR»
+    	'''
+    }	
+		
+	
 	def getTopics(Model model){
 		val root = EcoreUtil2.getRootContainer(model);
         val allSensors = EcoreUtil2.getAllContentsOfType(root, RowSensor).filter[it.controller.name == controller.name]
@@ -212,7 +253,13 @@ class GreenhouseGenerator extends AbstractGenerator {
         val root = EcoreUtil2.getRootContainer(model);
         val allRowActuators = EcoreUtil2.getAllContentsOfType(root, RowActuator);
         val allGreenhouseActuators = EcoreUtil2.getAllContentsOfType(root, GreenhouseActuator)
-       
+        val allGreenhouseSensors = EcoreUtil2.getAllContentsOfType(root, GreenhouseSensor);
+		val allRowSensors = EcoreUtil2.getAllContentsOfType(root, RowSensor);
+        val allRowRules = EcoreUtil2.getAllContentsOfType(root, RowRuleSet);
+        val allGreenhouseRules = EcoreUtil2.getAllContentsOfType(root, GreenhouseRuleSet);
+        val allSettingActuator = EcoreUtil2.getAllContentsOfType(root, SettingActuator);
+        
+
         
         return '''
 
@@ -222,9 +269,13 @@ class GreenhouseGenerator extends AbstractGenerator {
         		state
         			«FOR action : rowActuator.action SEPARATOR ',\n'»«action.name»«ENDFOR»;
         		init
-        			«rowActuator.action.get(0).name»;
-        		trans
-        			«FOR action1 : rowActuator.action SEPARATOR ',\n'»«FOR action2 : rowActuator.action SEPARATOR ',\n'»«action1.name» -> «action2.name»{}«ENDFOR»«ENDFOR»;
+        			idle;
+        		«IF allRowRules.filter[it.actuator.name == rowActuator.name].size > 0»
+				trans
+					«FOR action1 : rowActuator.action SEPARATOR ','»«FOR action2 : rowActuator.action»«IF action1.name.contains('idle') && action1.name != action2.name»«action1.name» -> «action2.name»«FOR sensor : allRowSensors»«IF !allRowRules.filter[it.actuator.name ==rowActuator.name].empty»{sync «(sensor.eContainer.eContainer as Greenhouse).name»_«(sensor.eContainer as Row).name»_«sensor.name»?;«FOR settingActuator : allSettingActuator»«IF settingActuator.name == rowActuator.type.name» assign «settingActuator.name»Clock:=0;«ENDIF»«ENDFOR»},«ENDIF»«ENDFOR»
+					«ENDIF»
+					«IF action1.name != action2.name»«action2.name» -> «action1.name»{}«ENDIF»«ENDFOR»«ENDFOR»;
+				«ENDIF»
         		}
         	«ENDFOR»
         «ENDIF»
@@ -235,9 +286,13 @@ class GreenhouseGenerator extends AbstractGenerator {
                 state
                     «FOR action : greenhouseActuator.action SEPARATOR ',\n'»«action.name»«ENDFOR»;
                 init
-                    «greenhouseActuator.action.get(0).name»;
+                    idle;
+                «IF allGreenhouseRules.filter[it.actuator.name == greenhouseActuator.name].size > 0»
                 trans
-                	«FOR action1 : greenhouseActuator.action SEPARATOR ',\n'»«FOR action2 : greenhouseActuator.action SEPARATOR ',\n'»«action1.name» -> «action2.name»{}«ENDFOR»«ENDFOR»;
+					«FOR action1 : greenhouseActuator.action SEPARATOR ','»«FOR action2 : greenhouseActuator.action»«IF action1.name.contains('idle') && action1.name != action2.name»«action1.name» -> «action2.name»«FOR sensor : allRowSensors»«IF !allRowRules.filter[it.actuator.name ==greenhouseActuator.name].empty»{sync «(sensor.eContainer.eContainer as Greenhouse).name»_«(sensor.eContainer as Row).name»_«sensor.name»?;«FOR settingActuator : allSettingActuator»«IF settingActuator.name == greenhouseActuator.type.name» assign «settingActuator.name»Clock:=0;«ENDIF»«ENDFOR»},«ENDIF»«ENDFOR»
+					«ENDIF»
+					«IF action1.name != action2.name»«action2.name» -> «action1.name»{}«ENDIF»«ENDFOR»«ENDFOR»;
+				«ENDIF»
                 }
            «ENDFOR»
         «ENDIF»
@@ -248,7 +303,10 @@ class GreenhouseGenerator extends AbstractGenerator {
     def getAllSensors(Model model){
     	val root = EcoreUtil2.getRootContainer(model);
         val allRowSensors = EcoreUtil2.getAllContentsOfType(root, RowSensor);
-        val allGreenhouseSensors = EcoreUtil2.getAllContentsOfType(root, GreenhouseSensor)
+        val allGreenhouseSensors = EcoreUtil2.getAllContentsOfType(root, GreenhouseSensor);
+        val allRowRules = EcoreUtil2.getAllContentsOfType(root, RowRuleSet);
+        val allGreenhouseRules = EcoreUtil2.getAllContentsOfType(root, GreenhouseRuleSet);
+        val allSettingSensors = EcoreUtil2.getAllContentsOfType(root, SettingSensor);
         
         return '''
 
@@ -256,11 +314,14 @@ class GreenhouseGenerator extends AbstractGenerator {
         	«FOR rowSensor : allRowSensors SEPARATOR '\n'»
         		process «rowSensor.name.toUpperCase»(){
         		state
-        			«FOR state : rowSensor.states SEPARATOR ',\n'»«state.name»«ENDFOR»;
+        			«FOR state : rowSensor.states SEPARATOR ',\n'»«state.name»«IF state.threshold !== null»{«rowSensor.variable.name» «state.op» «state.threshold.computeExpression»}«ENDIF»«ENDFOR»;
         		init
-        			«rowSensor.states.get(0).name»;
+        			optimal;
+                «IF allRowRules.filter[it.sensor.name == rowSensor.name].size > 0»
         		trans
-        			«FOR state1 : rowSensor.states SEPARATOR ',\n'»«FOR state2 : rowSensor.states SEPARATOR ',\n'»«state1.name» -> «state2.name»{}«ENDFOR»«ENDFOR»;
+        			«FOR rowRule : allRowRules SEPARATOR ','»«FOR state : rowSensor.states»«IF state.name.contains('optimal')»«state.name» -> «rowRule.state.name»«FOR sensor : allRowSensors»«IF sensor.name == rowSensor.name && rowRule.sensor.name == sensor.name»{sync «(sensor.eContainer.eContainer as Greenhouse).name»_«(sensor.eContainer as Row).name»_«sensor.name»!;«FOR settingSensor : allSettingSensors»«IF settingSensor.name == sensor.type.name» assign «settingSensor.name»Clock:=0;«ENDIF»«ENDFOR»}«ENDIF»,
+        			«ENDFOR»«rowRule.state.name» -> «state.name»{}«ENDIF»«ENDFOR»«ENDFOR»;
+        		«ENDIF»
         		}
         	«ENDFOR»
         «ENDIF»
@@ -269,13 +330,21 @@ class GreenhouseGenerator extends AbstractGenerator {
            «FOR greenhouseSensor : allGreenhouseSensors SEPARATOR '\n'»
                 process «greenhouseSensor.name.toUpperCase»(){
                 state
-                    «FOR state : greenhouseSensor.states SEPARATOR ',\n'»«state.name»«ENDFOR»;
+                    «FOR state : greenhouseSensor.states SEPARATOR ',\n'»«state.name»«IF state.threshold !== null»{«greenhouseSensor.variable.name»«state.op»«state.threshold.computeExpression»}«ENDIF»«ENDFOR»;
                 init
                     «greenhouseSensor.states.get(0).name»;
+                «IF allGreenhouseRules.filter[it.sensor.name == greenhouseSensor.name].size > 0»
                 trans
-                	«FOR state1 : greenhouseSensor.states SEPARATOR ',\n'»«FOR state2 : greenhouseSensor.states SEPARATOR ',\n'»«state1.name» -> «state2.name»{}«ENDFOR»«ENDFOR»;
+                	«FOR greenhouseRule : allGreenhouseRules SEPARATOR ','»«FOR state : greenhouseSensor.states»«IF state.name.contains('optimal')»
+        			«state.name» -> «greenhouseRule.state.name»
+        			«FOR sensor : allRowSensors»
+        			«IF sensor.name == greenhouseSensor.name»
+        			«IF greenhouseRule.sensor.name == sensor.name»{sync «(sensor.eContainer.eContainer as Greenhouse).name»_«(sensor.eContainer as Row).name»_«sensor.name»!;«FOR settingSensor : allSettingSensors»«IF settingSensor.name == sensor.type.name» assign «settingSensor.name»Clock:=0;«ENDIF»«ENDFOR»}«ENDIF»,
+        			«ENDIF»
+        			«ENDFOR»«greenhouseRule.state.name» -> «state.name»{}«ENDIF»«ENDFOR»«ENDFOR»;
+                «ENDIF»
                 }
-           «ENDFOR»
+           	«ENDFOR»
         «ENDIF»
         
         '''
@@ -316,14 +385,38 @@ class GreenhouseGenerator extends AbstractGenerator {
     	system «IF !allRowSensors.isEmpty»«FOR rowSensor : allRowSensors SEPARATOR ', '»«rowSensor.name.toLowerCase»«ENDFOR»«ENDIF», «IF !allGreenhouseSensors.isEmpty»«FOR greenhouseSensor : allGreenhouseSensors SEPARATOR ', '»«greenhouseSensor.name.toLowerCase»«ENDFOR»«ENDIF», «IF !allRowActuators.isEmpty»«FOR rowActuators : allRowActuators SEPARATOR ', '»«rowActuators.name.toLowerCase»«ENDFOR»«ENDIF», «IF !allGreenhouseActuators.isEmpty»«FOR greenhouseActuators : allGreenhouseActuators SEPARATOR ', '»«greenhouseActuators.name.toLowerCase»«ENDFOR»«ENDIF»;
     	'''
     }
+    
+    
 	
 	
 	
 	def compileVerification(Model model)
 	'''
+	«model.getAllClocks»
+	«model.getAllVariables»
 	«model.getTopics»
 	«model.getAllActuators»
 	«model.getAllSensors»
 	«model.instantiateVerificationModels»
 	'''
+	
+	def static dispatch String computeExpression(MathNumber exp) {
+        exp.value.toString
+    }
+
+    def static dispatch String computeExpression(Plus exp) {
+        "(" + exp.left.computeExpression + "+" + exp.right.computeExpression + ")"
+    }
+
+    def static dispatch String computeExpression(Minus exp) {
+        "(" + exp.left.computeExpression + "-" + exp.right.computeExpression + ")"
+    }
+
+    def static dispatch String computeExpression(Mult exp) {
+        "(" + exp.left.computeExpression + "*" + exp.right.computeExpression + ")"
+    }
+
+    def static dispatch String computeExpression(Div exp) {
+        "(" + exp.left.computeExpression + "/" + exp.right.computeExpression + ")"
+    }
 }

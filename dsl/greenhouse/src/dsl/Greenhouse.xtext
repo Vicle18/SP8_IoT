@@ -117,7 +117,7 @@ RowRuleSet:
 ;
 
 GreenhouseRuleSet:
-    'global' 'rule' actuator=[Greenhouse] 'set' action=[Action] 'when' sensor=[GreenhouseSensor] 'is' state=[State]
+    'global' 'rule' actuator=[GreenhouseActuator] 'set' action=[Action] 'when' sensor=[GreenhouseSensor] 'is' state=[State]
 ;
 
 Exp returns Expression:
