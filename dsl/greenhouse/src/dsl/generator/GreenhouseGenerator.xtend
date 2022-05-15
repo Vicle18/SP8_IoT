@@ -26,6 +26,8 @@ import dsl.greenhouse.Mult
 import dsl.greenhouse.Div
 import dsl.greenhouse.SettingSensor
 import dsl.greenhouse.SettingActuator
+import dsl.greenhouse.Controller
+import dsl.greenhouse.HardwareSetup
 
 /**
  * Generates code from your model files on save.
@@ -35,167 +37,743 @@ import dsl.greenhouse.SettingActuator
 class GreenhouseGenerator extends AbstractGenerator {
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-
 		val model = resource.allContents.filter(Model).next
-		fsa.generateFile('controller/' + model.name + ".java", model.compileController)
-		fsa.generateFile('peripheral/' + model.name + ".java", model.compilePeripheral)
+		for (HardwareSetup hardware : model.hardwareSetup) {
+          for(Controller controller : hardware.controllers){
+              fsa.generateFile('peripheral/'+controller.name+'/' + controller.name + ".ino", model.compilePeripheral(controller))
+          }
+        }
+		fsa.generateFile('controller/' + model.name + ".py", model.compileController)
 		fsa.generateFile('verification/' + model.name + ".xta", model.compileVerification)
 		
 	}
 	
-	def compileController(Model model)'''
-	from paho.mqtt import client as mqtt_client
+	def compileController(Model model){
+		val root = EcoreUtil2.getRootContainer(model);
+	    val allRowSensors = EcoreUtil2.getAllContentsOfType(root, RowSensor);
+	    val allGreenhouseSensors = EcoreUtil2.getAllContentsOfType(root, GreenhouseSensor)
+	    val allRowRuleset = EcoreUtil2.getAllContentsOfType(root, RowRuleSet)
+	    val allGreenhouseRuleset = EcoreUtil2.getAllContentsOfType(root, GreenhouseRuleSet)
+	    '''
+		from paho.mqtt import client as mqtt_client
+		class Sensor:
+			currentState = ""
+			def __init__(self, name, states, variable, actuator):
+				self.name = name
+				self.states = states
+				self.variable = variable
+				self.actuator = actuator
+			def updateSensor(self, variable, client):
+				self.variable = variable
+				ruleCheck(variable, self, client, self.states)
+			def updateSensorState(self, state, client):
+				theKey = next(iter(state))
+				self.currentState = theKey
+				publish(client, self.actuator, state.get(self.currentState))
+		
+		broker = 'localhost'
+		port = 1883
+		client_id = 'python-mqtt-controller'
+		username = 'my_user'
+		password = 'bendevictor'
+		manual = 0
+		sensors = []
+		def connect_mqtt() -> mqtt_client:
+			def on_connect(client, userdata, flags, rc):
+				if rc == 0:
+					print("Connected to MQTT Broker!")
+				else:
+					print("Failed to connect, return code %d\n", rc)
+		
+			client = mqtt_client.Client(client_id)
+			client.username_pw_set(username, password)
+			client.on_connect = on_connect
+			client.connect(broker, port)
+			return client
+		
+		
+		def subscribe(client: mqtt_client, sensor):
+			def on_message(client, userdata, msg):
+				print(f"Received `{msg.payload.decode()}` from `{msg.topic}` topic")
+				for s in sensors:
+					if s.name == msg.topic:
+						s.updateSensor(msg.payload.decode(), client)
+			client.subscribe(sensor.name)
+			client.on_message = on_message
+		
+		def publish(client,topic, message):
+			msg = message
+			if manual == 0:
+				result = client.publish(topic, msg)
+				# result: [0, 1]
+				status = result[0]
+				if status == 0:
+					print(f"Send `{msg}` to topic `{topic}`")
+				else:
+					print(f"Failed to send message to topic {topic}")
+					
+		def ruleCheck(value, sensor, client,states):
+			if sensor.name == "manual":
+				global manual 
+				manual = int(value)
+			«FOR sensor : allRowSensors»
+			if sensor.name == "«(sensor.eContainer.eContainer as Greenhouse).name»/«(sensor.eContainer as Row).name»/«sensor.name»":
+				«FOR state : sensor.states»
+				if float(value) «state.op» «state.threshold.computeExpression()»:
+					sensor.updateSensorState(states[«sensor.states.indexOf(state)»],client)
+				«ENDFOR»
+			«ENDFOR»
+			«FOR sensor : allGreenhouseSensors»
+			if sensor.name == "«(sensor.eContainer as Greenhouse).name»/«sensor.name»":
+				«FOR state : sensor.states»
+				if float(value) «state.op» «state.threshold.computeExpression()»:
+					sensor.updateSensorState(states[«sensor.states.indexOf(state)»],client)
+				«ENDFOR»
+			«ENDFOR»
+			return
+		
+		def run():
+			client = connect_mqtt()
+			manualState = Sensor("manual", None, 0, None)
+			sensors.append(manualState)
+			«FOR sensor : allRowSensors»
+			sr«allRowSensors.indexOf(sensor)» = Sensor("«(sensor.eContainer.eContainer as Greenhouse).name»/«(sensor.eContainer as Row).name»/«sensor.name»",[«FOR state : sensor.states»{"«state.name»":"«FOR rule : allRowRuleset»«IF rule.sensor.name == sensor.name && rule.state.name == state.name»«rule.trigger.name»«ENDIF»«ENDFOR»"},«ENDFOR»],0,"«(sensor.eContainer.eContainer as Greenhouse).name»/«(sensor.eContainer as Row).name»/«getRowActuatorName(model, sensor)»")
+			sensors.append(sr«allRowSensors.indexOf(sensor)»)
+			subscribe(client, sr«allRowSensors.indexOf(sensor)»)
+			«ENDFOR»
+			«FOR sensor : allGreenhouseSensors»
+			sg«allGreenhouseSensors.indexOf(sensor)» = Sensor("«(sensor.eContainer as Greenhouse).name»/«sensor.name»",[«FOR state : sensor.states»{"«state.name»":"«FOR rule : allGreenhouseRuleset»«IF rule.sensor.name == sensor.name && rule.state.name == state.name»«rule.settingvalue.name»«ENDIF»«ENDFOR»"},«ENDFOR»],0,"«(sensor.eContainer as Greenhouse).name»/«getGreenhouseActuatorName(model, sensor)»")
+			sensors.append(sg«allGreenhouseSensors.indexOf(sensor)»)
+			subscribe(client, sg«allGreenhouseSensors.indexOf(sensor)»)
+			«ENDFOR»
+			client.loop_forever()
+		
+		if __name__ == '__main__':
+			run()
+		'''
+	}
 	
-	broker = 'localhost'
-	port = 1883
-	topic1 = "temp"
-	topic2 = "humidity"
-	topic3 = "co2"
-	pubTopic = "actuators"
-	client_id = 'python-mqtt-rulechecker'
-	username = 'my_user'
-	password = 'bendevictor'
-	
-	def connect_mqtt() -> mqtt_client:
-	    def on_connect(client, userdata, flags, rc):
-	        if rc == 0:
-	            print("Connected to MQTT Broker!")
-	        else:
-	            print("Failed to connect, return code %d\n", rc)
-	
-	    client = mqtt_client.Client(client_id)
-	    client.username_pw_set(username, password)
-	    client.on_connect = on_connect
-	    client.connect(broker, port)
-	    return client
-	
-	def subscribe(client: mqtt_client, topic):
-	    def on_message(client, userdata, msg):
-	        print(f"Received `{msg.payload.decode()}` from `{msg.topic}` topic")
-	        ruleCheck(msg.payload.decode(), msg.topic, client)
-	
-	    client.subscribe(topic)
-	    client.on_message = on_message
-	
-	def publish(client, message):
-	    msg = message
-	    result = client.publish(pubTopic, msg)
-	    # result: [0, 1]
-	    status = result[0]
-	    if status == 0:
-	        print(f"Send `{msg}` to topic `{pubTopic}`")
-	    else:
-	        print(f"Failed to send message to topic {pubTopic}")
-	        
-	def ruleCheck(value, topic, client):
-	    if topic == "temp":
-	        if value > 25:
-	            publish(client, ["fan", "open"])
-	        else:
-	            publish(client, ["fan", "close"])
-	        
-	    elif topic == "humidity":
-	        if value > 30:
-	            publish(client, ["dehumidifyer", "open"])
-	        else:
-	            publish(client, ["dehumidifyer", "close"])
-	    elif topic == "co2":
-	        if value > 1200:
-	            publish(client, ["window", "open"])
-	        else:
-	            publish(client, ["window", "close"])
-	    return
-	
-	def run():
-	    client = connect_mqtt()
-	    subscribe(client, topic1)
-	    subscribe(client, topic2)
-	    subscribe(client, topic3)
-	    client.loop_forever()
-	    
+	def getRowActuatorName(Model model, RowSensor sensor){
+		val root = EcoreUtil2.getRootContainer(model);
+		val allRowRuleset = EcoreUtil2.getAllContentsOfType(root, RowRuleSet);
+    	for (rule : allRowRuleset){
+    		if(rule.sensor.name == sensor.name){
+    			return '''«rule.actuator.name»'''
+    		}
+    	}
+		return ''''''
+	}
+	def getGreenhouseActuatorName(Model model, GreenhouseSensor sensor){
+		val root = EcoreUtil2.getRootContainer(model);
+    	val allGreenhouseRuleset = EcoreUtil2.getAllContentsOfType(root, GreenhouseRuleSet);
+    	for (rule : allGreenhouseRuleset){
+    		if(rule.sensor.name == sensor.name){
+    			return '''«rule.actuator.name»'''
+    		}
+    	}
+		return ''''''
+	}
 	
 	
-	if __name__ == '__main__':
-	    run()
+	
+	def compilePeripheral(Model model, Controller controller){
+	val root = EcoreUtil2.getRootContainer(model);
+	val allSensors = EcoreUtil2.getAllContentsOfType(root, RowSensor).filter[it.controller.name == controller.name]
+	val allGlobalSensors = EcoreUtil2.getAllContentsOfType(root, GreenhouseSensor).filter[it.controller.name == controller.name]
+	
+	return
+	
+	'''
+	#include <Statistical.h>
+	«IF controller.type.name == "ESP32"»
+	#include <PubSubClient.h>
+	#include <analogWrite.h>
+	#include <WiFi.h>
+	«ENDIF»
+	«model.getAllSensorPreamble(controller)»
+	«model.getAllSensorTimers(controller)»
+	
+	«IF allSensors.size <= 0 && allGlobalSensors.size <= 0»
+	long int sleepMicroSeconds = 60000000;
+	long int wakeMilliSeconds = 20000;
+	long int sleepTimer = millis();
+	«ENDIF»
+	
+	«model.getAllActuatorTopics(controller)»
+	«IF controller.type.name == "ESP32"»
+		«setupWifi_ESP32()»
+		«model.setupMQTT_ESP32(controller)»
+		
+    «ENDIF»
+	«IF controller.type.name == "ESP8266"»
+		«setupWifi_ESP8266()»
+		«model.setupMQTT_ESP8266(controller)»
+    «ENDIF»
+	
+	
+	«model.getSensorMethods(controller)»
+	«model.getActuatorMethods(controller)»
+	«model.getSetup(controller)»
+	«model.getLoop(controller)»
+	
 	'''
 	
+	}
 	
 	
-	def compilePeripheral(Model model)'''
-	from paho.mqtt import client as mqtt_client
+	def getAllSensorPreamble(Model model, Controller controller){
+		val root = EcoreUtil2.getRootContainer(model);
+		val allSensors = EcoreUtil2.getAllContentsOfType(root, RowSensor).filter[it.controller.name == controller.name]
+		val allGlobalSensors = EcoreUtil2.getAllContentsOfType(root, GreenhouseSensor).filter[it.controller.name == controller.name]
+		return '''
+		const int arrSize = 10;
+		«IF allSensors.length > 0»
+		// preamble for row sensors
+		«FOR sensor: allSensors»
+		#define «sensor.name»Topic "«(sensor.eContainer.eContainer as Greenhouse).name»/«(sensor.eContainer as Row).name»/«sensor.name»"
+		float «sensor.name»ValueArray[arrSize];
+		int «sensor.name»Counter = 0;
+		«ENDFOR»
+		«ENDIF»
+		«IF allGlobalSensors.length > 0»
+		// preamble for greenhouse sensors
+		«FOR sensor: allGlobalSensors»
+		#define «sensor.name»Topic "«(sensor.eContainer as Greenhouse).name»/«sensor.name»"
+		float «sensor.name»ValueArray[arrSize];
+		int «sensor.name»Counter = 0;
+		«ENDFOR»
+		«ENDIF»
+		'''
+	}
 	
-	broker = 'localhost'
-	port = 1883
-	topic1 = "temp"
-	topic2 = "humidity"
-	topic3 = "co2"
-	pubTopic = "actuators"
-	client_id = 'python-mqtt-rulechecker'
-	username = 'my_user'
-	password = 'bendevictor'
-	
-	def connect_mqtt() -> mqtt_client:
-	    def on_connect(client, userdata, flags, rc):
-	        if rc == 0:
-	            print("Connected to MQTT Broker!")
-	        else:
-	            print("Failed to connect, return code %d\n", rc)
-	
-	    client = mqtt_client.Client(client_id)
-	    client.username_pw_set(username, password)
-	    client.on_connect = on_connect
-	    client.connect(broker, port)
-	    return client
-	
-	def subscribe(client: mqtt_client, topic):
-	    def on_message(client, userdata, msg):
-	        print(f"Received `{msg.payload.decode()}` from `{msg.topic}` topic")
-	        ruleCheck(msg.payload.decode(), msg.topic, client)
-	
-	    client.subscribe(topic)
-	    client.on_message = on_message
-	
-	def publish(client, message):
-	    msg = message
-	    result = client.publish(pubTopic, msg)
-	    # result: [0, 1]
-	    status = result[0]
-	    if status == 0:
-	        print(f"Send `{msg}` to topic `{pubTopic}`")
-	    else:
-	        print(f"Failed to send message to topic {pubTopic}")
-	        
-	def ruleCheck(value, topic, client):
-	    if topic == "temp":
-	        if value > 25:
-	            publish(client, ["fan", "open"])
-	        else:
-	            publish(client, ["fan", "close"])
-	        
-	    elif topic == "humidity":
-	        if value > 30:
-	            publish(client, ["dehumidifyer", "open"])
-	        else:
-	            publish(client, ["dehumidifyer", "close"])
-	    elif topic == "co2":
-	        if value > 1200:
-	            publish(client, ["window", "open"])
-	        else:
-	            publish(client, ["window", "close"])
-	    return
-	
-	def run():
-	    client = connect_mqtt()
-	    subscribe(client, topic1)
-	    subscribe(client, topic2)
-	    subscribe(client, topic3)
-	    client.loop_forever()
-	    
+	def getAllActuatorTopics(Model model, Controller controller){
+		val root = EcoreUtil2.getRootContainer(model);
+		val allRowActuators = EcoreUtil2.getAllContentsOfType(root, RowActuator).filter[it.controller.name == controller.name]
+		val allGlobalActuators = EcoreUtil2.getAllContentsOfType(root, GreenhouseActuator).filter[it.controller.name == controller.name]
+		return '''
+		
+		«IF allRowActuators.length > 0»
+		// topics for row actuators
+		«FOR actuator: allRowActuators»
+		#define «actuator.name»Topic "«(actuator.eContainer.eContainer as Greenhouse).name»/«(actuator.eContainer as Row).name»/«actuator.name»"
+		«ENDFOR»
+		«ENDIF»
+		«IF allGlobalActuators.length > 0»
+		// topics for greenhouse actuators
+		«FOR actuator: allGlobalActuators»
+		#define «actuator.name»Topic "«(actuator.eContainer as Greenhouse).name»/«actuator.name»"
+		«ENDFOR»
+		«ENDIF»
+		'''
+	}
 	
 	
-	if __name__ == '__main__':
-	    run()
-	'''
+	def getAllSensorTimers(Model model, Controller controller){
+		val root = EcoreUtil2.getRootContainer(model);
+		val allSensors = EcoreUtil2.getAllContentsOfType(root, RowSensor).filter[it.controller.name == controller.name]
+		val allGlobalSensors = EcoreUtil2.getAllContentsOfType(root, GreenhouseSensor).filter[it.controller.name == controller.name]
+		return '''
+		
+		«IF allSensors.length > 0»
+		// timers for row sensors
+		«FOR sensor: allSensors»
+		long int «sensor.name»Timer = millis();
+		«ENDFOR»
+		«ENDIF»
+		«IF allGlobalSensors.length > 0»
+		// timers for greenhouse sensors
+		«FOR sensor: allGlobalSensors»
+		long int «sensor.name»Timer = millis();
+		«ENDFOR»
+		«ENDIF»
+		'''
+	}
+	
+	def getSetup(Model model, Controller controller){
+		val root = EcoreUtil2.getRootContainer(model);
+		val allSensors = EcoreUtil2.getAllContentsOfType(root, RowSensor).filter[it.controller.name == controller.name]
+		val allGlobalSensors = EcoreUtil2.getAllContentsOfType(root, GreenhouseSensor).filter[it.controller.name == controller.name]
+		val allRowActuators = EcoreUtil2.getAllContentsOfType(root, RowActuator).filter[it.controller.name == controller.name]
+		val allGlobalActuators = EcoreUtil2.getAllContentsOfType(root, GreenhouseActuator).filter[it.controller.name == controller.name]
+		return	'''
+		
+		void debug(const char *s)
+		{
+		  Serial.print (millis());
+		  Serial.print (" ");
+		  Serial.println(s);
+		}
+		
+		void setup() {
+		  Serial.begin(115200);
+	  	  while (!Serial) {
+	          delay(100);
+	      }
+	  	  delay(10);
+	  	  «IF controller.type.name == "ESP32"»
+		  initWiFi();
+		  client.setServer(mqtt_server, 1883);
+		  client.setCallback(callback);
+		  «ENDIF»
+		  «IF controller.type.name == "ESP8266"»
+		  connectToWifi();
+		  mqtt_connect();
+		  «ENDIF»
+		  «IF allSensors.length > 0»
+			// setup for row sensors
+			«FOR sensor: allSensors»
+			setup«sensor.name»();
+			«ENDFOR»
+			«ENDIF»
+			«IF allGlobalSensors.length > 0»
+			// setup for for greenhouse sensors
+			«FOR sensor: allGlobalSensors»
+			setup«sensor.name»();
+			«ENDFOR»
+			«ENDIF»
+			«IF allRowActuators.length > 0»
+			// setup for for row actuators
+			«FOR actuator: allRowActuators»
+			setup«actuator.name»();		«ENDFOR»
+			«ENDIF»
+			«IF allGlobalActuators.length > 0»
+			// setup for greenhouse actuators
+			«FOR actuator: allGlobalActuators»
+			setup«actuator.name»();
+			«ENDFOR»
+			«ENDIF»
+		}
+		'''
+	}
+
+	
+	def setupWifi_ESP32()'''
+		//wifi
+		const char* ssid = "LEO1_TEAM_06";
+		const char* password = "embeddedlinux";
+		void initWiFi() {
+		  WiFi.mode(WIFI_STA);
+		  WiFi.begin(ssid, password);
+		  Serial.print("Connecting to WiFi ..");
+		  while (WiFi.status() != WL_CONNECTED) {
+		    Serial.print('.');
+		    delay(1000);
+		  }
+		  Serial.println(WiFi.localIP());
+		}
+		'''
+	
+	def setupWifi_ESP8266()'''
+		//wifi
+		#define WIFI_SSID       "LEO1_TEAM_06"
+		#define WIFI_PASSWORD    "embeddedlinux"
+		#include <ESP8266WiFiMulti.h>
+		#include <ESP8266HTTPClient.h>
+		ESP8266WiFiMulti WiFiMulti;
+		const uint32_t conn_tout_ms = 5000;
+		WiFiClient wifi_client;
+		void print_wifi_status()
+		{
+		  Serial.print (millis());
+		  Serial.print(" WiFi connected: ");
+		  Serial.print(WiFi.SSID());
+		  Serial.print(" ");
+		  Serial.print(WiFi.localIP());
+		  Serial.print(" RSSI: ");
+		  Serial.print(WiFi.RSSI());
+		  Serial.println(" dBm");
+		}
+		
+		void connectToWifi(){
+		  // wifi
+		  WiFi.persistent(false);
+		  WiFi.mode(WIFI_STA);
+		  WiFiMulti.addAP(WIFI_SSID, WIFI_PASSWORD);
+		  if(WiFiMulti.run(conn_tout_ms) == WL_CONNECTED)
+		  {
+		    print_wifi_status();
+		  }
+		  else
+		  {
+		    debug("Unable to connect");
+		  }
+		  
+		}
+		'''
+	
+	def setupMQTT_ESP32(Model model, Controller controller){
+		val root = EcoreUtil2.getRootContainer(model);
+		val allRowActuators = EcoreUtil2.getAllContentsOfType(root, RowActuator).filter[it.controller.name == controller.name]
+		val allGlobalActuators = EcoreUtil2.getAllContentsOfType(root, GreenhouseActuator).filter[it.controller.name == controller.name]
+		
+		return '''
+		// MQTT setup
+		const char* mqtt_server =  "192.168.10.1";
+		WiFiClient espClient;
+		PubSubClient client(espClient);
+		void publish(const char* topic, const char* content){
+			client.publish(topic, content);
+		}
+		
+		void subscribe(const char* topic){
+			client.subscribe(topic);
+		}
+		void reconnect() {
+		  // Loop until we're reconnected
+		  while (!client.connected()) {
+		    Serial.print("Attempting MQTT connection...");
+		    // Attempt to connect
+		    if (client.connect("«controller.name»", "my_user", "bendevictor")) {
+		      Serial.println("connected");
+		      // Subscribe
+		      «IF allRowActuators.length > 0»
+				// topics for row actuators
+		  		«FOR actuator: allRowActuators»
+		  			subscribe(«actuator.name»Topic);
+		  		«ENDFOR»
+		  		«ENDIF»
+		  		«IF allGlobalActuators.length > 0»
+		  		// topics for greenhouse actuators
+		  		«FOR actuator: allGlobalActuators»
+		  			subscribe(«actuator.name»Topic);
+		  		«ENDFOR»
+		  		«ENDIF»
+		    } else {
+		      Serial.print("failed, rc=");
+		      Serial.print(client.state());
+		      Serial.println(" try again in 5 seconds");
+		      // Wait 5 seconds before retrying
+		      delay(5000);
+		    }
+		  }
+		}
+		
+		void callback(char* topic, byte* message, unsigned int length) {
+		  String msg = "";
+		  for(int i = 0; i< length; i++){
+		    msg = msg+(char)message[i];
+		  }
+		  «IF allRowActuators.length > 0»
+			// topics for row actuators
+	  		«FOR actuator: allRowActuators»
+			  
+			  if(String(topic) == String(«actuator.name»Topic)){
+			    handle«actuator.name»Message(msg);
+			  }
+	  		«ENDFOR»
+	  		«ENDIF»
+	  		«IF allGlobalActuators.length > 0»
+	  		// topics for greenhouse actuators
+	  		«FOR actuator: allGlobalActuators»
+	  			if(String(topic) == String(«actuator.name»Topic)){
+				    handle«actuator.name»Message(msg);
+				  }
+	  		«ENDFOR»
+	  		«ENDIF»
+		}
+		
+		'''
+	}
+	
+	def setupMQTT_ESP8266(Model model, Controller controller){
+		val root = EcoreUtil2.getRootContainer(model);
+		val allRowActuators = EcoreUtil2.getAllContentsOfType(root, RowActuator).filter[it.controller.name == controller.name]
+		val allGlobalActuators = EcoreUtil2.getAllContentsOfType(root, GreenhouseActuator).filter[it.controller.name == controller.name]
+		
+		return '''
+		// MQTT setup
+		#define MQTT_SERVER      "192.168.10.1"
+		#define MQTT_SERVERPORT  1883 
+		#define MQTT_USERNAME    "my_user"
+		#define MQTT_KEY         "bendevictor"
+		#define MQTT_TOPIC        "mqtt"
+		#include "Adafruit_MQTT.h"
+		#include "Adafruit_MQTT_Client.h"
+		
+		Adafruit_MQTT_Client mqtt(&wifi_client, MQTT_SERVER, MQTT_SERVERPORT, MQTT_USERNAME, MQTT_KEY);
+		
+		void publish(const char* topic, const char* content){
+			if((WiFiMulti.run(conn_tout_ms) == WL_CONNECTED))
+			  {
+			    print_wifi_status();
+			
+			    mqtt_connect();
+			    char charBuf[50];
+			    Adafruit_MQTT_Publish publish_topic = Adafruit_MQTT_Publish(&mqtt, topic);
+			    Serial.println("connect success");
+			    if (! publish_topic.publish(content))
+			    {
+			      debug("MQTT failed");
+			    }
+			    else
+			    {
+			      debug("MQTT ok");
+			    }
+			  }
+		}
+		
+		
+		«IF allRowActuators.length > 0»
+		// topics for row actuators
+	  		«FOR actuator: allRowActuators»
+		Adafruit_MQTT_Subscribe «actuator.name»SubscribeTopic = Adafruit_MQTT_Subscribe(&mqtt, "«(actuator.eContainer.eContainer as Greenhouse).name»/«(actuator.eContainer as Row).name»/«actuator.name»");
+	  		«ENDFOR»
+  		«ENDIF»
+  		«IF allGlobalActuators.length > 0»
+		// topics for greenhouse actuators
+	  		«FOR actuator: allGlobalActuators»
+		Adafruit_MQTT_Subscribe «actuator.name»SubscribeTopic = Adafruit_MQTT_Subscribe(&mqtt, "«(actuator.eContainer as Greenhouse).name»/«actuator.name»");
+	  		«ENDFOR»
+  		«ENDIF»
+		
+		
+		void mqtt_connect()
+		{
+		  int8_t ret;
+		
+		  // Stop if already connected.
+		  if (! mqtt.connected())
+		  {
+		    debug("Connecting to MQTT... ");
+		    while ((ret = mqtt.connect()) != 0)
+		    { // connect will return 0 for connected
+		         Serial.println(mqtt.connectErrorString(ret));
+		         debug("Retrying MQTT connection in 5 seconds...");
+		         mqtt.disconnect();
+		         delay(5000);  // wait 5 seconds
+		    }
+		    debug("MQTT Connected");
+		    «IF allRowActuators.length > 0»
+		    	// subscribe to topics for row actuators
+		    	  		«FOR actuator: allRowActuators»
+		    	mqtt.subscribe(&«actuator.name»SubscribeTopic);
+		    	  		«ENDFOR»
+		      		«ENDIF»
+		      		«IF allGlobalActuators.length > 0»
+		    	// subscribe to topics for greenhouse actuators
+		    	  		«FOR actuator: allGlobalActuators»
+		    	mqtt.subscribe(&«actuator.name»SubscribeTopic);
+		    	  		«ENDFOR»
+		      		«ENDIF»
+		  }
+		}
+		
+		void recievedMessage(){
+		   Adafruit_MQTT_Subscribe *subscription;
+		   while ((subscription = mqtt.readSubscription(15000))) {
+		   	«IF allRowActuators.length > 0»
+			// topics for row actuators
+	  		«FOR actuator: allRowActuators»
+			  if(subscription == &«actuator.name»SubscribeTopic)){
+			  	String msg = (char *)«actuator.name»SubscribeTopic.lastread;
+			    handle«actuator.name»Message(msg);
+			  }
+	  		«ENDFOR»
+	  		«ENDIF»
+	  		«IF allGlobalActuators.length > 0»
+	  		// topics for greenhouse actuators
+	  		«FOR actuator: allGlobalActuators»
+			if(subscription == &«actuator.name»SubscribeTopic){
+				String msg = (char *)«actuator.name»SubscribeTopic.lastread;
+				handle«actuator.name»Message(msg);
+			}
+	  		«ENDFOR»
+	  		«ENDIF»
+		
+		  }
+		}
+		
+		'''
+	}
+	
+	
+	
+	def getSensorMethods(Model model, Controller controller){
+		val root = EcoreUtil2.getRootContainer(model);
+		val allSensors = EcoreUtil2.getAllContentsOfType(root, RowSensor).filter[it.controller.name == controller.name]
+		val allGlobalSensors = EcoreUtil2.getAllContentsOfType(root, GreenhouseSensor).filter[it.controller.name == controller.name]
+		return '''
+		
+		«IF allSensors.length > 0»
+		// methods for row sensors
+		«FOR sensor: allSensors»
+		void setup«sensor.name»(){
+			// insert code to setup sensor here
+		}
+		
+		float get«sensor.name»Value(){
+			// insert code to get value for sensor here
+			// remember to return a float!
+			// example: 
+			// float lightValue = analogRead(lightPin);
+			// Serial.println(lightValue);
+		}
+		«ENDFOR»
+		«ENDIF»
+		«IF allGlobalSensors.length > 0»
+		// methods for greenhouse sensors
+		«FOR sensor: allGlobalSensors»
+		void setup«sensor.name»(){
+			// insert code to setup sensor here
+		}
+		
+		float get«sensor.name»Value(){
+			// insert code to get value for sensor here
+			// remember to return a float!
+			// example: 
+			// float lightValue = analogRead(lightPin);
+		}
+		«ENDFOR»
+		«ENDIF»
+		'''
+	}
+	
+	
+	def getActuatorMethods(Model model, Controller controller){
+		val root = EcoreUtil2.getRootContainer(model);
+		val allRowActuators = EcoreUtil2.getAllContentsOfType(root, RowActuator).filter[it.controller.name == controller.name]
+		val allGlobalActuators = EcoreUtil2.getAllContentsOfType(root, GreenhouseActuator).filter[it.controller.name == controller.name]
+		return '''
+		
+		«IF allRowActuators.length > 0»
+		// methods for row actuators
+		«FOR actuator: allRowActuators»
+		void setup«actuator.name»(){
+			// insert code to setup actuator here
+		}
+		void handle«actuator.name»Message(String msg){
+			«FOR action: actuator.action»
+			if(msg == "«action.trigger.name»"){
+				// handle message
+				String strValue = "messageReceived";
+				int str_len = strValue.length() + 1;
+				char char_array[str_len];
+				strValue.toCharArray(char_array, str_len);
+				publish(«actuator.name»Topic, char_array);
+			}
+			«ENDFOR»
+		}
+		«ENDFOR»
+		«ENDIF»
+		«IF allGlobalActuators.length > 0»
+		// methods for greenhouse actuators
+		«FOR actuator: allGlobalActuators»
+		void setup«actuator.name»(){
+			// insert code to setup actuator here
+		}
+		void handle«actuator.name»Message(String msg){
+			«FOR action: actuator.action»
+			if(msg == "«action.trigger.name»"){
+				// handle message
+				String strValue = "messageReceived";
+				int str_len = strValue.length() + 1;
+				char char_array[str_len];
+				strValue.toCharArray(char_array, str_len);
+				publish(«actuator.name»Topic, char_array);
+			}
+			«ENDFOR»
+		}
+		«ENDFOR»
+		«ENDIF»
+		'''
+	}
+	
+	
+	
+	def getLoop(Model model, Controller controller){
+		val root = EcoreUtil2.getRootContainer(model);
+		val allSensors = EcoreUtil2.getAllContentsOfType(root, RowSensor).filter[it.controller.name == controller.name]
+		val allGlobalSensors = EcoreUtil2.getAllContentsOfType(root, GreenhouseSensor).filter[it.controller.name == controller.name]
+		return '''
+		void loop(){
+			
+			«IF controller.type.name == "ESP32"»
+			if (!client.connected()) {
+			    reconnect();
+			}
+			client.loop();
+			
+	        «ENDIF»
+	        «IF controller.type.name == "ESP8266"»
+			recievedMessage();
+	        «ENDIF»
+			«IF allSensors.length > 0»
+			// publishing for row sensors
+			«FOR sensor: allSensors»
+			«sensor.getRowSensorLoop()»
+			«ENDFOR»
+			«ENDIF»
+			«IF allGlobalSensors.length > 0»
+			// publishing for global sensors
+			«FOR sensor: allGlobalSensors»
+			«sensor.getGreenhouseSensorLoop()»
+			«ENDFOR»
+			«ENDIF»
+			«IF allSensors.size <= 0 && allGlobalSensors.size <= 0»
+			«IF controller.type.name == "ESP32"»
+			if(millis() >= (sleepTimer + wakeMilliSeconds)){
+				esp_sleep_enable_timer_wakeup(sleepMicroSeconds);
+			}
+	        «ENDIF»
+	        «IF controller.type.name == "ESP8266"»
+			if(millis() >= (sleepTimer + wakeMilliSeconds)){
+				ESP.deepSleep(30e6);
+			}
+	        «ENDIF»
+	        «ENDIF»
+		}
+		'''
+	}
+	
+	def getRowSensorLoop(RowSensor sensor){
+		return 
+		'''
+		
+		if(millis() >= («sensor.name»Timer + (1000/(«sensor.type.frequency.freq.computeExpression»)))){
+			«sensor.name»ValueArray[«sensor.name»Counter%arrSize] = get«sensor.name»Value();
+			«sensor.name»Counter += 1;
+			Array_Stats<float> Data_Array(«sensor.name»ValueArray, sizeof(«sensor.name»ValueArray) / sizeof(«sensor.name»ValueArray[0]));
+			float value = 0;
+			«IF sensor.type.reducer.name == "average"»
+			value = Data_Array.Average(Data_Array.Arithmetic_Avg);
+			«ENDIF»
+			«IF sensor.type.reducer.name == "median"»
+			value = Data_Array.Quartile(2);
+			«ENDIF»
+			String strValue = String(value);
+			int str_len = strValue.length() + 1;
+			char char_array[str_len];
+		    strValue.toCharArray(char_array, str_len);
+			publish(«sensor.name»Topic, char_array);
+			«sensor.name»Timer = millis();
+		}
+		'''
+	}
+	
+	def getGreenhouseSensorLoop(GreenhouseSensor sensor){
+		return 
+		'''
+		
+		if(millis() >= («sensor.name»Timer + (1000/(«sensor.type.frequency.freq.computeExpression»)))){
+			«sensor.name»ValueArray[«sensor.name»Counter%arrSize] = get«sensor.name»Value();
+			«sensor.name»Counter += 1;
+			Array_Stats<float> Data_Array(«sensor.name»ValueArray, sizeof(«sensor.name»ValueArray) / sizeof(«sensor.name»ValueArray[0]));
+			float value = 0;
+			«IF sensor.type.reducer.name == "average"»
+			value = Data_Array.Average(Data_Array.Arithmetic_Avg);
+			«ENDIF»
+			«IF sensor.type.reducer.name == "median"»
+			value = Data_Array.Quartile(2);
+			«ENDIF»
+			String strValue = String(value);
+			int str_len = strValue.length() + 1;
+			char char_array[str_len];
+		    strValue.toCharArray(char_array, str_len);
+			publish(«sensor.name»Topic, char_array);
+			«sensor.name»Timer = millis();
+		}
+		'''
+	}
 	
 	def getAllClocks(Model model){
 		val root = EcoreUtil2.getRootContainer(model);
@@ -218,12 +796,20 @@ class GreenhouseGenerator extends AbstractGenerator {
     	val allGreenhouseSensors = EcoreUtil2.getAllContentsOfType(root, GreenhouseSensor)
     	
     	'''
-    	«FOR rowRules : allRowSensors»
-    		int «rowRules.variable.name» := 0;
+    	«FOR rowSensor : allRowSensors»
+    		«FOR state : rowSensor.states»
+    			«IF state.name.contains('optimal')»
+    				int «rowSensor.variable.name» := «state.threshold.computeExpression»+1;
+    			«ENDIF»
+    		«ENDFOR»
     	«ENDFOR»
     	
-    	«FOR greenhouseRules : allGreenhouseSensors»
-    	    int «greenhouseRules.variable.name» := 0;
+    	«FOR greenhouseSensor : allGreenhouseSensors»
+    		«FOR state : greenhouseSensor.states»
+    			«IF state.name.contains('optimal')»
+					int «greenhouseSensor.variable.name» := «state.threshold.computeExpression»+1;
+				«ENDIF»
+    		«ENDFOR»
     	«ENDFOR»
     	'''
     }	
@@ -332,7 +918,7 @@ class GreenhouseGenerator extends AbstractGenerator {
                 state
                     «FOR state : greenhouseSensor.states SEPARATOR ',\n'»«state.name»«IF state.threshold !== null»{«greenhouseSensor.variable.name»«state.op»«state.threshold.computeExpression»}«ENDIF»«ENDFOR»;
                 init
-                    «greenhouseSensor.states.get(0).name»;
+                    optimal;
                 «IF allGreenhouseRules.filter[it.sensor.name == greenhouseSensor.name].size > 0»
                 trans
                 	«FOR greenhouseRule : allGreenhouseRules SEPARATOR ','»«FOR state : greenhouseSensor.states»«IF state.name.contains('optimal')»
@@ -420,3 +1006,6 @@ class GreenhouseGenerator extends AbstractGenerator {
         "(" + exp.left.computeExpression + "/" + exp.right.computeExpression + ")"
     }
 }
+
+
+

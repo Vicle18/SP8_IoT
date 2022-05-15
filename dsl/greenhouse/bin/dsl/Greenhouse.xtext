@@ -3,7 +3,6 @@ grammar dsl.Greenhouse with org.eclipse.xtext.common.Terminals
 generate greenhouse "http://www.Greenhouse.dsl"
 
 
-
 Model:
     "system" name=ID
     hardwareSetup+=HardwareSetup?
@@ -117,7 +116,7 @@ RowRuleSet:
 ;
 
 GreenhouseRuleSet:
-    'global' 'rule' actuator=[GreenhouseActuator] 'set' action=[Action] 'when' sensor=[GreenhouseSensor] 'is' state=[State]
+    'global' 'rule' actuator=[GreenhouseActuator] 'set' action=[Action] settingvalue=[SettingValue] 'when' sensor=[GreenhouseSensor] 'is' state=[State]
 ;
 
 Exp returns Expression:

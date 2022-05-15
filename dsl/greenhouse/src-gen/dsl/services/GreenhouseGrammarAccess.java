@@ -1204,27 +1204,30 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		private final Keyword cGlobalKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cRuleKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cActuatorAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final CrossReference cActuatorGreenhouseCrossReference_2_0 = (CrossReference)cActuatorAssignment_2.eContents().get(0);
-		private final RuleCall cActuatorGreenhouseIDTerminalRuleCall_2_0_1 = (RuleCall)cActuatorGreenhouseCrossReference_2_0.eContents().get(1);
+		private final CrossReference cActuatorGreenhouseActuatorCrossReference_2_0 = (CrossReference)cActuatorAssignment_2.eContents().get(0);
+		private final RuleCall cActuatorGreenhouseActuatorIDTerminalRuleCall_2_0_1 = (RuleCall)cActuatorGreenhouseActuatorCrossReference_2_0.eContents().get(1);
 		private final Keyword cSetKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Assignment cActionAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final CrossReference cActionActionCrossReference_4_0 = (CrossReference)cActionAssignment_4.eContents().get(0);
 		private final RuleCall cActionActionIDTerminalRuleCall_4_0_1 = (RuleCall)cActionActionCrossReference_4_0.eContents().get(1);
-		private final Keyword cWhenKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final Assignment cSensorAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final CrossReference cSensorGreenhouseSensorCrossReference_6_0 = (CrossReference)cSensorAssignment_6.eContents().get(0);
-		private final RuleCall cSensorGreenhouseSensorIDTerminalRuleCall_6_0_1 = (RuleCall)cSensorGreenhouseSensorCrossReference_6_0.eContents().get(1);
-		private final Keyword cIsKeyword_7 = (Keyword)cGroup.eContents().get(7);
-		private final Assignment cStateAssignment_8 = (Assignment)cGroup.eContents().get(8);
-		private final CrossReference cStateStateCrossReference_8_0 = (CrossReference)cStateAssignment_8.eContents().get(0);
-		private final RuleCall cStateStateIDTerminalRuleCall_8_0_1 = (RuleCall)cStateStateCrossReference_8_0.eContents().get(1);
+		private final Assignment cSettingvalueAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final CrossReference cSettingvalueSettingValueCrossReference_5_0 = (CrossReference)cSettingvalueAssignment_5.eContents().get(0);
+		private final RuleCall cSettingvalueSettingValueIDTerminalRuleCall_5_0_1 = (RuleCall)cSettingvalueSettingValueCrossReference_5_0.eContents().get(1);
+		private final Keyword cWhenKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Assignment cSensorAssignment_7 = (Assignment)cGroup.eContents().get(7);
+		private final CrossReference cSensorGreenhouseSensorCrossReference_7_0 = (CrossReference)cSensorAssignment_7.eContents().get(0);
+		private final RuleCall cSensorGreenhouseSensorIDTerminalRuleCall_7_0_1 = (RuleCall)cSensorGreenhouseSensorCrossReference_7_0.eContents().get(1);
+		private final Keyword cIsKeyword_8 = (Keyword)cGroup.eContents().get(8);
+		private final Assignment cStateAssignment_9 = (Assignment)cGroup.eContents().get(9);
+		private final CrossReference cStateStateCrossReference_9_0 = (CrossReference)cStateAssignment_9.eContents().get(0);
+		private final RuleCall cStateStateIDTerminalRuleCall_9_0_1 = (RuleCall)cStateStateCrossReference_9_0.eContents().get(1);
 		
 		//GreenhouseRuleSet:
-		//    'global' 'rule' actuator=[Greenhouse] 'set' action=[Action] 'when' sensor=[GreenhouseSensor] 'is' state=[State]
+		//    'global' 'rule' actuator=[GreenhouseActuator] 'set' action=[Action] settingvalue=[SettingValue] 'when' sensor=[GreenhouseSensor] 'is' state=[State]
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'global' 'rule' actuator=[Greenhouse] 'set' action=[Action] 'when' sensor=[GreenhouseSensor] 'is' state=[State]
+		//'global' 'rule' actuator=[GreenhouseActuator] 'set' action=[Action] settingvalue=[SettingValue] 'when' sensor=[GreenhouseSensor] 'is' state=[State]
 		public Group getGroup() { return cGroup; }
 		
 		//'global'
@@ -1233,14 +1236,14 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		//'rule'
 		public Keyword getRuleKeyword_1() { return cRuleKeyword_1; }
 		
-		//actuator=[Greenhouse]
+		//actuator=[GreenhouseActuator]
 		public Assignment getActuatorAssignment_2() { return cActuatorAssignment_2; }
 		
-		//[Greenhouse]
-		public CrossReference getActuatorGreenhouseCrossReference_2_0() { return cActuatorGreenhouseCrossReference_2_0; }
+		//[GreenhouseActuator]
+		public CrossReference getActuatorGreenhouseActuatorCrossReference_2_0() { return cActuatorGreenhouseActuatorCrossReference_2_0; }
 		
 		//ID
-		public RuleCall getActuatorGreenhouseIDTerminalRuleCall_2_0_1() { return cActuatorGreenhouseIDTerminalRuleCall_2_0_1; }
+		public RuleCall getActuatorGreenhouseActuatorIDTerminalRuleCall_2_0_1() { return cActuatorGreenhouseActuatorIDTerminalRuleCall_2_0_1; }
 		
 		//'set'
 		public Keyword getSetKeyword_3() { return cSetKeyword_3; }
@@ -1254,29 +1257,38 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		//ID
 		public RuleCall getActionActionIDTerminalRuleCall_4_0_1() { return cActionActionIDTerminalRuleCall_4_0_1; }
 		
+		//settingvalue=[SettingValue]
+		public Assignment getSettingvalueAssignment_5() { return cSettingvalueAssignment_5; }
+		
+		//[SettingValue]
+		public CrossReference getSettingvalueSettingValueCrossReference_5_0() { return cSettingvalueSettingValueCrossReference_5_0; }
+		
+		//ID
+		public RuleCall getSettingvalueSettingValueIDTerminalRuleCall_5_0_1() { return cSettingvalueSettingValueIDTerminalRuleCall_5_0_1; }
+		
 		//'when'
-		public Keyword getWhenKeyword_5() { return cWhenKeyword_5; }
+		public Keyword getWhenKeyword_6() { return cWhenKeyword_6; }
 		
 		//sensor=[GreenhouseSensor]
-		public Assignment getSensorAssignment_6() { return cSensorAssignment_6; }
+		public Assignment getSensorAssignment_7() { return cSensorAssignment_7; }
 		
 		//[GreenhouseSensor]
-		public CrossReference getSensorGreenhouseSensorCrossReference_6_0() { return cSensorGreenhouseSensorCrossReference_6_0; }
+		public CrossReference getSensorGreenhouseSensorCrossReference_7_0() { return cSensorGreenhouseSensorCrossReference_7_0; }
 		
 		//ID
-		public RuleCall getSensorGreenhouseSensorIDTerminalRuleCall_6_0_1() { return cSensorGreenhouseSensorIDTerminalRuleCall_6_0_1; }
+		public RuleCall getSensorGreenhouseSensorIDTerminalRuleCall_7_0_1() { return cSensorGreenhouseSensorIDTerminalRuleCall_7_0_1; }
 		
 		//'is'
-		public Keyword getIsKeyword_7() { return cIsKeyword_7; }
+		public Keyword getIsKeyword_8() { return cIsKeyword_8; }
 		
 		//state=[State]
-		public Assignment getStateAssignment_8() { return cStateAssignment_8; }
+		public Assignment getStateAssignment_9() { return cStateAssignment_9; }
 		
 		//[State]
-		public CrossReference getStateStateCrossReference_8_0() { return cStateStateCrossReference_8_0; }
+		public CrossReference getStateStateCrossReference_9_0() { return cStateStateCrossReference_9_0; }
 		
 		//ID
-		public RuleCall getStateStateIDTerminalRuleCall_8_0_1() { return cStateStateIDTerminalRuleCall_8_0_1; }
+		public RuleCall getStateStateIDTerminalRuleCall_9_0_1() { return cStateStateIDTerminalRuleCall_9_0_1; }
 	}
 	public class ExpElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "dsl.Greenhouse.Exp");
@@ -1818,7 +1830,7 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 	}
 	
 	//GreenhouseRuleSet:
-	//    'global' 'rule' actuator=[Greenhouse] 'set' action=[Action] 'when' sensor=[GreenhouseSensor] 'is' state=[State]
+	//    'global' 'rule' actuator=[GreenhouseActuator] 'set' action=[Action] settingvalue=[SettingValue] 'when' sensor=[GreenhouseSensor] 'is' state=[State]
 	//;
 	public GreenhouseRuleSetElements getGreenhouseRuleSetAccess() {
 		return pGreenhouseRuleSet;

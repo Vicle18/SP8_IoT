@@ -15,6 +15,7 @@ package dsl.greenhouse;
  * <ul>
  *   <li>{@link dsl.greenhouse.GreenhouseRuleSet#getActuator <em>Actuator</em>}</li>
  *   <li>{@link dsl.greenhouse.GreenhouseRuleSet#getAction <em>Action</em>}</li>
+ *   <li>{@link dsl.greenhouse.GreenhouseRuleSet#getSettingvalue <em>Settingvalue</em>}</li>
  *   <li>{@link dsl.greenhouse.GreenhouseRuleSet#getSensor <em>Sensor</em>}</li>
  *   <li>{@link dsl.greenhouse.GreenhouseRuleSet#getState <em>State</em>}</li>
  * </ul>
@@ -30,12 +31,12 @@ public interface GreenhouseRuleSet extends GreenhouseElement
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Actuator</em>' reference.
-   * @see #setActuator(Greenhouse)
+   * @see #setActuator(GreenhouseActuator)
    * @see dsl.greenhouse.GreenhousePackage#getGreenhouseRuleSet_Actuator()
    * @model
    * @generated
    */
-  Greenhouse getActuator();
+  GreenhouseActuator getActuator();
 
   /**
    * Sets the value of the '{@link dsl.greenhouse.GreenhouseRuleSet#getActuator <em>Actuator</em>}' reference.
@@ -45,7 +46,7 @@ public interface GreenhouseRuleSet extends GreenhouseElement
    * @see #getActuator()
    * @generated
    */
-  void setActuator(Greenhouse value);
+  void setActuator(GreenhouseActuator value);
 
   /**
    * Returns the value of the '<em><b>Action</b></em>' reference.
@@ -68,6 +69,28 @@ public interface GreenhouseRuleSet extends GreenhouseElement
    * @generated
    */
   void setAction(Action value);
+
+  /**
+   * Returns the value of the '<em><b>Settingvalue</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Settingvalue</em>' reference.
+   * @see #setSettingvalue(SettingValue)
+   * @see dsl.greenhouse.GreenhousePackage#getGreenhouseRuleSet_Settingvalue()
+   * @model
+   * @generated
+   */
+  SettingValue getSettingvalue();
+
+  /**
+   * Sets the value of the '{@link dsl.greenhouse.GreenhouseRuleSet#getSettingvalue <em>Settingvalue</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Settingvalue</em>' reference.
+   * @see #getSettingvalue()
+   * @generated
+   */
+  void setSettingvalue(SettingValue value);
 
   /**
    * Returns the value of the '<em><b>Sensor</b></em>' reference.

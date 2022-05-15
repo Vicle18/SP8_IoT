@@ -116,7 +116,6 @@ class GreenhouseScopeProvider extends AbstractGreenhouseScopeProvider {
 		val allValues = EcoreUtil2.getAllContentsOfType(root, SettingValue)
 		
 		System.out.println(allValues.filter[context.name == (it.eContainer as SettingAction).name])
-		//val filtered = allValues.filter[(context.eContainer as Actuator).type == (it.eContainer.eContainer as SettingActuator)]
 		
 		val filtered = allValues.filter[switch(context.eContainer){
 			RowActuator: (context.eContainer as RowActuator).type == (it.eContainer.eContainer as SettingActuator) && 
@@ -128,22 +127,10 @@ class GreenhouseScopeProvider extends AbstractGreenhouseScopeProvider {
 		Scopes.scopeFor(#[context], Scopes.scopeFor(filtered))
 	}
 	
-//	def dispatch scopeForEObject(RowSensor sensor, EReference reference) {
-//		System.out.println(sensor.eContainer.eContents)
-//		val root = EcoreUtil2.getRootContainer(sensor)
-//		
-//		//Scopes.scopeFor(#[row], Scopes.scopeFor(row.eContents))
-//		val allActions = EcoreUtil2.getAllContentsOfType(root, SettingSensor)
-//		
-//		System.out.println(allActions)
-//		Scopes.scopeFor(#[sensor], Scopes.scopeFor(allActions))
-//	}
-	
 	def dispatch scopeForEObject(RowRuleSet rule, EReference reference) {	
 		
 		System.out.println(rule.eContainer.eContents)
 		val row = rule.eContainer
-		//Scopes.scopeFor(#[row], Scopes.scopeFor(row.eContents))
 		val allTrigger = EcoreUtil2.getAllContentsOfType(row, Trigger)
 		val allSensor = EcoreUtil2.getAllContentsOfType(row, RowSensor)
 		val allStates = EcoreUtil2.getAllContentsOfType(row, State)
@@ -169,26 +156,29 @@ class GreenhouseScopeProvider extends AbstractGreenhouseScopeProvider {
 	def dispatch scopeForEObject(GreenhouseRuleSet rule, EReference reference) {	
 		
 		System.out.println(rule.eContainer.eContents)
-		val greenhouse = rule.eContainer
-		//Scopes.scopeFor(#[row], Scopes.scopeFor(row.eContents))
-		val allTrigger = EcoreUtil2.getAllContentsOfType(greenhouse, Trigger)
-		val allSensor = EcoreUtil2.getAllContentsOfType(greenhouse, RowSensor)
-		val allStates = EcoreUtil2.getAllContentsOfType(greenhouse, State)
-		val allActuators = EcoreUtil2.getAllContentsOfType(greenhouse, RowActuator)
-		
-		System.out.println(allTrigger)
-		Scopes.scopeFor(
-			allSensor, 
-			Scopes.scopeFor(
-				allActuators,
-				Scopes.scopeFor(
-					allTrigger, 
-					Scopes.scopeFor(
-						allStates
-					)
-				)
-			)
-		)
+        val root = EcoreUtil2.getRootContainer(rule);
+        val allAction = EcoreUtil2.getAllContentsOfType(root, Action)
+        val allSettingValue = EcoreUtil2.getAllContentsOfType(root, SettingValue)
+        val allSensor = EcoreUtil2.getAllContentsOfType(root, GreenhouseSensor)
+        val allStates = EcoreUtil2.getAllContentsOfType(root, State)
+        val allActuators = EcoreUtil2.getAllContentsOfType(root, GreenhouseActuator)
+
+        System.out.println(allAction)
+        Scopes.scopeFor(
+            allSensor, 
+            Scopes.scopeFor(
+                allActuators,
+                Scopes.scopeFor(
+                    allAction,
+                    Scopes.scopeFor(
+                        allSettingValue,
+                            Scopes.scopeFor(
+                                allStates
+                        )
+                    )
+                )
+            )
+        )
 	}
 	
 		

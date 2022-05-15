@@ -4,10 +4,11 @@
 package dsl.greenhouse.impl;
 
 import dsl.greenhouse.Action;
-import dsl.greenhouse.Greenhouse;
+import dsl.greenhouse.GreenhouseActuator;
 import dsl.greenhouse.GreenhousePackage;
 import dsl.greenhouse.GreenhouseRuleSet;
 import dsl.greenhouse.GreenhouseSensor;
+import dsl.greenhouse.SettingValue;
 import dsl.greenhouse.State;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -27,6 +28,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <ul>
  *   <li>{@link dsl.greenhouse.impl.GreenhouseRuleSetImpl#getActuator <em>Actuator</em>}</li>
  *   <li>{@link dsl.greenhouse.impl.GreenhouseRuleSetImpl#getAction <em>Action</em>}</li>
+ *   <li>{@link dsl.greenhouse.impl.GreenhouseRuleSetImpl#getSettingvalue <em>Settingvalue</em>}</li>
  *   <li>{@link dsl.greenhouse.impl.GreenhouseRuleSetImpl#getSensor <em>Sensor</em>}</li>
  *   <li>{@link dsl.greenhouse.impl.GreenhouseRuleSetImpl#getState <em>State</em>}</li>
  * </ul>
@@ -43,7 +45,7 @@ public class GreenhouseRuleSetImpl extends GreenhouseElementImpl implements Gree
    * @generated
    * @ordered
    */
-  protected Greenhouse actuator;
+  protected GreenhouseActuator actuator;
 
   /**
    * The cached value of the '{@link #getAction() <em>Action</em>}' reference.
@@ -54,6 +56,16 @@ public class GreenhouseRuleSetImpl extends GreenhouseElementImpl implements Gree
    * @ordered
    */
   protected Action action;
+
+  /**
+   * The cached value of the '{@link #getSettingvalue() <em>Settingvalue</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getSettingvalue()
+   * @generated
+   * @ordered
+   */
+  protected SettingValue settingvalue;
 
   /**
    * The cached value of the '{@link #getSensor() <em>Sensor</em>}' reference.
@@ -102,12 +114,12 @@ public class GreenhouseRuleSetImpl extends GreenhouseElementImpl implements Gree
    * @generated
    */
   @Override
-  public Greenhouse getActuator()
+  public GreenhouseActuator getActuator()
   {
     if (actuator != null && actuator.eIsProxy())
     {
       InternalEObject oldActuator = (InternalEObject)actuator;
-      actuator = (Greenhouse)eResolveProxy(oldActuator);
+      actuator = (GreenhouseActuator)eResolveProxy(oldActuator);
       if (actuator != oldActuator)
       {
         if (eNotificationRequired())
@@ -122,7 +134,7 @@ public class GreenhouseRuleSetImpl extends GreenhouseElementImpl implements Gree
    * <!-- end-user-doc -->
    * @generated
    */
-  public Greenhouse basicGetActuator()
+  public GreenhouseActuator basicGetActuator()
   {
     return actuator;
   }
@@ -133,9 +145,9 @@ public class GreenhouseRuleSetImpl extends GreenhouseElementImpl implements Gree
    * @generated
    */
   @Override
-  public void setActuator(Greenhouse newActuator)
+  public void setActuator(GreenhouseActuator newActuator)
   {
-    Greenhouse oldActuator = actuator;
+    GreenhouseActuator oldActuator = actuator;
     actuator = newActuator;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, GreenhousePackage.GREENHOUSE_RULE_SET__ACTUATOR, oldActuator, actuator));
@@ -184,6 +196,51 @@ public class GreenhouseRuleSetImpl extends GreenhouseElementImpl implements Gree
     action = newAction;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, GreenhousePackage.GREENHOUSE_RULE_SET__ACTION, oldAction, action));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public SettingValue getSettingvalue()
+  {
+    if (settingvalue != null && settingvalue.eIsProxy())
+    {
+      InternalEObject oldSettingvalue = (InternalEObject)settingvalue;
+      settingvalue = (SettingValue)eResolveProxy(oldSettingvalue);
+      if (settingvalue != oldSettingvalue)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, GreenhousePackage.GREENHOUSE_RULE_SET__SETTINGVALUE, oldSettingvalue, settingvalue));
+      }
+    }
+    return settingvalue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public SettingValue basicGetSettingvalue()
+  {
+    return settingvalue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setSettingvalue(SettingValue newSettingvalue)
+  {
+    SettingValue oldSettingvalue = settingvalue;
+    settingvalue = newSettingvalue;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GreenhousePackage.GREENHOUSE_RULE_SET__SETTINGVALUE, oldSettingvalue, settingvalue));
   }
 
   /**
@@ -292,6 +349,9 @@ public class GreenhouseRuleSetImpl extends GreenhouseElementImpl implements Gree
       case GreenhousePackage.GREENHOUSE_RULE_SET__ACTION:
         if (resolve) return getAction();
         return basicGetAction();
+      case GreenhousePackage.GREENHOUSE_RULE_SET__SETTINGVALUE:
+        if (resolve) return getSettingvalue();
+        return basicGetSettingvalue();
       case GreenhousePackage.GREENHOUSE_RULE_SET__SENSOR:
         if (resolve) return getSensor();
         return basicGetSensor();
@@ -313,10 +373,13 @@ public class GreenhouseRuleSetImpl extends GreenhouseElementImpl implements Gree
     switch (featureID)
     {
       case GreenhousePackage.GREENHOUSE_RULE_SET__ACTUATOR:
-        setActuator((Greenhouse)newValue);
+        setActuator((GreenhouseActuator)newValue);
         return;
       case GreenhousePackage.GREENHOUSE_RULE_SET__ACTION:
         setAction((Action)newValue);
+        return;
+      case GreenhousePackage.GREENHOUSE_RULE_SET__SETTINGVALUE:
+        setSettingvalue((SettingValue)newValue);
         return;
       case GreenhousePackage.GREENHOUSE_RULE_SET__SENSOR:
         setSensor((GreenhouseSensor)newValue);
@@ -339,10 +402,13 @@ public class GreenhouseRuleSetImpl extends GreenhouseElementImpl implements Gree
     switch (featureID)
     {
       case GreenhousePackage.GREENHOUSE_RULE_SET__ACTUATOR:
-        setActuator((Greenhouse)null);
+        setActuator((GreenhouseActuator)null);
         return;
       case GreenhousePackage.GREENHOUSE_RULE_SET__ACTION:
         setAction((Action)null);
+        return;
+      case GreenhousePackage.GREENHOUSE_RULE_SET__SETTINGVALUE:
+        setSettingvalue((SettingValue)null);
         return;
       case GreenhousePackage.GREENHOUSE_RULE_SET__SENSOR:
         setSensor((GreenhouseSensor)null);
@@ -368,6 +434,8 @@ public class GreenhouseRuleSetImpl extends GreenhouseElementImpl implements Gree
         return actuator != null;
       case GreenhousePackage.GREENHOUSE_RULE_SET__ACTION:
         return action != null;
+      case GreenhousePackage.GREENHOUSE_RULE_SET__SETTINGVALUE:
+        return settingvalue != null;
       case GreenhousePackage.GREENHOUSE_RULE_SET__SENSOR:
         return sensor != null;
       case GreenhousePackage.GREENHOUSE_RULE_SET__STATE:

@@ -155,16 +155,18 @@ public class GreenhouseScopeProvider extends AbstractGreenhouseScopeProvider {
     IScope _xblockexpression = null;
     {
       System.out.println(rule.eContainer().eContents());
-      final EObject greenhouse = rule.eContainer();
-      final List<Trigger> allTrigger = EcoreUtil2.<Trigger>getAllContentsOfType(greenhouse, Trigger.class);
-      final List<RowSensor> allSensor = EcoreUtil2.<RowSensor>getAllContentsOfType(greenhouse, RowSensor.class);
-      final List<State> allStates = EcoreUtil2.<State>getAllContentsOfType(greenhouse, State.class);
-      final List<RowActuator> allActuators = EcoreUtil2.<RowActuator>getAllContentsOfType(greenhouse, RowActuator.class);
-      System.out.println(allTrigger);
+      final EObject root = EcoreUtil2.getRootContainer(rule);
+      final List<Action> allAction = EcoreUtil2.<Action>getAllContentsOfType(root, Action.class);
+      final List<SettingValue> allSettingValue = EcoreUtil2.<SettingValue>getAllContentsOfType(root, SettingValue.class);
+      final List<GreenhouseSensor> allSensor = EcoreUtil2.<GreenhouseSensor>getAllContentsOfType(root, GreenhouseSensor.class);
+      final List<State> allStates = EcoreUtil2.<State>getAllContentsOfType(root, State.class);
+      final List<GreenhouseActuator> allActuators = EcoreUtil2.<GreenhouseActuator>getAllContentsOfType(root, GreenhouseActuator.class);
+      System.out.println(allAction);
       _xblockexpression = Scopes.scopeFor(allSensor, 
         Scopes.scopeFor(allActuators, 
-          Scopes.scopeFor(allTrigger, 
-            Scopes.scopeFor(allStates))));
+          Scopes.scopeFor(allAction, 
+            Scopes.scopeFor(allSettingValue, 
+              Scopes.scopeFor(allStates)))));
     }
     return _xblockexpression;
   }

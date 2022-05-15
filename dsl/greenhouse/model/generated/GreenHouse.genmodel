@@ -111,6 +111,7 @@
     <genClasses ecoreClass="Greenhouse.ecore#//GreenhouseRuleSet">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//GreenhouseRuleSet/actuator"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//GreenhouseRuleSet/action"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//GreenhouseRuleSet/settingvalue"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//GreenhouseRuleSet/sensor"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//GreenhouseRuleSet/state"/>
     </genClasses>

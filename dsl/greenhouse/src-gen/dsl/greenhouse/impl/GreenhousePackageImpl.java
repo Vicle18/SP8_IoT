@@ -1248,7 +1248,7 @@ public class GreenhousePackageImpl extends EPackageImpl implements GreenhousePac
    * @generated
    */
   @Override
-  public EReference getGreenhouseRuleSet_Sensor()
+  public EReference getGreenhouseRuleSet_Settingvalue()
   {
     return (EReference)greenhouseRuleSetEClass.getEStructuralFeatures().get(2);
   }
@@ -1259,9 +1259,20 @@ public class GreenhousePackageImpl extends EPackageImpl implements GreenhousePac
    * @generated
    */
   @Override
-  public EReference getGreenhouseRuleSet_State()
+  public EReference getGreenhouseRuleSet_Sensor()
   {
     return (EReference)greenhouseRuleSetEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getGreenhouseRuleSet_State()
+  {
+    return (EReference)greenhouseRuleSetEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -1567,6 +1578,7 @@ public class GreenhousePackageImpl extends EPackageImpl implements GreenhousePac
     greenhouseRuleSetEClass = createEClass(GREENHOUSE_RULE_SET);
     createEReference(greenhouseRuleSetEClass, GREENHOUSE_RULE_SET__ACTUATOR);
     createEReference(greenhouseRuleSetEClass, GREENHOUSE_RULE_SET__ACTION);
+    createEReference(greenhouseRuleSetEClass, GREENHOUSE_RULE_SET__SETTINGVALUE);
     createEReference(greenhouseRuleSetEClass, GREENHOUSE_RULE_SET__SENSOR);
     createEReference(greenhouseRuleSetEClass, GREENHOUSE_RULE_SET__STATE);
 
@@ -1741,8 +1753,9 @@ public class GreenhousePackageImpl extends EPackageImpl implements GreenhousePac
     initEReference(getRowRuleSet_State(), this.getState(), null, "state", null, 0, 1, RowRuleSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(greenhouseRuleSetEClass, GreenhouseRuleSet.class, "GreenhouseRuleSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getGreenhouseRuleSet_Actuator(), this.getGreenhouse(), null, "actuator", null, 0, 1, GreenhouseRuleSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getGreenhouseRuleSet_Actuator(), this.getGreenhouseActuator(), null, "actuator", null, 0, 1, GreenhouseRuleSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getGreenhouseRuleSet_Action(), this.getAction(), null, "action", null, 0, 1, GreenhouseRuleSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getGreenhouseRuleSet_Settingvalue(), this.getSettingValue(), null, "settingvalue", null, 0, 1, GreenhouseRuleSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getGreenhouseRuleSet_Sensor(), this.getGreenhouseSensor(), null, "sensor", null, 0, 1, GreenhouseRuleSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getGreenhouseRuleSet_State(), this.getState(), null, "state", null, 0, 1, GreenhouseRuleSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
