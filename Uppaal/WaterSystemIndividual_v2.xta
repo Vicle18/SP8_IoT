@@ -66,11 +66,13 @@ process ControllerSensor() {
 clock NNWTimer;
 state
     L0 { CSHeartbeatTimer < 30000 },
-    NeedWater { moist <= 150 and CSHeartbeatTimer < 25000 },
+    NeedWater { moist <= 150 or CSHeartbeatTimer < 29000 },
     Heartbeat,
-    DefaultMode,
+    CSDefaultMode,
     L1,
-    L2;
+    L2,
+    ErrorNeedWater,
+    ErrorOptimal;
 commit
     Heartbeat,
     L1,
@@ -78,24 +80,48 @@ commit
 init
     L0;
 trans
+    L1 -> ErrorOptimal { guard CSHeartbeatTimer >=30000; sync CSErrorDetected?; },
+    L2 -> ErrorNeedWater { guard CSHeartbeatTimer >=30000; sync CSErrorDetected?; },
     L1 -> L0 { sync stopPump!; assign MHealthTimer := 0; },
     NeedWater -> L1 { sync CSErrorCheck!; },
     L2 -> NeedWater { sync startPump!; assign MHealthTimer := 0; },
-    L0 -> L2 { guard moist<=100; sync CSErrorCheck!; },
-    L0 -> DefaultMode { guard CSHeartbeatTimer >= 60000; sync CSErrorDetected?; },
+    L0 -> L2 { guard moist<=100 and CSHeartbeatTimer < 28000; sync CSErrorCheck!; },
+    L0 -> CSDefaultMode { guard CSHeartbeatTimer >= 30000; sync CSErrorDetected?; },
     Heartbeat -> L0 { sync MoistEnv!; assign CSHeartbeatTimer:=0; },
     L0 -> Heartbeat { sync CSBeat!; assign CSHeartbeat := CSHeartbeat+1; };
+}
+
+process ControllerListenerSensor() {
+
+state
+    Initial,
+    L0,
+    CSError,
+    L1;
+commit
+    L0,
+    L1;
+init
+    Initial;
+trans
+    L1 -> CSError { guard CSHeartbeatTimer>=28000; sync CSErrorDetected!; },
+    L1 -> Initial { guard CSHeartbeatTimer<28000; },
+    Initial -> L1 { sync CSErrorCheck?; },
+    L0 -> CSError { guard CSHeartbeatTimer >= 30000; sync CSErrorDetected!; },
+    L0 -> Initial { guard CSHeartbeatTimer < 30000; },
+    Initial -> L0 { sync CSBeat?; };
 }
 
 process ControllerActuator() {
 clock PT;
 state
     L0 { CAHeartbeatTimer < 30000 },
-    Active { PT <= 1000 and CAHeartbeatTimer < 25000 },
-    DefaultMode,
+    Active { CAHeartbeatTimer < 29000 },
+    CADefaultMode,
     Heartbeat,
     L1,
-    L2;
+    L2,
+    ErrorFromActive;
 commit
     Heartbeat,
     L1,
@@ -103,47 +129,37 @@ commit
 init
     L0;
 trans
+    Active -> ErrorFromActive { guard CAHeartbeatTimer >= 30000; sync CAErrorDetected?; },
     L2 -> L0 { sync CAErrorCheck!; },
     Active -> L2 { sync stopPump?; assign pumpRunning = false,
 PNA:=0; },
-    L1 -> Active { sync startPump?; assign pumpRunning = true, PT := 0; },
-    L0 -> L1 { guard moist<=100; sync CAErrorCheck!; },
+    L1 -> Active { sync CAErrorCheck!; assign pumpRunning = true, PT := 0; },
+    L0 -> L1 { guard moist<=100 and CAHeartbeatTimer <28000; sync startPump?; },
     Heartbeat -> L0 { assign CAHeartbeatTimer:=0; },
     L0 -> Heartbeat { sync CABeat!; assign CAHeartbeat:=CAHeartbeat+1; },
-    L0 -> DefaultMode { guard CAHeartbeatTimer >= 60000; sync CAErrorDetected?; },
+    L0 -> CADefaultMode { guard CAHeartbeatTimer >= 30000; sync CAErrorDetected?; },
     Active -> Active { guard PT >= 1000; sync CAErrorCheck!; assign PT:=0,
 moist:=moist+6; };
 }
 
-process ControllerListener() {
+process ControllerListenerActuator() {
 
 state
     Initial,
     L0,
     CAError,
-    L1,
-    CSError,
-    L2,
-    L3;
+    L1;
 commit
     L0,
-    L1,
-    L2,
-    L3;
+    L1;
 init
     Initial;
 trans
-    L3 -> CAError { sync CAErrorDetected!; },
-    L2 -> CSError { sync CSErrorDetected!; },
-    L3 -> Initial { guard CAHeartbeatTimer<30000; },
-    Initial -> L3 { sync CAErrorCheck?; },
-    L2 -> Initial { guard CSHeartbeatTimer<30000; },
-    Initial -> L2 { sync CSErrorCheck?; },
-    L1 -> CSError { guard CSHeartbeatTimer >= 30000; sync CSErrorDetected!; },
-    L1 -> Initial { guard CSHeartbeatTimer < 30000; },
-    Initial -> L1 { sync CSBeat?; },
-    L0 -> CAError { guard CAHeartbeatTimer >= 30000; sync CAErrorDetected!; },
-    L0 -> Initial { guard CAHeartbeatTimer < 30000; },
+    L1 -> CAError { guard CAHeartbeatTimer>=28000; sync CAErrorDetected!; },
+    L1 -> Initial { guard CAHeartbeatTimer<28000; },
+    Initial -> L1 { sync CAErrorCheck?; },
+    L0 -> CAError { guard CAHeartbeatTimer >= 28000; sync CAErrorDetected!; },
+    L0 -> Initial { guard CAHeartbeatTimer < 28000; },
     Initial -> L0 { sync CABeat?; };
 }
 
@@ -380,7 +396,8 @@ humidifier:=Humidifier();
 dihumidifier:=Dihumidifier();
 humid:=Humid();
 controllerActuator:=ControllerActuator();
-controllerListener:=ControllerListener();
+controllerListenerActuator:=ControllerListenerActuator();
+controllerListenerSensor:=ControllerListenerSensor();
 controllerSensor:=ControllerSensor();
 // List one or more processes to be composed into a system.
-system controllerSensor, moistureEnv, controllerActuator, controllerListener;
+system controllerSensor, moistureEnv, controllerActuator, controllerListenerActuator, controllerListenerSensor;
