@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link dsl.greenhouse.HardwareSetup#getHardware <em>Hardware</em>}</li>
  *   <li>{@link dsl.greenhouse.HardwareSetup#getControllers <em>Controllers</em>}</li>
+ *   <li>{@link dsl.greenhouse.HardwareSetup#getControllerListeners <em>Controller Listeners</em>}</li>
  * </ul>
  *
  * @see dsl.greenhouse.GreenhousePackage#getHardwareSetup()
@@ -49,5 +50,17 @@ public interface HardwareSetup extends EObject
    * @generated
    */
   EList<Controller> getControllers();
+
+  /**
+   * Returns the value of the '<em><b>Controller Listeners</b></em>' containment reference list.
+   * The list contents are of type {@link dsl.greenhouse.ControllerListener}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Controller Listeners</em>' containment reference list.
+   * @see dsl.greenhouse.GreenhousePackage#getHardwareSetup_ControllerListeners()
+   * @model containment="true"
+   * @generated
+   */
+  EList<ControllerListener> getControllerListeners();
 
 } // HardwareSetup

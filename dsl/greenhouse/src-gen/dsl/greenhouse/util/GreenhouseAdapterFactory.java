@@ -106,9 +106,24 @@ public class GreenhouseAdapterFactory extends AdapterFactoryImpl
         return createControllerAdapter();
       }
       @Override
+      public Adapter caseHeartbeatFrequency(HeartbeatFrequency object)
+      {
+        return createHeartbeatFrequencyAdapter();
+      }
+      @Override
       public Adapter caseControllerType(ControllerType object)
       {
         return createControllerTypeAdapter();
+      }
+      @Override
+      public Adapter caseControllerListener(ControllerListener object)
+      {
+        return createControllerListenerAdapter();
+      }
+      @Override
+      public Adapter caseControllerListenerRule(ControllerListenerRule object)
+      {
+        return createControllerListenerRuleAdapter();
       }
       @Override
       public Adapter caseReducer(Reducer object)
@@ -348,6 +363,21 @@ public class GreenhouseAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link dsl.greenhouse.HeartbeatFrequency <em>Heartbeat Frequency</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see dsl.greenhouse.HeartbeatFrequency
+   * @generated
+   */
+  public Adapter createHeartbeatFrequencyAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link dsl.greenhouse.ControllerType <em>Controller Type</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -358,6 +388,36 @@ public class GreenhouseAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createControllerTypeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link dsl.greenhouse.ControllerListener <em>Controller Listener</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see dsl.greenhouse.ControllerListener
+   * @generated
+   */
+  public Adapter createControllerListenerAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link dsl.greenhouse.ControllerListenerRule <em>Controller Listener Rule</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see dsl.greenhouse.ControllerListenerRule
+   * @generated
+   */
+  public Adapter createControllerListenerRuleAdapter()
   {
     return null;
   }

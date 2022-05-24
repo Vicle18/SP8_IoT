@@ -132,13 +132,22 @@ public interface GreenhousePackage extends EPackage
   int HARDWARE_SETUP__CONTROLLERS = 1;
 
   /**
+   * The feature id for the '<em><b>Controller Listeners</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int HARDWARE_SETUP__CONTROLLER_LISTENERS = 2;
+
+  /**
    * The number of structural features of the '<em>Hardware Setup</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int HARDWARE_SETUP_FEATURE_COUNT = 2;
+  int HARDWARE_SETUP_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link dsl.greenhouse.impl.HardwareImpl <em>Hardware</em>}' class.
@@ -280,13 +289,50 @@ public interface GreenhousePackage extends EPackage
   int CONTROLLER__TYPE = 1;
 
   /**
+   * The feature id for the '<em><b>Heartbeatfreq</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTROLLER__HEARTBEATFREQ = 2;
+
+  /**
    * The number of structural features of the '<em>Controller</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONTROLLER_FEATURE_COUNT = 2;
+  int CONTROLLER_FEATURE_COUNT = 3;
+
+  /**
+   * The meta object id for the '{@link dsl.greenhouse.impl.HeartbeatFrequencyImpl <em>Heartbeat Frequency</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see dsl.greenhouse.impl.HeartbeatFrequencyImpl
+   * @see dsl.greenhouse.impl.GreenhousePackageImpl#getHeartbeatFrequency()
+   * @generated
+   */
+  int HEARTBEAT_FREQUENCY = 6;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int HEARTBEAT_FREQUENCY__VALUE = 0;
+
+  /**
+   * The number of structural features of the '<em>Heartbeat Frequency</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int HEARTBEAT_FREQUENCY_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link dsl.greenhouse.impl.ControllerTypeImpl <em>Controller Type</em>}' class.
@@ -296,7 +342,7 @@ public interface GreenhousePackage extends EPackage
    * @see dsl.greenhouse.impl.GreenhousePackageImpl#getControllerType()
    * @generated
    */
-  int CONTROLLER_TYPE = 6;
+  int CONTROLLER_TYPE = 7;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -317,6 +363,98 @@ public interface GreenhousePackage extends EPackage
   int CONTROLLER_TYPE_FEATURE_COUNT = 1;
 
   /**
+   * The meta object id for the '{@link dsl.greenhouse.impl.ControllerListenerImpl <em>Controller Listener</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see dsl.greenhouse.impl.ControllerListenerImpl
+   * @see dsl.greenhouse.impl.GreenhousePackageImpl#getControllerListener()
+   * @generated
+   */
+  int CONTROLLER_LISTENER = 8;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTROLLER_LISTENER__NAME = 0;
+
+  /**
+   * The feature id for the '<em><b>Controller Listener Rule</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTROLLER_LISTENER__CONTROLLER_LISTENER_RULE = 1;
+
+  /**
+   * The number of structural features of the '<em>Controller Listener</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTROLLER_LISTENER_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link dsl.greenhouse.impl.ControllerListenerRuleImpl <em>Controller Listener Rule</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see dsl.greenhouse.impl.ControllerListenerRuleImpl
+   * @see dsl.greenhouse.impl.GreenhousePackageImpl#getControllerListenerRule()
+   * @generated
+   */
+  int CONTROLLER_LISTENER_RULE = 9;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTROLLER_LISTENER_RULE__NAME = 0;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTROLLER_LISTENER_RULE__TYPE = 1;
+
+  /**
+   * The feature id for the '<em><b>Op</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTROLLER_LISTENER_RULE__OP = 2;
+
+  /**
+   * The feature id for the '<em><b>Threshold</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTROLLER_LISTENER_RULE__THRESHOLD = 3;
+
+  /**
+   * The number of structural features of the '<em>Controller Listener Rule</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTROLLER_LISTENER_RULE_FEATURE_COUNT = 4;
+
+  /**
    * The meta object id for the '{@link dsl.greenhouse.impl.ReducerImpl <em>Reducer</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -324,7 +462,7 @@ public interface GreenhousePackage extends EPackage
    * @see dsl.greenhouse.impl.GreenhousePackageImpl#getReducer()
    * @generated
    */
-  int REDUCER = 7;
+  int REDUCER = 10;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -352,7 +490,7 @@ public interface GreenhousePackage extends EPackage
    * @see dsl.greenhouse.impl.GreenhousePackageImpl#getFrequency()
    * @generated
    */
-  int FREQUENCY = 8;
+  int FREQUENCY = 11;
 
   /**
    * The feature id for the '<em><b>Freq</b></em>' containment reference.
@@ -380,7 +518,7 @@ public interface GreenhousePackage extends EPackage
    * @see dsl.greenhouse.impl.GreenhousePackageImpl#getTopic()
    * @generated
    */
-  int TOPIC = 9;
+  int TOPIC = 12;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -408,7 +546,7 @@ public interface GreenhousePackage extends EPackage
    * @see dsl.greenhouse.impl.GreenhousePackageImpl#getSettingAction()
    * @generated
    */
-  int SETTING_ACTION = 10;
+  int SETTING_ACTION = 13;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -445,7 +583,7 @@ public interface GreenhousePackage extends EPackage
    * @see dsl.greenhouse.impl.GreenhousePackageImpl#getSettingValue()
    * @generated
    */
-  int SETTING_VALUE = 11;
+  int SETTING_VALUE = 14;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -473,7 +611,7 @@ public interface GreenhousePackage extends EPackage
    * @see dsl.greenhouse.impl.GreenhousePackageImpl#getGreenhouse()
    * @generated
    */
-  int GREENHOUSE = 12;
+  int GREENHOUSE = 15;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -519,7 +657,7 @@ public interface GreenhousePackage extends EPackage
    * @see dsl.greenhouse.impl.GreenhousePackageImpl#getRow()
    * @generated
    */
-  int ROW = 13;
+  int ROW = 16;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -556,7 +694,7 @@ public interface GreenhousePackage extends EPackage
    * @see dsl.greenhouse.impl.GreenhousePackageImpl#getGreenhouseElement()
    * @generated
    */
-  int GREENHOUSE_ELEMENT = 14;
+  int GREENHOUSE_ELEMENT = 17;
 
   /**
    * The number of structural features of the '<em>Element</em>' class.
@@ -575,7 +713,7 @@ public interface GreenhousePackage extends EPackage
    * @see dsl.greenhouse.impl.GreenhousePackageImpl#getRowElement()
    * @generated
    */
-  int ROW_ELEMENT = 15;
+  int ROW_ELEMENT = 18;
 
   /**
    * The number of structural features of the '<em>Row Element</em>' class.
@@ -594,7 +732,7 @@ public interface GreenhousePackage extends EPackage
    * @see dsl.greenhouse.impl.GreenhousePackageImpl#getGreenhouseActuator()
    * @generated
    */
-  int GREENHOUSE_ACTUATOR = 16;
+  int GREENHOUSE_ACTUATOR = 19;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -649,7 +787,7 @@ public interface GreenhousePackage extends EPackage
    * @see dsl.greenhouse.impl.GreenhousePackageImpl#getRowActuator()
    * @generated
    */
-  int ROW_ACTUATOR = 17;
+  int ROW_ACTUATOR = 20;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -704,7 +842,7 @@ public interface GreenhousePackage extends EPackage
    * @see dsl.greenhouse.impl.GreenhousePackageImpl#getGreenhouseSensor()
    * @generated
    */
-  int GREENHOUSE_SENSOR = 18;
+  int GREENHOUSE_SENSOR = 21;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -768,7 +906,7 @@ public interface GreenhousePackage extends EPackage
    * @see dsl.greenhouse.impl.GreenhousePackageImpl#getRowSensor()
    * @generated
    */
-  int ROW_SENSOR = 19;
+  int ROW_SENSOR = 22;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -832,7 +970,7 @@ public interface GreenhousePackage extends EPackage
    * @see dsl.greenhouse.impl.GreenhousePackageImpl#getState()
    * @generated
    */
-  int STATE = 20;
+  int STATE = 23;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -887,7 +1025,7 @@ public interface GreenhousePackage extends EPackage
    * @see dsl.greenhouse.impl.GreenhousePackageImpl#getVariable()
    * @generated
    */
-  int VARIABLE = 21;
+  int VARIABLE = 24;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -915,7 +1053,7 @@ public interface GreenhousePackage extends EPackage
    * @see dsl.greenhouse.impl.GreenhousePackageImpl#getAction()
    * @generated
    */
-  int ACTION = 22;
+  int ACTION = 25;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -961,7 +1099,7 @@ public interface GreenhousePackage extends EPackage
    * @see dsl.greenhouse.impl.GreenhousePackageImpl#getTrigger()
    * @generated
    */
-  int TRIGGER = 23;
+  int TRIGGER = 26;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -989,7 +1127,7 @@ public interface GreenhousePackage extends EPackage
    * @see dsl.greenhouse.impl.GreenhousePackageImpl#getRowRuleSet()
    * @generated
    */
-  int ROW_RULE_SET = 24;
+  int ROW_RULE_SET = 27;
 
   /**
    * The feature id for the '<em><b>Trigger</b></em>' reference.
@@ -1044,7 +1182,7 @@ public interface GreenhousePackage extends EPackage
    * @see dsl.greenhouse.impl.GreenhousePackageImpl#getGreenhouseRuleSet()
    * @generated
    */
-  int GREENHOUSE_RULE_SET = 25;
+  int GREENHOUSE_RULE_SET = 28;
 
   /**
    * The feature id for the '<em><b>Actuator</b></em>' reference.
@@ -1108,7 +1246,7 @@ public interface GreenhousePackage extends EPackage
    * @see dsl.greenhouse.impl.GreenhousePackageImpl#getExpression()
    * @generated
    */
-  int EXPRESSION = 26;
+  int EXPRESSION = 29;
 
   /**
    * The number of structural features of the '<em>Expression</em>' class.
@@ -1127,7 +1265,7 @@ public interface GreenhousePackage extends EPackage
    * @see dsl.greenhouse.impl.GreenhousePackageImpl#getPlus()
    * @generated
    */
-  int PLUS = 27;
+  int PLUS = 30;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1164,7 +1302,7 @@ public interface GreenhousePackage extends EPackage
    * @see dsl.greenhouse.impl.GreenhousePackageImpl#getMinus()
    * @generated
    */
-  int MINUS = 28;
+  int MINUS = 31;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1201,7 +1339,7 @@ public interface GreenhousePackage extends EPackage
    * @see dsl.greenhouse.impl.GreenhousePackageImpl#getMult()
    * @generated
    */
-  int MULT = 29;
+  int MULT = 32;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1238,7 +1376,7 @@ public interface GreenhousePackage extends EPackage
    * @see dsl.greenhouse.impl.GreenhousePackageImpl#getDiv()
    * @generated
    */
-  int DIV = 30;
+  int DIV = 33;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1275,7 +1413,7 @@ public interface GreenhousePackage extends EPackage
    * @see dsl.greenhouse.impl.GreenhousePackageImpl#getMathNumber()
    * @generated
    */
-  int MATH_NUMBER = 31;
+  int MATH_NUMBER = 34;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1370,6 +1508,17 @@ public interface GreenhousePackage extends EPackage
    * @generated
    */
   EReference getHardwareSetup_Controllers();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link dsl.greenhouse.HardwareSetup#getControllerListeners <em>Controller Listeners</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Controller Listeners</em>'.
+   * @see dsl.greenhouse.HardwareSetup#getControllerListeners()
+   * @see #getHardwareSetup()
+   * @generated
+   */
+  EReference getHardwareSetup_ControllerListeners();
 
   /**
    * Returns the meta object for class '{@link dsl.greenhouse.Hardware <em>Hardware</em>}'.
@@ -1478,6 +1627,38 @@ public interface GreenhousePackage extends EPackage
   EReference getController_Type();
 
   /**
+   * Returns the meta object for the containment reference '{@link dsl.greenhouse.Controller#getHeartbeatfreq <em>Heartbeatfreq</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Heartbeatfreq</em>'.
+   * @see dsl.greenhouse.Controller#getHeartbeatfreq()
+   * @see #getController()
+   * @generated
+   */
+  EReference getController_Heartbeatfreq();
+
+  /**
+   * Returns the meta object for class '{@link dsl.greenhouse.HeartbeatFrequency <em>Heartbeat Frequency</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Heartbeat Frequency</em>'.
+   * @see dsl.greenhouse.HeartbeatFrequency
+   * @generated
+   */
+  EClass getHeartbeatFrequency();
+
+  /**
+   * Returns the meta object for the attribute '{@link dsl.greenhouse.HeartbeatFrequency#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see dsl.greenhouse.HeartbeatFrequency#getValue()
+   * @see #getHeartbeatFrequency()
+   * @generated
+   */
+  EAttribute getHeartbeatFrequency_Value();
+
+  /**
    * Returns the meta object for class '{@link dsl.greenhouse.ControllerType <em>Controller Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1497,6 +1678,92 @@ public interface GreenhousePackage extends EPackage
    * @generated
    */
   EAttribute getControllerType_Name();
+
+  /**
+   * Returns the meta object for class '{@link dsl.greenhouse.ControllerListener <em>Controller Listener</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Controller Listener</em>'.
+   * @see dsl.greenhouse.ControllerListener
+   * @generated
+   */
+  EClass getControllerListener();
+
+  /**
+   * Returns the meta object for the attribute '{@link dsl.greenhouse.ControllerListener#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see dsl.greenhouse.ControllerListener#getName()
+   * @see #getControllerListener()
+   * @generated
+   */
+  EAttribute getControllerListener_Name();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link dsl.greenhouse.ControllerListener#getControllerListenerRule <em>Controller Listener Rule</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Controller Listener Rule</em>'.
+   * @see dsl.greenhouse.ControllerListener#getControllerListenerRule()
+   * @see #getControllerListener()
+   * @generated
+   */
+  EReference getControllerListener_ControllerListenerRule();
+
+  /**
+   * Returns the meta object for class '{@link dsl.greenhouse.ControllerListenerRule <em>Controller Listener Rule</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Controller Listener Rule</em>'.
+   * @see dsl.greenhouse.ControllerListenerRule
+   * @generated
+   */
+  EClass getControllerListenerRule();
+
+  /**
+   * Returns the meta object for the attribute '{@link dsl.greenhouse.ControllerListenerRule#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see dsl.greenhouse.ControllerListenerRule#getName()
+   * @see #getControllerListenerRule()
+   * @generated
+   */
+  EAttribute getControllerListenerRule_Name();
+
+  /**
+   * Returns the meta object for the reference '{@link dsl.greenhouse.ControllerListenerRule#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Type</em>'.
+   * @see dsl.greenhouse.ControllerListenerRule#getType()
+   * @see #getControllerListenerRule()
+   * @generated
+   */
+  EReference getControllerListenerRule_Type();
+
+  /**
+   * Returns the meta object for the attribute '{@link dsl.greenhouse.ControllerListenerRule#getOp <em>Op</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Op</em>'.
+   * @see dsl.greenhouse.ControllerListenerRule#getOp()
+   * @see #getControllerListenerRule()
+   * @generated
+   */
+  EAttribute getControllerListenerRule_Op();
+
+  /**
+   * Returns the meta object for the containment reference '{@link dsl.greenhouse.ControllerListenerRule#getThreshold <em>Threshold</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Threshold</em>'.
+   * @see dsl.greenhouse.ControllerListenerRule#getThreshold()
+   * @see #getControllerListenerRule()
+   * @generated
+   */
+  EReference getControllerListenerRule_Threshold();
 
   /**
    * Returns the meta object for class '{@link dsl.greenhouse.Reducer <em>Reducer</em>}'.
@@ -2448,6 +2715,14 @@ public interface GreenhousePackage extends EPackage
     EReference HARDWARE_SETUP__CONTROLLERS = eINSTANCE.getHardwareSetup_Controllers();
 
     /**
+     * The meta object literal for the '<em><b>Controller Listeners</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference HARDWARE_SETUP__CONTROLLER_LISTENERS = eINSTANCE.getHardwareSetup_ControllerListeners();
+
+    /**
      * The meta object literal for the '{@link dsl.greenhouse.impl.HardwareImpl <em>Hardware</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2536,6 +2811,32 @@ public interface GreenhousePackage extends EPackage
     EReference CONTROLLER__TYPE = eINSTANCE.getController_Type();
 
     /**
+     * The meta object literal for the '<em><b>Heartbeatfreq</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CONTROLLER__HEARTBEATFREQ = eINSTANCE.getController_Heartbeatfreq();
+
+    /**
+     * The meta object literal for the '{@link dsl.greenhouse.impl.HeartbeatFrequencyImpl <em>Heartbeat Frequency</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see dsl.greenhouse.impl.HeartbeatFrequencyImpl
+     * @see dsl.greenhouse.impl.GreenhousePackageImpl#getHeartbeatFrequency()
+     * @generated
+     */
+    EClass HEARTBEAT_FREQUENCY = eINSTANCE.getHeartbeatFrequency();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute HEARTBEAT_FREQUENCY__VALUE = eINSTANCE.getHeartbeatFrequency_Value();
+
+    /**
      * The meta object literal for the '{@link dsl.greenhouse.impl.ControllerTypeImpl <em>Controller Type</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2552,6 +2853,74 @@ public interface GreenhousePackage extends EPackage
      * @generated
      */
     EAttribute CONTROLLER_TYPE__NAME = eINSTANCE.getControllerType_Name();
+
+    /**
+     * The meta object literal for the '{@link dsl.greenhouse.impl.ControllerListenerImpl <em>Controller Listener</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see dsl.greenhouse.impl.ControllerListenerImpl
+     * @see dsl.greenhouse.impl.GreenhousePackageImpl#getControllerListener()
+     * @generated
+     */
+    EClass CONTROLLER_LISTENER = eINSTANCE.getControllerListener();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CONTROLLER_LISTENER__NAME = eINSTANCE.getControllerListener_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Controller Listener Rule</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CONTROLLER_LISTENER__CONTROLLER_LISTENER_RULE = eINSTANCE.getControllerListener_ControllerListenerRule();
+
+    /**
+     * The meta object literal for the '{@link dsl.greenhouse.impl.ControllerListenerRuleImpl <em>Controller Listener Rule</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see dsl.greenhouse.impl.ControllerListenerRuleImpl
+     * @see dsl.greenhouse.impl.GreenhousePackageImpl#getControllerListenerRule()
+     * @generated
+     */
+    EClass CONTROLLER_LISTENER_RULE = eINSTANCE.getControllerListenerRule();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CONTROLLER_LISTENER_RULE__NAME = eINSTANCE.getControllerListenerRule_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CONTROLLER_LISTENER_RULE__TYPE = eINSTANCE.getControllerListenerRule_Type();
+
+    /**
+     * The meta object literal for the '<em><b>Op</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CONTROLLER_LISTENER_RULE__OP = eINSTANCE.getControllerListenerRule_Op();
+
+    /**
+     * The meta object literal for the '<em><b>Threshold</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CONTROLLER_LISTENER_RULE__THRESHOLD = eINSTANCE.getControllerListenerRule_Threshold();
 
     /**
      * The meta object literal for the '{@link dsl.greenhouse.impl.ReducerImpl <em>Reducer</em>}' class.

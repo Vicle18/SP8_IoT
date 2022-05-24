@@ -14,6 +14,7 @@
     <genClasses ecoreClass="Greenhouse.ecore#//HardwareSetup">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//HardwareSetup/hardware"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//HardwareSetup/controllers"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//HardwareSetup/controllerListeners"/>
     </genClasses>
     <genClasses ecoreClass="Greenhouse.ecore#//Hardware">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Greenhouse.ecore#//Hardware/name"/>
@@ -28,9 +29,23 @@
     <genClasses ecoreClass="Greenhouse.ecore#//Controller">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Greenhouse.ecore#//Controller/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//Controller/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//Controller/heartbeatfreq"/>
+    </genClasses>
+    <genClasses ecoreClass="Greenhouse.ecore#//HeartbeatFrequency">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Greenhouse.ecore#//HeartbeatFrequency/value"/>
     </genClasses>
     <genClasses ecoreClass="Greenhouse.ecore#//ControllerType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Greenhouse.ecore#//ControllerType/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Greenhouse.ecore#//ControllerListener">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Greenhouse.ecore#//ControllerListener/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//ControllerListener/controllerListenerRule"/>
+    </genClasses>
+    <genClasses ecoreClass="Greenhouse.ecore#//ControllerListenerRule">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Greenhouse.ecore#//ControllerListenerRule/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//ControllerListenerRule/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Greenhouse.ecore#//ControllerListenerRule/op"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Greenhouse.ecore#//ControllerListenerRule/threshold"/>
     </genClasses>
     <genClasses ecoreClass="Greenhouse.ecore#//Reducer">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Greenhouse.ecore#//Reducer/name"/>

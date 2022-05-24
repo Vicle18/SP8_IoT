@@ -79,12 +79,17 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		private final Keyword cMicroControllersKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Assignment cControllersAssignment_5 = (Assignment)cGroup.eContents().get(5);
 		private final RuleCall cControllersControllerParserRuleCall_5_0 = (RuleCall)cControllersAssignment_5.eContents().get(0);
+		private final Keyword cControllerListenersKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Assignment cControllerListenersAssignment_7 = (Assignment)cGroup.eContents().get(7);
+		private final RuleCall cControllerListenersControllerListenerParserRuleCall_7_0 = (RuleCall)cControllerListenersAssignment_7.eContents().get(0);
 		
 		//HardwareSetup:
 		//    {HardwareSetup} 'hardware' 'types'
 		//    hardware+=Hardware*
 		//    'micro-controllers'
 		//    controllers+=Controller+
+		//    'controller-listeners'
+		//    controllerListeners+= ControllerListener+
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -92,6 +97,8 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		//hardware+=Hardware*
 		//'micro-controllers'
 		//controllers+=Controller+
+		//'controller-listeners'
+		//controllerListeners+= ControllerListener+
 		public Group getGroup() { return cGroup; }
 		
 		//{HardwareSetup}
@@ -117,6 +124,15 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		
 		//Controller
 		public RuleCall getControllersControllerParserRuleCall_5_0() { return cControllersControllerParserRuleCall_5_0; }
+		
+		//'controller-listeners'
+		public Keyword getControllerListenersKeyword_6() { return cControllerListenersKeyword_6; }
+		
+		//controllerListeners+= ControllerListener+
+		public Assignment getControllerListenersAssignment_7() { return cControllerListenersAssignment_7; }
+		
+		//ControllerListener
+		public RuleCall getControllerListenersControllerListenerParserRuleCall_7_0() { return cControllerListenersControllerListenerParserRuleCall_7_0; }
 	}
 	public class HardwareElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "dsl.Greenhouse.Hardware");
@@ -248,13 +264,20 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		private final Keyword cTypeKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Assignment cTypeAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final RuleCall cTypeControllerTypeParserRuleCall_4_0 = (RuleCall)cTypeAssignment_4.eContents().get(0);
+		private final Keyword cSendsKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Keyword cHeartbeatKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Assignment cHeartbeatfreqAssignment_7 = (Assignment)cGroup.eContents().get(7);
+		private final RuleCall cHeartbeatfreqHeartbeatFrequencyParserRuleCall_7_0 = (RuleCall)cHeartbeatfreqAssignment_7.eContents().get(0);
+		private final Keyword cTimesKeyword_8 = (Keyword)cGroup.eContents().get(8);
+		private final Keyword cPerKeyword_9 = (Keyword)cGroup.eContents().get(9);
+		private final Keyword cSecondKeyword_10 = (Keyword)cGroup.eContents().get(10);
 		
 		//Controller:
-		//    'controller' name=ID 'of' 'type' type=ControllerType
+		//    'controller' name=ID 'of' 'type' type=ControllerType 'sends' 'heartbeat' heartbeatfreq=HeartbeatFrequency 'times' 'per' 'second'
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'controller' name=ID 'of' 'type' type=ControllerType
+		//'controller' name=ID 'of' 'type' type=ControllerType 'sends' 'heartbeat' heartbeatfreq=HeartbeatFrequency 'times' 'per' 'second'
 		public Group getGroup() { return cGroup; }
 		
 		//'controller'
@@ -277,6 +300,43 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		
 		//ControllerType
 		public RuleCall getTypeControllerTypeParserRuleCall_4_0() { return cTypeControllerTypeParserRuleCall_4_0; }
+		
+		//'sends'
+		public Keyword getSendsKeyword_5() { return cSendsKeyword_5; }
+		
+		//'heartbeat'
+		public Keyword getHeartbeatKeyword_6() { return cHeartbeatKeyword_6; }
+		
+		//heartbeatfreq=HeartbeatFrequency
+		public Assignment getHeartbeatfreqAssignment_7() { return cHeartbeatfreqAssignment_7; }
+		
+		//HeartbeatFrequency
+		public RuleCall getHeartbeatfreqHeartbeatFrequencyParserRuleCall_7_0() { return cHeartbeatfreqHeartbeatFrequencyParserRuleCall_7_0; }
+		
+		//'times'
+		public Keyword getTimesKeyword_8() { return cTimesKeyword_8; }
+		
+		//'per'
+		public Keyword getPerKeyword_9() { return cPerKeyword_9; }
+		
+		//'second'
+		public Keyword getSecondKeyword_10() { return cSecondKeyword_10; }
+	}
+	public class HeartbeatFrequencyElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "dsl.Greenhouse.HeartbeatFrequency");
+		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cValueINTTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
+		
+		//HeartbeatFrequency:
+		//    value=INT
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//value=INT
+		public Assignment getValueAssignment() { return cValueAssignment; }
+		
+		//INT
+		public RuleCall getValueINTTerminalRuleCall_0() { return cValueINTTerminalRuleCall_0; }
 	}
 	public class ControllerTypeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "dsl.Greenhouse.ControllerType");
@@ -301,6 +361,134 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		
 		//'ESP8266'
 		public Keyword getNameESP8266Keyword_0_1() { return cNameESP8266Keyword_0_1; }
+	}
+	public class ControllerListenerElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "dsl.Greenhouse.ControllerListener");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cListenerKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Keyword cWillKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Keyword cSendKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Keyword cMessageKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cControllerListenerRuleAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cControllerListenerRuleControllerListenerRuleParserRuleCall_5_0 = (RuleCall)cControllerListenerRuleAssignment_5.eContents().get(0);
+		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
+		private final Keyword cCommaKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
+		private final Assignment cControllerListenerRuleAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
+		private final RuleCall cControllerListenerRuleControllerListenerRuleParserRuleCall_6_1_0 = (RuleCall)cControllerListenerRuleAssignment_6_1.eContents().get(0);
+		
+		//ControllerListener:
+		//    'listener' name=ID 'will' 'send' 'message' controllerListenerRule+=ControllerListenerRule (',' controllerListenerRule+=ControllerListenerRule)*
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'listener' name=ID 'will' 'send' 'message' controllerListenerRule+=ControllerListenerRule (',' controllerListenerRule+=ControllerListenerRule)*
+		public Group getGroup() { return cGroup; }
+		
+		//'listener'
+		public Keyword getListenerKeyword_0() { return cListenerKeyword_0; }
+		
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		
+		//'will'
+		public Keyword getWillKeyword_2() { return cWillKeyword_2; }
+		
+		//'send'
+		public Keyword getSendKeyword_3() { return cSendKeyword_3; }
+		
+		//'message'
+		public Keyword getMessageKeyword_4() { return cMessageKeyword_4; }
+		
+		//controllerListenerRule+=ControllerListenerRule
+		public Assignment getControllerListenerRuleAssignment_5() { return cControllerListenerRuleAssignment_5; }
+		
+		//ControllerListenerRule
+		public RuleCall getControllerListenerRuleControllerListenerRuleParserRuleCall_5_0() { return cControllerListenerRuleControllerListenerRuleParserRuleCall_5_0; }
+		
+		//(',' controllerListenerRule+=ControllerListenerRule)*
+		public Group getGroup_6() { return cGroup_6; }
+		
+		//','
+		public Keyword getCommaKeyword_6_0() { return cCommaKeyword_6_0; }
+		
+		//controllerListenerRule+=ControllerListenerRule
+		public Assignment getControllerListenerRuleAssignment_6_1() { return cControllerListenerRuleAssignment_6_1; }
+		
+		//ControllerListenerRule
+		public RuleCall getControllerListenerRuleControllerListenerRuleParserRuleCall_6_1_0() { return cControllerListenerRuleControllerListenerRuleParserRuleCall_6_1_0; }
+	}
+	public class ControllerListenerRuleElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "dsl.Greenhouse.ControllerListenerRule");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNameIDTerminalRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final Keyword cWhenKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final CrossReference cTypeControllerCrossReference_2_0 = (CrossReference)cTypeAssignment_2.eContents().get(0);
+		private final RuleCall cTypeControllerIDTerminalRuleCall_2_0_1 = (RuleCall)cTypeControllerCrossReference_2_0.eContents().get(1);
+		private final Keyword cResponseKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cOpAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final Alternatives cOpAlternatives_4_0 = (Alternatives)cOpAssignment_4.eContents().get(0);
+		private final Keyword cOpLessThanSignKeyword_4_0_0 = (Keyword)cOpAlternatives_4_0.eContents().get(0);
+		private final Keyword cOpGreaterThanSignKeyword_4_0_1 = (Keyword)cOpAlternatives_4_0.eContents().get(1);
+		private final Keyword cOpEqualsSignKeyword_4_0_2 = (Keyword)cOpAlternatives_4_0.eContents().get(2);
+		private final Assignment cThresholdAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cThresholdExpParserRuleCall_5_0 = (RuleCall)cThresholdAssignment_5.eContents().get(0);
+		
+		//ControllerListenerRule:
+		//    name=ID 'when' type=[Controller] 'response' op = ('<' | '>' | '=') threshold=Exp
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//name=ID 'when' type=[Controller] 'response' op = ('<' | '>' | '=') threshold=Exp
+		public Group getGroup() { return cGroup; }
+		
+		//name=ID
+		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_0_0() { return cNameIDTerminalRuleCall_0_0; }
+		
+		//'when'
+		public Keyword getWhenKeyword_1() { return cWhenKeyword_1; }
+		
+		//type=[Controller]
+		public Assignment getTypeAssignment_2() { return cTypeAssignment_2; }
+		
+		//[Controller]
+		public CrossReference getTypeControllerCrossReference_2_0() { return cTypeControllerCrossReference_2_0; }
+		
+		//ID
+		public RuleCall getTypeControllerIDTerminalRuleCall_2_0_1() { return cTypeControllerIDTerminalRuleCall_2_0_1; }
+		
+		//'response'
+		public Keyword getResponseKeyword_3() { return cResponseKeyword_3; }
+		
+		//op = ('<' | '>' | '=')
+		public Assignment getOpAssignment_4() { return cOpAssignment_4; }
+		
+		//('<' | '>' | '=')
+		public Alternatives getOpAlternatives_4_0() { return cOpAlternatives_4_0; }
+		
+		//'<'
+		public Keyword getOpLessThanSignKeyword_4_0_0() { return cOpLessThanSignKeyword_4_0_0; }
+		
+		//'>'
+		public Keyword getOpGreaterThanSignKeyword_4_0_1() { return cOpGreaterThanSignKeyword_4_0_1; }
+		
+		//'='
+		public Keyword getOpEqualsSignKeyword_4_0_2() { return cOpEqualsSignKeyword_4_0_2; }
+		
+		//threshold=Exp
+		public Assignment getThresholdAssignment_5() { return cThresholdAssignment_5; }
+		
+		//Exp
+		public RuleCall getThresholdExpParserRuleCall_5_0() { return cThresholdExpParserRuleCall_5_0; }
 	}
 	public class ReducerElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "dsl.Greenhouse.Reducer");
@@ -1454,7 +1642,10 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 	private final SettingActuatorElements pSettingActuator;
 	private final SettingSensorElements pSettingSensor;
 	private final ControllerElements pController;
+	private final HeartbeatFrequencyElements pHeartbeatFrequency;
 	private final ControllerTypeElements pControllerType;
+	private final ControllerListenerElements pControllerListener;
+	private final ControllerListenerRuleElements pControllerListenerRule;
 	private final ReducerElements pReducer;
 	private final FrequencyElements pFrequency;
 	private final TopicElements pTopic;
@@ -1493,7 +1684,10 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 		this.pSettingActuator = new SettingActuatorElements();
 		this.pSettingSensor = new SettingSensorElements();
 		this.pController = new ControllerElements();
+		this.pHeartbeatFrequency = new HeartbeatFrequencyElements();
 		this.pControllerType = new ControllerTypeElements();
+		this.pControllerListener = new ControllerListenerElements();
+		this.pControllerListenerRule = new ControllerListenerRuleElements();
 		this.pReducer = new ReducerElements();
 		this.pFrequency = new FrequencyElements();
 		this.pTopic = new TopicElements();
@@ -1563,6 +1757,8 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 	//    hardware+=Hardware*
 	//    'micro-controllers'
 	//    controllers+=Controller+
+	//    'controller-listeners'
+	//    controllerListeners+= ControllerListener+
 	//;
 	public HardwareSetupElements getHardwareSetupAccess() {
 		return pHardwareSetup;
@@ -1606,7 +1802,7 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 	}
 	
 	//Controller:
-	//    'controller' name=ID 'of' 'type' type=ControllerType
+	//    'controller' name=ID 'of' 'type' type=ControllerType 'sends' 'heartbeat' heartbeatfreq=HeartbeatFrequency 'times' 'per' 'second'
 	//;
 	public ControllerElements getControllerAccess() {
 		return pController;
@@ -1614,6 +1810,17 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 	
 	public ParserRule getControllerRule() {
 		return getControllerAccess().getRule();
+	}
+	
+	//HeartbeatFrequency:
+	//    value=INT
+	//;
+	public HeartbeatFrequencyElements getHeartbeatFrequencyAccess() {
+		return pHeartbeatFrequency;
+	}
+	
+	public ParserRule getHeartbeatFrequencyRule() {
+		return getHeartbeatFrequencyAccess().getRule();
 	}
 	
 	//ControllerType:
@@ -1625,6 +1832,28 @@ public class GreenhouseGrammarAccess extends AbstractElementFinder.AbstractGramm
 	
 	public ParserRule getControllerTypeRule() {
 		return getControllerTypeAccess().getRule();
+	}
+	
+	//ControllerListener:
+	//    'listener' name=ID 'will' 'send' 'message' controllerListenerRule+=ControllerListenerRule (',' controllerListenerRule+=ControllerListenerRule)*
+	//;
+	public ControllerListenerElements getControllerListenerAccess() {
+		return pControllerListener;
+	}
+	
+	public ParserRule getControllerListenerRule() {
+		return getControllerListenerAccess().getRule();
+	}
+	
+	//ControllerListenerRule:
+	//    name=ID 'when' type=[Controller] 'response' op = ('<' | '>' | '=') threshold=Exp
+	//;
+	public ControllerListenerRuleElements getControllerListenerRuleAccess() {
+		return pControllerListenerRule;
+	}
+	
+	public ParserRule getControllerListenerRuleRule() {
+		return getControllerListenerRuleAccess().getRule();
 	}
 	
 	//Reducer:

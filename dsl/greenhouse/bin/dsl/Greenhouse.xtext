@@ -14,6 +14,8 @@ HardwareSetup:
 	hardware+=Hardware*
 	'micro-controllers'
 	controllers+=Controller+
+	'controller-listeners'
+	controllerListeners+= ControllerListener+
 ;
 
 Hardware:
@@ -30,12 +32,23 @@ SettingSensor:
 ;
 
 Controller:
-	'controller' name=ID 'of' 'type' type=ControllerType
-	
+	'controller' name=ID 'of' 'type' type=ControllerType 'sends' 'heartbeat' heartbeatfreq=HeartbeatFrequency 'times' 'per' 'second'
+;
+
+HeartbeatFrequency:
+	value=INT
 ;
 
 ControllerType:
 	name=('ESP32' | 'ESP8266')	
+;
+
+ControllerListener:
+	'listener' name=ID 'will' 'send' 'message' controllerListenerRule+=ControllerListenerRule (',' controllerListenerRule+=ControllerListenerRule)*
+;
+
+ControllerListenerRule:
+	name=ID 'when' type=[Controller] 'response' op = ('<' | '>' | '=') threshold=Exp
 ;
 
 Reducer:

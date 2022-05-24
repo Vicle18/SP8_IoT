@@ -4,6 +4,7 @@
 package dsl.greenhouse.impl;
 
 import dsl.greenhouse.Controller;
+import dsl.greenhouse.ControllerListener;
 import dsl.greenhouse.GreenhousePackage;
 import dsl.greenhouse.Hardware;
 import dsl.greenhouse.HardwareSetup;
@@ -32,6 +33,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link dsl.greenhouse.impl.HardwareSetupImpl#getHardware <em>Hardware</em>}</li>
  *   <li>{@link dsl.greenhouse.impl.HardwareSetupImpl#getControllers <em>Controllers</em>}</li>
+ *   <li>{@link dsl.greenhouse.impl.HardwareSetupImpl#getControllerListeners <em>Controller Listeners</em>}</li>
  * </ul>
  *
  * @generated
@@ -57,6 +59,16 @@ public class HardwareSetupImpl extends MinimalEObjectImpl.Container implements H
    * @ordered
    */
   protected EList<Controller> controllers;
+
+  /**
+   * The cached value of the '{@link #getControllerListeners() <em>Controller Listeners</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getControllerListeners()
+   * @generated
+   * @ordered
+   */
+  protected EList<ControllerListener> controllerListeners;
 
   /**
    * <!-- begin-user-doc -->
@@ -115,6 +127,21 @@ public class HardwareSetupImpl extends MinimalEObjectImpl.Container implements H
    * @generated
    */
   @Override
+  public EList<ControllerListener> getControllerListeners()
+  {
+    if (controllerListeners == null)
+    {
+      controllerListeners = new EObjectContainmentEList<ControllerListener>(ControllerListener.class, this, GreenhousePackage.HARDWARE_SETUP__CONTROLLER_LISTENERS);
+    }
+    return controllerListeners;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
     switch (featureID)
@@ -123,6 +150,8 @@ public class HardwareSetupImpl extends MinimalEObjectImpl.Container implements H
         return ((InternalEList<?>)getHardware()).basicRemove(otherEnd, msgs);
       case GreenhousePackage.HARDWARE_SETUP__CONTROLLERS:
         return ((InternalEList<?>)getControllers()).basicRemove(otherEnd, msgs);
+      case GreenhousePackage.HARDWARE_SETUP__CONTROLLER_LISTENERS:
+        return ((InternalEList<?>)getControllerListeners()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -141,6 +170,8 @@ public class HardwareSetupImpl extends MinimalEObjectImpl.Container implements H
         return getHardware();
       case GreenhousePackage.HARDWARE_SETUP__CONTROLLERS:
         return getControllers();
+      case GreenhousePackage.HARDWARE_SETUP__CONTROLLER_LISTENERS:
+        return getControllerListeners();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -164,6 +195,10 @@ public class HardwareSetupImpl extends MinimalEObjectImpl.Container implements H
         getControllers().clear();
         getControllers().addAll((Collection<? extends Controller>)newValue);
         return;
+      case GreenhousePackage.HARDWARE_SETUP__CONTROLLER_LISTENERS:
+        getControllerListeners().clear();
+        getControllerListeners().addAll((Collection<? extends ControllerListener>)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -184,6 +219,9 @@ public class HardwareSetupImpl extends MinimalEObjectImpl.Container implements H
       case GreenhousePackage.HARDWARE_SETUP__CONTROLLERS:
         getControllers().clear();
         return;
+      case GreenhousePackage.HARDWARE_SETUP__CONTROLLER_LISTENERS:
+        getControllerListeners().clear();
+        return;
     }
     super.eUnset(featureID);
   }
@@ -202,6 +240,8 @@ public class HardwareSetupImpl extends MinimalEObjectImpl.Container implements H
         return hardware != null && !hardware.isEmpty();
       case GreenhousePackage.HARDWARE_SETUP__CONTROLLERS:
         return controllers != null && !controllers.isEmpty();
+      case GreenhousePackage.HARDWARE_SETUP__CONTROLLER_LISTENERS:
+        return controllerListeners != null && !controllerListeners.isEmpty();
     }
     return super.eIsSet(featureID);
   }

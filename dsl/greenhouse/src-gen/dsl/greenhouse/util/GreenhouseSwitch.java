@@ -117,10 +117,31 @@ public class GreenhouseSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case GreenhousePackage.HEARTBEAT_FREQUENCY:
+      {
+        HeartbeatFrequency heartbeatFrequency = (HeartbeatFrequency)theEObject;
+        T result = caseHeartbeatFrequency(heartbeatFrequency);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case GreenhousePackage.CONTROLLER_TYPE:
       {
         ControllerType controllerType = (ControllerType)theEObject;
         T result = caseControllerType(controllerType);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case GreenhousePackage.CONTROLLER_LISTENER:
+      {
+        ControllerListener controllerListener = (ControllerListener)theEObject;
+        T result = caseControllerListener(controllerListener);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case GreenhousePackage.CONTROLLER_LISTENER_RULE:
+      {
+        ControllerListenerRule controllerListenerRule = (ControllerListenerRule)theEObject;
+        T result = caseControllerListenerRule(controllerListenerRule);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -411,6 +432,22 @@ public class GreenhouseSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Heartbeat Frequency</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Heartbeat Frequency</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseHeartbeatFrequency(HeartbeatFrequency object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Controller Type</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -422,6 +459,38 @@ public class GreenhouseSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseControllerType(ControllerType object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Controller Listener</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Controller Listener</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseControllerListener(ControllerListener object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Controller Listener Rule</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Controller Listener Rule</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseControllerListenerRule(ControllerListenerRule object)
   {
     return null;
   }

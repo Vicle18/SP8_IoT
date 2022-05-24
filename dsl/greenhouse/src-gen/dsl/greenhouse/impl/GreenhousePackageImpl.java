@@ -5,6 +5,8 @@ package dsl.greenhouse.impl;
 
 import dsl.greenhouse.Action;
 import dsl.greenhouse.Controller;
+import dsl.greenhouse.ControllerListener;
+import dsl.greenhouse.ControllerListenerRule;
 import dsl.greenhouse.ControllerType;
 import dsl.greenhouse.Div;
 import dsl.greenhouse.Expression;
@@ -18,6 +20,7 @@ import dsl.greenhouse.GreenhouseRuleSet;
 import dsl.greenhouse.GreenhouseSensor;
 import dsl.greenhouse.Hardware;
 import dsl.greenhouse.HardwareSetup;
+import dsl.greenhouse.HeartbeatFrequency;
 import dsl.greenhouse.MathNumber;
 import dsl.greenhouse.Minus;
 import dsl.greenhouse.Model;
@@ -100,7 +103,28 @@ public class GreenhousePackageImpl extends EPackageImpl implements GreenhousePac
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass heartbeatFrequencyEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass controllerTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass controllerListenerEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass controllerListenerRuleEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -423,6 +447,17 @@ public class GreenhousePackageImpl extends EPackageImpl implements GreenhousePac
    * @generated
    */
   @Override
+  public EReference getHardwareSetup_ControllerListeners()
+  {
+    return (EReference)hardwareSetupEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getHardware()
   {
     return hardwareEClass;
@@ -533,6 +568,39 @@ public class GreenhousePackageImpl extends EPackageImpl implements GreenhousePac
    * @generated
    */
   @Override
+  public EReference getController_Heartbeatfreq()
+  {
+    return (EReference)controllerEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getHeartbeatFrequency()
+  {
+    return heartbeatFrequencyEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getHeartbeatFrequency_Value()
+  {
+    return (EAttribute)heartbeatFrequencyEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getControllerType()
   {
     return controllerTypeEClass;
@@ -547,6 +615,94 @@ public class GreenhousePackageImpl extends EPackageImpl implements GreenhousePac
   public EAttribute getControllerType_Name()
   {
     return (EAttribute)controllerTypeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getControllerListener()
+  {
+    return controllerListenerEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getControllerListener_Name()
+  {
+    return (EAttribute)controllerListenerEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getControllerListener_ControllerListenerRule()
+  {
+    return (EReference)controllerListenerEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getControllerListenerRule()
+  {
+    return controllerListenerRuleEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getControllerListenerRule_Name()
+  {
+    return (EAttribute)controllerListenerRuleEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getControllerListenerRule_Type()
+  {
+    return (EReference)controllerListenerRuleEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getControllerListenerRule_Op()
+  {
+    return (EAttribute)controllerListenerRuleEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getControllerListenerRule_Threshold()
+  {
+    return (EReference)controllerListenerRuleEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -1479,6 +1635,7 @@ public class GreenhousePackageImpl extends EPackageImpl implements GreenhousePac
     hardwareSetupEClass = createEClass(HARDWARE_SETUP);
     createEReference(hardwareSetupEClass, HARDWARE_SETUP__HARDWARE);
     createEReference(hardwareSetupEClass, HARDWARE_SETUP__CONTROLLERS);
+    createEReference(hardwareSetupEClass, HARDWARE_SETUP__CONTROLLER_LISTENERS);
 
     hardwareEClass = createEClass(HARDWARE);
     createEAttribute(hardwareEClass, HARDWARE__NAME);
@@ -1493,9 +1650,23 @@ public class GreenhousePackageImpl extends EPackageImpl implements GreenhousePac
     controllerEClass = createEClass(CONTROLLER);
     createEAttribute(controllerEClass, CONTROLLER__NAME);
     createEReference(controllerEClass, CONTROLLER__TYPE);
+    createEReference(controllerEClass, CONTROLLER__HEARTBEATFREQ);
+
+    heartbeatFrequencyEClass = createEClass(HEARTBEAT_FREQUENCY);
+    createEAttribute(heartbeatFrequencyEClass, HEARTBEAT_FREQUENCY__VALUE);
 
     controllerTypeEClass = createEClass(CONTROLLER_TYPE);
     createEAttribute(controllerTypeEClass, CONTROLLER_TYPE__NAME);
+
+    controllerListenerEClass = createEClass(CONTROLLER_LISTENER);
+    createEAttribute(controllerListenerEClass, CONTROLLER_LISTENER__NAME);
+    createEReference(controllerListenerEClass, CONTROLLER_LISTENER__CONTROLLER_LISTENER_RULE);
+
+    controllerListenerRuleEClass = createEClass(CONTROLLER_LISTENER_RULE);
+    createEAttribute(controllerListenerRuleEClass, CONTROLLER_LISTENER_RULE__NAME);
+    createEReference(controllerListenerRuleEClass, CONTROLLER_LISTENER_RULE__TYPE);
+    createEAttribute(controllerListenerRuleEClass, CONTROLLER_LISTENER_RULE__OP);
+    createEReference(controllerListenerRuleEClass, CONTROLLER_LISTENER_RULE__THRESHOLD);
 
     reducerEClass = createEClass(REDUCER);
     createEAttribute(reducerEClass, REDUCER__NAME);
@@ -1656,6 +1827,7 @@ public class GreenhousePackageImpl extends EPackageImpl implements GreenhousePac
     initEClass(hardwareSetupEClass, HardwareSetup.class, "HardwareSetup", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getHardwareSetup_Hardware(), this.getHardware(), null, "hardware", null, 0, -1, HardwareSetup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getHardwareSetup_Controllers(), this.getController(), null, "controllers", null, 0, -1, HardwareSetup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getHardwareSetup_ControllerListeners(), this.getControllerListener(), null, "controllerListeners", null, 0, -1, HardwareSetup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(hardwareEClass, Hardware.class, "Hardware", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getHardware_Name(), ecorePackage.getEString(), "name", null, 0, 1, Hardware.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1670,9 +1842,23 @@ public class GreenhousePackageImpl extends EPackageImpl implements GreenhousePac
     initEClass(controllerEClass, Controller.class, "Controller", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getController_Name(), ecorePackage.getEString(), "name", null, 0, 1, Controller.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getController_Type(), this.getControllerType(), null, "type", null, 0, 1, Controller.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getController_Heartbeatfreq(), this.getHeartbeatFrequency(), null, "heartbeatfreq", null, 0, 1, Controller.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(heartbeatFrequencyEClass, HeartbeatFrequency.class, "HeartbeatFrequency", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getHeartbeatFrequency_Value(), ecorePackage.getEInt(), "value", null, 0, 1, HeartbeatFrequency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(controllerTypeEClass, ControllerType.class, "ControllerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getControllerType_Name(), ecorePackage.getEString(), "name", null, 0, 1, ControllerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(controllerListenerEClass, ControllerListener.class, "ControllerListener", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getControllerListener_Name(), ecorePackage.getEString(), "name", null, 0, 1, ControllerListener.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getControllerListener_ControllerListenerRule(), this.getControllerListenerRule(), null, "controllerListenerRule", null, 0, -1, ControllerListener.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(controllerListenerRuleEClass, ControllerListenerRule.class, "ControllerListenerRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getControllerListenerRule_Name(), ecorePackage.getEString(), "name", null, 0, 1, ControllerListenerRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getControllerListenerRule_Type(), this.getController(), null, "type", null, 0, 1, ControllerListenerRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getControllerListenerRule_Op(), ecorePackage.getEString(), "op", null, 0, 1, ControllerListenerRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getControllerListenerRule_Threshold(), this.getExpression(), null, "threshold", null, 0, 1, ControllerListenerRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(reducerEClass, Reducer.class, "Reducer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getReducer_Name(), ecorePackage.getEString(), "name", null, 0, 1, Reducer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

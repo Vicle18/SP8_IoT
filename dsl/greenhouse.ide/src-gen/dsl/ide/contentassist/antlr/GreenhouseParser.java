@@ -33,6 +33,7 @@ public class GreenhouseParser extends AbstractContentAssistParser {
 		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, GreenhouseGrammarAccess grammarAccess) {
 			builder.put(grammarAccess.getHardwareAccess().getAlternatives(), "rule__Hardware__Alternatives");
 			builder.put(grammarAccess.getControllerTypeAccess().getNameAlternatives_0(), "rule__ControllerType__NameAlternatives_0");
+			builder.put(grammarAccess.getControllerListenerRuleAccess().getOpAlternatives_4_0(), "rule__ControllerListenerRule__OpAlternatives_4_0");
 			builder.put(grammarAccess.getReducerAccess().getNameAlternatives_0(), "rule__Reducer__NameAlternatives_0");
 			builder.put(grammarAccess.getGreenhouseElementAccess().getAlternatives(), "rule__GreenhouseElement__Alternatives");
 			builder.put(grammarAccess.getRowElementAccess().getAlternatives(), "rule__RowElement__Alternatives");
@@ -46,6 +47,9 @@ public class GreenhouseParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getSettingActuatorAccess().getGroup_5(), "rule__SettingActuator__Group_5__0");
 			builder.put(grammarAccess.getSettingSensorAccess().getGroup(), "rule__SettingSensor__Group__0");
 			builder.put(grammarAccess.getControllerAccess().getGroup(), "rule__Controller__Group__0");
+			builder.put(grammarAccess.getControllerListenerAccess().getGroup(), "rule__ControllerListener__Group__0");
+			builder.put(grammarAccess.getControllerListenerAccess().getGroup_6(), "rule__ControllerListener__Group_6__0");
+			builder.put(grammarAccess.getControllerListenerRuleAccess().getGroup(), "rule__ControllerListenerRule__Group__0");
 			builder.put(grammarAccess.getFrequencyAccess().getGroup(), "rule__Frequency__Group__0");
 			builder.put(grammarAccess.getTopicAccess().getGroup(), "rule__Topic__Group__0");
 			builder.put(grammarAccess.getSettingActionAccess().getGroup(), "rule__SettingAction__Group__0");
@@ -83,6 +87,7 @@ public class GreenhouseParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getModelAccess().getGreenhousesAssignment_3(), "rule__Model__GreenhousesAssignment_3");
 			builder.put(grammarAccess.getHardwareSetupAccess().getHardwareAssignment_3(), "rule__HardwareSetup__HardwareAssignment_3");
 			builder.put(grammarAccess.getHardwareSetupAccess().getControllersAssignment_5(), "rule__HardwareSetup__ControllersAssignment_5");
+			builder.put(grammarAccess.getHardwareSetupAccess().getControllerListenersAssignment_7(), "rule__HardwareSetup__ControllerListenersAssignment_7");
 			builder.put(grammarAccess.getSettingActuatorAccess().getNameAssignment_1(), "rule__SettingActuator__NameAssignment_1");
 			builder.put(grammarAccess.getSettingActuatorAccess().getSettingActionAssignment_4(), "rule__SettingActuator__SettingActionAssignment_4");
 			builder.put(grammarAccess.getSettingActuatorAccess().getSettingActionAssignment_5_1(), "rule__SettingActuator__SettingActionAssignment_5_1");
@@ -91,7 +96,16 @@ public class GreenhouseParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getSettingSensorAccess().getFrequencyAssignment_4(), "rule__SettingSensor__FrequencyAssignment_4");
 			builder.put(grammarAccess.getControllerAccess().getNameAssignment_1(), "rule__Controller__NameAssignment_1");
 			builder.put(grammarAccess.getControllerAccess().getTypeAssignment_4(), "rule__Controller__TypeAssignment_4");
+			builder.put(grammarAccess.getControllerAccess().getHeartbeatfreqAssignment_7(), "rule__Controller__HeartbeatfreqAssignment_7");
+			builder.put(grammarAccess.getHeartbeatFrequencyAccess().getValueAssignment(), "rule__HeartbeatFrequency__ValueAssignment");
 			builder.put(grammarAccess.getControllerTypeAccess().getNameAssignment(), "rule__ControllerType__NameAssignment");
+			builder.put(grammarAccess.getControllerListenerAccess().getNameAssignment_1(), "rule__ControllerListener__NameAssignment_1");
+			builder.put(grammarAccess.getControllerListenerAccess().getControllerListenerRuleAssignment_5(), "rule__ControllerListener__ControllerListenerRuleAssignment_5");
+			builder.put(grammarAccess.getControllerListenerAccess().getControllerListenerRuleAssignment_6_1(), "rule__ControllerListener__ControllerListenerRuleAssignment_6_1");
+			builder.put(grammarAccess.getControllerListenerRuleAccess().getNameAssignment_0(), "rule__ControllerListenerRule__NameAssignment_0");
+			builder.put(grammarAccess.getControllerListenerRuleAccess().getTypeAssignment_2(), "rule__ControllerListenerRule__TypeAssignment_2");
+			builder.put(grammarAccess.getControllerListenerRuleAccess().getOpAssignment_4(), "rule__ControllerListenerRule__OpAssignment_4");
+			builder.put(grammarAccess.getControllerListenerRuleAccess().getThresholdAssignment_5(), "rule__ControllerListenerRule__ThresholdAssignment_5");
 			builder.put(grammarAccess.getReducerAccess().getNameAssignment(), "rule__Reducer__NameAssignment");
 			builder.put(grammarAccess.getFrequencyAccess().getFreqAssignment_0(), "rule__Frequency__FreqAssignment_0");
 			builder.put(grammarAccess.getTopicAccess().getNameAssignment_1(), "rule__Topic__NameAssignment_1");

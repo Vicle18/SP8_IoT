@@ -5,6 +5,8 @@ package dsl.serializer;
 
 import com.google.inject.Inject;
 import dsl.greenhouse.Controller;
+import dsl.greenhouse.ControllerListener;
+import dsl.greenhouse.ControllerListenerRule;
 import dsl.greenhouse.ControllerType;
 import dsl.greenhouse.Div;
 import dsl.greenhouse.Frequency;
@@ -14,6 +16,7 @@ import dsl.greenhouse.GreenhousePackage;
 import dsl.greenhouse.GreenhouseRuleSet;
 import dsl.greenhouse.GreenhouseSensor;
 import dsl.greenhouse.HardwareSetup;
+import dsl.greenhouse.HeartbeatFrequency;
 import dsl.greenhouse.MathNumber;
 import dsl.greenhouse.Minus;
 import dsl.greenhouse.Model;
@@ -64,6 +67,12 @@ public class GreenhouseSemanticSequencer extends AbstractDelegatingSemanticSeque
 			case GreenhousePackage.CONTROLLER:
 				sequence_Controller(context, (Controller) semanticObject); 
 				return; 
+			case GreenhousePackage.CONTROLLER_LISTENER:
+				sequence_ControllerListener(context, (ControllerListener) semanticObject); 
+				return; 
+			case GreenhousePackage.CONTROLLER_LISTENER_RULE:
+				sequence_ControllerListenerRule(context, (ControllerListenerRule) semanticObject); 
+				return; 
 			case GreenhousePackage.CONTROLLER_TYPE:
 				sequence_ControllerType(context, (ControllerType) semanticObject); 
 				return; 
@@ -87,6 +96,9 @@ public class GreenhouseSemanticSequencer extends AbstractDelegatingSemanticSeque
 				return; 
 			case GreenhousePackage.HARDWARE_SETUP:
 				sequence_HardwareSetup(context, (HardwareSetup) semanticObject); 
+				return; 
+			case GreenhousePackage.HEARTBEAT_FREQUENCY:
+				sequence_HeartbeatFrequency(context, (HeartbeatFrequency) semanticObject); 
 				return; 
 			case GreenhousePackage.MATH_NUMBER:
 				sequence_Primary(context, (MathNumber) semanticObject); 
@@ -173,6 +185,30 @@ public class GreenhouseSemanticSequencer extends AbstractDelegatingSemanticSeque
 	
 	/**
 	 * Contexts:
+	 *     ControllerListenerRule returns ControllerListenerRule
+	 *
+	 * Constraint:
+	 *     (name=ID type=[Controller|ID] (op='<' | op='>' | op='=') threshold=Exp)
+	 */
+	protected void sequence_ControllerListenerRule(ISerializationContext context, ControllerListenerRule semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ControllerListener returns ControllerListener
+	 *
+	 * Constraint:
+	 *     (name=ID controllerListenerRule+=ControllerListenerRule controllerListenerRule+=ControllerListenerRule*)
+	 */
+	protected void sequence_ControllerListener(ISerializationContext context, ControllerListener semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     ControllerType returns ControllerType
 	 *
 	 * Constraint:
@@ -188,7 +224,7 @@ public class GreenhouseSemanticSequencer extends AbstractDelegatingSemanticSeque
 	 *     Controller returns Controller
 	 *
 	 * Constraint:
-	 *     (name=ID type=ControllerType)
+	 *     (name=ID type=ControllerType heartbeatfreq=HeartbeatFrequency)
 	 */
 	protected void sequence_Controller(ISerializationContext context, Controller semanticObject) {
 		if (errorAcceptor != null) {
@@ -196,10 +232,13 @@ public class GreenhouseSemanticSequencer extends AbstractDelegatingSemanticSeque
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, GreenhousePackage.Literals.CONTROLLER__NAME));
 			if (transientValues.isValueTransient(semanticObject, GreenhousePackage.Literals.CONTROLLER__TYPE) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, GreenhousePackage.Literals.CONTROLLER__TYPE));
+			if (transientValues.isValueTransient(semanticObject, GreenhousePackage.Literals.CONTROLLER__HEARTBEATFREQ) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, GreenhousePackage.Literals.CONTROLLER__HEARTBEATFREQ));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getControllerAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
 		feeder.accept(grammarAccess.getControllerAccess().getTypeControllerTypeParserRuleCall_4_0(), semanticObject.getType());
+		feeder.accept(grammarAccess.getControllerAccess().getHeartbeatfreqHeartbeatFrequencyParserRuleCall_7_0(), semanticObject.getHeartbeatfreq());
 		feeder.finish();
 	}
 	
@@ -411,10 +450,28 @@ public class GreenhouseSemanticSequencer extends AbstractDelegatingSemanticSeque
 	 *     HardwareSetup returns HardwareSetup
 	 *
 	 * Constraint:
-	 *     (hardware+=Hardware* controllers+=Controller+)
+	 *     (hardware+=Hardware* controllers+=Controller+ controllerListeners+=ControllerListener+)
 	 */
 	protected void sequence_HardwareSetup(ISerializationContext context, HardwareSetup semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     HeartbeatFrequency returns HeartbeatFrequency
+	 *
+	 * Constraint:
+	 *     value=INT
+	 */
+	protected void sequence_HeartbeatFrequency(ISerializationContext context, HeartbeatFrequency semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, GreenhousePackage.Literals.HEARTBEAT_FREQUENCY__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, GreenhousePackage.Literals.HEARTBEAT_FREQUENCY__VALUE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getHeartbeatFrequencyAccess().getValueINTTerminalRuleCall_0(), semanticObject.getValue());
+		feeder.finish();
 	}
 	
 	

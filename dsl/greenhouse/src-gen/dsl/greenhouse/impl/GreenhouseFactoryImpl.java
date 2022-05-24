@@ -71,7 +71,10 @@ public class GreenhouseFactoryImpl extends EFactoryImpl implements GreenhouseFac
       case GreenhousePackage.SETTING_ACTUATOR: return createSettingActuator();
       case GreenhousePackage.SETTING_SENSOR: return createSettingSensor();
       case GreenhousePackage.CONTROLLER: return createController();
+      case GreenhousePackage.HEARTBEAT_FREQUENCY: return createHeartbeatFrequency();
       case GreenhousePackage.CONTROLLER_TYPE: return createControllerType();
+      case GreenhousePackage.CONTROLLER_LISTENER: return createControllerListener();
+      case GreenhousePackage.CONTROLLER_LISTENER_RULE: return createControllerListenerRule();
       case GreenhousePackage.REDUCER: return createReducer();
       case GreenhousePackage.FREQUENCY: return createFrequency();
       case GreenhousePackage.TOPIC: return createTopic();
@@ -180,10 +183,46 @@ public class GreenhouseFactoryImpl extends EFactoryImpl implements GreenhouseFac
    * @generated
    */
   @Override
+  public HeartbeatFrequency createHeartbeatFrequency()
+  {
+    HeartbeatFrequencyImpl heartbeatFrequency = new HeartbeatFrequencyImpl();
+    return heartbeatFrequency;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public ControllerType createControllerType()
   {
     ControllerTypeImpl controllerType = new ControllerTypeImpl();
     return controllerType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ControllerListener createControllerListener()
+  {
+    ControllerListenerImpl controllerListener = new ControllerListenerImpl();
+    return controllerListener;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ControllerListenerRule createControllerListenerRule()
+  {
+    ControllerListenerRuleImpl controllerListenerRule = new ControllerListenerRuleImpl();
+    return controllerListenerRule;
   }
 
   /**

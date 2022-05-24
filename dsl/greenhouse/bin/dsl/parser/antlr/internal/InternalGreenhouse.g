@@ -212,6 +212,29 @@ ruleHardwareSetup returns [EObject current=null]
 				}
 			)
 		)+
+		otherlv_6='controller-listeners'
+		{
+			newLeafNode(otherlv_6, grammarAccess.getHardwareSetupAccess().getControllerListenersKeyword_6());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getHardwareSetupAccess().getControllerListenersControllerListenerParserRuleCall_7_0());
+				}
+				lv_controllerListeners_7_0=ruleControllerListener
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getHardwareSetupRule());
+					}
+					add(
+						$current,
+						"controllerListeners",
+						lv_controllerListeners_7_0,
+						"dsl.Greenhouse.ControllerListener");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)+
 	)
 ;
 
@@ -492,6 +515,80 @@ ruleController returns [EObject current=null]
 				}
 			)
 		)
+		otherlv_5='sends'
+		{
+			newLeafNode(otherlv_5, grammarAccess.getControllerAccess().getSendsKeyword_5());
+		}
+		otherlv_6='heartbeat'
+		{
+			newLeafNode(otherlv_6, grammarAccess.getControllerAccess().getHeartbeatKeyword_6());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getControllerAccess().getHeartbeatfreqHeartbeatFrequencyParserRuleCall_7_0());
+				}
+				lv_heartbeatfreq_7_0=ruleHeartbeatFrequency
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getControllerRule());
+					}
+					set(
+						$current,
+						"heartbeatfreq",
+						lv_heartbeatfreq_7_0,
+						"dsl.Greenhouse.HeartbeatFrequency");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_8='times'
+		{
+			newLeafNode(otherlv_8, grammarAccess.getControllerAccess().getTimesKeyword_8());
+		}
+		otherlv_9='per'
+		{
+			newLeafNode(otherlv_9, grammarAccess.getControllerAccess().getPerKeyword_9());
+		}
+		otherlv_10='second'
+		{
+			newLeafNode(otherlv_10, grammarAccess.getControllerAccess().getSecondKeyword_10());
+		}
+	)
+;
+
+// Entry rule entryRuleHeartbeatFrequency
+entryRuleHeartbeatFrequency returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getHeartbeatFrequencyRule()); }
+	iv_ruleHeartbeatFrequency=ruleHeartbeatFrequency
+	{ $current=$iv_ruleHeartbeatFrequency.current; }
+	EOF;
+
+// Rule HeartbeatFrequency
+ruleHeartbeatFrequency returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			lv_value_0_0=RULE_INT
+			{
+				newLeafNode(lv_value_0_0, grammarAccess.getHeartbeatFrequencyAccess().getValueINTTerminalRuleCall_0());
+			}
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getHeartbeatFrequencyRule());
+				}
+				setWithLastConsumed(
+					$current,
+					"value",
+					lv_value_0_0,
+					"org.eclipse.xtext.common.Terminals.INT");
+			}
+		)
 	)
 ;
 
@@ -533,6 +630,218 @@ ruleControllerType returns [EObject current=null]
 						$current = createModelElement(grammarAccess.getControllerTypeRule());
 					}
 					setWithLastConsumed($current, "name", lv_name_0_2, null);
+				}
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleControllerListener
+entryRuleControllerListener returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getControllerListenerRule()); }
+	iv_ruleControllerListener=ruleControllerListener
+	{ $current=$iv_ruleControllerListener.current; }
+	EOF;
+
+// Rule ControllerListener
+ruleControllerListener returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='listener'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getControllerListenerAccess().getListenerKeyword_0());
+		}
+		(
+			(
+				lv_name_1_0=RULE_ID
+				{
+					newLeafNode(lv_name_1_0, grammarAccess.getControllerListenerAccess().getNameIDTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getControllerListenerRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"name",
+						lv_name_1_0,
+						"org.eclipse.xtext.common.Terminals.ID");
+				}
+			)
+		)
+		otherlv_2='will'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getControllerListenerAccess().getWillKeyword_2());
+		}
+		otherlv_3='send'
+		{
+			newLeafNode(otherlv_3, grammarAccess.getControllerListenerAccess().getSendKeyword_3());
+		}
+		otherlv_4='message'
+		{
+			newLeafNode(otherlv_4, grammarAccess.getControllerListenerAccess().getMessageKeyword_4());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getControllerListenerAccess().getControllerListenerRuleControllerListenerRuleParserRuleCall_5_0());
+				}
+				lv_controllerListenerRule_5_0=ruleControllerListenerRule
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getControllerListenerRule());
+					}
+					add(
+						$current,
+						"controllerListenerRule",
+						lv_controllerListenerRule_5_0,
+						"dsl.Greenhouse.ControllerListenerRule");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		(
+			otherlv_6=','
+			{
+				newLeafNode(otherlv_6, grammarAccess.getControllerListenerAccess().getCommaKeyword_6_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getControllerListenerAccess().getControllerListenerRuleControllerListenerRuleParserRuleCall_6_1_0());
+					}
+					lv_controllerListenerRule_7_0=ruleControllerListenerRule
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getControllerListenerRule());
+						}
+						add(
+							$current,
+							"controllerListenerRule",
+							lv_controllerListenerRule_7_0,
+							"dsl.Greenhouse.ControllerListenerRule");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)*
+	)
+;
+
+// Entry rule entryRuleControllerListenerRule
+entryRuleControllerListenerRule returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getControllerListenerRuleRule()); }
+	iv_ruleControllerListenerRule=ruleControllerListenerRule
+	{ $current=$iv_ruleControllerListenerRule.current; }
+	EOF;
+
+// Rule ControllerListenerRule
+ruleControllerListenerRule returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				lv_name_0_0=RULE_ID
+				{
+					newLeafNode(lv_name_0_0, grammarAccess.getControllerListenerRuleAccess().getNameIDTerminalRuleCall_0_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getControllerListenerRuleRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"name",
+						lv_name_0_0,
+						"org.eclipse.xtext.common.Terminals.ID");
+				}
+			)
+		)
+		otherlv_1='when'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getControllerListenerRuleAccess().getWhenKeyword_1());
+		}
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getControllerListenerRuleRule());
+					}
+				}
+				otherlv_2=RULE_ID
+				{
+					newLeafNode(otherlv_2, grammarAccess.getControllerListenerRuleAccess().getTypeControllerCrossReference_2_0());
+				}
+			)
+		)
+		otherlv_3='response'
+		{
+			newLeafNode(otherlv_3, grammarAccess.getControllerListenerRuleAccess().getResponseKeyword_3());
+		}
+		(
+			(
+				(
+					lv_op_4_1='<'
+					{
+						newLeafNode(lv_op_4_1, grammarAccess.getControllerListenerRuleAccess().getOpLessThanSignKeyword_4_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getControllerListenerRuleRule());
+						}
+						setWithLastConsumed($current, "op", lv_op_4_1, null);
+					}
+					    |
+					lv_op_4_2='>'
+					{
+						newLeafNode(lv_op_4_2, grammarAccess.getControllerListenerRuleAccess().getOpGreaterThanSignKeyword_4_0_1());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getControllerListenerRuleRule());
+						}
+						setWithLastConsumed($current, "op", lv_op_4_2, null);
+					}
+					    |
+					lv_op_4_3='='
+					{
+						newLeafNode(lv_op_4_3, grammarAccess.getControllerListenerRuleAccess().getOpEqualsSignKeyword_4_0_2());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getControllerListenerRuleRule());
+						}
+						setWithLastConsumed($current, "op", lv_op_4_3, null);
+					}
+				)
+			)
+		)
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getControllerListenerRuleAccess().getThresholdExpParserRuleCall_5_0());
+				}
+				lv_threshold_5_0=ruleExp
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getControllerListenerRuleRule());
+					}
+					set(
+						$current,
+						"threshold",
+						lv_threshold_5_0,
+						"dsl.Greenhouse.Exp");
+					afterParserOrEnumRuleCall();
 				}
 			)
 		)

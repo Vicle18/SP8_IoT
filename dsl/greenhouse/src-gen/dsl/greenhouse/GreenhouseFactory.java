@@ -78,6 +78,15 @@ public interface GreenhouseFactory extends EFactory
   Controller createController();
 
   /**
+   * Returns a new object of class '<em>Heartbeat Frequency</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Heartbeat Frequency</em>'.
+   * @generated
+   */
+  HeartbeatFrequency createHeartbeatFrequency();
+
+  /**
    * Returns a new object of class '<em>Controller Type</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -85,6 +94,24 @@ public interface GreenhouseFactory extends EFactory
    * @generated
    */
   ControllerType createControllerType();
+
+  /**
+   * Returns a new object of class '<em>Controller Listener</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Controller Listener</em>'.
+   * @generated
+   */
+  ControllerListener createControllerListener();
+
+  /**
+   * Returns a new object of class '<em>Controller Listener Rule</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Controller Listener Rule</em>'.
+   * @generated
+   */
+  ControllerListenerRule createControllerListenerRule();
 
   /**
    * Returns a new object of class '<em>Reducer</em>'.
