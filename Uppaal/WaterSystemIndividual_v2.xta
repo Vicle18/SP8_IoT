@@ -49,6 +49,8 @@ TT :=0; };
 }
 
 process Fan() {
+
+
 clock FT;
 state
     Active,
@@ -63,16 +65,15 @@ FT:=0; },
 }
 
 process ControllerSensor() {
+
+
 clock NNWTimer;
 state
     L0 { CSHeartbeatTimer < 30000 },
-    NeedWater { moist <= 150 or CSHeartbeatTimer < 29000 },
+    NeedWater { moist <= 150 and CSHeartbeatTimer < 29000 },
     Heartbeat,
-    CSDefaultMode,
     L1,
-    L2,
-    ErrorNeedWater,
-    ErrorOptimal;
+    L2;
 commit
     Heartbeat,
     L1,
@@ -80,13 +81,10 @@ commit
 init
     L0;
 trans
-    L1 -> ErrorOptimal { guard CSHeartbeatTimer >=30000; sync CSErrorDetected?; },
-    L2 -> ErrorNeedWater { guard CSHeartbeatTimer >=30000; sync CSErrorDetected?; },
     L1 -> L0 { sync stopPump!; assign MHealthTimer := 0; },
     NeedWater -> L1 { sync CSErrorCheck!; },
     L2 -> NeedWater { sync startPump!; assign MHealthTimer := 0; },
     L0 -> L2 { guard moist<=100 and CSHeartbeatTimer < 28000; sync CSErrorCheck!; },
-    L0 -> CSDefaultMode { guard CSHeartbeatTimer >= 30000; sync CSErrorDetected?; },
     Heartbeat -> L0 { sync MoistEnv!; assign CSHeartbeatTimer:=0; },
     L0 -> Heartbeat { sync CSBeat!; assign CSHeartbeat := CSHeartbeat+1; };
 }
@@ -104,8 +102,8 @@ commit
 init
     Initial;
 trans
-    L1 -> CSError { guard CSHeartbeatTimer>=28000; sync CSErrorDetected!; },
-    L1 -> Initial { guard CSHeartbeatTimer<28000; },
+    L1 -> CSError { guard CSHeartbeatTimer>=30000; sync CSErrorDetected!; },
+    L1 -> Initial { guard CSHeartbeatTimer<30000; },
     Initial -> L1 { sync CSErrorCheck?; },
     L0 -> CSError { guard CSHeartbeatTimer >= 30000; sync CSErrorDetected!; },
     L0 -> Initial { guard CSHeartbeatTimer < 30000; },
@@ -113,15 +111,17 @@ trans
 }
 
 process ControllerActuator() {
+
+
 clock PT;
 state
     L0 { CAHeartbeatTimer < 30000 },
-    Active { CAHeartbeatTimer < 29000 },
-    CADefaultMode,
+    Active,
     Heartbeat,
     L1,
     L2,
-    ErrorFromActive;
+    EmergencyStop,
+    PumpNotResponding;
 commit
     Heartbeat,
     L1,
@@ -129,16 +129,16 @@ commit
 init
     L0;
 trans
-    Active -> ErrorFromActive { guard CAHeartbeatTimer >= 30000; sync CAErrorDetected?; },
+    L0 -> PumpNotResponding { sync CAErrorDetected?; },
+    Active -> EmergencyStop { sync CSErrorDetected?; },
     L2 -> L0 { sync CAErrorCheck!; },
     Active -> L2 { sync stopPump?; assign pumpRunning = false,
 PNA:=0; },
     L1 -> Active { sync CAErrorCheck!; assign pumpRunning = true, PT := 0; },
-    L0 -> L1 { guard moist<=100 and CAHeartbeatTimer <28000; sync startPump?; },
+    L0 -> L1 { sync startPump?; },
     Heartbeat -> L0 { assign CAHeartbeatTimer:=0; },
     L0 -> Heartbeat { sync CABeat!; assign CAHeartbeat:=CAHeartbeat+1; },
-    L0 -> CADefaultMode { guard CAHeartbeatTimer >= 30000; sync CAErrorDetected?; },
-    Active -> Active { guard PT >= 1000; sync CAErrorCheck!; assign PT:=0,
+    Active -> Active { guard PT >= 1000; assign PT:=0,
 moist:=moist+6; };
 }
 
@@ -155,11 +155,11 @@ commit
 init
     Initial;
 trans
-    L1 -> CAError { guard CAHeartbeatTimer>=28000; sync CAErrorDetected!; },
-    L1 -> Initial { guard CAHeartbeatTimer<28000; },
+    L1 -> CAError { guard CAHeartbeatTimer>=30000; sync CAErrorDetected!; },
+    L1 -> Initial { guard CAHeartbeatTimer<30000; },
     Initial -> L1 { sync CAErrorCheck?; },
-    L0 -> CAError { guard CAHeartbeatTimer >= 28000; sync CAErrorDetected!; },
-    L0 -> Initial { guard CAHeartbeatTimer < 28000; },
+    L0 -> CAError { guard CAHeartbeatTimer >= 30000; sync CAErrorDetected!; },
+    L0 -> Initial { guard CAHeartbeatTimer < 30000; },
     Initial -> L0 { sync CABeat?; };
 }
 
@@ -196,8 +196,9 @@ CVTimer:=0; };
 }
 
 process CO2Env() {
-int counter = 0;
 
+
+int counter = 0;
 state
     CO2Env;
 init
@@ -231,6 +232,8 @@ openPercentage := 0; };
 }
 
 process Aircondition() {
+
+
 clock AT;
 state
     CoolingActive { AT <=11 },
@@ -250,6 +253,8 @@ AT:=0; },
 }
 
 process TempSensor() {
+
+
 clock coldTime;
 state
     Hot,
@@ -296,6 +301,8 @@ trans
 }
 
 process Pump() {
+
+
 clock PT;
 state
     Active { PT <= 1000 },
@@ -319,7 +326,7 @@ commit
 init
     L0;
 trans
-    L1 -> L0 { assign moist:= moist - 1,
+    L1 -> L0 { assign moist:= moist - 7,
 MT :=0; },
     L0 -> L1 { sync MoistEnv?; };
 }
@@ -379,6 +386,8 @@ HT:=0; },
     L0 -> L0 { guard HTT>10; assign humidity:=humidity-2,
 DHT:=0; };
 }
+
+
 // Place template instantiations here.´
 co2Sensor:=CO2Sensor();
 co2Env:=CO2Env();
